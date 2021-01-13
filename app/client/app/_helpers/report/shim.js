@@ -50,7 +50,7 @@ app.report.shim = {
   },
 
   fieldset: (r, target) => (options = {}) => (a, x) =>
-    f.dependent({
+    r.dependent({
       body: a["fieldset|appkit-form-control"](
         [
           options.legend ? a.legend(options.legend, options.legendTag) : null,

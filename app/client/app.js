@@ -4,13 +4,15 @@ a["app"](
   [
     app.modal(),
     a["div.container-fluid"]([
-      app.environment()
+      app.router(),
+      // app.environment()
     ])
   ],
   {
     $on: {
-      "appkit.router.load": (e, el) => {
+      "ax.appkit.router.load": (e, el) => {
         navbar.$activate();
+        el.$$('#dashboardMenu').$activate();
       },
     },
   }

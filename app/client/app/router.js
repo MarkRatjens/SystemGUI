@@ -3,15 +3,10 @@ app.router = () => (a, x) => x.router({
     app.navbar(router),
     router.mount({
       routes: {
-        '/?': app.home,
+        // '/?': app.dashboard,
         '/settings/?*': app.settings,
-        "/applications/?*": app.applications,
-        "/blueprints/?*": app.blueprints,
-        "/resolutions/?*": app.resolutions,
-        "/packs/?*": app.packs,
-        "/domains/?*": app.domains,
-        "/arenas/?*": app.arenas,
-        "/system/?*": app.system,
+        '/admin/?*': app.admin,
+        "*": app.dashboard,
       },
     }),
   ],

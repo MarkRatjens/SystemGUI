@@ -51,6 +51,22 @@ ax.style({
       borderColor: "#333",
     },
 
+    '.navbar.navbar-light': {
+      '.navbar-nav': {
+        '.nav-link': {
+          color: '#EEE',
+        },
+        '.nav-item.active': {
+          '.nav-link': {
+            color: '#FFF',
+          },
+        },
+      },
+      '.navbar-brand': {
+        color: '#EEE',
+      },
+    },
+
     "ax-panes": {
       "ax-panes-drag": {
         background: "#FFF1",

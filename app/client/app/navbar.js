@@ -1,5 +1,5 @@
 app.navbar = (router) => (a, x) =>
-  a["nav#navbar.navbar.navbar-expand-md.navbar-light.bg-transparent.mx-n3.mt-n1.mb-1"](
+  a["nav#navbar.navbar.navbar-expand.navbar-light.bg-transparent.mx-n3.mt-n1.mb-1"](
     [
       a.a([
         a({
@@ -10,29 +10,57 @@ app.navbar = (router) => (a, x) =>
       ], {
         href: "/",
         class: "navbar-brand",
-      }),
-      a.button(a({class: "navbar-toggler-icon"}), {
-        class: "navbar-toggler",
-        data: {
-          toggle: "collapse",
-          target: "#navbarCollapse",
-        },
+        title: 'Home',
       }),
       a.div(
         a.ul(
           [
             a.li(
-              a.a(app.icon("fa fa-cog"), {
+              a.a(app.icon("fas fa-tachometer-alt"), {
                 class: 'nav-link',
                 href: '#',
-                $on: {click: (e) => {
+                $on: {click: (e, el) => {
                   e.preventDefault();
-                  router.open("/settings")
-                  $('#navbarCollapse').collapse('hide')
+                  router.open("/")
                 }},
               }),
               {
                 class: 'nav-item',
+                title: 'Dashboard',
+                data: {
+                  path: '/'
+                },
+              }
+            ),
+            a.li(
+              a.a(app.icon("fa fa-wrench"), {
+                class: 'nav-link',
+                href: '#',
+                $on: {click: (e, el) => {
+                  e.preventDefault();
+                  router.open("/admin")
+                }},
+              }),
+              {
+                class: 'nav-item',
+                title: 'Admin',
+                data: {
+                  path: '/admin'
+                },
+              }
+            ),
+            a.li(
+              a.a(app.icon("fa fa-cog"), {
+                class: 'nav-link',
+                href: '#',
+                $on: {click: (e, el) => {
+                  e.preventDefault();
+                  router.open("/settings")
+                }},
+              }),
+              {
+                class: 'nav-item',
+                title: 'Settings',
                 data: {
                   path: '/settings'
                 },
@@ -45,11 +73,11 @@ app.navbar = (router) => (a, x) =>
                 $on: {click: (e) => {
                   e.preventDefault();
                   router.open("/logout")
-                  $('#navbarCollapse').collapse('hide')
                 }},
               }),
               {
                 class: 'nav-item',
+                title: 'Logout',
                 data: {
                   path: '/logout'
                 },
@@ -70,7 +98,7 @@ app.navbar = (router) => (a, x) =>
       $activate: (el) => () => {
         el.$$('.nav-item.active').classList.remove('active')
         let section = location.pathname.split('/')[1]
-        let active = el.$(`[data-path="/${section}"]`)
+        let active = el.$(`[data-path="/${section}"]`) || el.$(`[data-path="/"]`)
         if (active) active.classList.add('active')
       },
     }

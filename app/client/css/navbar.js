@@ -1,9 +1,20 @@
 ax.style({
   "#navbar": {
-    zIndex: 100,
+    position: 'static',
+    // zIndex: 100,
     '.app-navbar-brand-icon': {
       position: 'relative',
       top: '-2px',
-    }
+    },
+    'li.nav-item.active': {
+      'app-icon': {
+        borderBottom: '1px solid #48D',
+      },
+    },
+    'li.nav-item': {
+      'app-icon': {
+        padding: '2px',
+      },
+    },
   },
 });
