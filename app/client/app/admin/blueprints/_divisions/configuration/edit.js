@@ -7,8 +7,11 @@ app.admin.blueprints.form({
       key: 'configuration',
       as: 'table',
       addable: true,
+      moveable: true,
+      removeable: true,
       collection: true,
-      value: (v) => Object.keys(v).map((key) => ({
+      singular: 'parameter',
+      value: (v) => Object.keys(v || {}).map((key) => ({
         key: key,
         value: v[key],
       })),

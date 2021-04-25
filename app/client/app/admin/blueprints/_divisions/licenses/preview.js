@@ -6,4 +6,4 @@ blueprint.licenses ? [
       [license.label, ' ', a.small(license.url)]
     ))
   ),
-] : null
+] : a._

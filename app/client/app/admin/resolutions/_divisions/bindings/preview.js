@@ -1,16 +1,15 @@
 app.admin.resolutions.bindings.preview = (router, resolution) => (a,x) =>
 resolution.bindings && resolution.bindings.length ?
-[
-  'Bindings',
-  a.ul(
-    resolution.bindings.map(binding => a.li([
-      binding.identifier ? a.div(binding.identifier) : null,
-      binding.descriptor ? a.div([
-        binding.descriptor.repository || a['.error']('No repository'), ' ',
-        binding.descriptor.branch ? binding.descriptor.branch : null, ' ',
-        binding.descriptor.identifier || null,
-      ]) : null,
-      x.out(binding.variables, {placeholder: null}),
-    ]))
-  ),
-] : null
+resolution.bindings.map((binding, i) =>
+  app.clickable(
+    a['div.p-1.overflow-auto'](
+      a.li([
+        `${binding.identifier}`,
+        Object.keys(binding.configuration).length ?
+        x.out(binding.configuration, {placeholder: 'None'}) :
+        a['div.placeholder']('No configuration'),
+      ])
+    ),
+    () => router.open('binding', {binding_index: i})
+  )
+) : a._

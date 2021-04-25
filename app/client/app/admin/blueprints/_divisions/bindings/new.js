@@ -1,49 +1,32 @@
-app.admin.blueprints.bindings.new = (router, blueprint) => (a,x) =>
-app.admin.blueprints.form({
-  router: router,
-  form: (f) => [
-    f.field({
-      key: 'identifier',
-    }),
-    f.field({
-      key: 'descriptor',
-      as: 'one',
-      label: 'Blueprint descriptor / Target service',
-      form: (ff) => [
-        ff.field({
-          key: 'repository',
-          type: 'url',
-          required: true,
+app.admin.blueprints.bindings.new = (router, blueprint) => (a,x) => a.div([
+  app.fetch({
+    url: '/api/blueprints',
+    success: (blueprints, el) => {
+      el.$nodes = [
+        app.admin.blueprints.form({
+          router: router,
+          form: (f) => [
+            f.field({
+              key: 'target',
+              as: 'select',
+              placeholder: 'Select blueprint',
+              selections: blueprints,
+            }),
+          ],
+          update: (form) => {
+            let binding = {
+              identifier: form.target,
+              target_identifier: form.target,
+            }
+            if (blueprint.bindings) {
+              blueprint.bindings.push(binding)
+            } else {
+              blueprint.bindings = [binding]
+            }
+            return blueprint
+          },
         }),
-        ff.field({
-          key: 'branch',
-        }),
-        ff.field({
-          key: 'identifier',
-        }),
-      ],
-    }),
-    f.field({
-      key: 'type',
-      as: 'checkbox',
-      control: {
-        label: 'Embed',
-      },
-      checked: 'embed',
-      // value: '',
-      // selections: {
-      //   'embed': 'Embed',
-      //   'connect': 'Connect',
-      // }
-    }),
-  ],
-  update: (form) => {
-    form = app.compact(form)
-    if (ax.is.array(blueprint.bindings)) {
-      blueprint.bindings.push(form)
-    } else {
-      blueprint.bindings = [form]
-    };
-    return blueprint;
-  },
-})
+      ]
+    }
+  }),
+])

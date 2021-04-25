@@ -1,10 +1,13 @@
-app.admin.blueprints.blueprint = (router) => (a, x) => [
-  app.close(() => router.open('/admin/blueprints')),
+app.admin.blueprints.blueprint = (router) => (a, x) => a.div([
+//   app.closeOld(() => router.open('/admin/blueprints')),
+  app.close(router),
   a.h1(`${router.params.blueprint_id} blueprint`),
   router.mount({
     routes: {
+      "/edit*": app.admin.blueprints.edit,
       "/delete": app.admin.blueprints.delete,
-      "*": app.admin.blueprints.show,
+      "/sync": app.admin.blueprints.sync,
+      "/?": app.admin.blueprints.show,
     }
   }),
-];
+]);

@@ -33,7 +33,7 @@ app.admin.blueprints.form({
             a['div.pt-2.pb-2']([
               `${fff.object.type}:${fff.object.image}`,
               x.lib.object.dig(fff.object, ['scripts', 'shell', 'length']) ?
-              a.small(` ${fff.object.scripts.shell.length} shell scripts`) : null
+              a.small(` ${fff.object.scripts.shell.length} shell scripts`) : a._
             ]),
           ]
         }),

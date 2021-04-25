@@ -2,7 +2,7 @@ app.dashboard.arenas.charts = (router) => (a,x) => {
 
   let arena_id = router.params.arena_id;
 
-  return app.http({
+  return app.fetch({
     url: '/api/provisioning',
     query: {
       arena_identifier: arena_id,
@@ -23,7 +23,7 @@ app.dashboard.arenas.charts = (router) => (a,x) => {
             }
           }),
         }),
-        app.http({
+        app.fetch({
           url: urls,
           success: (resolutions, el) => {
 

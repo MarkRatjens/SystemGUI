@@ -1,12 +1,9 @@
-app.admin.provisioning.index = (router) => (a,x) => [
-  app.close(() => router.open('/admin/')),
+app.admin.provisioning.index = (router) => (a,x) => a.div([
+//   app.closeOld(() => router.open('/admin/')),
+  app.close(router),
   a.h1('Provisioning'),
-  app.button({
-    label: app.icon('fa fa-plus', 'New'),
-    onclick: () => router.open('~new'),
-  }),
   a.hr,
-  app.http({
+  app.fetch({
     url: '/api/provisioning',
     placeholder: app.spinner('Loading provisioning'),
     success: (provisioning, el) => el.$nodes = [
@@ -23,4 +20,4 @@ app.admin.provisioning.index = (router) => (a,x) => [
       app.placeholder('None')
     ]
   }),
-]
+])

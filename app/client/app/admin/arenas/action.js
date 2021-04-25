@@ -1,4 +1,4 @@
-app.admin.arenas.action = (router) => (a,x) => [
+app.admin.arenas.action = (router) => (a,x) => a.div([
   a.h3(`Perform ${router.params.action}?`),
   app.form({
     url: `/api/arenas/${router.params.arena_id}/${router.params.action}`,
@@ -9,4 +9,4 @@ app.admin.arenas.action = (router) => (a,x) => [
     ],
     success: () => router.open(`..`),
   }),
-];
+]);

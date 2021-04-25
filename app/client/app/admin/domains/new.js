@@ -1,4 +1,4 @@
-app.admin.domains.new = (router) => (a,x) => [
+app.admin.domains.new = (router) => (a,x) => a.div([
   a.h1('New domain'),
   app.form({
     url: '/api/domains',
@@ -21,4 +21,4 @@ app.admin.domains.new = (router) => (a,x) => [
     ],
     success: (domain) => router.open(`../${domain.identifier}`),
   }),
-]
+])

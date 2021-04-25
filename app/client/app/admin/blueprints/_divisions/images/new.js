@@ -1,4 +1,4 @@
-app.admin.blueprints.images.new = (router, blueprint) => (a,x) => [
+app.admin.blueprints.images.new = (router, blueprint) => (a,x) => a.div([
   app.admin.blueprints.form({
     router: router,
     form: app.admin.blueprints.images.form,
@@ -11,4 +11,4 @@ app.admin.blueprints.images.new = (router, blueprint) => (a,x) => [
       return blueprint;
     },
   })
-]
+])

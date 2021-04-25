@@ -19,11 +19,11 @@ app.dashboard.system.charts.networkOverview = (router) => (a,x) => {
 
     a({
       $init: (el) => {
-        fetch('/api/metrics/network').then(
+        fetch('/api/system/metrics/network').then(
           (response) => response.json().then(el.$load)
         )
         el.$polling = setInterval(function(){
-          fetch('/api/metrics/network').then(
+          fetch('/api/system/metrics/network').then(
             (response) => response.json().then(el.$refresh)
           )
         }, 60000);

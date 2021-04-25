@@ -1,4 +1,4 @@
-app.admin.blueprints.images.index = (router, blueprint) => (a,x) => [
+app.admin.blueprints.images.index = (router, blueprint) => (a,x) => a.div([
 app.report({
     object: blueprint,
     report: (r) => r.field({
@@ -66,4 +66,4 @@ app.report({
       class: 'btn btn-primary',
     }),
   ]),
-]
+])

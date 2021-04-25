@@ -4,4 +4,4 @@ blueprint.repositories ? [
   a.ul(
     blueprint.repositories.map(repository => a.li(repository.descriptor.repository))
   ),
-] : null
+] : a._

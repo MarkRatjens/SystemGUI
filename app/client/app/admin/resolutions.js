@@ -1,4 +1,4 @@
-app.admin.resolutions = (router) => (a, x) => [
+app.admin.resolutions = (router) => (a, x) => a.div([
   router.mount({
     routes: {
       "/?": app.admin.resolutions.index,
@@ -6,4 +6,4 @@ app.admin.resolutions = (router) => (a, x) => [
       "/:resolution_id*": app.admin.resolutions.resolution,
     }
   }),
-];
+]);

@@ -5,7 +5,6 @@ a["app"](
     app.modal(),
     a["div.container-fluid"]([
       app.router(),
-      // app.environment()
     ])
   ],
   {

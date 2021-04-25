@@ -1,6 +1,6 @@
 app.report.shim = {
   help: (r, target) => (options = {}) => {
-    let help = options.help ? (a, x) => app.md(options.help) : null;
+    let help = (a, x) => options.help ? app.md(options.help) : a._;
     return target({
       ...options,
       help: help,
@@ -8,9 +8,9 @@ app.report.shim = {
   },
 
   template: (r, target) => (options = {}) => {
-    let template = options.template
-      ? (a, x) => app.md(options.template(r))
-      : null;
+    let template = (a, x) => options.template
+      ? app.md(options.template(r))
+      : a._;
     return template;
   },
 
@@ -21,7 +21,7 @@ app.report.shim = {
     }),
     listgroup: (f, target) => (options = {}) => (a, x) => options.value.length ?
     a['ul.list-group'](
-        options.value.map( i => a['li.list-group-item']( i || null ))
+        options.value.map( i => a['li.list-group-item']( i || a._ ))
     ) :
     a['.placeholder.form-control']('None'),
     boolean: (f, target) => (options = {}) => (a, x) =>
@@ -53,8 +53,8 @@ app.report.shim = {
     r.dependent({
       body: a["fieldset|appkit-form-control"](
         [
-          options.legend ? a.legend(options.legend, options.legendTag) : null,
-          options.body || null,
+          options.legend ? a.legend(options.legend, options.legendTag) : a._,
+          options.body || a._,
         ],
         options.fieldsetTag
       ),

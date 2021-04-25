@@ -1,16 +1,14 @@
 app.admin.blueprints.bindings.preview = (router, blueprint) => (a,x) =>
 blueprint.bindings ?
-[
+a.div([
   'Bindings',
   a.ul(
     blueprint.bindings.map(binding => a.li([
-      binding.identifier ? a.div(binding.identifier) : null,
-      binding.descriptor ? a.div([
-        binding.descriptor.repository || a['.error']('No repository'), ' ',
-        binding.descriptor.branch ? binding.descriptor.branch : null, ' ',
-        binding.descriptor.identifier || null,
-      ]) : null,
-      x.out(binding.variables, {placeholder: null}),
+      binding.identifier,
+      ' ',
+      binding.identifier != binding.target_identifier ? binding.target_identifier : a._,
+      ' ',
+      binding.type == 'embed' ? a.small('embed') : a._,
     ]))
   ),
-] : null
+]) : a._

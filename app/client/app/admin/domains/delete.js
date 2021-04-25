@@ -1,3 +1,1 @@
-app.admin.arenas.delete = (router) => (a,x) => [
-  'TODO'
-]
+app.admin.arenas.delete = (router) => (a,x) => 'TODO'

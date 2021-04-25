@@ -21,11 +21,11 @@ app.dashboard.system.charts.networkInterfaces = (router) => (a,x) => {
 
     a({
       $init: (el) => {
-        fetch('/api/metrics/network/matrix').then(
+        fetch('/api/system/metrics/network/matrix').then(
           (response) => response.json().then(el.$load)
         )
         el.$polling = setInterval(function(){
-          fetch('/api/metrics/network/matrix').then(
+          fetch('/api/system/metrics/network/matrix').then(
             (response) => response.json().then(el.$refresh)
           )
         }, 60000);

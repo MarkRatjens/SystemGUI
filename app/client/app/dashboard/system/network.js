@@ -1,7 +1,9 @@
-app.dashboard.system.network = (router) => (a,x) => [
+app.dashboard.system.network = (router) => (a,x) => a.div([
 
-  app.close(() => router.open('..')),
+//   app.closeOld(() => router.open('..')),
+
+  app.close(router),
   a.h1('Network'),
   app.dashboard.system.charts.networkInterfaces(router),
 
-]
+])

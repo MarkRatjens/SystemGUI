@@ -3,4 +3,4 @@ Object.keys(blueprint.permissions || {}).length ?
 [
   'Permissions',
   x.out(blueprint.permissions),
-] : null
+] : a._

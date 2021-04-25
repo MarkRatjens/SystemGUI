@@ -28,7 +28,7 @@ app.form.shim = {
     }),
 
   help: (f, target) => (options = {}) => {
-    let help = options.help ? (a, x) => app.md(options.help) : null;
+    let help = (a, x) => options.help ? app.md(options.help) : a._;
     return target({
       ...options,
       help: help,
@@ -36,7 +36,7 @@ app.form.shim = {
   },
 
   template: (f, target) => (options = {}) =>
-    options.template ? (a, x) => app.md(options.template(f)) : null,
+    (a, x) => options.template ? app.md(options.template(f)) : a._,
 
   button: (f, target) => (options = {}) =>
     target({
@@ -106,7 +106,7 @@ app.form.shim = {
     a["app-form-buttons"](
       [
         options.cancel == false
-          ? null
+          ? a._
           : f.button({
               label: app.icon("fa fa-times", "Cancel"),
               to: app.spinner("Cancelling…"),
@@ -115,7 +115,7 @@ app.form.shim = {
             }),
         " ",
         options.submit == false
-          ? null
+          ? a._
           : f.submit({
               label: app.icon("fa fa-check", "Submit"),
               ...options.submit,

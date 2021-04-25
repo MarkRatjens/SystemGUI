@@ -1,4 +1,4 @@
-app.admin.blueprints.bindings.index = (router, blueprint) => (a,x) => [
+app.admin.blueprints.bindings.index = (router, blueprint) => (a,x) => a.div([
   app.report({
     object: blueprint,
     report: (r) => r.field({
@@ -7,21 +7,13 @@ app.admin.blueprints.bindings.index = (router, blueprint) => (a,x) => [
       report: (rr) => [
         app.clickable(
           a['div.p-1']([
-            rr.object.identifier ? a.div(rr.object.identifier) : null,
-            rr.object.descriptor ? a.div([
-              rr.object.descriptor.identifier || null, ' ',
-              rr.object.descriptor.repository || a['.error']('No repository'), ' ',
-              rr.object.descriptor.branch ? a.small(`${rr.object.descriptor.branch}`) : null,
-            ]) : null,
-            Object.keys(rr.object.variables || {}).length ?
-            x.out(rr.object.variables) : null
+            rr.object.identifier,
+            ' ',
+            rr.object.identifier != rr.object.target_identifier ? rr.object.target_identifier : a._,
+            ' ',
+            rr.object.type == 'embed' ? a.small('embed') : a._,
           ]),
           () => router.open(`${rr.index}`),
-          // {
-          //   clickableTag: {
-          //     class: 'p-2',
-          //   }
-          // }
         ),
       ]
     })
@@ -29,8 +21,8 @@ app.admin.blueprints.bindings.index = (router, blueprint) => (a,x) => [
   a.br,
   a['div.mb-1']([
     app.button({
-      label: app.icon('fa fa-list', 'Arrange bindings'),
-      onclick: () => router.open('arrange'),
+      label: app.icon('fa fa-list', 'Manage bindings'),
+      onclick: () => router.open('manage'),
       class: 'btn btn-secondary',
     }),
     ' ',
@@ -47,4 +39,4 @@ app.admin.blueprints.bindings.index = (router, blueprint) => (a,x) => [
       class: 'btn btn-primary',
     }),
   ]),
-]
+])

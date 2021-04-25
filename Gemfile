@@ -1,12 +1,21 @@
 source 'https://rubygems.org'
 
+gem 'thin'
 gem 'sinatra'
 gem 'sinatra-contrib'
-gem 'thin'
 gem 'rest-client'
-gem 'message_bus'
+# gem 'message_bus'
+
+gem 'engines-logger',   '0.2.0',    :git => 'git@github.com:engines/logger'
+gem "spaces",           '0.1.0',    :path => "../Spaces"
+
+gem 'letter_avatar'
+gem 'fastimage'
+gem 'mini_magick'
 
 group :development do
   gem 'byebug'
-  gem 'uglifier'
 end
+
+gem 'rspec'
+gem 'rack-test'

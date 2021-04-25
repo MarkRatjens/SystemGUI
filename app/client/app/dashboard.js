@@ -1,12 +1,12 @@
-app.dashboard = (router) => (a,x) => [
+app.dashboard = (router) => (a,x) => a.div([
 
-  app.http({
+  app.fetch({
     url: '/api/system',
     placeholder: a['div.text-center'](app.spinner('Loading system')),
     success: (system, el) => el.$nodes = a["app-system"](
       x.panes(
         {
-          proximate: app.dashboard.system.menu(router),
+          proximate: app.dashboard.menu(router),
           adjacent: [
 
             (system.label && system.label.text) ?
@@ -20,7 +20,7 @@ app.dashboard = (router) => (a,x) => [
                 backgroundColor: system.label.background_color
               } }
             ) :
-            null,
+            a._,
 
             a['div.container-fluid.position-relative'](
               app.dashboard.system(router)
@@ -45,4 +45,4 @@ app.dashboard = (router) => (a,x) => [
   })
 
 
-]
+])

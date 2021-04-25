@@ -1,5 +1,5 @@
 app.polling = (route, success, options = {}) => (a, x) =>
-  a["app-polling"](null, {
+  a["app-polling"](a._, {
     $init: (el) => () => {
       el.$check();
     },

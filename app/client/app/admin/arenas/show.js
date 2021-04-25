@@ -1,8 +1,34 @@
-app.admin.arenas.show = (router) => (a,x) => [
-  app.http({
-    url: `/api/arenas/${router.params.arena_id}`,
+app.admin.arenas.show = (router) => (a,x) => a.div([
+  app.fetch({
+    url: [
+      `/api/arenas/${router.params.arena_id}`,
+      `/api/arenas/${router.params.arena_id}/resolutions`,
+    ],
     placeholder: app.spinner('Loading arena'),
-    success: (arena, el) => el.$nodes = [
+    success: ([arena, resolutions], el) => el.$nodes = [
+      app.float({
+        right: [
+          app.button({
+            label: app.icon("fa fa-trash", "Delete"),
+            onclick: () => router.open("delete"),
+            class: "btn btn-outline-danger",
+          }),
+        ]
+      }),
+      a.hr,
+      app.float({
+        left: [
+          app.button({
+            label: app.icon('fas fa-shoe-prints', 'Bootstrap'),
+            onclick: () => router.open("bootstrap"),
+          }),
+          app.button({
+            label: app.icon('fas fa-compass', 'Resolve'),
+            onclick: () => router.open("resolve"),
+          }),
+        ],
+      }),
+      a.hr,
       app.button({
         label: app.icon('far fa-flag', 'Init'),
         onclick: () => router.open("init"),
@@ -18,31 +44,18 @@ app.admin.arenas.show = (router) => (a,x) => [
       app.button({
         label: app.icon('fas fa-flag-checkered', 'Apply'),
         onclick: () => router.open("apply"),
-        class: 'btn btn-danger',
+        class: 'btn btn-primary',
       }),
+      a.hr,
+      a.div("Resolutions"),
+      resolutions.map(
+        (resolution_identifier) => a.div(app.button({
+          label: app.icon("fa fa-caret-right", resolution_identifier),
+          onclick: () => router.open(`/admin/resolutions/${resolution_identifier}`),
+        }))
+      ),
       a.hr,
       x.out(arena),
-      a.hr,
-      app.http({
-        url: `/api/arenas/${router.params.arena_id}/provisioning`,
-        placeholder: app.spinner('Loading arena provisions'),
-        success: (provisioning, el) => {
-          el.$nodes = [
-            a.div('Provisions'),
-            a.ul(provisioning.map((provisions) => a.li(provisions.resolution_identifier)))
-          ]
-        }
-      }),
     ]
   }),
-  a.hr,
-  app.float({
-    right: [
-      app.button({
-        label: app.icon("fa fa-trash", "Delete"),
-        onclick: () => router.open("delete"),
-        class: "btn btn-outline-danger",
-      }),
-    ]
-  }),
-]
+])

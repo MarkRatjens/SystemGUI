@@ -1,12 +1,12 @@
-app.admin.arenas.index = (router) => (a,x) => [
-  app.close(() => router.open('/admin/')),
+app.admin.arenas.index = (router) => (a,x) => a.div([
+  app.close(router),
   a.h1('Arenas'),
   app.button({
     label: app.icon('fa fa-plus', 'New'),
     onclick: () => router.open('~new'),
   }),
   a.hr,
-  app.http({
+  app.fetch({
     url: '/api/arenas',
     placeholder: app.spinner('Loading arenas'),
     success: (arenas, el) => el.$nodes = [
@@ -23,4 +23,4 @@ app.admin.arenas.index = (router) => (a,x) => [
       app.placeholder('None')
     ]
   }),
-]
+])

@@ -1,49 +1,23 @@
 module App
   class Api
-
-    def path
-      request.fullpath.sub('/api', '')
-    end
-
     module Routes
       extend Sinatra::Extension
 
-      get '*' do
-        result = @engines.get(path)
-        status result.code
-        content_type result.headers[:content_type]
-        result.body
-      end
+      require_relative 'routes/arenas'
+      require_relative 'routes/blueprints'
+      require_relative 'routes/packing'
+      require_relative 'routes/provisioning'
+      require_relative 'routes/publications'
+      require_relative 'routes/resolutions'
+      require_relative 'routes/system'
 
-      delete '*' do
-        result = @engines.delete(path)
-        status result.code
-        content_type result.headers[:content_type]
-        result.body
-      end
-
-      post '*' do
-        result = @engines.post(
-          path,
-          content_type: request.content_type,
-          payload: request.body,
-        )
-        status result.code
-        content_type result.headers[:content_type]
-        result.body
-      end
-
-      put '*' do
-        result = @engines.put(
-          path,
-          content_type: request.content_type,
-          payload: request.body,
-        )
-        status result.code
-        content_type result.headers[:content_type]
-        result.body
-      end
-
+      register Arenas
+      register Blueprints
+      register Packing
+      register Provisioning
+      register Publications
+      register Resolutions
+      register System
     end
   end
 end

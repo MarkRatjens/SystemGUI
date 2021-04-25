@@ -5,7 +5,7 @@ app.admin.blueprints.form({
   form: (f) => [
     f.field({
       key: 'permissions',
-      as: 'many',
+      as: 'table',
       singular: 'rule',
       addable: true,
       removeable: true,
