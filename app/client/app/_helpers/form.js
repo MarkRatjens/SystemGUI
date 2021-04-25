@@ -12,16 +12,5 @@ app.form = (options = {}) => (a, x) =>
     ],
     ...options,
     catch: options.catch || ((error, el) => el.$send("app.disconnected")),
-    when: {
-      418: (response, el) => el.$send("app.server.session.timeout"),
-      503: (response, el) => el.$send("app.disconnected"),
-      'text/terminal': (result, el, response) => [
-        app.xterm({
-          text: result,
-          label: response.status == 500 ? ax.a['.error']( 'Server error' ) : null,
-          ...options.xterm,
-        })
-      ],
-      ...options.when,
-    },
+    when: app.when(options.when),
   });

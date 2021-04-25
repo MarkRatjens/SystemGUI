@@ -1,7 +1,7 @@
 module App
-  class Api < Base
-
+  class Api < Sinatra::Base
     require_relative 'api/settings'
+    require_relative 'api/mime'
     require_relative 'api/errors'
     require_relative 'api/models'
     require_relative 'api/sessions'
@@ -12,5 +12,23 @@ module App
 
     register Routes
 
+    after do
+      content_type 'application/json' unless content_type
+    end
+
+    def path
+      request.fullpath.sub('/api', '')
+    end
+
+    # def query
+    #   request.env['rack.request.query_hash'].transform_keys!(&:to_sym)
+    # end
+
+    def command
+      returned = yield.run.to_h
+      return returned[:result].to_json unless returned[:exception]
+      return raise Error.new("Spaces returned an object with an exception: #{returned[:exception]}") if returned[:exception]
+      raise Error.new('Spaces returned an object with no result and no exception.')
+    end
   end
 end

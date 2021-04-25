@@ -1,2 +1,2 @@
-require_relative 'models/engines'
 require_relative 'models/user'
+require_relative 'models/icon'

@@ -2,7 +2,7 @@ app.icon = function (klass, text, options = {}) {
   let a = ax.a;
   let x = ax.x;
 
-  var component = [a.span(null, { class: klass })];
+  var component = [a.span([], { class: klass })];
 
   if (text) {
     if (!options.compact) component.push(" ");

@@ -3,7 +3,7 @@ app.logo = function (size = 100) {
 
   return (a, x) =>
     a['!'](
-      `<svg width='${size}' height='${size}'>
+`<svg width='${size}' height='${size}'>
   <g transform='scale(${scale})'>
     <path d='
       M 150,300 L 280,225 L 280,75 L 150,0 L 20,75 L 20,225 L 150,300

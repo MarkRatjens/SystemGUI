@@ -1,5 +1,5 @@
 module App
-  class Client < Base
+  class Client < Sinatra::Base
 
     get '/app.js' do
       content_type :javascript

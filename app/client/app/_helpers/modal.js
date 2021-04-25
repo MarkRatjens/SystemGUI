@@ -16,7 +16,7 @@ app.modal = (options = {}) => (a, x) =>
             a["button.close"](a("&times;"), { data: { dismiss: "modal" } }),
           ]),
           a["div.modal-body"](options.body),
-          options.footer ? a["div.modal-footer"](options.footer) : null,
+          options.footer ? a["div.modal-footer"](options.footer) : a._,
         ];
 
         $(el.$(".modal")).modal({ backdrop: "static" });

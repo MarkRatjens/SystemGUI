@@ -8,7 +8,7 @@ module App
     end
 
     def message
-      i18n.dig(language, klass) || "#{klass} error."
+      i18n.dig(language, klass) || klass
     end
 
     def klass

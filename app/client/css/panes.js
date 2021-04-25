@@ -1,6 +1,6 @@
 ax.style( {
-  'ax-panes': {
-    top: '3.25rem',
+  'ax-appkit-panes': {
+    top: '3rem',
     '> *': {
       borderTop: '1px solid #0001',
     },

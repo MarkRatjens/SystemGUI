@@ -1,8 +1,16 @@
 ax.style({
   'app-menu': {
-    'button.btn': {
-      width: '100%',
-      textAlign: 'left',
-    }
-  }
+    'app-menu-buttons': {
+      display: 'block',
+      columns: '200px',
+      marginLeft: '5px',
+      marginRight: '5px',
+      '.app-btn': {
+        display: 'block',
+        width: '100%',
+        textAlign: 'left',
+      },
+
+    },
+  },
 })

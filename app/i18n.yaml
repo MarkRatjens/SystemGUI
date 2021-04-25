@@ -1,2 +1,5 @@
 en:
-  NotAuthenticated: 'Failed to authenticate.'
+  NotAuthenticated: 'Not authenticated.'
+  Timeout: 'User time-out.'
+  AlreadyExists: 'Already exists.'
+  DoesNotExist: 'Does not exist.'

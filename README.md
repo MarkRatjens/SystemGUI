@@ -1,15 +1,35 @@
 Engines System GUI
 ==================
 
-Needs Ruby and NPM.
+A GUI for Spaces written with a Sinatra back end and an SPA client.
 
-Install dependencies:
+Run
+---
+
+1. Spaces
+
+This application assumes that it is in a common directory to Spaces.
+
+Gemfile imports the Spaces gem by a relative path:
+`gem "spaces",           '0.1.0',    :path => "../Spaces"`
+
+
+2. Dependencies
+
+Needs Ruby bundle and NPM install.
+
+Before running the application:
 ```
 bundle
 npm i
 ```
 
-Set the ENGINESD_API_URL in the environment on start. If the EnginesD API is on port 4567, start with:
-```
-ENGINESD_API_URL='http://localhost:4567' thin start
-```
+3. Start
+
+`bundle exec thin start`
+
+
+Test
+----
+
+`bundle exec rspec`
