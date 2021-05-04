@@ -43,7 +43,7 @@
     "html5sortable": "^0.9.18",
     "jquery": "^3.5.1",
     "jsoneditor": "^9.1.1",
-    "markedjs": "^10.0.0",
+    "marked": "^2.0.3",
     "mustache": "^4.0.1",
     "popper.js": "^1.16.1",
     "text-security": "^3.1.1",
