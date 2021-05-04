@@ -21,7 +21,7 @@ module App
         # Update resolution
         put '/resolutions/:identifier' do
           command do
-            ::Resolving::Commands::Updating.new(identifier: params[:identifier], model: JSON.parse(request.body.read, symbolize_names: true), space: :resolutions)
+            ::Resolving::Commands::Updating.new(identifier: params[:identifier], model: JSON.parse(request.body.read))
           end
         end
 
