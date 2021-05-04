@@ -1,5 +1,5 @@
 app.admin.blueprints.edit = (router) => (a, x) => app.fetch({
-  url: `/api/blueprints/${router.params.blueprint_id}`,
+  url: `/api/blueprints/${router.params.blueprintIdentifier}`,
   placeholder: app.spinner('Loading blueprint'),
   success: (blueprint, el) => {
     el.$nodes = a({
@@ -17,7 +17,7 @@ app.admin.blueprints.edit = (router) => (a, x) => app.fetch({
           right: [
             app.button({
               label: app.icon("fa fa-trash", "Delete blueprint"),
-              onclick: () => router.open(`/admin/blueprints/${router.params.blueprint_id}/delete`),
+              onclick: () => router.open(`/admin/blueprints/${router.params.blueprintIdentifier}/delete`),
               class: "btn btn-outline-danger",
             }),
           ],

@@ -2,10 +2,10 @@ app.admin.resolutions.index = (router) => (a, x) => a.div([
 //   app.closeOld(() => router.open('/admin/')),
   app.close(router),
   a.h1('Resolutions'),
-  app.button({
-    label: app.icon("fa fa-plus", "New"),
-    onclick: () => router.open("~new"),
-  }),
+  // app.button({
+  //   label: app.icon("fa fa-plus", "New"),
+  //   onclick: () => router.open("~new"),
+  // }),
   a.hr,
   app.fetch({
     url: "/api/resolutions",

@@ -21,7 +21,7 @@ app.admin.blueprints.about.show = (router, blueprint) => (a,x) => a.div([
     ],
   }),
   app.clickable(
-    a.img(a._, {src: `/api/blueprints/${router.params.blueprint_id}/icon`}),
+    a.img(a._, {src: `/api/blueprints/${router.params.blueprintIdentifier}/icon`}),
     () => router.open('icon'),
     {
       clickableTag: {
@@ -31,7 +31,7 @@ app.admin.blueprints.about.show = (router, blueprint) => (a,x) => a.div([
   ),
   app.clickable(
     app.fetch({
-      url: `/api/blueprints/${router.params.blueprint_id}/readme`,
+      url: `/api/blueprints/${router.params.blueprintIdentifier}/readme`,
       success: (readme, el) => {
         el.$nodes = [
           readme ?
@@ -49,7 +49,7 @@ app.admin.blueprints.about.show = (router, blueprint) => (a,x) => a.div([
   ),
   app.clickable(
     app.fetch({
-      url: `/api/blueprints/${router.params.blueprint_id}/license`,
+      url: `/api/blueprints/${router.params.blueprintIdentifier}/license`,
       success: (license, el) => {
         el.$nodes = [
           license ?

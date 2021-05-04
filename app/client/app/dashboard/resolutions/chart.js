@@ -21,8 +21,8 @@ app.dashboard.resolutions.chart = (router, resolution) => (a,x) => {
     let bindings = parent.bindings || []
     for (let i in bindings) {
       let binding = bindings[i]
-      let blueprint_identifier = binding.target_identifier
-      let binding_target_resolution = binding.graph.identifier
+      let targetIdentifier = binding.target_identifier
+      let graphTargetIdentifier = binding.graph.identifier
       let configuration = binding.configuration || []
       let binding_tooltip = []
       if (Object.keys(configuration).length) {
@@ -34,9 +34,9 @@ app.dashboard.resolutions.chart = (router, resolution) => (a,x) => {
       }
       let embed = binding.type == 'embed'
       let bindingNode = {
-        id: `${parent.identifier}/${binding_target_resolution}#binding`,
+        id: `${parent.identifier}/${graphTargetIdentifier}#binding`,
         path: `/resolutions/${parent.identifier}/bindings/${i}`,
-        identifier: binding_target_resolution,
+        identifier: graphTargetIdentifier,
         label: '',
         tooltip: binding_tooltip,
         parent: parent.identifier,
@@ -49,18 +49,18 @@ app.dashboard.resolutions.chart = (router, resolution) => (a,x) => {
         borderWidth: embed ? 2 : 5,
       }
       let blueprintNode = {
-        id: `${parent.identifier}/${binding_target_resolution}`,
-        path: `/resolutions/${binding_target_resolution}`,
-        identifier: binding_target_resolution,
-        label: binding_target_resolution.split('::')[1],
-        tooltip: binding_target_resolution.split('::')[1],
-        parent: `${parent.identifier}/${binding_target_resolution}#binding`,
+        id: `${parent.identifier}/${graphTargetIdentifier}`,
+        path: `/resolutions/${graphTargetIdentifier}`,
+        identifier: graphTargetIdentifier,
+        label: graphTargetIdentifier.split('::')[1],
+        tooltip: graphTargetIdentifier.split('::')[1],
+        parent: `${parent.identifier}/${graphTargetIdentifier}#binding`,
         type: binding.type,
         pointBackgroundColor: binding.type == 'embed' ? 'darkblue' : 'blue',
         pointStyle: 'icon',
         pointRadius: 35,
         borderWidth: 5,
-        iconURL: `/api/blueprints/${blueprint_identifier}/icon/bordered`,
+        iconURL: `/api/blueprints/${targetIdentifier}/icon/bordered`,
       }
       nodes.unshift(bindingNode)
       nodes.unshift(blueprintNode)

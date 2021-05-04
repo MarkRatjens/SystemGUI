@@ -1,8 +1,8 @@
 app.admin.arenas.show = (router) => (a,x) => a.div([
   app.fetch({
     url: [
-      `/api/arenas/${router.params.arena_id}`,
-      `/api/arenas/${router.params.arena_id}/resolutions`,
+      `/api/arenas/${router.params.arenaIdentifier}`,
+      `/api/arenas/${router.params.arenaIdentifier}/resolutions`,
     ],
     placeholder: app.spinner('Loading arena'),
     success: ([arena, resolutions], el) => el.$nodes = [
@@ -19,11 +19,11 @@ app.admin.arenas.show = (router) => (a,x) => a.div([
       app.float({
         left: [
           app.button({
-            label: app.icon('fas fa-shoe-prints', 'Bootstrap'),
-            onclick: () => router.open("bootstrap"),
+            label: app.icon('fas fa-project-diagram', 'Bind'),
+            onclick: () => router.open("bind"),
           }),
           app.button({
-            label: app.icon('fas fa-compass', 'Resolve'),
+            label: app.icon('fas fa-drafting-compass', 'Resolve'),
             onclick: () => router.open("resolve"),
           }),
         ],

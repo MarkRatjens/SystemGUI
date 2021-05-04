@@ -9,11 +9,11 @@ app.when = (options) => ({
       body: ax.a.pre(response),
     })
     showModal()
-    return app.button({
+    return ax.a.p(app.button({
       label: app.icon('fa fa-bug', 'Server exception!'),
       onclick: showModal,
       class: 'btn btn-danger',
-    })
+    }))
   },
   ...options,
 })

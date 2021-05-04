@@ -1,13 +1,13 @@
 app.admin.packs.show = (router) => (a, x) => a.div([
   app.fetch({
-    url: `/api/packs/${router.params.resolution_id}`,
+    url: `/api/packs/${router.params.resolutionIdentifier}`,
     placeholder: app.spinner('Loading pack'),
     success: (pack, el) => [
       app.float({
         right: [
           app.button({
             label: app.icon("fa fa-trash", "Delete"),
-            onclick: () => router.open(`/admin/packs/${router.params.resolution_id}/delete`),
+            onclick: () => router.open(`/admin/packs/${router.params.resolutionIdentifier}/delete`),
             class: "btn btn-outline-danger",
           }),
         ]
@@ -23,7 +23,7 @@ app.admin.packs.show = (router) => (a, x) => a.div([
         right: [
           app.button({
             label: app.icon("fas fa-drafting-compass", "Resolution"),
-            onclick: () => router.open(`/admin/resolutions/${router.params.resolution_id}`),
+            onclick: () => router.open(`/admin/resolutions/${router.params.resolutionIdentifier}`),
           }),
         ],
       }),

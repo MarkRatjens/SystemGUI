@@ -1,5 +1,5 @@
 app.admin.resolutions.edit = (router) => (a, x) => app.fetch({
-  url: `/api/resolutions/${router.params.resolution_id}`,
+  url: `/api/resolutions/${router.params.resolutionIdentifier}`,
   placeholder: app.spinner('Loading resolution'),
   success: (resolution, el) => {
     el.$nodes = a({

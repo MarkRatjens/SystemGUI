@@ -10,6 +10,6 @@ resolution.bindings.map((binding, i) =>
         a['div.placeholder']('No configuration'),
       ])
     ),
-    () => router.open('binding', {binding_index: i})
+    () => router.open('binding', {bindingIndex: i})
   )
 ) : a._

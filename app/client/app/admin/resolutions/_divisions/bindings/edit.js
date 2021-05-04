@@ -1,5 +1,5 @@
 app.admin.resolutions.bindings.edit = (router, resolution) => (a,x) => {
-  let binding = resolution.bindings[router.params.binding_index]
+  let binding = resolution.bindings[router.params.bindingIndex]
 
   if (Object.keys(binding.configuration).length) {
     return app.admin.resolutions.form({
@@ -34,7 +34,7 @@ app.admin.resolutions.bindings.edit = (router, resolution) => (a,x) => {
       ],
       close: '..',
       update: (form) => {
-        resolution.bindings[router.params.binding_id] = form
+        resolution.bindings[router.params.bindingIndex] = form
         return resolution;
       },
     })

@@ -1,4 +1,4 @@
-app.spaces.form = (options={}) => (a, x) => app.form({
+app.jsonForm = (options={}) => (a, x) => app.form({
   ...options,
   action: (submission) => {
     let object = options.update(submission.form.$value())

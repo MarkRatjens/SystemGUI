@@ -1,4 +1,4 @@
-app.admin.resolutions.form = (options={}) => app.spaces.form({
-  url: `/api/resolutions/${options.router.params.resolution_id}`,
+app.admin.resolutions.form = (options={}) => app.jsonForm({
+  url: `/api/resolutions/${options.router.params.resolutionIdentifier}`,
   ...options,
 })

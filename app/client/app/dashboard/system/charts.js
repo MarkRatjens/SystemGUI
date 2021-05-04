@@ -26,10 +26,12 @@ app.dashboard.system.charts = (router) => (a,x) => {
     //   }
     // }),
 
-    app.clickable(
-      app.dashboard.system.charts.networkOverview(router),
-      () => router.open('network'),
-    ),
+    app.dashboard.system.charts.topology(router),
+
+    // app.clickable(
+    //   app.dashboard.system.charts.networkOverview(router),
+    //   () => router.open('network'),
+    // ),
   ]
 
 }

@@ -1,4 +1,4 @@
-app.admin.blueprints.form = (options={}) => app.spaces.form({
-  url: `/api/blueprints/${options.router.params.blueprint_id}`,
+app.admin.blueprints.form = (options={}) => app.jsonForm({
+  url: `/api/blueprints/${options.router.params.blueprintIdentifier}`,
   ...options,
 })

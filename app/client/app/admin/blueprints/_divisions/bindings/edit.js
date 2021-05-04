@@ -1,6 +1,6 @@
 app.admin.blueprints.bindings.edit = (router, blueprint) => (a,x) => {
 
-  let binding = blueprint.bindings[router.params.binding_id]
+  let binding = blueprint.bindings[router.params.bindingIndex]
 
   return [
     'Binding to ',
@@ -54,7 +54,7 @@ app.admin.blueprints.bindings.edit = (router, blueprint) => (a,x) => {
           configuration[parameter.key] = parameter.value
         }
         form.configuration = configuration
-        blueprint.bindings[router.params.binding_id] = app.compact(form);
+        blueprint.bindings[router.params.bindingIndex] = app.compact(form);
         return blueprint;
       },
     })

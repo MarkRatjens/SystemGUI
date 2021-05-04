@@ -1,17 +1,17 @@
-app.admin.arenas.bootstrap = (router) => (a,x) => [
-  a.h3('Bootstrap'),
+app.spaces.arenas.bind = (router) => (a,x) => [
+  a.h3('Bind'),
   app.fetch({
     url: `/api/blueprints`,
-    placeholder: app.spinner('Loading blueprints'),
-    success: (blueprint_identifiers) => a.div([
+    placeholder: app.spinner('Loading'),
+    success: (blueprintIdentifiers) => a.div([
       app.form({
-        url: `/api/arenas/${router.params.arena_id}/bootstrap`,
+        url: `/api/arenas/${router.params.arenaIdentifier}/bind`,
         form: (f) => [
           f.field({
             key: 'blueprint_identifier',
             label: 'Blueprint',
             as: 'select',
-            selections: blueprint_identifiers,
+            selections: blueprintIdentifiers,
           }),
           f.buttons({
             router: router,

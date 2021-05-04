@@ -7,6 +7,14 @@ app.admin.publications.show = (router) => (a,x) => a.div([
     placeholder: app.spinner('Loading publication'),
     success: ([publication, status], el) => [
       app.float({
+        left: [
+          status.blueprint.exist ?
+          app.button({
+            label: app.icon("fas fa-sync", "Synchronize"),
+            onclick: () => router.open("sync"),
+          }) :
+          null
+        ],
         right: [
           app.button({
             label: app.icon("fa fa-trash", "Delete"),
@@ -19,10 +27,7 @@ app.admin.publications.show = (router) => (a,x) => a.div([
       app.float({
         left: [
           status.blueprint.exist ?
-          app.button({
-            label: app.icon("fas fa-sync", "Synchronize"),
-            onclick: () => router.open("sync"),
-          }) :
+          null :
           app.button({
             label: app.icon("fas fa-server", "Create blueprint"),
             onclick: () => router.open(`/admin/publications/${router.params.publication_id}/blueprint`),

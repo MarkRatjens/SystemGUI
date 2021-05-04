@@ -1,6 +1,6 @@
 app.admin.packs.artifact = (router) => (a, x) => a.div([
   app.fetch({
-    url: `/api/packs/${router.params.resolution_id}/artifact`,
+    url: `/api/packs/${router.params.resolutionIdentifier}/artifact`,
     placeholder: app.spinner('Loading artifact'),
     success: (artifact, el) => [
       a.pre(artifact),

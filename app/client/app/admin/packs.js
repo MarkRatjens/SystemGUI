@@ -3,7 +3,7 @@ app.admin.packs = (router) => (a, x) => a.div([
     routes: {
       '/?': app.admin.packs.index,
       // '/~new': app.admin.packs.new,
-      '/:resolution_id*': app.admin.packs.pack,
+      '/:resolutionIdentifier*': app.admin.packs.pack,
     }
   }),
 ]);

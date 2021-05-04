@@ -1,8 +1,7 @@
 app.admin.publications.blueprint = (router) => (a, x) => a.div([
   a.h3(`Create blueprint?`),
   app.form({
-    url: `/api/blueprints`,
-    scope: "blueprint",
+    url: `/api/publications/${router.params.publication_id}/blueprint`,
     form: (f) => [
       f.field({
         key: "identifier",
@@ -11,6 +10,6 @@ app.admin.publications.blueprint = (router) => (a, x) => a.div([
       }),
       f.buttons({router: router}),
     ],
-    success: () => router.open(`/admin/blueprints/${router.params.publication_id}`),
+    success: () => router.open(`..`),
   }),
 ]);

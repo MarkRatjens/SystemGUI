@@ -3,6 +3,6 @@ router.mount({
   routes: {
     "/?": app.admin.blueprints.index,
     "/~new": app.admin.blueprints.new,
-    "/:blueprint_id*": app.admin.blueprints.blueprint,
+    "/:blueprintIdentifier*": app.admin.blueprints.blueprint,
   }
 });

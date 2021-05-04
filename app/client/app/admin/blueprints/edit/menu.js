@@ -34,7 +34,7 @@ app.admin.blueprints.edit.menu = (router, blueprint) => (a,x) => {
       app.button({
         label: app.icon('fa fa-home'),
         data: {division: ''},
-        onclick: () => router.open(`/admin/blueprints/${router.params.blueprint_id}/edit`),
+        onclick: () => router.open(`/admin/blueprints/${router.params.blueprintIdentifier}/edit`),
         class: 'btn app-btn d-block w-100 text-left',
         buttonTag: {
           $init: (el) => {
@@ -45,7 +45,7 @@ app.admin.blueprints.edit.menu = (router, blueprint) => (a,x) => {
       a.div(validBlueprintDivisions.map((division) => app.button({
         label: divisions[division] || a['.error'](division),
         data: {division: division},
-        onclick: () => router.open(`/admin/blueprints/${router.params.blueprint_id}/edit/${division}`),
+        onclick: () => router.open(`/admin/blueprints/${router.params.blueprintIdentifier}/edit/${division}`),
         class: 'btn app-btn d-block w-100 text-left',
         buttonTag: {
           $init: (el) => {
@@ -60,7 +60,7 @@ app.admin.blueprints.edit.menu = (router, blueprint) => (a,x) => {
             placeholder: '+ Add',
             selectTag: {
               $on: {
-                'input': (e, el) => router.open(`/admin/blueprints/${router.params.blueprint_id}/edit/${el.value}`)
+                'input': (e, el) => router.open(`/admin/blueprints/${router.params.blueprintIdentifier}/edit/${el.value}`)
               },
             }
           })

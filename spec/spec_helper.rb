@@ -1,23 +1,23 @@
 require 'rspec'
 require 'rack/test'
 require './app'
+require './spec/helpers/crud_helper'
 
 RSpec.configure do |conf|
   conf.include Rack::Test::Methods
 end
 
+# include CrudHelper
+
 # Optionally wipe data and reseed.
 puts "Wipe existing application data and seed with new data? (y/n)"
-input = gets.chomp
-if input.downcase == 'y'
+if gets.chomp.downcase == 'y'
   universe.workspace.rmtree if universe.workspace.exist?
   puts "Seeding application with new data..."
   # TODO: Write a seed script. Using x/scripts.rb for the time being.
-  require_relative '../../Spaces/x/scripts.rb'
+  require '../Spaces/x/scripts.rb'
 end
 
-def json_response
-  JSON.parse(response.body).tap do |body|
-    body.transform_keys!(&:to_sym) if body.is_a? Hash
-  end
+def parsed
+  JSON.parse(response.body, symbolize_names: true)
 end

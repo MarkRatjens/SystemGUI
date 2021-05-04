@@ -24,8 +24,8 @@ app.admin.blueprints.about.icon = (router) => (a, x) => {
         }
         </style>
         <body>
-        <img src="/api/blueprints/${router.params.blueprint_id}/icon/bordered" height='0' width='0'></img>
-        <img src="/api/blueprints/${router.params.blueprint_id}/icon"></img>
+        <img src="/api/blueprints/${router.params.blueprintIdentifier}/icon/bordered" height='0' width='0'></img>
+        <img src="/api/blueprints/${router.params.blueprintIdentifier}/icon"></img>
         </body>
         </html>`;
         el.appendChild(iframe);
@@ -46,7 +46,7 @@ app.admin.blueprints.about.icon = (router) => (a, x) => {
           labelTapToUndo: '',
           server: {
             process: {
-              url: `/api/blueprints/${router.params.blueprint_id}/icon`,
+              url: `/api/blueprints/${router.params.blueprintIdentifier}/icon`,
               method: 'PUT',
               onload: () => {
                 iconIframe.$load()

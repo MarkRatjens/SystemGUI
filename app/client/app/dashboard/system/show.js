@@ -8,5 +8,5 @@ app.dashboard.system.show = (router) => (a,x) => a.div([
   }),
   a.hr,
   'TODO: Build this view as a system page (or some other start page).',
-  app.dashboard.system.charts(router)
+  app.dashboard.system.charts(router),
 ])

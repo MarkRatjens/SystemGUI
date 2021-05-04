@@ -1,7 +1,7 @@
 app.admin.resolutions.edit.home = (router, resolution) => (a,x) => a.div([
 
   app.fetch({
-    url: `/api/resolutions/${router.params.resolution_id}/validity`,
+    url: `/api/resolutions/${router.params.resolutionIdentifier}/validity`,
     placeholder: app.spinner('Checking status'),
     success: (validity, el) => validity.errors ?
     a['.error'](app.icon('fa fa-warning', `Invalid: ${validity.errors.incomplete_divisions.join(', ')}`)) :

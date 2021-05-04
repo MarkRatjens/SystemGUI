@@ -1,15 +1,15 @@
 app.admin.resolutions.pack = (router) => (a, x) => a.div([
   a.h3(`Create pack?`),
   app.form({
-    url: `/api/packs`,
+    url: `/api/resolutions/${router.params.resolutionIdentifier}/pack`,
     form: (f) => [
       f.field({
         as: 'hidden',
         key: 'resolution_identifier',
-        value: router.params.resolution_id,
+        value: router.params.resolutionIdentifier,
       }),
       f.buttons({router: router})
     ],
-    success: () => router.open(`/admin/packs/${router.params.resolution_id}`),
+    success: () => router.open(`/admin/packs/${router.params.resolutionIdentifier}`),
   }),
 ]);

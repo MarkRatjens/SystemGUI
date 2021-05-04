@@ -1,6 +1,6 @@
 // app.admin.blueprints.packing.edit = (router, blueprint) => [
 //   app.fetch({
-//     url: `/api/packing/${router.params.blueprint_id}/selections`,
+//     url: `/api/packing/${router.params.blueprintIdentifier}/selections`,
 //     // success:
 //   }),
 // ]

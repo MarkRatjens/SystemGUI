@@ -7,65 +7,66 @@ module App
         # Index blueprints
         get '/blueprints' do
           command do
-            Spaces::Commands::Querying.new(method: :identifiers, space: :blueprints)
+            ::Spaces::Commands::Querying.new(method: :identifiers, space: :blueprints)
           end
         end
 
         # Show blueprint
         get '/blueprints/:identifier' do
           command do
-            Spaces::Commands::Reading.new(identifier: params[:identifier], space: :blueprints)
+            ::Spaces::Commands::Reading.new(identifier: params[:identifier], space: :blueprints)
           end
         end
 
         # Show blueprint status
         get '/blueprints/:identifier/status' do
           command do
-            Spaces::Commands::Status.new(identifier: params[:identifier], space: :blueprints)
+            ::Spaces::Commands::Status.new(identifier: params[:identifier], space: :blueprints)
           end
         end
 
         # Index blueprint resolutions
         get '/blueprints/:identifier/resolutions' do
           command do
-            Spaces::Commands::Querying.new(method: :identifiers, blueprint_identifier: params[:identifier], space: :resolutions)
+            ::Spaces::Commands::Querying.new(method: :identifiers, blueprint_identifier: params[:identifier], space: :resolutions)
           end
         end
 
         # Delete blueprint
         delete '/blueprints/:identifier' do
           command do
-            Spaces::Commands::Deleting.new(identifier: params[:identifier], space: :blueprints)
+            ::Spaces::Commands::Deleting.new(identifier: params[:identifier], space: :blueprints)
           end
         end
 
         # Create blueprint
         post '/blueprints' do
           command do
-            Spaces::Commands::Saving.new(identifier: params[:identifier], space: :blueprints)
+            ::Spaces::Commands::Saving.new(identifier: params[:identifier], space: :blueprints)
           end
         end
 
         # Update blueprint
         put '/blueprints/:identifier' do
           command do
-            Spaces::Commands::Saving.new(JSON.parse(request.body.read), space: :blueprints)
-          end
-        end
-
-        # Show a blueprint and its bindings as a graph.
-        get '/blueprints/:identifier/graph' do
-          command do
-            Spaces::Commands::Graphing.new(identifier: params[:identifier], space: :blueprints)
+            ::Spaces::Commands::Saving.new(identifier: params[:identifier], model: JSON.parse(request.body.read), space: :blueprints)
           end
         end
 
         # Synchronize blueprint with publication
-        post '/blueprints/:blueprint_identifier/sync' do
+        post '/blueprints/:identifier/sync' do
           command do
-            Blueprinting::Commands::Synchronizing.new(identifier: params[:blueprint_identifier])
+            ::Blueprinting::Commands::Synchronizing.new(identifier: params[:identifier])
           end
         end
+
+        # Create resolution from blueprint
+        post '/blueprints/:identifier/resolve' do
+          command do
+            ::Blueprinting::Commands::Resolving.new(identifier: params[:identifier], arena_identifier: params[:arena_identifier])
+          end
+        end
+
 
         # BLUEPRINT ICON
 

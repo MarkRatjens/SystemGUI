@@ -22,7 +22,7 @@ app.topology.tree = (router, data, height) => (a,x) => a({
             }),
             pointRadius: data.map((d) => d.pointRadius),
             rotation: data.map((d) => d.rotation),
-            borderColor: '#999',
+            borderColor: data.map((d) => d.borderColor || '#999'),
             borderWidth: data.map((d) => d.borderWidth),
             hoverBorderWidth: data.map((d) => d.hoverBorderWidth || d.borderWidth),
 

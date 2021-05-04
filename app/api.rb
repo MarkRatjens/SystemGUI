@@ -26,9 +26,9 @@ module App
 
     def command
       returned = yield.run.to_h
-      return returned[:result].to_json unless returned[:exception]
-      return raise Error.new("Spaces returned an object with an exception: #{returned[:exception]}") if returned[:exception]
-      raise Error.new('Spaces returned an object with no result and no exception.')
+      return returned[:result].to_json unless returned[:errors]
+      return raise Error.new("Spaces returned errors: #{returned[:errors]}") if returned[:errors]
+      raise Error.new('Spaces returned an object with no result and no errors.')
     end
   end
 end
