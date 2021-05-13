@@ -7,7 +7,7 @@ app.admin.arenas.arena = (router) => (a, x) => a.div([
       "/delete": app.admin.arenas.delete,
       "/bind": app.admin.arenas.bind,
       "/resolve": app.admin.arenas.resolve,
-      "/:action": app.admin.arenas.action,
+      "/apply": app.admin.arenas.apply,
     }
   }),
 ]);

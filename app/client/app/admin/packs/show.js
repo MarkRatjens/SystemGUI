@@ -4,6 +4,12 @@ app.admin.packs.show = (router) => (a, x) => a.div([
     placeholder: app.spinner('Loading pack'),
     success: (pack, el) => [
       app.float({
+        left: [
+          app.button({
+            label: app.icon("fas fa-hammer", "Commit"),
+            onclick: () => router.open(`/admin/packs/${router.params.resolutionIdentifier}/commit`),
+          }),
+        ],
         right: [
           app.button({
             label: app.icon("fa fa-trash", "Delete"),

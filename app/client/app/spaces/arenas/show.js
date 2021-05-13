@@ -1,36 +1,57 @@
 app.spaces.arenas.show = (router) => (a, x) => [
-  app.close(router),
-  a.h1(`${router.params.arenaIdentifier}`),
   app.button({
     label: app.icon('fas fa-project-diagram', 'Bind'),
     onclick: () => router.open("bind"),
   }),
+  app.button({
+    label: app.icon('fas fa-drafting-compass', 'Resolve'),
+    onclick: () => router.open("resolve"),
+  }),
+  app.button({
+    label: app.icon('fas fa-box-open', 'Packing'),
+    onclick: () => router.open("packing"),
+  }),
+  app.button({
+    label: app.icon('fas fa-running', 'Apply'),
+    onclick: () => router.open("apply"),
+  }),
   a.hr,
   app.fetch({
-    url: `/api/arenas/${router.params.arenaIdentifier}`,
+    url: [
+      `/api/arenas/${router.params.arenaIdentifier}`,
+      `/api/arenas/${router.params.arenaIdentifier}/status`,
+    ],
     placeholder: app.spinner("Loading"),
-    success: (arena) => [
-      arena.bindings.length
-      ? arena.bindings.map((binding) => a.p(app.button({
-        label: [
-          a.img([], {src: `/api/blueprints/${binding.target_identifier}/icon`, height: '24'}),
-          ' ',
-          binding.target_identifier,
-        ],
-        onclick: () => router.open(`/resolutions/${arena.identifier}::${binding.target_identifier}`),
-      })))
-      : app.placeholder('No bindings'),
+    success: ([arena, status]) => [app.row({
+      columns: [
+        a.div([
+          status.bounds.length
+          ? status.bounds.map((bound) => a.p(app.button({
+            label: [
+              a.img([], {src: `/api/blueprints/${bound}/icon`, height: '24'}),
+              ' ',
+              bound,
+            ],
+            onclick: () => router.open(`/resolutions/${arena.identifier}::${bound}`),
+          })))
+          : app.placeholder('No resolutions for bound blueprints'),
+        ]),
+        a.div([
+          status.unbounds.length
+          ? status.unbounds.map((unbound) => a.p(app.button({
+            label: [
+              a.img([], {src: `/api/blueprints/${unbound}/icon`, height: '24'}),
+              ' ',
+              unbound,
+            ],
+            onclick: () => router.open(`/resolutions/${arena.identifier}::${unbound}`),
+          })))
+          : app.placeholder('No resolutions for unbound blueprints'),
+
+        ]),
+      ]
+    })]
 
 
-      // a.h1(arena.identifier),
-      // app.spaces.arenas.show.chart(router, arena),
-      // router.mount({
-      //   routes: {
-      //     '/?': x.out(arena),
-      //     '/binding': app.spaces.arenas.binding,
-      //     '/configure': app.spaces.arenas.configure,
-      //   },
-      // }),
-    ]
-  })
+  }),
 ]

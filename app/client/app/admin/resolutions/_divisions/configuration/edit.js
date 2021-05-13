@@ -1,4 +1,4 @@
-app.admin.resolutions.configuration.edit = (router, resolution) => [  
+app.admin.resolutions.configuration.edit = (router, resolution) => [
   app.admin.resolutions.form({
     router: router,
     object: resolution,
@@ -15,7 +15,7 @@ app.admin.resolutions.configuration.edit = (router, resolution) => [
           //   value: v[key],
           // })),
           form: (ff) => [
-            Object.keys(ff.object).map((key) => ff.field({
+            Object.keys(ff.object || {}).map((key) => ff.field({
               key: key,
               label: key,
               horizontal: true,

@@ -7,6 +7,7 @@ app.admin.publications.publication = (router) => (a, x) => a.div([
       "/edit*": app.admin.publications.edit,
       "/delete": app.admin.publications.delete,
       "/sync": app.admin.publications.sync,
+      "/export": app.admin.publications.export,
       "/blueprint": app.admin.publications.blueprint,
       "/?": app.admin.publications.show,
     }

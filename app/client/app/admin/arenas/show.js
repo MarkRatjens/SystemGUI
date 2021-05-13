@@ -7,16 +7,6 @@ app.admin.arenas.show = (router) => (a,x) => a.div([
     placeholder: app.spinner('Loading arena'),
     success: ([arena, resolutions], el) => el.$nodes = [
       app.float({
-        right: [
-          app.button({
-            label: app.icon("fa fa-trash", "Delete"),
-            onclick: () => router.open("delete"),
-            class: "btn btn-outline-danger",
-          }),
-        ]
-      }),
-      a.hr,
-      app.float({
         left: [
           app.button({
             label: app.icon('fas fa-project-diagram', 'Bind'),
@@ -26,25 +16,18 @@ app.admin.arenas.show = (router) => (a,x) => a.div([
             label: app.icon('fas fa-drafting-compass', 'Resolve'),
             onclick: () => router.open("resolve"),
           }),
+          app.button({
+            label: app.icon("fas fa-running", "Apply"),
+            onclick: () => router.open(`/admin/arenas/${router.params.arenaIdentifier}/apply`),
+          }),
         ],
-      }),
-      a.hr,
-      app.button({
-        label: app.icon('far fa-flag', 'Init'),
-        onclick: () => router.open("init"),
-        class: 'btn btn-light',
-      }),
-      ' ',
-      app.button({
-        label: app.icon('fas fa-flag', 'Plan'),
-        onclick: () => router.open("plan"),
-        class: 'btn btn-warning',
-      }),
-      ' ',
-      app.button({
-        label: app.icon('fas fa-flag-checkered', 'Apply'),
-        onclick: () => router.open("apply"),
-        class: 'btn btn-primary',
+        right: [
+          app.button({
+            label: app.icon("fa fa-trash", "Delete"),
+            onclick: () => router.open("delete"),
+            class: "btn btn-outline-danger",
+          }),
+        ]
       }),
       a.hr,
       a.div("Resolutions"),

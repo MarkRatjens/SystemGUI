@@ -8,6 +8,10 @@ app.admin.publications.show = (router) => (a,x) => a.div([
     success: ([publication, status], el) => [
       app.float({
         left: [
+          app.button({
+            label: app.icon("fas fa-upload", "Export"),
+            onclick: () => router.open("export"),
+          }),
           status.blueprint.exist ?
           app.button({
             label: app.icon("fas fa-sync", "Synchronize"),

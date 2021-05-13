@@ -25,9 +25,17 @@ module App
     # end
 
     def command
-      returned = yield.run.to_h
-      return returned[:result].to_json unless returned[:errors]
-      return raise Error.new("Spaces returned errors: #{returned[:errors]}") if returned[:errors]
+      payload = yield.run.payload
+      raise Error.new("Spaces returned errors: #{payload.errors}") if payload.errors
+      if payload.result
+        result = payload.result
+        json = result.to_json
+        # Note that .to_json sometimes returns a result like:
+        #   "\"#<OpenStruct descriptor=#<OpenStruct identifier=\\\"node-red\\\">, blueprint={:exist=>false}>\""
+        # Doing .to_h.to_json seems to be a work around.
+        return result.to_h.to_json if json.start_with? "\"#<OpenStruct"
+        return json
+      end
       raise Error.new('Spaces returned an object with no result and no errors.')
     end
   end

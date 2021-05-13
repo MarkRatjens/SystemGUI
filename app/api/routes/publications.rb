@@ -54,6 +54,13 @@ module App
             ::Publishing::Commands::Synchronizing.new(identifier: params[:identifier])
           end
         end
+
+        # Export publication
+        post '/publications/:identifier/export' do
+          command do
+            ::Publishing::Commands::Exporting.new(identifier: params[:identifier], message: params[:message])
+          end
+        end
       end
     end
   end

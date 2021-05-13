@@ -20,9 +20,15 @@ module App
 
         # Show blueprint status
         get '/blueprints/:identifier/status' do
-          command do
-            ::Spaces::Commands::Status.new(identifier: params[:identifier], space: :blueprints)
+          identifier = params[:identifier]
+          status = ::Spaces::Commands::Status.new(identifier: identifier, space: :blueprints).run.payload.result
+          if status.publication[:exist]
+            publication = ::Spaces::Commands::Status.new(identifier: identifier, space: :publications)
+            path = universe.publications.path.join(identifier)
+            status.publication[:url] = `git -C #{path} remote get-url origin`.strip
+            status.publication[:branch] = `git -C #{path} rev-parse --abbrev-ref HEAD`.strip
           end
+          status.to_h.to_json
         end
 
         # Index blueprint resolutions

@@ -24,7 +24,14 @@ bundle
 npm i
 ```
 
-3. Start
+3. System
+
+Needs imagemagick and ghostscript.
+
+For example, to install on Mac OS X
+`$ brew install imagemagick ghostscript`
+
+4. Start
 
 `bundle exec thin start`
 

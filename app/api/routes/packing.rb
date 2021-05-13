@@ -31,6 +31,14 @@ module App
             ::Packing::Commands::Artifacts.new(identifier: params[:identifier])
           end
         end
+
+        # Commit pack, which means 'build images'.
+        post '/packs/:identifier/commit' do
+          command do
+            ::Packing::Commands::Executing.new(identifier: params[:identifier], execute: :commit)
+          end
+        end
+
       end
     end
   end

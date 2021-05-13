@@ -6,6 +6,7 @@ app.admin.packs.pack = (router) => (a, x) => a.div([
     routes: {
       "/?": app.admin.packs.show,
       "/artifact": app.admin.packs.artifact,
+      "/commit": app.admin.packs.commit,
       "/delete": app.admin.packs.delete,
     }
   }),
