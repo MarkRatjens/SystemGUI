@@ -1,9 +1,9 @@
-app.admin.resolutions.bindings.edit = (router, resolution) => (a,x) => {
-  let binding = resolution.bindings[router.params.bindingIndex]
+app.admin.resolutions.bindings.edit = (route, resolution) => (a,x) => {
+  let binding = resolution.bindings[route.params.bindingIndex]
 
   if (Object.keys(binding.configuration).length) {
     return app.admin.resolutions.form({
-      router: router,
+      route: route,
       object: binding,
       form: (f) => [
         `${f.object.identifier} binding configuration`,
@@ -32,9 +32,9 @@ app.admin.resolutions.bindings.edit = (router, resolution) => (a,x) => {
           ]
         })
       ],
-      close: '..',
+      success: () => route.open('..'),
       update: (form) => {
-        resolution.bindings[router.params.bindingIndex] = form
+        resolution.bindings[route.params.bindingIndex] = form
         return resolution;
       },
     })
@@ -44,7 +44,7 @@ app.admin.resolutions.bindings.edit = (router, resolution) => (a,x) => {
       // a.br,
       // app.button({
       //   label: app.icon("fa fa-check", "Done"),
-      //   onclick: () => router.open("../.."),
+      //   onclick: () => route.open("../.."),
       // })
     ]
   }

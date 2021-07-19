@@ -91,6 +91,11 @@ ax.style({
     'app-inplace-open-background': {
       backgroundColor:'#6669',
     },
+
+
+    'app-modal .modal-content' : {
+      backgroundColor:'#333',
+    },
   },
 
 });

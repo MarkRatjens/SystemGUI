@@ -1,9 +1,9 @@
-app.admin.blueprints.delete = (router) => (a, x) => a.div([
-  a.h3(`Delete?`),
+app.admin.blueprints.delete = (route) => (a, x) => a.div([
+  a.h3(`Delete blueprint?`),
   app.form({
-    url: `/api/blueprints/${router.params.blueprintIdentifier}`,
+    url: `/api/blueprints/${route.params.blueprintIdentifier}`,
     method: "DELETE",
-    form: (f) => [f.buttons({router: router})],
-    success: () => router.open('../..'),
+    form: (f) => [f.buttons({route: route})],
+    success: () => route.open('../..'),
   }),
 ]);

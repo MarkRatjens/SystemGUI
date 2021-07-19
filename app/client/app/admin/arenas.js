@@ -1,5 +1,5 @@
-app.admin.arenas = (router) => (a, x) => a.div([
-  router.mount({
+app.admin.arenas = (route) => (a, x) => a.div([
+  route.mount({
     routes: {
       '/?': app.admin.arenas.index,
       '/~new': app.admin.arenas.new,

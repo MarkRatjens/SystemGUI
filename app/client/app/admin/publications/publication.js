@@ -1,8 +1,8 @@
-app.admin.publications.publication = (router) => (a, x) => a.div([
-//   app.closeOld(() => router.open('/admin/publications')),
-  app.close(router),
-  a.h1(`${router.params.publication_id} publication`),
-  router.mount({
+app.admin.publications.publication = (route) => (a, x) => a.div([
+//   app.closeOld(() => route.open('/admin/publications')),
+  app.close(route),
+  a.h1(`${route.params.publication_id} publication`),
+  route.mount({
     routes: {
       "/edit*": app.admin.publications.edit,
       "/delete": app.admin.publications.delete,

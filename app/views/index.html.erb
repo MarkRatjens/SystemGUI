@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="/node_modules/codemirror/lib/codemirror.css">
   <link rel="stylesheet" href="/node_modules/codemirror/theme/neo.css">
   <link rel="stylesheet" href="/node_modules/easymde/dist/easymde.min.css">
-  <link rel="stylesheet" href="/node_modules/jsoneditor/dist/jsoneditor.css">
+  <!-- <link rel="stylesheet" href="/node_modules/jsoneditor/dist/jsoneditor.css"> -->
   <link rel="stylesheet" href="/node_modules/text-security/text-security.css">
   <link rel="stylesheet" href="/node_modules/xterm/css/xterm.css">
   <link rel="stylesheet" href="/node_modules/chart.js/dist/Chart.css">
@@ -35,9 +35,9 @@
   <script type="application/javascript" src="/node_modules/codemirror/keymap/vim.js"></script>
   <script type="application/javascript" src="/node_modules/codemirror/keymap/emacs.js"></script>
   <script type="application/javascript" src="/node_modules/codemirror/keymap/sublime.js"></script>
-  <script type="application/javascript" src="/node_modules/html5sortable/dist/html5sortable.js"></script>
+  <!-- <script type="application/javascript" src="/node_modules/html5sortable/dist/html5sortable.js"></script> -->
   <script type="application/javascript" src="/node_modules/easymde/dist/easymde.min.js"></script>
-  <script type="application/javascript" src="/node_modules/jsoneditor/dist/jsoneditor.js"></script>
+  <!-- <script type="application/javascript" src="/node_modules/jsoneditor/dist/jsoneditor.js"></script> -->
   <script type="application/javascript" src="/node_modules/marked/marked.min.js"></script>
   <script type="application/javascript" src="/node_modules/dompurify/dist/purify.min.js"></script>
   <script type="application/javascript" src="/node_modules/mustache/mustache.min.js"></script>
@@ -113,9 +113,9 @@ window.onload = () => {
       `app-theme-${ window.localStorage.cssTheme }`
     )
   }
+  ax( app )
   loadingSpinner.style.opacity = 0
   setTimeout( function() { loadingSpinner.remove() }, 1000 )
-  ax( app )
 }
 </script>
 

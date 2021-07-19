@@ -1,8 +1,8 @@
-app.admin.provisioning.provisions = (router) => (a, x) => a.div([
-//   app.closeOld(() => router.open('/admin/provisioning')),
-  app.close(router),
-  a.h1(`${router.params.resolutionIdentifier} provisions`),
-  router.mount({
+app.admin.provisioning.provisions = (route) => (a, x) => a.div([
+//   app.closeOld(() => route.open('/admin/provisioning')),
+  app.close(route),
+  a.h1(`${route.params.resolutionIdentifier} provisions`),
+  route.mount({
     routes: {
       "/?": app.admin.provisioning.show,
       "/artifact": app.admin.provisioning.artifact,

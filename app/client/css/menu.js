@@ -3,9 +3,9 @@ ax.style({
     'app-menu-buttons': {
       display: 'block',
       columns: '200px',
-      marginLeft: '5px',
-      marginRight: '5px',
+      marginTop: '5px',
       '.app-btn': {
+        whiteSpace: 'nowrap',
         display: 'block',
         width: '100%',
         textAlign: 'left',

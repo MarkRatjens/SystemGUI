@@ -1,7 +1,8 @@
-app.admin.arenas.new = (router) => (a,x) => a.div([
+app.admin.arenas.new = (route) => (a,x) => a.div([
   a.h1('New arena'),
   app.form({
     url: '/api/arenas',
+    scope: 'arena',
     form: (f) => [
       f.field({
         key: 'identifier',
@@ -9,10 +10,10 @@ app.admin.arenas.new = (router) => (a,x) => a.div([
       }),
       f.buttons({
         cancel: {
-          onclick: () => router.open('..'),
+          onclick: () => route.open('..'),
         },
       }),
     ],
-    success: (arena_identifier) => router.open(`../${arena_identifier}`),
+    success: (arenaIdentifier) => route.open(`../${arenaIdentifier}`),
   }),
 ])

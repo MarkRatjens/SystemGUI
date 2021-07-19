@@ -1,9 +1,9 @@
-app.admin.arenas.delete = (router) => (a,x) => a.div([
+app.admin.arenas.delete = (route) => (a,x) => a.div([
   a.h3(`Delete?`),
   app.form({
-    url: `/api/arenas/${router.params.arenaIdentifier}`,
+    url: `/api/arena/${route.params.arenaIdentifier}`,
     method: "DELETE",
-    form: (f) => [f.buttons({router: router})],
-    success: () => router.open('../..'),
+    form: (f) => [f.buttons({route: route})],
+    success: () => route.open('../..'),
   }),
 ]);

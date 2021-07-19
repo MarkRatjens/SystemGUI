@@ -1,9 +1,9 @@
-app.admin.packs.delete = (router) => (a,x) => a.div([
+app.admin.packs.delete = (route) => (a,x) => a.div([
   a.h3(`Delete?`),
   app.form({
-    url: `/api/packs/${router.params.resolutionIdentifier}`,
+    url: `/api/packs/${route.params.resolutionIdentifier}`,
     method: "DELETE",
-    form: (f) => [f.buttons({router: router})],
-    success: () => router.open('../..'),
+    form: (f) => [f.buttons({route: route})],
+    success: () => route.open('../..'),
   }),
 ]);

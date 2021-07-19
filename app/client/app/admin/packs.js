@@ -1,5 +1,5 @@
-app.admin.packs = (router) => (a, x) => a.div([
-  router.mount({
+app.admin.packs = (route) => (a, x) => a.div([
+  route.mount({
     routes: {
       '/?': app.admin.packs.index,
       // '/~new': app.admin.packs.new,

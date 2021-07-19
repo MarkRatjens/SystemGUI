@@ -1,6 +1,6 @@
-app.admin.packs.index = (router) => (a,x) => a.div([
-//   app.closeOld(() => router.open('/admin/')),
-  app.close(router),
+app.admin.packs.index = (route) => (a,x) => a.div([
+//   app.closeOld(() => route.open('/admin/')),
+  app.close(route),
   a.h1('Packs'),
   a.hr,
   app.fetch({
@@ -12,7 +12,7 @@ app.admin.packs.index = (router) => (a,x) => a.div([
         a.div(
           app.button({
             label: app.icon("fa fa-caret-right", pack),
-            onclick: (e, el) => router.open(pack),
+            onclick: (e, el) => route.open(pack),
             class: 'btn app-btn w-100 text-left',
           })
         )

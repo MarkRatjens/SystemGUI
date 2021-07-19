@@ -1,8 +1,8 @@
-app.admin.resolutions.resolution = (router) => (a, x) => a.div([
-//   app.closeOld(() => router.open('/admin/resolutions')),
-  app.close(router),
-  a.h1(`${router.params.resolutionIdentifier} resolution`),
-  router.mount({
+app.admin.resolutions.resolution = (route) => (a, x) => a.div([
+//   app.closeOld(() => route.open('/admin/resolutions')),
+  app.close(route),
+  a.h1(`${route.params.resolutionIdentifier} resolution`),
+  route.mount({
     routes: {
       "/edit*": app.admin.resolutions.edit,
       "/provision": app.admin.resolutions.provision,

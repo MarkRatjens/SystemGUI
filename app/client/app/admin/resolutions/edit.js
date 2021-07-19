@@ -1,5 +1,5 @@
-app.admin.resolutions.edit = (router) => (a, x) => app.fetch({
-  url: `/api/resolutions/${router.params.resolutionIdentifier}`,
+app.admin.resolutions.edit = (route) => (a, x) => app.fetch({
+  url: `/api/resolutions/${route.params.resolutionIdentifier}`,
   placeholder: app.spinner('Loading resolution'),
   success: (resolution, el) => {
     el.$nodes = a({
@@ -8,7 +8,7 @@ app.admin.resolutions.edit = (router) => (a, x) => app.fetch({
       $nodes: (el, resolution) => [
         a.h2('Edit'),
         a.hr,
-        app.admin.resolutions.edit.body(router, resolution),
+        app.admin.resolutions.edit.body(route, resolution),
       ],
     })
   },

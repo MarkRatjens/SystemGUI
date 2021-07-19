@@ -1,23 +1,24 @@
-app.admin.arenas.bind = (router) => (a,x) => [
+app.admin.arenas.bind = (route) => (a,x) => [
   a.h3('Bind blueprint'),
   app.fetch({
-    url: `/api/blueprints`,
+    url: `/api/blueprints/list`,
     placeholder: app.spinner('Loading blueprints'),
     success: (blueprint_identifiers) => a.div([
       app.form({
-        url: `/api/arenas/${router.params.arenaIdentifier}/bind`,
+        url: `/api/arena/${route.params.arenaIdentifier}/bind`,
+        scope: 'blueprint',
         form: (f) => [
           f.field({
-            key: 'blueprint_identifier',
+            key: 'identifier',
             label: 'Blueprint',
             as: 'select',
             selections: blueprint_identifiers,
           }),
           f.buttons({
-            router: router,
+            route: route,
           })
         ],
-        success: () => router.open(`..`),
+        success: () => route.open(`..`),
       }),
     ])
   })

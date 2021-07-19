@@ -1,13 +1,13 @@
-app.admin.provisioning.show = (router) => (a, x) => a.div([
+app.admin.provisioning.show = (route) => (a, x) => a.div([
   app.fetch({
-    url: `/api/provisioning/${router.params.resolutionIdentifier}`,
+    url: `/api/provisioning/${route.params.resolutionIdentifier}`,
     placeholder: app.spinner('Loading provisions'),
     success: (provisions, el) => [
       app.float({
         right: [
           app.button({
             label: app.icon("fa fa-trash", "Delete"),
-            onclick: () => router.open(`/admin/provisioning/${router.params.resolutionIdentifier}/delete`),
+            onclick: () => route.open(`/admin/provisioning/${route.params.resolutionIdentifier}/delete`),
             class: "btn btn-outline-danger",
           }),
         ]
@@ -17,13 +17,13 @@ app.admin.provisioning.show = (router) => (a, x) => a.div([
         left: [
           app.button({
             label: app.icon("fas fa-truck-loading", "Artifact"),
-            onclick: () => router.open(`artifact`),
+            onclick: () => route.open(`artifact`),
           }),
         ],
         right: [
           app.button({
-            label: app.icon("fas fa-drafting-compass", "Resolution"),
-            onclick: () => router.open(`/admin/resolutions/${router.params.resolutionIdentifier}`),
+            label: app.icon("fas fa-pencil-ruler", "Resolution"),
+            onclick: () => route.open(`/admin/resolutions/${route.params.resolutionIdentifier}`),
           }),
         ],
       }),

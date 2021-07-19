@@ -1,11 +1,11 @@
-app.admin.resolutions.edit.body = (router, resolution) => router.mount({
+app.admin.resolutions.edit.body = (route, resolution) => route.mount({
   routes: {
-    '/?': router => app.admin.resolutions.edit.home(router, resolution),
-    '/domain*': router => app.admin.resolutions.domain(router, resolution),
-    '/binding': router => app.admin.resolutions.bindings.edit(router, resolution),
-    '/bindings*': router => app.admin.resolutions.bindings(router, resolution),
-    '/configuration*': router => app.admin.resolutions.configuration(router, resolution),
-    '/json*': router => resolution,
+    '/?': route => app.admin.resolutions.edit.home(route, resolution),
+    '/domain*': route => app.admin.resolutions.domain(route, resolution),
+    '/binding': route => app.admin.resolutions.bindings.edit(route, resolution),
+    '/bindings*': route => app.admin.resolutions.bindings(route, resolution),
+    '/configuration*': route => app.admin.resolutions.configuration(route, resolution),
+    '/json*': route => resolution,
   },
   transition: ['fade', {duration: 100}],
 })

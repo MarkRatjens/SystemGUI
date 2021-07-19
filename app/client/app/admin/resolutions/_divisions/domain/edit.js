@@ -1,6 +1,6 @@
-app.admin.resolutions.domain.edit = (router, resolution) =>
+app.admin.resolutions.domain.edit = (route, resolution) =>
 app.admin.resolutions.form({
-  router: router,
+  route: route,
   object: resolution,
   form: f => [
     f.field({

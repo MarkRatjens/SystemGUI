@@ -1,12 +1,12 @@
-app.admin.arenas.apply = (router) => (a,x) => a.div([
+app.admin.arenas.apply = (route) => (a,x) => a.div([
   a.h3(`Apply?`),
   app.form({
-    url: `/api/arenas/${router.params.arenaIdentifier}/apply`,
+    url: `/api/arena/${route.params.arenaIdentifier}/apply`,
     form: (f) => [
       f.buttons({
-        router: router,
+        route: route,
       })
     ],
-    success: () => router.open(`..`),
+    success: () => route.open(`..`),
   }),
 ]);

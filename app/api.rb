@@ -1,10 +1,24 @@
+require 'pathname'
+require 'mini_magick'
+require 'letter_avatar'
+require 'fastimage'
+
 module App
   class Api < Sinatra::Base
+
+    require_relative 'api/spaces'
+
+    def self.spaces
+      @spaces ||= Spaces.new
+    end
+
     require_relative 'api/settings'
     require_relative 'api/mime'
     require_relative 'api/errors'
+    require_relative 'api/model'
     require_relative 'api/models'
     require_relative 'api/sessions'
+    require_relative 'api/setup'
     require_relative 'api/routes'
 
     helpers Sinatra::Cookies
@@ -16,27 +30,31 @@ module App
       content_type 'application/json' unless content_type
     end
 
+    before do
+      return unless request.content_type == 'application/json'
+      params.merge!(JSON.parse(request.body.read))
+      puts params.to_yaml
+    end
+
     def path
       request.fullpath.sub('/api', '')
+    end
+
+    ## This method is used to convert Sinatra::IndifferentHash to
+    ## a Hash, because JSON.generate was failing with IndifferentHash.
+    def deep_to_h(obj)
+      if obj.is_a?(Array)
+        obj.map{|v| deep_to_h(v)}
+      elsif obj.is_a?(Sinatra::IndifferentHash)
+        obj.to_h.transform_values{|v| deep_to_h(v)}
+      else
+        obj
+      end
     end
 
     # def query
     #   request.env['rack.request.query_hash'].transform_keys!(&:to_sym)
     # end
 
-    def command
-      payload = yield.run.payload
-      raise Error.new("Spaces returned errors: #{payload.errors}") if payload.errors
-      if payload.result
-        result = payload.result
-        json = result.to_json
-        # Note that .to_json sometimes returns a result like:
-        #   "\"#<OpenStruct descriptor=#<OpenStruct identifier=\\\"node-red\\\">, blueprint={:exist=>false}>\""
-        # Doing .to_h.to_json seems to be a work around.
-        return result.to_h.to_json if json.start_with? "\"#<OpenStruct"
-        return json
-      end
-      raise Error.new('Spaces returned an object with no result and no errors.')
-    end
   end
 end

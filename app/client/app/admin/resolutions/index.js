@@ -1,10 +1,10 @@
-app.admin.resolutions.index = (router) => (a, x) => a.div([
-//   app.closeOld(() => router.open('/admin/')),
-  app.close(router),
+app.admin.resolutions.index = (route) => (a, x) => a.div([
+//   app.closeOld(() => route.open('/admin/')),
+  app.close(route),
   a.h1('Resolutions'),
   // app.button({
   //   label: app.icon("fa fa-plus", "New"),
-  //   onclick: () => router.open("~new"),
+  //   onclick: () => route.open("~new"),
   // }),
   a.hr,
   app.fetch({
@@ -28,7 +28,7 @@ app.admin.resolutions.index = (router) => (a, x) => a.div([
                 app.icon("fa fa-caret-right", resolution),
                 // a['validity-notification.float-right'],
               ],
-              onclick: (e, el) => router.open(resolution),
+              onclick: (e, el) => route.open(resolution),
               class: 'btn app-btn w-100 text-left',
             }),
           ])

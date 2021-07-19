@@ -5,7 +5,9 @@ app.polling.check = (route, success, options = {}) => (a, x) =>
       $init: (el) =>
         setTimeout(() => {
           el.$("app-polling-check-http").$nodes = [
-            app.fetch(route, (response, el) => success(response, el), {
+            app.fetch({
+              url: route,
+              success: (response, el) => success(response, el), 
               when: {
                 404: (response, el) => el.$("^app-polling").$wait(),
                 503: (response, el) => el.$("^app-polling").$wait(),

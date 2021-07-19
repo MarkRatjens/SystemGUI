@@ -1,4 +1,3 @@
-'use strict'
 let app = (a, x) =>
 a["app"](
   [
@@ -11,8 +10,10 @@ a["app"](
   {
     $on: {
       "ax.appkit.router.load": (e, el) => {
-        navbar.$activate();
-        el.$$('#dashboardMenu').$activate();
+        el.$$('.activateable').$activate();
+      },
+      "app.disconnected": (e, el) => {
+        router.$load('/disconnected');
       },
     },
   }

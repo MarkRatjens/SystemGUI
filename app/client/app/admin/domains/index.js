@@ -1,10 +1,10 @@
-app.admin.domains.index = (router) => (a,x) => a.div([
-//   app.closeOld(() => router.open('/admin/')),
-  app.close(router),
+app.admin.domains.index = (route) => (a,x) => a.div([
+//   app.closeOld(() => route.open('/admin/')),
+  app.close(route),
   a.h1('Domains'),
   app.button({
     label: app.icon('fa fa-plus', 'New'),
-    onclick: () => router.open('~new'),
+    onclick: () => route.open('~new'),
   }),
   a.hr,
   app.fetch({
@@ -16,7 +16,7 @@ app.admin.domains.index = (router) => (a,x) => a.div([
         a.div(
           app.button({
             label: app.icon("fa fa-caret-right", domain),
-            onclick: (e, el) => router.open(domain),
+            onclick: (e, el) => route.open(domain),
             class: 'btn app-btn w-100 text-left',
           })
         )

@@ -1,4 +1,4 @@
-app.admin.publications = (router) => router.mount({
+app.admin.publications = (route) => route.mount({
   routes: {
     '/?': app.admin.publications.index,
     '/~new': app.admin.publications.new,

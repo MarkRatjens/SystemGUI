@@ -1,8 +1,7 @@
-app.admin.resolutions = (router) => (a, x) => a.div([
-  router.mount({
+app.admin.resolutions = (route) => (a, x) => a.div([
+  route.mount({
     routes: {
       "/?": app.admin.resolutions.index,
-      // "/~new": app.admin.resolutions.new,
       "/:resolutionIdentifier*": app.admin.resolutions.resolution,
     }
   }),

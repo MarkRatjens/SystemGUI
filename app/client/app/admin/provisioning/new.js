@@ -1,4 +1,4 @@
-// app.admin.provisioning.new = (router) => (a, x) => a.div([
+// app.admin.provisioning.new = (route) => (a, x) => a.div([
 //   a.h1('New provisions'),
 //   app.fetch({
 //     url: '/api/resolutions',
@@ -14,10 +14,10 @@
 //             placeholder: 'Select resolution',
 //             selections: resolutions,
 //           }),
-//           f.buttons({router: router}),
+//           f.buttons({route: route}),
 //         ],
 //         success: (resolution_identifier) => {
-//           router.open(`../${resolution_identifier}`)
+//           route.open(`../${resolution_identifier}`)
 //         },
 //       })]
 //     }

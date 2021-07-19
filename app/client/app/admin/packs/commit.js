@@ -1,9 +1,9 @@
-app.admin.packs.commit = (router) => (a,x) => a.div([
+app.admin.packs.commit = (route) => (a,x) => a.div([
   a.h3(`Commit?`),
   app.form({
-    url: `/api/packs/${router.params.resolutionIdentifier}/commit`,
+    url: `/api/packs/${route.params.resolutionIdentifier}/commit`,
     method: "POST",
-    form: (f) => [f.buttons({router: router})],
-    success: () => router.open('..'),
+    form: (f) => [f.buttons({route: route})],
+    success: () => route.open('..'),
   }),
 ]);

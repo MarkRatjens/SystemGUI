@@ -6,17 +6,22 @@ module App
 
         # Index resolutions
         get '/resolutions' do
-          command do
+          Api.spaces.run do
             ::Spaces::Commands::Querying.new(method: :identifiers, space: :resolutions)
-          end
+          end.to_json
         end
 
         # Show resolution
         get '/resolutions/:identifier' do
-          command do
+          Api.spaces.run do
             ::Spaces::Commands::Reading.new(identifier: params[:identifier], space: :resolutions)
-          end
+          end.to_json
         end
+
+        # # Check if resolution exists
+        # get '/resolutions/:identifier/exist' do
+        #   universe.resolutions.exist?(params[:identifier]).to_json
+        # end
 
         # Update resolution
         put '/resolutions/:identifier' do
@@ -41,8 +46,18 @@ module App
 
         # Show packing and provisioning status for a resolution
         get '/resolutions/:identifier/status' do
+          Api.spaces.run do
+            ::Spaces::Commands::Status.new(
+              identifier: params[:identifier],
+              space: :resolutions
+            )
+          end.to_json
+        end
+
+        # Reset a resolution
+        post '/resolutions/:identifier/reset' do
           command do
-            ::Spaces::Commands::Status.new(identifier: params[:identifier], space: :resolutions)
+
           end
         end
 

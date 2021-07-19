@@ -6,60 +6,60 @@ module App
 
         # Index publications
         get '/publications' do
-          command do
+          Api.spaces.run do
             ::Spaces::Commands::Querying.new(method: :identifiers, space: :publications)
-          end
+          end.to_json
         end
 
         # Create publication
         post '/publications' do
           descriptor = params[:descriptor].to_h.transform_keys(&:to_sym).delete_if{|k, v| v.empty?}
-          command do
+          Api.spaces.run do
             ::Publishing::Commands::Importing.new(model: descriptor, force: false)
-          end
+          end.to_json
         end
 
         # Show publication
         get '/publications/:identifier' do
-          command do
+          Api.spaces.run do
             ::Spaces::Commands::Reading.new(identifier: params[:identifier], space: :publications)
-          end
+          end.to_json
         end
 
         # Show publication status
         get '/publications/:identifier/status' do
-          command do
+          Api.spaces.run do
             ::Spaces::Commands::Status.new(identifier: params[:identifier], space: :publications)
-          end
+          end.to_json
         end
 
         # Delete publication
         delete '/publications/:identifier' do
-          command do
+          Api.spaces.run do
             ::Spaces::Commands::Deleting.new(identifier: params[:identifier], space: :publications)
-          end
+          end.to_json
         end
 
         # Create publication blueprint
         post '/publications/:identifier/blueprint' do
           ::Spaces::Commands::Saving.new(identifier: params[:identifier], space: :blueprints).run
-          command do
+          Api.spaces.run do
             ::Blueprinting::Commands::Synchronizing.new(identifier: params[:identifier])
-          end
+          end.to_json
         end
 
         # Synchronize publication with blueprint
         post '/publications/:identifier/sync' do
-          command do
+          Api.spaces.run do
             ::Publishing::Commands::Synchronizing.new(identifier: params[:identifier])
-          end
+          end.to_json
         end
 
         # Export publication
         post '/publications/:identifier/export' do
-          command do
+          Api.spaces.run do
             ::Publishing::Commands::Exporting.new(identifier: params[:identifier], message: params[:message])
-          end
+          end.to_json
         end
       end
     end

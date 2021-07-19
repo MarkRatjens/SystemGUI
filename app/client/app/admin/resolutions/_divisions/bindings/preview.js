@@ -1,4 +1,4 @@
-app.admin.resolutions.bindings.preview = (router, resolution) => (a,x) =>
+app.admin.resolutions.bindings.preview = (route, resolution) => (a,x) =>
 resolution.bindings && resolution.bindings.length ?
 resolution.bindings.map((binding, i) =>
   app.clickable(
@@ -10,6 +10,6 @@ resolution.bindings.map((binding, i) =>
         a['div.placeholder']('No configuration'),
       ])
     ),
-    () => router.open('binding', {bindingIndex: i})
+    () => route.open('binding', {bindingIndex: i})
   )
 ) : a._

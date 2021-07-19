@@ -1,13 +1,13 @@
-app.admin.publications.new = (router) => (a, x) => a.div([
+app.admin.publications.new = (route) => (a, x) => a.div([
   a.h1("New publication"),
   app.form({
     url: "/api/publications",
     form: (f) => [
-      f.field({
-        key: 'space',
-        as: 'hidden',
-        value: 'publications',
-      }),
+      // f.field({
+      //   key: 'space',
+      //   as: 'hidden',
+      //   value: 'publications',
+      // }),
       f.field({
         key: 'descriptor',
         label: false,
@@ -32,8 +32,8 @@ app.admin.publications.new = (router) => (a, x) => a.div([
           }),
         ],
       }),
-      f.buttons({router: router}),
+      f.buttons({route: route}),
     ],
-    success: (publication_identifier) => router.open(`../${publication_identifier}`),
+    success: (publication_identifier) => route.open(`../${publication_identifier}`),
   }),
 ]);

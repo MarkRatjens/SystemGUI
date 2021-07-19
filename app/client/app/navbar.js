@@ -1,5 +1,5 @@
-app.navbar = (router) => (a, x) =>
-  a["nav#navbar.navbar.navbar-expand.navbar-light.bg-transparent.mt-n1.mb-1"](
+app.navbar = (route) => (a, x) =>
+  a["nav#navbar.navbar.navbar-expand.navbar-light.bg-transparent.mt-n1.mb-1.activateable"](
     [
       a.a([
         a({
@@ -12,33 +12,82 @@ app.navbar = (router) => (a, x) =>
         class: "navbar-brand",
         title: 'Home',
       }),
+
       a.div(
         a.ul(
           [
             a.li(
-              a.a(app.icon("fas fa-tachometer-alt"), {
+              a.a(app.icon("fas fa-home"), {
                 class: 'nav-link',
                 href: '#',
                 $on: {click: (e, el) => {
                   e.preventDefault();
-                  router.open("/")
+                  route.open("/")
                 }},
               }),
               {
                 class: 'nav-item',
-                title: 'Dashboard',
+                title: 'Home',
                 data: {
                   path: '/'
                 },
               }
             ),
             a.li(
+              a.a(app.icon("fas fa-dot-circle"), {
+                class: 'nav-link',
+                href: '#',
+                $on: {click: (e, el) => {
+                  e.preventDefault();
+                  route.open("/arenas")
+                }},
+              }),
+              {
+                class: 'nav-item',
+                title: 'Arenas',
+                data: {
+                  path: '/arenas'
+                },
+              }
+            ),
+            a.li(
+              a.a(app.icon("fas fa-shapes"), {
+                class: 'nav-link',
+                href: '#',
+                $on: {click: (e, el) => {
+                  e.preventDefault();
+                  route.open("/blueprints")
+                }},
+              }),
+              {
+                class: 'nav-item',
+                title: 'Blueprints',
+                data: {
+                  path: '/blueprints'
+                },
+              }
+            ),
+          ],
+          {
+            class: 'navbar-nav mr-auto mt-0',
+          }
+        ),
+        {
+          id: 'navbarCollapse',
+          class: 'collapse navbar-collapse',
+        }
+      ),
+
+      a.div(
+        a.ul(
+          [
+            a.li(
               a.a(app.icon("fa fa-wrench"), {
                 class: 'nav-link',
                 href: '#',
                 $on: {click: (e, el) => {
                   e.preventDefault();
-                  router.open("/admin")
+                  route.open("/admin")
                 }},
               }),
               {
@@ -55,7 +104,7 @@ app.navbar = (router) => (a, x) =>
                 href: '#',
                 $on: {click: (e, el) => {
                   e.preventDefault();
-                  router.open("/settings")
+                  route.open("/settings")
                 }},
               }),
               {
@@ -72,7 +121,7 @@ app.navbar = (router) => (a, x) =>
                 href: '#',
                 $on: {click: (e) => {
                   e.preventDefault();
-                  router.open("/logout")
+                  route.open("/logout")
                 }},
               }),
               {
@@ -97,7 +146,7 @@ app.navbar = (router) => (a, x) =>
     {
       $activate: (el) => () => {
         el.$$('.nav-item.active').classList.remove('active')
-        let section = location.pathname.split('/')[1]
+        let section = window.location.pathname.split('/')[1]
         let active = el.$(`[data-path="/${section}"]`) || el.$(`[data-path="/"]`)
         if (active) active.classList.add('active')
       },

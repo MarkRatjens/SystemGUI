@@ -1,4 +1,4 @@
-// app.admin.packs.new = (router) => (a, x) => a.div([
+// app.admin.packs.new = (route) => (a, x) => a.div([
 //   a.h1('New pack'),
 //   app.fetch({
 //     url: '/api/resolutions',
@@ -14,9 +14,9 @@
 //             placeholder: 'Select resolution',
 //             selections: resolutions,
 //           }),
-//           f.buttons({router: router}),
+//           f.buttons({route: route}),
 //         ],
-//         success: (pack_id) => router.open(`../${pack_id}`),
+//         success: (pack_id) => route.open(`../${pack_id}`),
 //       })]
 //     }
 //   }),
