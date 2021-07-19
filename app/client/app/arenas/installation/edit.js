@@ -6,8 +6,6 @@ app.arenas.installation.edit = (route) => (a,x) => [
     ],
     success: ([installation, form]) => app.formDSL.builder.form({
       components: form.components,
-      submit: false,
-      cancel: false,
     }, installation.input, {
       action: `/api/installations/@${route.params.arenaIdentifier}::${route.params.blueprintIdentifier}/input`,
       scope: 'input',
