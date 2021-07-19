@@ -16,6 +16,7 @@ module App
 
       register Arenas
       register Blueprints
+      register Installations
       register Packing
       register Provisioning
       register Publications
