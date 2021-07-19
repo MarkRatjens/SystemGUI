@@ -51,11 +51,12 @@ module App
         # Update input
         put '/installations/@:identifier/input' do
           installation = Api.spaces.run do
-            ::Spaces::Commands::Reading.new(identifier: params[:identifier], space: :installations)
+            ::Spaces::Commands::Reading.new(
+              identifier: params[:identifier],
+              space: :installations
+            )
           end.to_h
           installation[:input] = params[:input].to_h
-          # installation[:identifier] = params[:identifier]
-          # puts installation
           Api.spaces.run do
             ::Spaces::Commands::Saving.new(
               identifier: params[:identifier],
