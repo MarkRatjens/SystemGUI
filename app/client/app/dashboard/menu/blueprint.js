@@ -22,7 +22,7 @@ app.dashboard.menu.blueprint = (route, blueprintIdentifier) => (a,x) => app.butt
       },
     },
     $match: (el) => () => {
-      return window.location.pathname.match(/^\/blueprints\/@(\w+)?[\/]?(\w+)?/) || []
+      return window.location.pathname.match(/^\/blueprints\/@([\w\-]+)?[\/]?([\w\-]+)?/) || []
     },
   }
 })
