@@ -132,13 +132,11 @@ module App
 
         # Send icon thumbnail.
         get '/blueprints/@:identifier/icon/thumbnail' do
-          return nil unless @blueprint.icon.exist?
           send_file(@blueprint.icon.thumbnail_path, type: 'image/png')
         end
 
         # Send icon with border.
         get '/blueprints/@:identifier/icon/bordered' do
-          return nil unless @blueprint.icon.exist?
           send_file(@blueprint.icon.bordered_path, type: 'image/png')
         end
 
