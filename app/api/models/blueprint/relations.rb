@@ -16,7 +16,7 @@ module App
           def to_h
             {
               blueprints: {
-                decendents: decendents,
+                descendants: descendants,
                 embeds: embeds,
                 parents: parents,
                 bindings: bindings,
@@ -28,12 +28,12 @@ module App
             }
           end
 
-          def decendents
-            @decendents ||= blueprint_decendents_for(@identifier)
+          def descendants
+            @descendants ||= blueprint_descendants_for(@identifier)
           end
 
           def embeds
-            @embeds ||= blueprint_decendents_for(@identifier, 'embed')
+            @embeds ||= blueprint_descendants_for(@identifier, 'embed')
           end
 
           def utilized?
@@ -98,18 +98,18 @@ module App
               ::Spaces::Commands::Querying.new(method: :identifiers, space: :arenas)
             end.select do |arena_identifier|
               !arena_bindings.include?(arena_identifier) &&
-              arena_decendents_for(arena_identifier).include?(@identifier)
+              arena_descendants_for(arena_identifier).include?(@identifier)
             end.sort_by(&:downcase)
           end
 
-          # List all blueprints that are decendents of a blueprint.
-          def blueprint_decendents_for(blueprint_identifier, type=nil, ancestors=[])
-            collect_decendents_for(Api.spaces.run do
+          # List all blueprints that are descendants of a blueprint.
+          def blueprint_descendants_for(blueprint_identifier, type=nil, ancestors=[])
+            collect_descendants_for(Api.spaces.run do
               ::Spaces::Commands::Reading.new(identifier: blueprint_identifier, space: :blueprints)
             end, type, ancestors)
           end
 
-          def collect_decendents_for(parent, type=nil, ancestors=[])
+          def collect_descendants_for(parent, type=nil, ancestors=[])
             parent.bindings.to_h.filter do |binding|
               !type || binding[:type] == type
             end.map do |binding|
@@ -118,14 +118,14 @@ module App
               if ancestors.include?(target_identifier)
                 ["#{(ancestors + [parent.identifier, target_identifier]).join(' > ')} circular reference!"]
               else
-                [target_identifier] + blueprint_decendents_for(target_identifier, type, ancestors + [parent.identifier])
+                [target_identifier] + blueprint_descendants_for(target_identifier, type, ancestors + [parent.identifier])
               end
             end.flatten.compact.uniq
           end
 
-          # List all blueprints that are decendents in an arena.
-          def arena_decendents_for(arena_identifier)
-            collect_decendents_for(Api.spaces.run do
+          # List all blueprints that are descendants in an arena.
+          def arena_descendants_for(arena_identifier)
+            collect_descendants_for(Api.spaces.run do
               ::Spaces::Commands::Reading.new(identifier: arena_identifier, space: :arenas)
             end)
           end

@@ -40,7 +40,7 @@ app.formDSL.builder.form.form = ( options={} ) => (a,x) => {
     }
 
     cancel.onclick = cancelSpec.onclick || ((e,el) => {
-      el.$('^app-modal').$close();
+      options.route && options.route.open('..');
     })
 
   }
