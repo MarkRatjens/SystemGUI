@@ -1,12 +1,12 @@
-app.admin.provisioning.artifact = (router) => (a, x) => a.div([
+app.admin.provisioning.artifact = (route) => (a, x) => a.div([
   app.fetch({
-    url: `/api/provisioning/${router.params.resolution_id}/artifact`,
+    url: `/api/provisioning/${route.params.resolutionIdentifier}/artifact`,
     placeholder: app.spinner('Loading artifact'),
     success: (payload, el) => [
       a.pre(payload),
       // app.button({
       //   label: app.icon("fas fa-check", "Done"),
-      //   onclick: () => router.open(`..`),
+      //   onclick: () => route.open(`..`),
       // }),
     ],
   }),

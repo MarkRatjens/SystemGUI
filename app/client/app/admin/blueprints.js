@@ -1,8 +1,8 @@
-app.admin.blueprints = (router) => (a, x) =>
-router.mount({
+app.admin.blueprints = (route) => (a, x) =>
+route.mount({
   routes: {
     "/?": app.admin.blueprints.index,
     "/~new": app.admin.blueprints.new,
-    "/:blueprint_id*": app.admin.blueprints.blueprint,
+    "/:blueprintIdentifier/?*": app.admin.blueprints.blueprint,
   }
 });

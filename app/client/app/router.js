@@ -1,24 +1,27 @@
 app.router = () => (a, x) => x.router({
-  routes: (router) => [
-    app.navbar(router),
-    router.mount({
+  id: 'router',
+  routes: (route) => [
+    app.navbar(route),
+    route.mount({
       routes: {
-        // '/?': app.dashboard,
         '/settings/?*': app.settings,
         '/admin/?*': app.admin,
-        "*": app.dashboard,
+        '/disconnected': app.disconnected,
+        '/reconnect': app.reconnect,
+        '*': app.dashboard,
+        // "*": app.dashboard,
       },
     }),
   ],
   lazy: true,
   transition: 'fade',
-  default: (router) =>
+  default: (route) =>
     a["p.error"]([
       a.pre(
-        `Not found in client routes: ${router.path} in ${
-          router.scope || "root"
+        `Not found in client routes: ${route.path} in ${
+          route.scope || "root"
         }`
       ),
-      router,
+      route,
     ]),
 })

@@ -1,6 +1,6 @@
-app.admin.resolutions.configuration = (router, resolution) =>
-router.mount({
+app.admin.resolutions.configuration = (route, resolution) =>
+route.mount({
   routes: {
-    '*': (router) => app.admin.resolutions.configuration.edit(router, resolution)
+    '*': (route) => app.admin.resolutions.configuration.edit(route, resolution)
   }
 })

@@ -1,4 +1,4 @@
-app.admin.domains = (router) => (a, x) => router.mount({
+app.admin.domains = (route) => (a, x) => route.mount({
   routes: {
     '/?': app.admin.domains.index,
     '/~new': app.admin.domains.new,

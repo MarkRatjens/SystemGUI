@@ -1,13 +1,17 @@
-app.admin.blueprints.blueprint = (router) => (a, x) => a.div([
-//   app.closeOld(() => router.open('/admin/blueprints')),
-  app.close(router),
-  a.h1(`${router.params.blueprint_id} blueprint`),
-  router.mount({
+app.admin.blueprints.blueprint = (route) => (a, x) => a.div([
+//   app.closeOld(() => route.open('/admin/blueprints')),
+  app.close(route),
+  a.h1(`${route.params.blueprintIdentifier} blueprint`),
+  route.mount({
     routes: {
-      "/edit*": app.admin.blueprints.edit,
       "/delete": app.admin.blueprints.delete,
-      "/sync": app.admin.blueprints.sync,
-      "/?": app.admin.blueprints.show,
-    }
+      "/export": app.admin.blueprints.export,
+      '*': app.admin.blueprints.show,
+
+      // "/specification/?*": app.admin.blueprints.specification,
+      // "/icon/?*": app.admin.blueprints.icon,
+      // "*": app.admin.blueprints.show,
+    },
   }),
+
 ]);

@@ -1,0 +1,15 @@
+app.blueprints.divisions = {
+  about: 'About',
+  bindings: 'Bindings',
+  binding_target: 'Binding target',
+  configuration: 'Configuration',
+  images: 'Images',
+  modules: 'Modules',
+  other_packages: 'Other packages',
+  permissions: 'Permissions',
+  provider: 'Provider',
+  repositories: 'Repositories',
+  system_packages: 'System packages',
+  volumes: 'Volumes',
+  // service_tasks: 'Service tasks',
+}

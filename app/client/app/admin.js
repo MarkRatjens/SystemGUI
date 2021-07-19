@@ -1,9 +1,10 @@
-app.admin = (router) => (a,x) =>
-router.mount({
+app.admin = (route) => (a,x) =>
+route.mount({
   routes: {
     "/publications/?*": app.admin.publications,
     "/blueprints/?*": app.admin.blueprints,
     "/resolutions/?*": app.admin.resolutions,
+    "/installations/?*": app.admin.installations,
     "/packs/?*": app.admin.packs,
     "/provisioning/?*": app.admin.provisioning,
     "/domains/?*": app.admin.domains,

@@ -10,45 +10,45 @@ describe App::Api do
   after(:each) { expect(response.status).to eq(200) }
   after(:each) { expect(response.content_type).to start_with('application/json') }
 
-  context "GET /publications before POST" do
+  context "Index publications before Create" do
     let(:response) { get "/publications" }
-    it "Returns a list of identfiers that does not include :identifier" do
-      expect(json_response).not_to include(@identifier)
+    it "returns a list of identifiers that does not include :identifier" do
+      expect(parsed).not_to include(@identifier)
     end
   end
 
-  context "POST /publications" do
+  context "Create publication" do
     let(:response) { post "/publications", descriptor: @descriptor }
-    it "Returns :identfier" do
-      expect(json_response).to eq(@identifier)
+    it "returns :identifier" do
+      expect(parsed).to eq(@identifier)
     end
   end
 
-  context "GET /publications after POST but before DELETE" do
+  context "Index publications after Create but before Delete" do
     let(:response) { get "/publications" }
-    it "Returns a list of identfiers that includes :identifier" do
-      expect(json_response).to include(@identifier)
+    it "returns a list of identifiers that includes :identifier" do
+      expect(parsed).to include(@identifier)
     end
   end
 
-  context "GET /publications/:identfier" do
+  context "Show publication" do
     let(:response) { get "/publications/#{@identifier}" }
-    it "Returns a publication" do
-      expect(json_response[:identifier]).to eq(@identifier)
+    it "returns a publication" do
+      expect(parsed[:identifier]).to eq(@identifier)
     end
   end
 
-  context "DELETE /publications/:identfier" do
+  context "Delete publication" do
     let(:response) { delete "/publications/#{@identifier}" }
-    it "Returns :identfier" do
-      expect(json_response).to eq(@identifier)
+    it "returns :identifier" do
+      expect(parsed).to eq(@identifier)
     end
   end
 
-  context "GET /publications after DELETE" do
+  context "Index publications after Delete" do
     let(:response) { get "/publications" }
-    it "Returns a list of identfiers that does not include :identifier" do
-      expect(json_response).not_to include(@identifier)
+    it "returns a list of identifiers that does not include :identifier" do
+      expect(parsed).not_to include(@identifier)
     end
   end
 end

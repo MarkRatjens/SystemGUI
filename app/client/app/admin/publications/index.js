@@ -1,10 +1,10 @@
-app.admin.publications.index = (router) => (a,x) => a.div([
-//   app.closeOld(() => router.open('/admin/')),
-  app.close(router),
+app.admin.publications.index = (route) => (a,x) => a.div([
+//   app.closeOld(() => route.open('/admin/')),
+  app.close(route),
   a.h1('Publications'),
   app.button({
     label: app.icon('fa fa-plus', 'New'),
-    onclick: () => router.open('~new'),
+    onclick: () => route.open('~new'),
   }),
   a.hr,
   app.fetch({
@@ -16,7 +16,7 @@ app.admin.publications.index = (router) => (a,x) => a.div([
         a.div(
           app.button({
             label: app.icon("fa fa-caret-right", publication),
-            onclick: (e, el) => router.open(publication),
+            onclick: (e, el) => route.open(publication),
             class: 'btn app-btn w-100 text-left',
           })
         )

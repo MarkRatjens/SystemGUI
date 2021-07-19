@@ -3,140 +3,151 @@ module App
     module Routes
       module Blueprints
         extend Sinatra::Extension
+        include Models
+
+        before '/blueprints/@:identifier/?*' do
+          @blueprint = Blueprint.new(params[:identifier])
+        end
 
         # Index blueprints
         get '/blueprints' do
-          command do
-            Spaces::Commands::Querying.new(method: :identifiers, space: :blueprints)
-          end
+          Blueprint.index.to_json
         end
 
-        # Show blueprint
-        get '/blueprints/:identifier' do
-          command do
-            Spaces::Commands::Reading.new(identifier: params[:identifier], space: :blueprints)
-          end
-        end
-
-        # Show blueprint status
-        get '/blueprints/:identifier/status' do
-          command do
-            Spaces::Commands::Status.new(identifier: params[:identifier], space: :blueprints)
-          end
-        end
-
-        # Index blueprint resolutions
-        get '/blueprints/:identifier/resolutions' do
-          command do
-            Spaces::Commands::Querying.new(method: :identifiers, blueprint_identifier: params[:identifier], space: :resolutions)
-          end
-        end
-
-        # Delete blueprint
-        delete '/blueprints/:identifier' do
-          command do
-            Spaces::Commands::Deleting.new(identifier: params[:identifier], space: :blueprints)
-          end
+        # List blueprints
+        get '/blueprints/list' do
+          Blueprint.list.to_json
         end
 
         # Create blueprint
         post '/blueprints' do
-          command do
-            Spaces::Commands::Saving.new(identifier: params[:identifier], space: :blueprints)
-          end
+          Blueprint.create(params[:blueprint]).to_json
         end
 
-        # Update blueprint
-        put '/blueprints/:identifier' do
-          command do
-            Spaces::Commands::Saving.new(JSON.parse(request.body.read), space: :blueprints)
-          end
+        # Import blueprint
+        post '/blueprints/import' do
+          Blueprint.import(params[:import]).to_json
         end
 
-        # Show a blueprint and its bindings as a graph.
-        get '/blueprints/:identifier/graph' do
-          command do
-            Spaces::Commands::Graphing.new(identifier: params[:identifier], space: :blueprints)
-          end
+        # Show blueprint
+        get '/blueprints/@:identifier' do
+          @blueprint.to_json
         end
 
-        # Synchronize blueprint with publication
-        post '/blueprints/:blueprint_identifier/sync' do
-          command do
-            Blueprinting::Commands::Synchronizing.new(identifier: params[:blueprint_identifier])
-          end
+        # Reimport blueprint
+        post '/blueprints/@:identifier/reimport' do
+          @blueprint.reimport.to_json
         end
 
-        # BLUEPRINT ICON
-
-        # Send icon.
-        get '/blueprints/:identifier/icon' do
-          icon = Models::Icon.new(params[:identifier])
-          send_file(icon.path, type: 'image/png')
+        # Delete blueprint
+        delete '/blueprints/@:identifier' do
+          @blueprint.delete.to_json
         end
 
-        # Send icon with border.
-        get '/blueprints/:identifier/icon/bordered' do
-          icon = Models::Icon.new(params[:identifier])
-          send_file(icon.bordered_path, type: 'image/png')
+        # Show blueprint specification, i.e. blueprint.json
+        get '/blueprints/@:identifier/specification' do
+          @blueprint.specification.to_json
         end
 
-        # Update icon
-        put '/blueprints/:identifier/icon' do
-          icon = Models::Icon.new(params[:identifier])
-          icon.update(params[:icon][:tempfile])
-          nil.to_json
+        # Update blueprint specification, i.e. blueprint.json
+        put '/blueprints/@:identifier/specification' do
+          @blueprint.specification.save(params[:specification]).to_json
         end
 
-        # Delete icon
-        delete '/blueprints/:identifier/icon' do
-          icon = Models::Icon.new(params[:identifier])
-          icon.delete
-          nil.to_json
+        # Publish blueprint
+        post '/blueprints/@:identifier/publication' do
+          @blueprint.publication.create(params[:publication]).to_json
+        end
+
+        # Unpublish blueprint
+        delete '/blueprints/@:identifier/publication' do
+          @blueprint.publication.delete.to_json
+        end
+
+        # Export blueprint publication
+        post '/blueprints/@:identifier/publication/export' do
+          @blueprint.publication.export(params[:export]).to_json
+        end
+
+        # Show publication diff
+        get '/blueprints/@:identifier/publication/diff' do
+          @blueprint.publication.diff.to_json
+        end
+
+        # Set blueprint publication branch
+        post '/blueprints/@:identifier/publication/branch' do
+          @blueprint.publication.checkout(params[:branch]).to_json
+        end
+
+        # BLUEPRINT FORM
+
+        # Show blueprint form, i.e. form.json
+        get '/blueprints/@:identifier/form' do
+          @blueprint.form.to_json
+        end
+
+        # Update blueprint form, i.e. form.json
+        put '/blueprints/@:identifier/form' do
+          @blueprint.form.save(deep_to_h(params[:form])).to_json
         end
 
         # BLUEPRINT LICENSE
 
         # Show blueprint license.
-        get '/blueprints/:identifier/license' do
-          license_path = universe.blueprints.path.join(params[:identifier], 'LICENSE.md')
+        get '/blueprints/@:identifier/license' do
           content_type 'text/markdown'
-          if license_path.exist?
-            license_path.read
-          else
-            ''
-          end
+          @blueprint.license.to_s
         end
 
         # Update blueprint license.
-        put '/blueprints/:identifier/license' do
-          license_path = universe.blueprints.path.join(params[:identifier], 'LICENSE.md')
-          license_text = params[:license]
-          license_path.write(license_text)
-          nil.to_json
+        put '/blueprints/@:identifier/license' do
+          @blueprint.license.save(params[:license]).to_json
         end
 
         # BLUEPRINT README
 
         # Show blueprint readme.
-        get '/blueprints/:identifier/readme' do
-          readme_path = universe.blueprints.path.join(params[:identifier], 'README.md')
+        get '/blueprints/@:identifier/readme' do
           content_type 'text/markdown'
-          if readme_path.exist?
-            readme_path.read
-          else
-            ''
-          end
+          @blueprint.readme.to_s
         end
 
         # Update blueprint readme.
-        put '/blueprints/:identifier/readme' do
-          readme_path = universe.blueprints.path.join(params[:identifier], 'README.md')
-          readme_text = params[:readme]
-          readme_path.write(readme_text)
-          nil.to_json
+        put '/blueprints/@:identifier/readme' do
+          @blueprint.readme.save(params[:readme]).to_json
         end
 
+        # BLUEPRINT ICON
+
+        # Show icon metadata.
+        get '/blueprints/@:identifier/icon' do
+          @blueprint.icon.to_json
+        end
+
+        # Send raw icon.
+        get '/blueprints/@:identifier/icon/raw' do
+          send_file(@blueprint.icon.raw_path, type: 'image/png')
+        end
+
+        # Send icon thumbnail.
+        get '/blueprints/@:identifier/icon/thumbnail' do
+          send_file(@blueprint.icon.thumbnail_path, type: 'image/png')
+        end
+
+        # Send icon with border.
+        get '/blueprints/@:identifier/icon/bordered' do
+          send_file(@blueprint.icon.bordered_path, type: 'image/png')
+        end
+
+        # Update icon
+        put '/blueprints/@:identifier/icon' do
+          @blueprint.icon.save(params[:icon][:tempfile]).to_json
+        end
+
+        # Delete icon
+        delete '/blueprints/@:identifier/icon' do
+          @blueprint.icon.delete.to_json
+        end
       end
     end
   end

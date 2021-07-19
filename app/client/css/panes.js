@@ -4,5 +4,8 @@ ax.style( {
     '> *': {
       borderTop: '1px solid #0001',
     },
+    'ax-appkit-panes-adjacent': {
+      overflowY: 'scroll',
+    }
   },
 } )

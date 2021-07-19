@@ -1,4 +1,4 @@
-app.topology.tree = (router, data, height) => (a,x) => a({
+app.topology.tree = (route, data, height) => (a,x) => a({
   $nodes: [
     x.chartjs({
       canvasTag: {
@@ -22,14 +22,15 @@ app.topology.tree = (router, data, height) => (a,x) => a({
             }),
             pointRadius: data.map((d) => d.pointRadius),
             rotation: data.map((d) => d.rotation),
-            borderColor: '#999',
+            borderColor: data.map((d) => d.borderColor || '#999'),
             borderWidth: data.map((d) => d.borderWidth),
             hoverBorderWidth: data.map((d) => d.hoverBorderWidth || d.borderWidth),
-
+            labelOffset: data.map((d) => d.labelOffset),
             data: data,
           }]
         },
         options: {
+          // animation: {duration: 100},
           tooltips: {
             displayColors: false,
             callbacks: {
@@ -57,7 +58,7 @@ app.topology.tree = (router, data, height) => (a,x) => a({
             datalabels: {
               align: 'top',
               textAlign: 'center',
-              offset: 25,
+              offset: (d) => d.dataset.labelOffset[d.dataIndex],
               font: {
                 weight: 'bold',
                 size: 14,
@@ -81,7 +82,7 @@ app.topology.tree = (router, data, height) => (a,x) => a({
             } else {
               path = ''
             }
-            router.open(path)
+            route.open(path)
           }
         },
       }

@@ -1,6 +1,6 @@
-app.admin.resolutions.domain = (router, resolution) =>
-router.mount({
+app.admin.resolutions.domain = (route, resolution) =>
+route.mount({
   routes: {
-    '*': (router) => app.admin.resolutions.domain.edit(router, resolution)
+    '*': (route) => app.admin.resolutions.domain.edit(route, resolution)
   }
 })

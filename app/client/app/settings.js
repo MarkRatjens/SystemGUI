@@ -1,4 +1,4 @@
-app.settings = (router) => (a, x) => [
+app.settings = (route) => (a, x) => [
   a.h1("Settings"),
 
   app.form({
@@ -34,7 +34,7 @@ app.settings = (router) => (a, x) => [
           sublime: "Sublime",
         },
       }),
-      f.buttons({router: router}),
+      f.buttons({route: route}),
     ],
     action: (submission) => {
       let form = submission.form.$value()

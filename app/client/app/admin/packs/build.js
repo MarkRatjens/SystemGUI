@@ -1,9 +1,9 @@
-app.admin.packs.build = (router) => (a,x) => a.div([
+app.admin.packs.build = (route) => (a,x) => a.div([
   a.h3(`Build?`),
   app.form({
-    url: `/api/packs/${router.params.arena_id}/${router.params.blueprint_id}/commit`,
+    url: `/api/packs/${route.params.arenaIdentifier}/${route.params.blueprintIdentifier}/commit`,
     method: "POST",
-    form: (f) => [f.buttons({router: router})],
-    success: () => router.open('..'),
+    form: (f) => [f.buttons({route: route})],
+    success: () => route.open('..'),
   }),
 ]);

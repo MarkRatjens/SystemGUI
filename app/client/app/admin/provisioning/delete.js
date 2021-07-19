@@ -1,9 +1,9 @@
-app.admin.provisioning.delete = (router) => (a,x) => a.div([
+app.admin.provisioning.delete = (route) => (a,x) => a.div([
   a.h3(`Delete?`),
   app.form({
-    url: `/api/provisioning/${router.params.resolution_id}`,
+    url: `/api/provisioning/${route.params.resolutionIdentifier}`,
     method: "DELETE",
-    form: (f) => [f.buttons({router: router})],
-    success: () => router.open('../..'),
+    form: (f) => [f.buttons({route: route})],
+    success: () => route.open('../..'),
   }),
 ]);

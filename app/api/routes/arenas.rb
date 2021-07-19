@@ -3,54 +3,52 @@ module App
     module Routes
       module Arenas
         extend Sinatra::Extension
+        include Models
+
+        before '/arenas/@:identifier/?*' do
+          @arena = Arena.new(params[:identifier])
+        end
 
         # Index arenas
         get '/arenas' do
-          command do
-            Spaces::Commands::Querying.new(method: :identifiers, space: :arenas)
-          end
+          Arena.index.to_json
+        end
+
+        # List arenas
+        get '/arenas/list' do
+          Arena.list.to_json
         end
 
         # Show arena
-        get '/arenas/:identifier' do
-          command do
-            Spaces::Commands::Reading.new(identifier: params[:identifier], space: :arenas)
-          end
+        get '/arenas/@:identifier' do
+          @arena.to_json
         end
 
         # Create an arena
         post '/arenas' do
-          command do
-            ::Arenas::Commands::Saving.new(identifier: params[:identifier])
-          end
-        end
-
-        # Bootstrap an arena
-        post '/arenas/:identifier/bootstrap' do
-          command do
-            Bootstrapping::Commands::Initializing.new(identifier: params[:identifier], blueprint_identifier: params[:blueprint_identifier])
-          end
-        end
-
-        # Resolve an arena
-        post '/arenas/:identifier/resolve' do
-          command do
-            Bootstrapping::Commands::Resolving.new(identifier: params[:identifier])
-          end
-        end
-
-        # Index arena resolutions
-        get '/arenas/:identifier/resolutions' do
-          command do
-            Spaces::Commands::Querying.new(method: :identifiers, arena_identifier: params[:identifier], space: :resolutions)
-          end
+          Arena.create(params[:arena]).to_json
         end
 
         # Delete arena
-        delete '/arenas/:identifier' do
-          command do
-            Spaces::Commands::Deleting.new(identifier: params[:identifier], space: :arenas)
-          end
+        delete '/arenas/@:identifier' do
+          @arena.delete.to_json
+        end
+
+        # Update arena
+        put '/arenas/@:identifier' do
+          @arena.save(params[:arena]).to_json
+        end
+
+        # # Generate installations for an arena
+        # post '/arenas/@:identifier/installations' do
+        #   @arena.installations.generate.to_json
+        # end
+
+        # Apply provisions for an arena
+        post '/arenas/@:identifier/apply' do
+          run do
+            ::Spaces::Commands::Executing.new(identifier: params[:identifier], space: :arenas, execute: :apply)
+          end.to_json
         end
       end
     end

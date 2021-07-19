@@ -1,9 +1,9 @@
-app.admin.arenas = (router) => (a, x) => a.div([
-  router.mount({
+app.admin.arenas = (route) => (a, x) => a.div([
+  route.mount({
     routes: {
       '/?': app.admin.arenas.index,
       '/~new': app.admin.arenas.new,
-      '/:arena_id*': app.admin.arenas.arena,
+      '/:arenaIdentifier*': app.admin.arenas.arena,
     }
   }),
 ]);

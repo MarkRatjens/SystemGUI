@@ -1,6 +1,6 @@
-app.admin.resolutions.bindings = (router, resolution) =>
-router.mount({
+app.admin.resolutions.bindings = (route, resolution) =>
+route.mount({
   routes: {
-    '/:binding_id': (router) => app.admin.resolutions.bindings.edit(router, resolution)
+    '/:bindingIndex': (route) => app.admin.resolutions.bindings.edit(route, resolution)
   }
 })

@@ -8,8 +8,9 @@ module App
     end
 
     error App::Error do |e|
+      content_type :text
       status e.status
-      e.to_s.to_json
+      e.to_s
     end
 
     error do |e|

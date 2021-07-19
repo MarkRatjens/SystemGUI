@@ -93,6 +93,7 @@ app.form.shim = {
       }
 
       return x.codemirror.form.control(f, {
+        lineNumbers: true,
         keymap: window.localStorage.editorKeymap,
         ...options,
       });
@@ -110,7 +111,7 @@ app.form.shim = {
           : f.button({
               label: app.icon("fa fa-times", "Cancel"),
               to: app.spinner("Cancelling…"),
-              onclick: () => options.router.open(".."),
+              onclick: () => options.route.open(".."),
               ...options.cancel,
             }),
         " ",

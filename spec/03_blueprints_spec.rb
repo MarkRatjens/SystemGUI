@@ -1,48 +1,66 @@
 describe App::Api do
   let(:app) { App::Api.new }
   before(:each) { @identifier = 'test-blueprint' }
+  before(:each) { @update = {identifier: @identifier, about: {title: 'UPDATE'}} }
   after(:each) { expect(response.status).to eq(200) }
   after(:each) { expect(response.content_type).to start_with('application/json') }
 
-  context "GET /blueprints before POST" do
+  context "Index blueprints before Create" do
     let(:response) { get "/blueprints" }
-    it "Returns a list of identfiers that does not include :identifier" do
-      expect(json_response).not_to include(@identifier)
+    it "returns a list of identifiers that does not include :identifier" do
+      expect(parsed).not_to include(@identifier)
     end
   end
 
-  context "POST /blueprints" do
+  context "Create blueprint" do
     let(:response) { post "/blueprints", identifier: @identifier }
-    it "Returns :identfier" do
-      expect(json_response).to eq(@identifier)
+    it "returns :identifier" do
+      expect(parsed).to eq(@identifier)
     end
   end
 
-  context "GET /blueprints after POST but before DELETE" do
+  context "Index blueprints after Create but before Delete" do
     let(:response) { get "/blueprints" }
-    it "Returns a list of identfiers that includes :identifier" do
-      expect(json_response).to include(@identifier)
+    it "returns a list of identifiers that includes :identifier" do
+      expect(parsed).to include(@identifier)
     end
   end
 
-  context "GET /blueprints/:identfier" do
+  context "Show blueprint" do
     let(:response) { get "/blueprints/#{@identifier}" }
-    it "Returns a blueprint" do
-      expect(json_response[:identifier]).to eq(@identifier)
+    it "returns a blueprint" do
+      expect(parsed[:identifier]).to eq(@identifier)
     end
   end
 
-  context "DELETE /blueprints/:identfier" do
+  context "Update blueprint" do
+    let(:response) {
+      header 'CONTENT_TYPE', 'application/json'
+      put "/blueprints/#{@identifier}", JSON.generate(@update)
+    }
+    it "returns :identifier" do
+      expect(parsed).to eq(@identifier)
+    end
+  end
+
+  context "Show blueprint" do
+    let(:response) { get "/blueprints/#{@identifier}" }
+    it "returns an updated blueprint" do
+      expect(parsed[:about][:title]).to eq(@update[:about][:title])
+    end
+  end
+
+  context "Delete blueprint" do
     let(:response) { delete "/blueprints/#{@identifier}" }
-    it "Returns :identfier" do
-      expect(json_response).to eq(@identifier)
+    it "returns :identifier" do
+      expect(parsed).to eq(@identifier)
     end
   end
 
-  context "GET /blueprints after DELETE" do
+  context "Index blueprints after Delete" do
     let(:response) { get "/blueprints" }
-    it "Returns a list of identfiers that does not include :identifier" do
-      expect(json_response).not_to include(@identifier)
+    it "returns a list of identifiers that does not include :identifier" do
+      expect(parsed).not_to include(@identifier)
     end
   end
 end
