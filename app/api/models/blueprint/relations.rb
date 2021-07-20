@@ -92,7 +92,13 @@ module App
 
           # List all blueprints that are descendants of a blueprint.
           def blueprint_descendants_for(blueprint_identifier, type=nil, ancestors=[])
+<<<<<<< HEAD
             collect_descendants_for(Api.spaces.universe.blueprints.by(blueprint_identifier), type, ancestors)
+=======
+            collect_descendants_for(Api.spaces.run do
+              ::Spaces::Commands::Reading.new(identifier: blueprint_identifier, space: :blueprints)
+            end, type, ancestors)
+>>>>>>> b12ab23ea5e65c1c3f1ca5d7062f2d54b8bd8101
           end
 
           def collect_descendants_for(parent, type=nil, ancestors=[])
@@ -111,7 +117,13 @@ module App
 
           # List all blueprints that are descendants in an arena.
           def arena_descendants_for(arena_identifier)
+<<<<<<< HEAD
             collect_descendants_for(Api.spaces.universe.arenas.by(arena_identifier))
+=======
+            collect_descendants_for(Api.spaces.run do
+              ::Spaces::Commands::Reading.new(identifier: arena_identifier, space: :arenas)
+            end)
+>>>>>>> b12ab23ea5e65c1c3f1ca5d7062f2d54b8bd8101
           end
 
         end
