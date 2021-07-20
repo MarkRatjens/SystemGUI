@@ -19,15 +19,13 @@ module App
         attr_reader :identifier
 
         def self.list
-          Api.spaces.run do
-            ::Spaces::Commands::Querying.new(method: :identifiers, space: :blueprints)
-          end.sort_by(&:downcase)
+          Api.spaces.universe.blueprints.identifiers.sort_by(&:downcase)
         end
 
         def self.index
           list.map do |identifier|
-            Blueprint.new(identifier)
-          end.map do |blueprint|
+            new(identifier)
+          end.map do |blueprint| #TODO: bundle as a command
             {
               identifier: blueprint.identifier,
               about: blueprint.specification.to_h[:about],
@@ -38,14 +36,14 @@ module App
         end
 
         def self.import(location)
-          location = location.to_h.transform_keys(&:to_sym).delete_if{|k, v| v.empty?}
+          location = location.to_h.transform_keys(&:to_sym).delete_if{|k, v| v.empty?} #TODO: compact
           Api.spaces.run do
             ::Spaces::Commands::Saving.new(
               model: location,
               space: :locations
             )
           end.tap do |identifier|
-            Api.spaces.run do
+            Api.spaces.run do #TODO: bundle as a command
               ::Publishing::Commands::Importing.new(
                 identifier: identifier,
                 force: true
@@ -75,7 +73,7 @@ module App
             repository: publication.repository,
             branch: publication.branch,
           }.delete_if{|k, v| v.empty?}
-          Api.spaces.run do
+          Api.spaces.run do #TODO: compact
             ::Publishing::Commands::Importing.new(model: model, force: true)
           end
         end

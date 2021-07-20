@@ -14,10 +14,9 @@ module App
           end
 
           def to_a
-            Api.spaces.run do
-              ::Spaces::Commands::Querying.new(method: :identifiers, blueprint_identifier: @identifier, space: :installations)
-            end
+            Api.spaces.universe.installations.identifiers(blueprint_identifier: @identifier)
           end
+
         end
       end
     end

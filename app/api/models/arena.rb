@@ -12,9 +12,7 @@ module App
         attr_reader :identifier
 
         def self.list
-          Api.spaces.run do
-            ::Spaces::Commands::Querying.new(method: :identifiers, space: :arenas)
-          end.sort_by(&:downcase)
+          Api.spaces.universe.arenas.identifiers.sort_by(&:downcase)
         end
 
         def self.index
@@ -38,11 +36,8 @@ module App
         end
 
         def model
-          Api.spaces.run do
-            ::Spaces::Commands::Reading.new(identifier: @identifier, space: :arenas)
-          end
+          Api.spaces.universe.arenas.by(@identifier)
         end
-
 
         def installations
           @installations ||= Installations.new(self)
@@ -54,7 +49,7 @@ module App
               identifier: @identifier,
               model: arena,
             )
-          end.tap do
+          end.tap do #TODO: bundle as a command
             installations.generate
           end
         end

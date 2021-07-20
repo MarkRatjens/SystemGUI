@@ -14,9 +14,7 @@ module App
           end
 
           def to_a
-            Api.spaces.run do
-              ::Spaces::Commands::Querying.new(method: :identifiers, arena_identifier: @identifier, space: :installations)
-            end
+            Api.spaces.universe.installations.identifiers(arena_identifier: @identifier)
           end
 
           def generate
