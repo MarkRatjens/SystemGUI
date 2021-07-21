@@ -46,7 +46,7 @@ app.admin.blueprints.specification.form({
       ]
     }),
   ],
-  update: (form) => {
+  digest: (form) => {
     if (form.modules.length) {
       let modules = {}
       for (let modules_group of form.modules) {

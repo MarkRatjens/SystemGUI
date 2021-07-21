@@ -19,7 +19,7 @@ app.blueprints.design.specification.bindings.new = (route, specification) => (a,
               placeholder: 'Optional binding identifier',
             }),
           ],
-          update: (form) => {
+          digest: (form) => {
             let binding = {
               target_identifier: form.target,
               identifier: form.identifier || form.target_identifier,

@@ -1,7 +1,6 @@
 app.jsonForm = (options={}) => (a, x) => app.form({
   ...options,
   encode: 'json',
-  emend: options.update,
   success: options.success ? options.success : () => options.route.open('..'),
   form: f => [
     a.div(options.form(f)),

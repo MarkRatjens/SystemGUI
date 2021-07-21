@@ -47,18 +47,27 @@ app.blueprints.show = (route) => (a,x) => [
           }),
         ],
       }),
-      app.blueprints.menu(route),
+      a['div.mb-1'](app.blueprints.menu(route)),
       a['div.border.border-1.p-1'](
         route.mount({
           routes: {
-            '/?': () => app.md(readme),
-            '/license': () => app.md(license),
+            '/?': () => readme ? app.md(readme) : app.placeholder('No readme'),
+            '/license': () => license ? app.md(license) : app.placeholder('No license'),
             '/bindings/?*': app.blueprints.bindings(blueprint, specification),
           }
         })
       ),
-      // a.hr,
-      // blueprint, specification,
+      a.hr,
+      app.float({
+       right: [
+         app.button({
+           label: app.icon('fa fa-trash'),
+           title: 'Delete blueprint',
+           class: 'btn btn-outline-danger',
+           onclick: () => route.open(`/blueprints/@${route.params.blueprintIdentifier}/delete`),
+         }),
+       ],
+     }),
     ]
   }),
 ]

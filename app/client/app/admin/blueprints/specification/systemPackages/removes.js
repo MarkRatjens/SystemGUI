@@ -21,7 +21,7 @@
 //       ]
 //     }),
 //   ],
-//   update: (form) => {
+//   digest: (form) => {
 //     if (form.system_packages.removes.length) {
 //       specification.system_packages = specification.system_packages || {}
 //       specification.system_packages.removes = form.system_packages.removes

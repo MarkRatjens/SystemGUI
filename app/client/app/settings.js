@@ -37,7 +37,7 @@ app.settings = (route) => (a, x) => [
       f.buttons({route: route}),
     ],
     action: (submission) => {
-      let form = submission.form.$value()
+      let form = submission.form.$output()
       window.localStorage.cssTheme = form.theme;
       window.localStorage.editorKeymap = form.editor_keymap;
       window.localStorage.editorDefaultMode =

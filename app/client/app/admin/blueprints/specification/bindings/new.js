@@ -13,7 +13,7 @@ app.admin.blueprints.specification.bindings.new = (route, specification) => (a,x
               selections: blueprints,
             }),
           ],
-          update: (form) => {
+          digest: (form) => {
             let binding = {
               target_identifier: form.target,
             }

@@ -33,7 +33,7 @@ app.admin.resolutions.bindings.edit = (route, resolution) => (a,x) => {
         })
       ],
       success: () => route.open('..'),
-      update: (form) => {
+      digest: (form) => {
         resolution.bindings[route.params.bindingIndex] = form
         return resolution;
       },

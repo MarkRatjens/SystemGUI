@@ -12,6 +12,7 @@ app.blueprints.design.branch = (route, blueprint) => (a, x) => a.div([
             as: 'selectinput',
             placeholder: 'Select or enter a branch',
             required: true,
+            value: blueprint.publication.branch,
             selections: blueprint.publication.branches,
           }),
           f.buttons({route: route}),

@@ -4,7 +4,7 @@ app.blueprints.design.specification.form({
   object: specification.other_packages[route.params.other_package_id],
   form: app.blueprints.design.specification.otherPackages.form,
 
-  update: (form) => {
+  digest: (form) => {
     // debugger
     // if (form.other_packages.length) {
     //   specification.other_packages = form.other_packages

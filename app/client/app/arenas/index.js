@@ -1,10 +1,12 @@
 app.arenas.index = (route) => (a,x) => a.div([
   app.close(route),
   a.h1('Arenas'),
-  app.button({
-    label: app.icon('fa fa-plus', 'New'),
-    onclick: () => route.open('new'),
-  }),
+  a.p([
+    app.button({
+      label: app.icon('fa fa-plus', 'New'),
+      onclick: () => route.open('new'),
+    }),
+  ]),
   app.fetch({
     url: '/api/arenas',
     placeholder: app.spinner('Loading arenas'),

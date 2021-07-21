@@ -44,7 +44,7 @@ app.blueprints.design.specification.form({
       ]
     }),
   ],
-  update: (form) => {
+  digest: (form) => {
     if (form.other_packages.length) {
       specification.other_packages = form.other_packages
     } else {

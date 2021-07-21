@@ -33,7 +33,7 @@ app.blueprints.design.specification.form({
       ]
     }),
   ],
-  update: (form) => {
+  digest: (form) => {
     if (form.binding_target.length) {
       let binding_target = {}
       for (let parameter of form.binding_target) {

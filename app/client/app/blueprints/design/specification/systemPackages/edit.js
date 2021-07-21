@@ -15,7 +15,7 @@ app.blueprints.design.specification.form({
           as: 'textarea',
           resize: true,
           placeholder: 'List system packages line by line',
-          value: (v) => (v || []).join("\n"),
+          ingest: (v) => (v || []).join("\n"),
         }),
         ff.field({
           key: 'removes',
@@ -24,12 +24,12 @@ app.blueprints.design.specification.form({
           as: 'textarea',
           resize: true,
           placeholder: 'List system packages line by line',
-          value: (v) => (v || []).join("\n"),
+          ingest: (v) => (v || []).join("\n"),
         }),
       ]
     }),
   ],
-  update: (form) => {
+  digest: (form) => {
     let adds = app.listify(form.system_packages.adds)
     let removes = app.listify(form.system_packages.removes)
     if (adds.length || removes.length) {

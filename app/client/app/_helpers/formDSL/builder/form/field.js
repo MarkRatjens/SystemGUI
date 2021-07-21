@@ -44,6 +44,7 @@ app.formDSL.builder.form.field = ( f, fieldSpec, params ) => {
     hint: fieldSpec.hint || undefined,
     collection: fieldSpec.collection || undefined,
     singular: fieldSpec.singular || undefined,
+    horizontal: fieldSpec.horizontal || undefined,
     addable: !fieldSpec.confined,
     removeable: !fieldSpec.confined,
     moveable: !fieldSpec.stationary,

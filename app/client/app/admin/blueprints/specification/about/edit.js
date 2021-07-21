@@ -16,7 +16,7 @@ app.admin.blueprints.specification.form({
       ],
     }),
   ],
-  update: (form) => {
+  digest: (form) => {
     let about = app.compact(form.about)
     if (Object.keys(about).length) {
       specification.about = about

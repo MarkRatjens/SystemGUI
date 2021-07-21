@@ -5,7 +5,7 @@ app.arenas.installation.edit = (route) => (a,x) => [
       `/api/blueprints/@${route.params.blueprintIdentifier}/form`,
     ],
     success: ([installation, form]) =>
-    ax.is.object(form.components) && form.components.length ?
+    ax.is.array(form.components) && form.components.length ?
     app.formDSL.builder.form({
       components: form.components,
     }, installation.input, {
