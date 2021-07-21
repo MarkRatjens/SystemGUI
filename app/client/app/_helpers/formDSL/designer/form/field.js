@@ -133,7 +133,7 @@ app.formDSL.designer.form.field = f => f.field( {
               singular: 'selection',
               collection: true,
               addable: true,
-              reoveable: true,
+              removeable: true,
               moveable: true,
               form: (ffff) => [
                 ffff.field( { key: 'value' } ),

@@ -21,11 +21,9 @@ app.formDSL.designer.form.row = (f) => f.field( {
           form: fff => [
             ax.a({
               $tag: 'h5',
-              $text: () => `Column ${fff.index + 1} ${fff.scope}`,
+              $text: () => `Column ${fff.index + 1}`,
               name: fff.scope,
-              $rescope: (el) => () => {
-                el.$render()
-              },
+              $rescope: (el) => el.$render,
             }),
             app.formDSL.designer.form.components(fff),
           ],
@@ -33,7 +31,6 @@ app.formDSL.designer.form.row = (f) => f.field( {
           addable: true,
           removeable: true,
           moveable: true,
-          // vertical: true,
         } ),
       ],
     } ),
