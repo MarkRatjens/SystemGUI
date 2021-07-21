@@ -17,13 +17,13 @@ app.report.shim = {
   controls: {
     many: (f, target) => (options = {}) => (a, x) => target({
       ...options,
-      placeholder: a['.placeholder.form-control']('None'),
+      placeholder: a['.placeholder.form-control.bg-transparent']('None'),
     }),
     listgroup: (f, target) => (options = {}) => (a, x) => options.value.length ?
     a['ul.list-group'](
         options.value.map( i => a['li.list-group-item']( i || a._ ))
     ) :
-    a['.placeholder.form-control']('None'),
+    a['.placeholder.form-control.bg-transparent']('None'),
     boolean: (f, target) => (options = {}) => (a, x) =>
       target({
         ...options,

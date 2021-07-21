@@ -2,6 +2,7 @@ app.blueprints.import = (route) => (a, x) => a.div([
   a.h1("Import blueprint"),
   app.form({
     url: "/api/blueprints/import",
+    method: 'POST',
     scope: 'import',
     form: (f) => [
       f.field({

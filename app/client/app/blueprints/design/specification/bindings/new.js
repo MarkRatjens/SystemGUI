@@ -21,7 +21,7 @@ app.blueprints.design.specification.bindings.new = (route, specification) => (a,
           ],
           digest: (form) => {
             let binding = {
-              target_identifier: form.target,
+              target_identifier: form.target_identifier,
               identifier: form.identifier || form.target_identifier,
             }
             if (specification.bindings) {
