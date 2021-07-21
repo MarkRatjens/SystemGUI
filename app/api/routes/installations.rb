@@ -21,7 +21,7 @@ module App
 
         # Update input
         put '/installations/@:identifier/input' do
-          @installation.input.save(params[:input])
+          @installation.input.save(params[:input]).to_json
         end
       end
     end
