@@ -33,7 +33,7 @@ app.admin.installations.bindings.edit = (route, installation) => (a,x) => {
         })
       ],
       success: () => route.open('..'),
-      update: (form) => {
+      digest: (form) => {
         installation.bindings[route.params.bindingIndex] = form
         return installation;
       },

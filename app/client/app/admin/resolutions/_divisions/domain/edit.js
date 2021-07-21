@@ -14,7 +14,7 @@ app.admin.resolutions.form({
       ],
     }),
   ],
-  update: (form) => {
+  digest: (form) => {
     resolution.domain = form.domain
     return resolution;
   },

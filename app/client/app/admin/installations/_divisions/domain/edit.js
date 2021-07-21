@@ -14,7 +14,7 @@ app.admin.installations.form({
       ],
     }),
   ],
-  update: (form) => {
+  digest: (form) => {
     installation.domain = form.domain
     return installation;
   },

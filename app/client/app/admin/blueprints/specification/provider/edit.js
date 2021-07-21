@@ -13,7 +13,7 @@ app.admin.blueprints.specification.form({
       ]
     }),
   ],
-  update: (form) => {
+  digest: (form) => {
     let provider = app.compact(form.provider)
     if (Object.keys(provider).length) {
       specification.provider = provider

@@ -10,7 +10,7 @@ app.admin.resolutions.configuration.edit = (route, resolution) => [
         // moveable: true,
         // removeable: true,
         // collection: true,
-        // value: (v) => Object.keys(v).map((key) => ({
+        // ingest: (v) => Object.keys(v).map((key) => ({
           //   key: key,
           //   value: v[key],
           // })),
@@ -23,7 +23,7 @@ app.admin.resolutions.configuration.edit = (route, resolution) => [
           ]
         }),
       ],
-      update: (form) => {
+      digest: (form) => {
         resolution.configuration = form.configuration
         return resolution;
       },
