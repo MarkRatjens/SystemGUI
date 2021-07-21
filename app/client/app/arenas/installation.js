@@ -8,6 +8,7 @@ app.arenas.installation = (route) => (a,x) => [
     url: `/api/blueprints/@${route.params.blueprintIdentifier}`,
     placeholder: app.spinner(`Loading ${route.params.blueprintIdentifier}`),
     success: (blueprint) => [
+      blueprint,
       app.float({
         left: [
           a.i([
