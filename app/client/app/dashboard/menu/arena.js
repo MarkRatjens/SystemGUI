@@ -18,7 +18,7 @@ app.dashboard.menu.arena = (route, arena) => (a,x) => [
         },
       },
       $match: (el) => () => {
-        return window.location.pathname.match(/^\/arenas\/@?([\w\-]+)?/) || []
+        return window.location.pathname.match(/^\/arenas\/@([\w\-]+)/) || []
       },
     }
   }),
@@ -45,7 +45,7 @@ app.dashboard.menu.arena = (route, arena) => (a,x) => [
           },
         },
         $match: (el) => () => {
-          return window.location.pathname.match(/^\/arenas\/@?([\w\-]+)?[\/]?@?([\w\-]+)?$/) || []
+          return window.location.pathname.match(/^\/arenas\/@([\w\-]+)\/@([\w\-]+)/) || []
         }
       },
     })

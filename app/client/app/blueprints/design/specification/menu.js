@@ -12,7 +12,7 @@ app.blueprints.design.specification.menu = (route, specification) => (a,x) => {
     let addableDivisions = availableDivisions
     .filter((division) => !validDivisions.includes(division))
 
-    return a['div.mt-1']([
+    return a.div([
       a.div(validDivisions.map((division) => app.button({
         label: app.blueprints.divisions[division] || a['.error'](division),
         data: {division: division},

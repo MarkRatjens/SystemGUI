@@ -1,5 +1,4 @@
 app.blueprints.design.icon.edit = (route) => (a, x) => [
-  a.p('Icon'),
   app.float({
     left: [
       a({

@@ -3,7 +3,7 @@ app.blueprints.design.show = (route) => (a, x) => [
     url: `/api/blueprints/@${route.params.blueprintIdentifier}`,
     success: blueprint => [
       blueprint.publication ? [
-        app.publicationLabel(blueprint.publication),
+        a.p(app.publicationLabel(blueprint.publication)),
         app.float({
           left: [
             app.button({
@@ -36,8 +36,7 @@ app.blueprints.design.show = (route) => (a, x) => [
       }),
 
       a.hr,
-      app.blueprints.design.menu(route),
-      a.br,
+      a['div.mb-1'](app.blueprints.design.menu(route)),
       route.mount({
         routes: {
           '/icon/?*': app.blueprints.design.icon,

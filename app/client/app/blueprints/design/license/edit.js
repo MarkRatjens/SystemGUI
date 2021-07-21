@@ -11,6 +11,7 @@ app.blueprints.design.license.edit = (route, blueprint) => (a, x) => a.div([
           f.field({
             key: 'license',
             as: 'markdown',
+            label: false,
           }),
           f.buttons({route: route})
         ],

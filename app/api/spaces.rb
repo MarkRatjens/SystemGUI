@@ -21,7 +21,6 @@ module App
         return payload.result if payload.result
         raise Error.new('Spaces returned an object with no result and no errors.')
       end
-
     end
   end
 end

@@ -28,7 +28,6 @@ app.arenas.edit = (route) => (a,x) => [
           }),
           f.field({
             key: 'bindings',
-            // label: false,
             as: 'table',
             addable: true,
             removeable: true,
@@ -40,6 +39,31 @@ app.arenas.edit = (route) => (a,x) => [
                 key: 'target_identifier',
                 as: 'select',
                 selections: blueprints,
+              }),
+            ]
+          }),
+          f.field({
+            key: 'configuration',
+            as: 'table',
+            addable: true,
+            removeable: true,
+            moveable: true,
+            collection: true,
+            singular: 'configuration parameter',
+            ingest: (value) => Object.keys(value || {}).map(key => ({key: key, value: value[key]})),
+            digest: (value) => {
+              let configuration = {}
+              for (let parameter of value) {
+                configuration[parameter.key] = parameter.value
+              }
+              return configuration
+            },
+            form: ff => [
+              ff.field({
+                key: 'key',
+              }),
+              ff.field({
+                key: 'value',
               }),
             ]
           }),
@@ -62,7 +86,11 @@ app.arenas.edit = (route) => (a,x) => [
           //   removeable: true,
           //   moveable: true,
           // }),
-        ]
+        ],
+        success: () => {
+          dashboardMenu.$render()
+          route.open('..')
+        },
       })
     ]
   }),
