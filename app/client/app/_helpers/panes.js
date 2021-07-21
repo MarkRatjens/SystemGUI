@@ -1,12 +1,23 @@
-app.panes = (options={}) => (a,x) => x.panes({
-  percent: window.localStorage.systemMenuWidthPercent || '33',
-  panesTag: {
-    $on: {
-      'ax.appkit.panes.resize': (e, el) => {
-        const panesPercent = e.detail.percent
-        window.localStorage.systemMenuWidthPercent = panesPercent
+app.panes = (options={}) => (a,x) => {
+
+  let percent = window.localStorage.systemMenuWidthPercent
+
+  if (!percent) {
+    percent = (200 / document.documentElement.clientWidth) * 100
+    if (percent > 33) percent = 33
+  }
+
+  return x.panes({
+    percent: percent,
+    panesTag: {
+      $on: {
+        'ax.appkit.panes.resize': (e, el) => {
+          let percent = e.detail.percent
+          window.localStorage.systemMenuWidthPercent = percent
+        }
       }
-    }
-  },
-  ...options,
-})
+    },
+    ...options,
+  })
+
+}
