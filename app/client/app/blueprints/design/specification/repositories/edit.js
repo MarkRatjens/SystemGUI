@@ -40,7 +40,7 @@ app.blueprints.design.specification.repositories.edit = (route, specification) =
       ],
     }),
   ],
-  update: (form) => {
+  digest: (form) => {
     if (form.repositories.length) {
       specification.repositories = form.repositories
     } else {

@@ -24,7 +24,7 @@ app.blueprints.design.specification.form({
       ]
     }),
   ],
-  update: (form) => {
+  digest: (form) => {
     let permissions = app.compact(form.permissions)
     if (Object.keys(permissions).length) {
       specification.permissions = permissions
