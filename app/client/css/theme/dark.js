@@ -4,20 +4,22 @@ ax.style({
     backgroundColor: "#333",
 
     ".app-btn": {
+      backgroundColor: '#555',
       color: "lightgray",
     },
 
     ".app-btn.active": {
+      backgroundColor: '#999',
       color: "black",
     },
 
     ".app-btn:hover": {
-      color: "black",
+      backgroundColor: '#777',
     },
 
-    "app-nav": {
-      ".app-nav-btn.active": {
-        color: "black",
+    'ax-appkit-panes': {
+      'ax-appkit-panes-proximate': {
+        backgroundColor: '#555',
       },
     },
 
@@ -31,6 +33,13 @@ ax.style({
 
     pre: {
       color: "lightgray",
+    },
+
+    '.error': {
+      color: "pink",
+      pre: {
+        color: "pink",
+      },
     },
 
     ".form-control:focus, .custom-select:focus": {
@@ -92,9 +101,17 @@ ax.style({
       backgroundColor:'#6669',
     },
 
+    'app-modal': {
+      '.modal-content': {
+        backgroundColor:'#333',
+      },
+      '.close': {
+        color: 'lightgray',
+      }
+    },
 
-    'app-modal .modal-content' : {
-      backgroundColor:'#333',
+    'ax-appkit-report .form-control': {
+      color: '#FFF !important',
     },
   },
 

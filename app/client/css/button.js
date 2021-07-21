@@ -1,10 +1,16 @@
 ax.style({
   '.app-btn': {
+    // backgroundImage: 'linear-gradient(transparent, lightgray, lightgray, lightgray, transparent)',
+    backgroundColor: '#DDD',
     '&.active': {
-      backgroundColor: 'lightgray',
+      backgroundColor: '#AAA',
+      color: '#000',
+      // backgroundImage: 'linear-gradient(transparent, gray, gray, gray, transparent)',
     },
     '&:hover': {
-      backgroundColor: '#EEE9',
+      backgroundColor: '#AAA9',
+      color: '#000',
+      // backgroundImage: 'linear-gradient(transparent, lightblue, lightblue, lightblue, transparent)',
     }
   }
 });
