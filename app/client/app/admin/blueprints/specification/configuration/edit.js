@@ -11,7 +11,7 @@ app.admin.blueprints.specification.form({
       removeable: true,
       collection: true,
       singular: 'parameter',
-      value: (v) => Object.keys(v || {}).map((key) => ({
+      ingest: (v) => Object.keys(v || {}).map((key) => ({
         key: key,
         value: v[key],
       })),
@@ -25,7 +25,7 @@ app.admin.blueprints.specification.form({
       ]
     }),
   ],
-  update: (form) => {
+  digest: (form) => {
     let configuration = {}
     for (let parameter of form.configuration) {
       configuration[parameter.key] = parameter.value

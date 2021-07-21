@@ -36,7 +36,7 @@ app.blueprints.design.specification.form({
       ]
     }),
   ],
-  update: (form) => {
+  digest: (form) => {
     if (form.bindings.length) {
       specification.bindings = form.bindings
     } else {

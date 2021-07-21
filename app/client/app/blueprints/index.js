@@ -5,14 +5,16 @@ app.blueprints.index = (route) => (a,x) => [
   //   label: app.icon('fas fa-th', 'Apps'),
   //   onclick: () => route.open('apps'),
   // }),
-  app.button({
-    label: app.icon('fas fa-file-import', 'Import'),
-    onclick: () => route.open('import'),
-  }),
-  app.button({
-    label: app.icon('fa fa-plus', 'New'),
-    onclick: () => route.open('new'),
-  }),
+  a.p([
+    app.button({
+      label: app.icon('fas fa-file-import', 'Import'),
+      onclick: () => route.open('import'),
+    }),
+    app.button({
+      label: app.icon('fa fa-plus', 'New'),
+      onclick: () => route.open('new'),
+    }),
+  ]),
   app.fetch({
     url: '/api/blueprints',
     placeholder: a['div.p-2'](app.spinner("Loading blueprints")),

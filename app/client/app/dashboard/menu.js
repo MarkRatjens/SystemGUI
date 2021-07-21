@@ -7,7 +7,7 @@ app.dashboard.menu = (route) => (a,x) => a['app-menu#dashboardMenu.activateable'
           url: '/api/blueprints/list',
           placeholder: a['div.p-2'](app.spinner("Loading menu")),
           success: (blueprints =>
-            a['app-menu-buttons.mt-1']([
+            a['app-menu-buttons']([
               blueprints.map(
                 blueprintIdentifier => a.div(
                   app.dashboard.menu.blueprint(route, blueprintIdentifier)
@@ -23,7 +23,7 @@ app.dashboard.menu = (route) => (a,x) => a['app-menu#dashboardMenu.activateable'
           url: '/api/arenas',
           placeholder: a['div.p-2'](app.spinner("Loading menu")),
           success: (arenas =>
-            a['app-menu-buttons.mt-1']([
+            a['app-menu-buttons']([
               arenas.map(
                 arena => a.p(
                   app.dashboard.menu.arena(route, arena)

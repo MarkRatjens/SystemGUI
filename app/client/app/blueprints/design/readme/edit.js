@@ -11,6 +11,7 @@ app.blueprints.design.readme.edit = (route, blueprint) => (a, x) => a.div([
           f.field({
             key: 'readme',
             as: 'markdown',
+            label: false,
           }),
           f.buttons({route: route})
         ],

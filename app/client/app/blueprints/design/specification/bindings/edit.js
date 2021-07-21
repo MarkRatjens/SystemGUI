@@ -36,7 +36,7 @@ app.blueprints.design.specification.bindings.edit = (route, specification) => (a
               removeable: true,
               collection: true,
               singular: 'parameter',
-              value: (v) => Object.keys(v || {}).map((key) => ({
+              ingest: (v) => Object.keys(v || {}).map((key) => ({
                 key: key,
                 value: v[key],
               })),
@@ -50,7 +50,7 @@ app.blueprints.design.specification.bindings.edit = (route, specification) => (a
               ]
             }),
           ],
-          update: (form) => {
+          digest: (form) => {
             let configuration = {}
             for (let parameter of form.configuration) {
               configuration[parameter.key] = parameter.value

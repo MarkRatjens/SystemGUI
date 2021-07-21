@@ -16,13 +16,14 @@ app.dashboard.menu.blueprint = (route, blueprintIdentifier) => (a,x) => app.butt
         let match = el.$match()
         let path = [
           `/blueprints/@${blueprintIdentifier}`,
-          match[2] == 'design' ? 'design' : null
+          match[2] ? match[2] : null,
+          match[3] ? match[3] : null,
         ].filter(Boolean).join('/')
         route.open(path)
       },
     },
     $match: (el) => () => {
-      return window.location.pathname.match(/^\/blueprints\/@(\w+)?[\/]?(\w+)?/) || []
+      return window.location.pathname.match(/^\/blueprints\/@([\w\-]+)\/?([\w\-]+)?\/?([\w\-]+)?/) || []
     },
   }
 })

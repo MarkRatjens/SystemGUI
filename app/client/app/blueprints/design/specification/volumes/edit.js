@@ -24,7 +24,7 @@ app.blueprints.design.specification.form({
       ]
     }),
   ],
-  update: (form) => {
+  digest: (form) => {
     if (form.volumes.length) {
       specification.volumes = form.volumes
     } else {

@@ -40,7 +40,7 @@ app.blueprints.design.specification.form({
       ]
     }),
   ],
-  update: (form) => {
+  digest: (form) => {
     if (form.images.length) {
       specification.images = form.images
     } else {

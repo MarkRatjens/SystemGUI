@@ -10,7 +10,7 @@ app.admin.installations.configuration.edit = (route, installation) => [
         // moveable: true,
         // removeable: true,
         // collection: true,
-        // value: (v) => Object.keys(v).map((key) => ({
+        // ingest: (v) => Object.keys(v).map((key) => ({
           //   key: key,
           //   value: v[key],
           // })),
@@ -23,7 +23,7 @@ app.admin.installations.configuration.edit = (route, installation) => [
           ]
         }),
       ],
-      update: (form) => {
+      digest: (form) => {
         installation.configuration = form.configuration
         return installation;
       },
