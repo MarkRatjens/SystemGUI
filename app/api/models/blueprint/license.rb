@@ -2,7 +2,7 @@ module App
   class Api
     module Models
       class Blueprint
-        class License
+        class License #TODO: consider all this as routing
 
           def initialize(blueprint)
             @blueprint = blueprint

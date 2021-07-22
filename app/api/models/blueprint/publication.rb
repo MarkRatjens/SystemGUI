@@ -15,18 +15,18 @@ module App
 
           def model
             return false unless exist?
-            {
+            { #TODO: Consider ... this looks like half-location, half something else
               repository: repository,
               branch: branch,
               branches: branches,
             }
           end
 
-          def repository
+          def repository #location behaviour
             @repository ||= `git -C #{path} remote get-url origin`.strip
           end
 
-          def branch
+          def branch #location behaviour
             @branch ||= `git -C #{path} rev-parse --abbrev-ref HEAD`.strip
           end
 

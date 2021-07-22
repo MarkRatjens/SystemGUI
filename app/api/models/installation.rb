@@ -1,7 +1,7 @@
 module App
   class Api
     module Models
-      class Installation
+      class Installation #TODO: consider all this as routing - the other half of models/installation/input.rb
 
         require_relative 'installation/input'
 

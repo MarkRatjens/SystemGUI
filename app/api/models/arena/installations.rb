@@ -2,7 +2,7 @@ module App
   class Api
     module Models
       class Arena
-        class Installations
+        class Installations #TODO: consider all this as routing
 
           def initialize(arena)
             @arena = arena

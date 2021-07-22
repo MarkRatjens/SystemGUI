@@ -2,7 +2,7 @@ module App
   class Api
     module Models
       class Installation
-        class Input
+        class Input #TODO: consider all this as routing - the other half of models/installation.rb
 
           def initialize(installation)
             @installation = installation

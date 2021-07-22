@@ -2,7 +2,7 @@ module App
   class Api
     module Models
       class Blueprint
-        class Relations < ::Spaces::Model
+        class Relations < ::Spaces::Model #TODO: move into Spaces engines moddels
 
           relation_accessor :blueprint
           attr_accessor :identifier
@@ -23,6 +23,8 @@ module App
           end
 
           def to_h
+            #TODO: consider whny this structure is needed. What more atomic routes is it hiding?
+            #it could at least be divided into blueprints & arenas
             {
               blueprints: {
                 parents: parent_identifiers,

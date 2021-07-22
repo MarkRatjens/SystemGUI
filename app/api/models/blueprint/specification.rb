@@ -2,7 +2,9 @@ module App
   class Api
     module Models
       class Blueprint
-        class Specification
+        class Specification #TODO: consider all this as routing - the other half of models/installation.rb
+
+        #TODO: Consider renaming as it overrides Spaces convention then reclaims "Blueprint" for something else
 
           def initialize(blueprint)
             @blueprint = blueprint
