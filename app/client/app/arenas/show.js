@@ -5,10 +5,18 @@ app.arenas.show = (route) => (a,x) => [
     success: (arena) => [
       app.float({
         left: [
-          arena.about ? a.i([
-            arena.about.title ? a.h3([arena.about.title]) : null,
-            arena.about.explanation ? a.p(arena.about.explanation) : null,
-          ]) : null,
+          a.i([
+            a.h3([
+              // a.img([], {
+              //   src: `/api/blueprints/@${route.params.blueprintIdentifier}/icon/thumbnail`,
+              //   height: '48',
+              //   width: '48'
+              // }),
+              // ' ',
+              (arena.about || {}).title || app.placeholder('No title')
+            ]),
+            a.p((arena.about || {}).explanation || app.placeholder('No explanation')),
+          ]),
         ],
         right: [
           app.button({
@@ -23,12 +31,12 @@ app.arenas.show = (route) => (a,x) => [
           r.field({
             key: 'bindings',
             collection: true,
-            ingest: value => value.map(item => item.target_identifier),
+            ingest: value => (value || []).map(item => item.target_identifier),
           }),
           r.field({
             key: 'configuration',
             as: 'table',
-            ingest: value => Object.keys(value).map(key => ({key: key, value: value[key]})),
+            ingest: value => Object.keys(value || {}).map(key => ({key: key, value: value[key]})),
             report: rr => [
               rr.field({
                 key: 'key',
@@ -52,15 +60,29 @@ app.arenas.show = (route) => (a,x) => [
       }),
       a.hr,
       app.float({
-       right: [
-         app.button({
-           label: app.icon('fa fa-trash'),
-           title: 'Delete arena',
-           class: 'btn btn-outline-danger',
-           onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/delete`),
-         }),
-       ],
-     }),
+        left: [
+          app.button({
+            label: app.icon('fas fa-microscope', 'Resolve'),
+            title: 'Resolve arena',
+            onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/resolve`),
+          }),
+          app.button({
+            label: app.icon('fas fa-dolly', 'Pack'),
+            title: 'Pack arena',
+            onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/pack`),
+          }),
+        ],
+        right: [
+          app.button({
+            label: app.icon('fa fa-trash'),
+            title: 'Delete arena',
+            class: 'btn btn-outline-danger',
+            onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/delete`),
+          }),
+        ],
+      }),
+      // a.hr,
+      // arena,
     ]
   }),
 ]

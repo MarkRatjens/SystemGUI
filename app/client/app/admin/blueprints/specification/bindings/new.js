@@ -24,7 +24,7 @@ app.admin.blueprints.specification.bindings.new = (route, specification) => (a,x
             }
             return specification
           },
-          success: () => route.open(`../${specification.bindings.length - 1}`) 
+          success: () => route.open(`../${specification.bindings.length - 1}`)
         }),
       ]
     }

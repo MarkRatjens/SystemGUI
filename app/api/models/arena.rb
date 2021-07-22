@@ -4,6 +4,8 @@ module App #TODO: consider whether this level is necessary
       class Arena
 
         require_relative 'arena/installations'
+        require_relative 'arena/resolutions'
+        require_relative 'arena/packs'
 
         def initialize(identifier)
           @identifier = identifier
@@ -35,6 +37,8 @@ module App #TODO: consider whether this level is necessary
         def to_h
           model.to_h.tap do |model|
             model[:installations] = installations #TODO: consider why couple this
+            model[:resolutions] = resolutions #TODO: consider why couple this
+            model[:packs] = packs #TODO: consider why couple this
           end
         end
 
@@ -44,6 +48,14 @@ module App #TODO: consider whether this level is necessary
 
         def installations #TODO: consider the duplicate coupling in Blueprint
           @installations ||= Installations.new(self)
+        end
+
+        def resolutions
+          @resolutions ||= Resolutions.new(self)
+        end
+
+        def packs
+          @packs ||= Packs.new(self)
         end
 
         def save(arena={}) # Can save an empty arena?
@@ -59,23 +71,12 @@ module App #TODO: consider whether this level is necessary
 
         def delete #TODO: should be in the route ... or a "Controller"
           Api.spaces.run do
-            ::Spaces::Commands::Deleting.new(identifier: @identifier, space: :arenas)
+            ::Spaces::Commands::Deleting.new(
+              identifier: @identifier,
+              space: :arenas
+            )
           end
         end
-
-        # TODO: remove dead code
-        # def export
-        #   run do
-        #     ::Blueprinting::Commands::Synchronizing.new(identifier: params[:identifier])
-        #   end
-        #   .to_json
-        #
-        # end
-
-
-
-
-
       end
     end
   end

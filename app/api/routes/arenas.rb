@@ -39,10 +39,15 @@ module App
           @arena.save(params[:arena]).to_json
         end
 
-        # # Generate installations for an arena
-        # post '/arenas/@:identifier/installations' do
-        #   @arena.installations.generate.to_json
-        # end
+        # Generate resolutions for an arena
+        post '/arenas/@:identifier/resolve' do
+          @arena.resolutions.generate.to_json
+        end
+
+        # Generate packs for an arena
+        post '/arenas/@:identifier/pack' do
+          @arena.packs.generate.to_json
+        end
 
         # Apply provisions for an arena
         post '/arenas/@:identifier/apply' do
