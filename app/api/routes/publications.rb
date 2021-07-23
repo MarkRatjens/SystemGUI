@@ -12,6 +12,7 @@ module App
         end
 
         # Create publication
+        # TODO: this should no longer work. The importing command now takes a location identifier NOT a descriptor
         post '/publications' do
           descriptor = params[:descriptor].to_h.transform_keys(&:to_sym).delete_if{|k, v| v.empty?}
           Api.spaces.run do
@@ -41,6 +42,7 @@ module App
         end
 
         # Create publication blueprint
+        # TODO: check this. it looks wrong
         post '/publications/:identifier/blueprint' do
           ::Spaces::Commands::Saving.new(identifier: params[:identifier], space: :blueprints).run
           Api.spaces.run do

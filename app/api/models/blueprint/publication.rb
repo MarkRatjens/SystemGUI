@@ -2,7 +2,7 @@ module App
   class Api
     module Models
       class Blueprint
-        class Publication
+        class Publication  #TODO: move into Spaces engines moddels
 
           def initialize(blueprint)
             @blueprint = blueprint
