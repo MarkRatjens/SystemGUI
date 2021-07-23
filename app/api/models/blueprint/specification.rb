@@ -2,7 +2,9 @@ module App
   class Api
     module Models
       class Blueprint
-        class Specification
+        class Specification #TODO: consider all this as routing - the other half of models/installation.rb
+
+        #TODO: Consider renaming as it overrides Spaces convention then reclaims "Blueprint" for something else
 
           def initialize(blueprint)
             @blueprint = blueprint
@@ -17,12 +19,7 @@ module App
           end
 
           def model
-            Api.spaces.run do
-              ::Spaces::Commands::Reading.new(
-                identifier: @blueprint.identifier,
-                space: :blueprints
-              )
-            end
+            @model ||= Api.spaces.universe.blueprints.by(@blueprint.identifier)
           end
 
           def save(specification)

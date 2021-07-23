@@ -2,11 +2,20 @@ module App
   class Api
     module Models
       class Blueprint
-        class Relations
+        class Relations < ::Spaces::Model #TODO: move into Spaces engines moddels
+
+          relation_accessor :blueprint
+          attr_accessor :identifier
+
+          delegate(
+            specification: :blueprint,
+            model: :specification,
+            [:embed_bindings, :deep_bindings, :all_identifiers_up_in, :all_arenas, :direct_arenas, :indirect_arenas] => :model
+          )
 
           def initialize(blueprint)
-            @blueprint = blueprint
-            @identifier = @blueprint.identifier
+            self.blueprint = blueprint
+            self.identifier = blueprint.identifier
           end
 
           def to_json(*args)
@@ -14,121 +23,42 @@ module App
           end
 
           def to_h
+            #TODO: consider whny this structure is needed. What more atomic routes is it hiding?
+            #it could at least be divided into blueprints & arenas
             {
               blueprints: {
-                descendants: descendants,
-                embeds: embeds,
-                parents: parents,
-                bindings: bindings,
+                parents: parent_identifiers,
+                descendants: descendant_identifiers,
+                bindings: deep_bindings,
+                embeds: embed_bindings
               },
               arenas: {
-                bindings: arena_bindings,
-                conscriptions: arena_conscriptions,
+                bindings: arena_identifiers,
+                conscriptions: arena_conscription_identifiers
               },
             }
           end
 
-          def descendants
-            @descendants ||= blueprint_descendants_for(@identifier)
+          def parent_identifiers
+            @parent_identifiers ||= all_identifiers_up_in(Api.spaces.universe.blueprints.all).sort_by(&:downcase)
           end
 
-          def embeds
-            @embeds ||= blueprint_descendants_for(@identifier, 'embed')
+          def descendant_identifiers
+            @descendant_identifiers ||= deep_bindings.map(&:target_identifier).uniq
+          end
+
+          def arena_identifiers
+            direct_arenas.map(&:identifier).sort_by(&:downcase)
+          end
+
+          def arena_conscription_identifiers
+            indirect_arenas.map(&:identifier).sort_by(&:downcase)
           end
 
           def utilized?
-            arena_bindings.any? || arena_conscriptions.any?
+            all_arenas.any?
           end
 
-          def bindings
-            blueprint_bindings_for(@identifier).values
-          end
-
-          # Show all bindings that are embedded in a blueprint.
-          def blueprint_bindings_for(blueprint_identifier, result={})
-            collect_bindings_for(Api.spaces.run do
-              ::Spaces::Commands::Reading.new(identifier: blueprint_identifier, space: :blueprints)
-            end, result)
-          end
-
-          def collect_bindings_for(parent, result)
-            parent.bindings.map do |binding|
-              result[binding.identifier] = binding
-              if binding.type == 'embed'
-                blueprint_bindings_for(binding.target_identifier, result)
-              end
-            end
-            result
-          end
-
-          def parents
-            Api.spaces.run do
-              ::Spaces::Commands::Querying.new(method: :identifiers, space: :blueprints)
-            end.map do |blueprint_identifier|
-              Api.spaces.run do
-                ::Spaces::Commands::Reading.new(identifier:blueprint_identifier, space: :blueprints)
-              end
-            end.select do |blueprint|
-              blueprint.bindings.map do |binding|
-                binding.target_identifier
-              end.include? @identifier
-            end.map do |blueprint|
-              blueprint.identifier
-            end.sort_by(&:downcase)
-          end
-
-          def arena_bindings
-            @arena_bindings ||= Api.spaces.run do
-              ::Spaces::Commands::Querying.new(method: :identifiers, space: :arenas)
-            end.map do |arena_identifier|
-              Api.spaces.run do
-                ::Spaces::Commands::Reading.new(identifier:arena_identifier, space: :arenas)
-              end
-            end.select do |arena|
-              arena.bindings.map do |binding|
-                binding.target_identifier
-              end.include? @identifier
-            end.map do |arena|
-              arena.identifier
-            end.sort_by(&:downcase)
-          end
-
-          def arena_conscriptions
-            Api.spaces.run do
-              ::Spaces::Commands::Querying.new(method: :identifiers, space: :arenas)
-            end.select do |arena_identifier|
-              !arena_bindings.include?(arena_identifier) &&
-              arena_descendants_for(arena_identifier).include?(@identifier)
-            end.sort_by(&:downcase)
-          end
-
-          # List all blueprints that are descendants of a blueprint.
-          def blueprint_descendants_for(blueprint_identifier, type=nil, ancestors=[])
-            collect_descendants_for(Api.spaces.run do
-              ::Spaces::Commands::Reading.new(identifier: blueprint_identifier, space: :blueprints)
-            end, type, ancestors)
-          end
-
-          def collect_descendants_for(parent, type=nil, ancestors=[])
-            parent.bindings.to_h.filter do |binding|
-              !type || binding[:type] == type
-            end.map do |binding|
-              binding[:target_identifier]
-            end.map do |target_identifier|
-              if ancestors.include?(target_identifier)
-                ["#{(ancestors + [parent.identifier, target_identifier]).join(' > ')} circular reference!"]
-              else
-                [target_identifier] + blueprint_descendants_for(target_identifier, type, ancestors + [parent.identifier])
-              end
-            end.flatten.compact.uniq
-          end
-
-          # List all blueprints that are descendants in an arena.
-          def arena_descendants_for(arena_identifier)
-            collect_descendants_for(Api.spaces.run do
-              ::Spaces::Commands::Reading.new(identifier: arena_identifier, space: :arenas)
-            end)
-          end
         end
       end
     end

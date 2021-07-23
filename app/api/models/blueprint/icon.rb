@@ -2,7 +2,7 @@ module App
   class Api
     module Models
       class Blueprint
-        class Icon
+        class Icon #TODO: consider this as conflated model, space, image-processing and routing behaviour
 
           def initialize(blueprint)
             @blueprint = blueprint

@@ -1,6 +1,6 @@
-module App
-  class Api
-    module Models
+module App #TODO: consider whether this level is necessary
+  class Api #TODO: consider whether this level is necessary or descriptive
+    module Models #TODO: consider renaming to ViewModel
       class Arena
 
         require_relative 'arena/installations'
@@ -14,10 +14,11 @@ module App
         attr_reader :identifier
 
         def self.list
-          Api.spaces.run do
-            ::Spaces::Commands::Querying.new(method: :identifiers, space: :arenas)
-          end.sort_by(&:downcase)
+          Api.spaces.universe.arenas.identifiers.sort_by(&:downcase)
         end
+
+        #TODO: reconsider this pattern of implementing controller/routing methods as class methods
+        # what architecture framework is it derived from?
 
         def self.index
           list.map do |identifier|
@@ -29,25 +30,23 @@ module App
           new(arena[:identifier]).save(arena)
         end
 
-        def to_json(*args)
+        def to_json(*args) #TODO: refactor ... there are 9 other (uncommented-out) duplications
           to_h.to_json
         end
 
         def to_h
           model.to_h.tap do |model|
-            model[:installations] = installations
-            model[:resolutions] = resolutions
-            model[:packs] = packs
+            model[:installations] = installations #TODO: consider why couple this
+            model[:resolutions] = resolutions #TODO: consider why couple this
+            model[:packs] = packs #TODO: consider why couple this
           end
         end
 
         def model
-          Api.spaces.run do
-            ::Spaces::Commands::Reading.new(identifier: @identifier, space: :arenas)
-          end
+          Api.spaces.universe.arenas.by(@identifier) #TODO: fix violations of Uniform Reference Principle
         end
 
-        def installations
+        def installations #TODO: consider the duplicate coupling in Blueprint
           @installations ||= Installations.new(self)
         end
 
@@ -59,18 +58,18 @@ module App
           @packs ||= Packs.new(self)
         end
 
-        def save(arena={})
+        def save(arena={}) # Can save an empty arena?
           Api.spaces.run do
             ::Arenas::Commands::Saving.new(
               identifier: @identifier,
               model: arena,
             )
           end.tap do
-            installations.generate
+            installations.generate #TODO: Consider why. Seems like unnecessary coupling
           end
         end
 
-        def delete
+        def delete #TODO: should be in the route ... or a "Controller"
           Api.spaces.run do
             ::Spaces::Commands::Deleting.new(
               identifier: @identifier,
