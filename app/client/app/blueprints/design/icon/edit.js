@@ -45,6 +45,8 @@ app.blueprints.design.icon.edit = (route) => (a, x) => [
                     url: `/api/blueprints/@${route.params.blueprintIdentifier}/icon`,
                     method: 'PUT',
                     onload: () => setTimeout(() => {
+                      let iconUploader = document.querySelector('#iconUploader')
+                      if (!iconUploader) return
                       let filepond = iconUploader.$filepond
                       if (filepond.getFiles().length != 0) {
                         for (let i = 0; i <= filepond.getFiles().length - 1; i++) {
@@ -54,6 +56,7 @@ app.blueprints.design.icon.edit = (route) => (a, x) => [
                       iconFrameRaw.contentWindow.location.reload(true)
                       iconFrameThumbnail.contentWindow.location.reload(true)
                       iconFrameBordered.contentWindow.location.reload(true)
+
                     }, 1500)
                   },
                 }
