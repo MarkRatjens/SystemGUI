@@ -68,7 +68,8 @@ app.blueprints.design.icon.edit = (route) => (a, x) => [
     ],
     right: [
       app.button({
-        label: app.icon('fa fa-trash', 'Delete icon'),
+        label: app.icon('fa fa-trash'),
+        title: 'Delete icon',
         onclick: () => route.open('delete'),
         class: 'btn btn-outline-danger',
       }),

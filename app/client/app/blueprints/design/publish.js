@@ -1,5 +1,5 @@
 app.blueprints.design.publish = (route, blueprint) => (a, x) => a.div([
-  a.h3(`Export blueprint`),
+  a.h3(`Publish blueprint`),
   a.p('Where would you like to publish?'),
   app.form({
     url: `/api/blueprints/@${route.params.blueprintIdentifier}/publication`,
