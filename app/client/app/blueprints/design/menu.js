@@ -26,6 +26,11 @@ app.blueprints.design.menu = (route) => (a,x) => {
       onclick: () => route.open(`/blueprints/@${route.params.blueprintIdentifier}/design/form`),
       class: `btn app-btn${active == 'form' ? ' active' : ''}`,
     }),
+    app.button({
+      label: 'Files',
+      onclick: () => route.open(`/blueprints/@${route.params.blueprintIdentifier}/design/files`),
+      class: `btn app-btn${active == 'files' ? ' active' : ''}`,
+    }),
   ]
 
   return route.mount({
@@ -34,6 +39,7 @@ app.blueprints.design.menu = (route) => (a,x) => {
       '/readme/?*': (route) => renderMenu('readme'),
       '/license/?*': (route) => renderMenu('license'),
       '/form/?*': (route) => renderMenu('form'),
+      '/files/?*': (route) => renderMenu('files'),
       '*': (route) => renderMenu('specification'),
     },
     lazy: false,

@@ -6,7 +6,6 @@ module App
 
           def initialize(blueprint)
             @blueprint = blueprint
-            @identifier = @blueprint.identifier
           end
 
           # def to_json(*args)
@@ -48,15 +47,15 @@ module App
           private
 
           def raw_pathname
-            Api.spaces.universe.blueprints.path.join(@identifier, 'icon.png')
+            @blueprint.pathname.join('icon.png')
           end
 
           def thumbnail_pathname
-            Api.spaces.universe.blueprints.path.join(@identifier, 'icon-thumbnail.png')
+            @blueprint.pathname.join('icon-thumbnail.png')
           end
 
           def bordered_pathname
-            Api.spaces.universe.blueprints.path.join(@identifier, 'icon-bordered.png')
+            @blueprint.pathname.join('icon-bordered.png')
           end
 
           def generate_thumbnail
@@ -98,7 +97,7 @@ module App
           end
 
           def generate_default_thumbnail
-            letter_icon_path = LetterAvatar.generate(@identifier, 48)
+            letter_icon_path = LetterAvatar.generate(@blueprint.identifier, 48)
             FileUtils.mv(letter_icon_path, thumbnail_pathname)
           end
         end

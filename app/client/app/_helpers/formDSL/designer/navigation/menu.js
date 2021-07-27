@@ -1,7 +1,6 @@
 app.formDSL.designer.navigation.menu = blueprint => f => f.field( {
   key: 'menu',
   as: 'one',
-  // vertical: true,
   label: false,
   form: ff => [
 
@@ -11,7 +10,6 @@ app.formDSL.designer.navigation.menu = blueprint => f => f.field( {
       form: (fff) => [
         fff.field( {
           key: 'display',
-          // vertical: true,
           label: false,
           as: 'select',
           placeholder: 'Default',
@@ -22,7 +20,6 @@ app.formDSL.designer.navigation.menu = blueprint => f => f.field( {
         } ),
         fff.field( {
           key: 'custom',
-          // vertical: true,
           label: false,
           dependent: {
             key: 'display',

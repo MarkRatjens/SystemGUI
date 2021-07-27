@@ -30,7 +30,6 @@ app.topology.tree = (route, data, height) => (a,x) => a({
           }]
         },
         options: {
-          // animation: {duration: 100},
           tooltips: {
             displayColors: false,
             callbacks: {

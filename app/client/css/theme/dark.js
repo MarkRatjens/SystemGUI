@@ -56,9 +56,9 @@ ax.style({
     ".success": { color: "lightblue" },
     ".success pre": { color: "lightblue" },
 
-    ".well": {
-      borderColor: "#333",
-    },
+    // ".well": {
+    //   borderColor: "lightgray",
+    // },
 
     '.navbar.navbar-light': {
       '.navbar-nav': {

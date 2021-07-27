@@ -1,10 +1,6 @@
 app.blueprints.index = (route) => (a,x) => [
   app.close(route),
   a.h1('Blueprints'),
-  // app.button({
-  //   label: app.icon('fas fa-th', 'Apps'),
-  //   onclick: () => route.open('apps'),
-  // }),
   a.p([
     app.button({
       label: app.icon('fas fa-file-import', 'Import'),

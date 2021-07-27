@@ -6,7 +6,6 @@ module App
 
           def initialize(blueprint)
             @blueprint = blueprint
-            @identifier = @blueprint.identifier
           end
 
           def to_s
@@ -32,7 +31,7 @@ module App
           private
 
           def pathname
-            Api.spaces.universe.blueprints.path.join(@identifier, 'LICENSE.md')
+            @blueprint.pathname.join('LICENSE.md')
           end
         end
       end

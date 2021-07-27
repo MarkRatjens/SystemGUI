@@ -81,8 +81,6 @@ app.arenas.show = (route) => (a,x) => [
           }),
         ],
       }),
-      // a.hr,
-      // arena,
     ]
   }),
 ]

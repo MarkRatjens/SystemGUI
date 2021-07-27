@@ -6,7 +6,6 @@ app.formDSL.designer.button = blueprint => f => [
     form: (ff) => [
       ff.field( {
         key: 'display',
-        // vertical: true,
         label: false,
         as: 'select',
         placeholder: 'Default',
@@ -17,7 +16,6 @@ app.formDSL.designer.button = blueprint => f => [
       } ),
       ff.field( {
         key: 'custom',
-        // vertical: true,
         label: false,
         dependent: {
           key: 'display',

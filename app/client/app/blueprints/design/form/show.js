@@ -7,6 +7,7 @@ app.blueprints.design.form.show = (route) => (a, x) => [
       }),
     ]
   }),
+  a.hr,
   app.fetch({
     url: `/api/blueprints/@${route.params.blueprintIdentifier}/form`,
     placeholder: app.spinner('Loading blueprint form'),

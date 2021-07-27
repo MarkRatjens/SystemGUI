@@ -2,7 +2,6 @@ app.formDSL.designer.report.fieldset = blueprint => f => f.field( {
   key: 'fieldset',
   as: 'one',
   label: false,
-  // vertical: true,
   dependent: {
     key: 'type',
     pattern: '^fieldset$',

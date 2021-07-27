@@ -11,17 +11,12 @@ app.blueprints.import = (route) => (a, x) => a.div([
         type: 'url',
         required: true,
       }),
-      // app.collapse({
-      //   label: "Advanced",
-      //   body: [
-          f.field({
-            key: "branch",
-          }),
-          f.field({
-            key: "identifier",
-          }),
-      //   ]
-      // }),
+      f.field({
+        key: "branch",
+      }),
+      f.field({
+        key: "identifier",
+      }),
       f.buttons({route: route}),
     ],
     success: (blueprint_identifier) => {

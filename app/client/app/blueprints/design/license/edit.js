@@ -21,20 +21,4 @@ app.blueprints.design.license.edit = (route, blueprint) => (a, x) => a.div([
       }),
     ],
   }),
-
-  // app.form({
-  //   url: `/api/blueprints/@${route.params.blueprintIdentifier}/license`,
-  //   method: "PUT",
-  //   object: blueprint,
-  //   form: (f) => [
-  //     f.field({
-  //       key: 'license',
-  //       as: 'markdown',
-  //     }),
-  //     f.buttons({route: route})
-  //   ],
-  //   success: (result, el) => {
-  //     route.open('..')
-  //   },
-  // }),
 ]);

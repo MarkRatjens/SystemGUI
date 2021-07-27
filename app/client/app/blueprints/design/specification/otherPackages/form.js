@@ -4,7 +4,6 @@ app.blueprints.design.specification.otherPackages.form =
     key: 'target',
     as: 'one',
     label: false,
-    // horizontal: true,
     form: (ff) => [
       ff.field({
         key: 'repository',

@@ -22,17 +22,6 @@ app.report({
                   key: 'image',
                 }),
               ],
-              // rr.field({
-              //   key: 'scripts',
-              //   as: 'one',
-              //   report: (rrr) => [
-              //     rrr.field({
-              //       key: 'shell',
-              //       collection: true,
-              //       label: false,
-              //     })
-              //   ]
-              // }),
             ]
           }),
           () => route.open(`${rr.index}`),

@@ -3,7 +3,6 @@ app.formDSL.designer.navigation.component = blueprint => f => [
   f.field( {
     key: 'type',
     as: 'select',
-    // vertical: true,
     label: false,
     selections: {
       button: 'Button',
