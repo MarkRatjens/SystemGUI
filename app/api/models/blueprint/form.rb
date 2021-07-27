@@ -6,7 +6,6 @@ module App
 
           def initialize(blueprint)
             @blueprint = blueprint
-            @identifier = @blueprint.identifier
           end
 
           def to_json(*args)
@@ -36,7 +35,7 @@ module App
           private
 
           def pathname
-            Api.spaces.universe.blueprints.path.join(@identifier, 'form.json')
+            @blueprint.pathname.join('form.json')
           end
         end
       end

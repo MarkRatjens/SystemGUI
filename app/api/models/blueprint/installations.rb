@@ -6,7 +6,6 @@ module App
 
           def initialize(blueprint)
             @blueprint = blueprint
-            @identifier = blueprint.identifier
           end
 
           def to_json(*args)
@@ -14,7 +13,7 @@ module App
           end
 
           def to_a
-            Api.spaces.universe.installations.identifiers(blueprint_identifier: @identifier)
+            Api.spaces.universe.installations.identifiers(blueprint_identifier: @blueprint.identifier)
           end
 
         end
