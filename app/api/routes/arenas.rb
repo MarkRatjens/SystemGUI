@@ -51,9 +51,7 @@ module App
 
         # Apply provisions for an arena
         post '/arenas/@:identifier/apply' do
-          run do
-            ::Spaces::Commands::Executing.new(identifier: params[:identifier], space: :arenas, execute: :apply)
-          end.to_json
+          @arena.apply.to_json
         end
       end
     end

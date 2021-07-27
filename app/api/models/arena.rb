@@ -58,7 +58,7 @@ module App #TODO: consider whether this level is necessary
           @packs ||= Packs.new(self)
         end
 
-        def save(arena={}) # Can save an empty arena?
+        def save(arena)
           Api.spaces.run do
             ::Arenas::Commands::Saving.new(
               identifier: @identifier,
@@ -67,6 +67,16 @@ module App #TODO: consider whether this level is necessary
           end.tap do
             installations.generate #TODO: Consider why. Seems like unnecessary coupling
           end
+        end
+
+        def apply
+          Api.spaces.run do
+            ::Spaces::Commands::Executing.new(
+              identifier: params[:identifier],
+              space: :arenas,
+              execute: :apply
+            )
+          end.to_json
         end
 
         def delete #TODO: should be in the route ... or a "Controller"
