@@ -2,7 +2,6 @@ app.formDSL.designer.report = blueprint => f => f.field( {
     key: 'report',
     as: 'one',
     label: false,
-    // vertical: true,
     dependent: {
       key: 'type',
       pattern: '^report$',

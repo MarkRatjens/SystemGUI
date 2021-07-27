@@ -37,7 +37,6 @@ app.arenas.installation = (route) => (a,x) => [
     routes: {
       '/?': app.arenas.installation.show,
       '/edit/?': app.arenas.installation.edit,
-      // '/design/?*': app.installations.design,
     }
   }),
 ]

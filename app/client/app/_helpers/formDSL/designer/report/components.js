@@ -7,7 +7,6 @@ app.formDSL.designer.report.components = blueprint => f => [
     label: false,
     singular: 'form component',
     form: app.formDSL.designer.report.component( blueprint ),
-    // vertical: true,
   } ),
 
 ]

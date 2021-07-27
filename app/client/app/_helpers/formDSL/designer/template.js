@@ -1,5 +1,4 @@
 app.formDSL.designer.template = f => f.fieldset( {
-  // vertical: true,
   label: false,
   body: [
     app.collapse( {
@@ -9,7 +8,6 @@ app.formDSL.designer.template = f => f.fieldset( {
           key: 'template',
           as: 'markdown',
           label: false,
-          // vertical: true,
         } ),
       ]
     } ),

@@ -4,7 +4,6 @@ app.formDSL.designer.form.field.collection = (f) => [
     key: 'collection',
     label: false,
     as: 'checkbox',
-    // horizontal: true,
     control: { label: 'Collection' },
     dependent: {
       key: 'control',
@@ -14,7 +13,6 @@ app.formDSL.designer.form.field.collection = (f) => [
 
   // COLLECTION DETAILS
   f.fieldset( {
-    // label: 'Items',
     body: [
       f.field( {
         key: 'singular',
@@ -26,7 +24,6 @@ app.formDSL.designer.form.field.collection = (f) => [
             key: 'closed',
             as: 'checkbox',
             label: false,
-            // vertical: true,
             control: { label: 'Closed' },
             hint: "items can't be added or removed",
           } ),
@@ -34,7 +31,6 @@ app.formDSL.designer.form.field.collection = (f) => [
             key: 'stationary',
             as: 'checkbox',
             label: false,
-            // vertical: true,
             control: { label: 'Stationary' },
             hint: "items can't be rearranged",
           } ),

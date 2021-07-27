@@ -16,21 +16,5 @@ app.blueprints.design.specification.images.form =
         required: true,
       }),
     ],
-    // f.field({
-    //   key: 'scripts',
-    //   as: 'one',
-    //   form: (ff) => [
-    //     ff.field({
-    //       key: 'shell',
-    //       as: 'checkboxes',
-    //       selections: environment.$state.build_scripts.shell,
-    //       label: false,
-    //       required: true,
-    //       moveable: true,
-    //       removeable: true,
-    //       addable: true,
-    //     })
-    //   ]
-    // }),
   ]
 }),

@@ -4,7 +4,6 @@ app.formDSL.designer.component = blueprint => f => [
     key: 'type',
     as: 'select',
     label: false,
-    // vertical: true,
     selections: {
       output: 'Output',
       form: 'Form',

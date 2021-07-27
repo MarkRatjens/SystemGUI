@@ -76,11 +76,9 @@ app.formDSL.designer.form.field.appearance = (f) => [
       ff.row( { columns: [
         ff.field( {
           key: 'label',
-          // vertical: true,
         } ),
         ff.field( {
           key: 'checked',
-          // vertical: true,
         } ),
       ] } ),
     ],

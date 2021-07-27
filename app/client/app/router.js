@@ -5,11 +5,9 @@ app.router = () => (a, x) => x.router({
     route.mount({
       routes: {
         '/settings/?*': app.settings,
-        '/admin/?*': app.admin,
         '/disconnected': app.disconnected,
         '/reconnect': app.reconnect,
         '*': app.dashboard,
-        // "*": app.dashboard,
       },
     }),
   ],

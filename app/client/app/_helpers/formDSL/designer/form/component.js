@@ -3,7 +3,6 @@ app.formDSL.designer.form.component = f => [
     key: 'type',
     as: 'select',
     label: false,
-    // vertical: true,
     selections: [
       { value: 'field', label: 'Field' },
       { value: 'fieldset', label: 'Fieldset' },

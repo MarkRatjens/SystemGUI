@@ -7,7 +7,6 @@ app.formDSL.designer = blueprint => f => (a,x) => [
     collection: true,
     singular: 'dialogue component',
     form: app.formDSL.designer.component( blueprint ),
-    // vertical: true,
     addable: true,
     removeable: true,
     moveable: true,

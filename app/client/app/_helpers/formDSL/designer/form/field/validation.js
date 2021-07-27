@@ -11,7 +11,6 @@ app.formDSL.designer.form.field.validation = (f) => [
         control: {label: 'Required'},
       } ),
       ff.fieldset( {
-        // vertical: true,
         label: false,
         body: ff.row( { columns: [
           ff.field( {
@@ -36,7 +35,6 @@ app.formDSL.designer.form.field.validation = (f) => [
         },
       } ),
       ff.fieldset( {
-        // vertical: true,
         label: false,
         body: ff.row( { columns: [
           ff.field( {

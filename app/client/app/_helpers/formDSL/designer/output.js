@@ -1,12 +1,10 @@
 app.formDSL.designer.output = f => f.fieldset( {
-  // vertical: true,
   label: false,
   body: [
     f.field( {
       key: 'output',
       as: 'one',
       label: false,
-      // vertical: true,
       form: ff => [
         app.collapse( {
           label: 'Options',

@@ -2,7 +2,6 @@ app.formDSL.designer.form = blueprint => f => f.field( {
   key: 'form',
   as: 'one',
   label: false,
-  // vertical: true,
   dependent: {
     key: 'type',
     pattern: '^form$',

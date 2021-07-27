@@ -2,7 +2,6 @@ app.formDSL.designer.report.row = blueprint => f => f.field( {
   key: 'row',
   as: 'one',
   label: false,
-  // vertical: true,
   dependent: {
     key: 'type',
     pattern: '^row$',
@@ -16,7 +15,6 @@ app.formDSL.designer.report.row = blueprint => f => f.field( {
         as: 'many',
         collection: true,
         singular: 'column',
-        // vertical: true,
         form: app.formDSL.designer.report.components( blueprint )
       }),
     } ),

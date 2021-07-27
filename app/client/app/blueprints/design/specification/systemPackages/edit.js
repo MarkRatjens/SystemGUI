@@ -10,8 +10,6 @@ app.blueprints.design.specification.form({
       form: (ff) => [
         ff.field({
           key: 'adds',
-          // required: true,
-          // label: false,
           as: 'textarea',
           resize: true,
           placeholder: 'List system packages line by line',
@@ -19,8 +17,6 @@ app.blueprints.design.specification.form({
         }),
         ff.field({
           key: 'removes',
-          // required: true,
-          // label: false,
           as: 'textarea',
           resize: true,
           placeholder: 'List system packages line by line',

@@ -3,7 +3,6 @@ f.field( {
   key: 'field',
   as: 'one',
   label: false,
-  // vertical: true,
   dependent: {
     key: 'type',
     pattern: '^field$',
@@ -59,7 +58,6 @@ f.field( {
         } ),
 
         ff.fieldset( {
-          // vertical: true,
           label: false,
           body: [
 
@@ -69,7 +67,6 @@ f.field( {
               form: (fff) => [
                 fff.field( {
                   key: 'display',
-                  // vertical: true,
                   label: false,
                   as: 'select',
                   selections: {
@@ -80,7 +77,6 @@ f.field( {
                 } ),
                 fff.field( {
                   key: 'custom',
-                  // vertical: true,
                   label: false,
                   dependent: {
                     key: 'display',
@@ -167,7 +163,6 @@ f.field( {
           form: (fff) => [
             fff.field( {
               key: 'type',
-              // vertical: true,
               label: false,
               as: 'select',
               placeholder: 'None',
@@ -176,7 +171,6 @@ f.field( {
             fff.field( {
               key: 'static',
               label: false,
-              // vertical: true,
               as: 'table',
               singular: 'selection',
               form: (ffff) => [
@@ -210,11 +204,9 @@ f.field( {
             fff.row( { columns: [
               fff.field( {
                 key: 'true',
-                // vertical: true,
               } ),
               fff.field( {
                 key: 'false',
-                // vertical: true,
               } ),
             ] } ),
           ],
@@ -252,7 +244,6 @@ f.field( {
     } ),
 
     ff.fieldset( {
-      // vertical: true,
       label: false,
       body: app.collapse( {
         label: 'Components',

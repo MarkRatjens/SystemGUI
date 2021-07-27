@@ -81,23 +81,6 @@ app.navbar = (route) => (a, x) =>
       a.div(
         a.ul(
           [
-            // a.li(
-            //   a.a(app.icon("fa fa-wrench"), {
-            //     class: 'nav-link',
-            //     href: '#',
-            //     $on: {click: (e, el) => {
-            //       e.preventDefault();
-            //       route.open("/admin")
-            //     }},
-            //   }),
-            //   {
-            //     class: 'nav-item',
-            //     title: 'Admin',
-            //     data: {
-            //       path: '/admin'
-            //     },
-            //   }
-            // ),
             a.li(
               a.a(app.icon("fa fa-cog"), {
                 class: 'nav-link',
