@@ -43,6 +43,7 @@ app.blueprints.design.show = (route) => (a, x) => [
           '/readme/?*': app.blueprints.design.readme,
           '/license/?*': app.blueprints.design.license,
           '/form/?*': app.blueprints.design.form,
+          '/files/?*': app.blueprints.design.files,
           // '/installations/?*': app.blueprints.design.installations,
           // '/publication/?*': app.blueprints.design.publication,
           '*': app.blueprints.design.specification,
