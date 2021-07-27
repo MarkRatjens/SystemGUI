@@ -3,6 +3,7 @@ module App
     module Models
       class Blueprint
 
+        require_relative 'blueprint/blueprint_files'
         require_relative 'blueprint/form'
         require_relative 'blueprint/icon'
         require_relative 'blueprint/installations'
@@ -123,12 +124,19 @@ module App
           @form ||= Form.new(self)
         end
 
+        def files
+          @files ||= BlueprintFiles.new(self)
+        end
+
         def delete #TODO: should be in routing
           Api.spaces.run do
             ::Spaces::Commands::Deleting.new(identifier: @identifier, space: :blueprints)
           end
         end
 
+        def pathname
+          Api.spaces.universe.blueprints.path.join(@identifier)
+        end
       end
     end
   end

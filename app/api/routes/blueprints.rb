@@ -79,7 +79,7 @@ module App
           @blueprint.publication.checkout(params[:branch]).to_json
         end
 
-        # BLUEPRINT FORM
+        # FORM
 
         # Show blueprint form, i.e. form.json
         get '/blueprints/@:identifier/form' do
@@ -91,7 +91,7 @@ module App
           @blueprint.form.save(deep_to_h(params[:form])).to_json
         end
 
-        # BLUEPRINT LICENSE
+        # LICENSE
 
         # Show blueprint license.
         get '/blueprints/@:identifier/license' do
@@ -104,7 +104,7 @@ module App
           @blueprint.license.save(params[:license]).to_json
         end
 
-        # BLUEPRINT README
+        # README
 
         # Show blueprint readme.
         get '/blueprints/@:identifier/readme' do
@@ -117,7 +117,7 @@ module App
           @blueprint.readme.save(params[:readme]).to_json
         end
 
-        # BLUEPRINT ICON
+        # ICON
 
         # Show icon metadata.
         get '/blueprints/@:identifier/icon' do
@@ -148,6 +148,34 @@ module App
         # Delete icon
         delete '/blueprints/@:identifier/icon' do
           @blueprint.icon.delete.to_json
+        end
+
+        # FILES
+
+        # List files.
+        get '/blueprints/@:identifier/files' do
+          @blueprint.files.list.to_json
+        end
+
+        # Create file.
+        post '/blueprints/@:identifier/files' do
+          @blueprint.files.create(params[:filepath]).to_json
+        end
+
+        # Show file.
+        get '/blueprints/@:identifier/files/@*' do
+          content_type 'text/plain'
+          @blueprint.files.find(params[:splat][0]).to_s
+        end
+
+        # Update file.
+        put '/blueprints/@:identifier/files/@*' do
+          @blueprint.files.find(params[:splat][0]).save(params[:file]).to_json
+        end
+
+        # Delete file.
+        delete '/blueprints/@:identifier/files/@*' do
+          @blueprint.files.find(params[:splat][0]).delete.to_json
         end
       end
     end
