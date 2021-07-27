@@ -8,9 +8,13 @@ module App
             @blueprint = blueprint
           end
 
-          # def to_json(*args)
-          #   exist?.to_json
-          # end
+          def to_json(*args)
+            to_h.to_json
+          end
+
+          def to_h
+            {exists: exist?}
+          end
 
           def raw_path
             raw_pathname
@@ -88,7 +92,7 @@ module App
             image.combine_options do |options|
               options.thumbnail '48x48>'
               options.gravity 'center'
-              options.extent '50x50'
+              options.extent '52x52'
               options.background 'white'
               options.bordercolor '#999'
               options.border 2
