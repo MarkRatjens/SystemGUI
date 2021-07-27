@@ -126,7 +126,7 @@ module App
 
         # Send raw icon.
         get '/blueprints/@:identifier/icon/raw' do
-          return nil unless @blueprint.icon.exist?
+          return unless @blueprint.icon.exist?
           send_file(@blueprint.icon.raw_path, type: 'image/png')
         end
 
