@@ -27,7 +27,6 @@ module App
         post '/blueprints' do
           Api.spaces.run do
             ::Spaces::Commands::Saving.new(
-              identifier: @identifier,
               model: params[:blueprint],
               space: :blueprints
             )
