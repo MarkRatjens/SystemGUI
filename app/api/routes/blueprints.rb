@@ -32,8 +32,6 @@ module App
               space: :blueprints
             )
           end.to_json
-
-          Blueprint.create(params[:blueprint]).to_json
         end
 
         # Import blueprint
