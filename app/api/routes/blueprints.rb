@@ -11,22 +11,43 @@ module App
 
         # Index blueprints
         get '/blueprints' do
-          Blueprint.index.to_json
+          Api.spaces.run do
+            ::Spaces::Commands::Querying.new(method: :summaries, space: :blueprints)
+          end.to_json
         end
 
         # List blueprints
         get '/blueprints/list' do
-          Blueprint.list.to_json
+          Api.spaces.run do
+            ::Spaces::Commands::Querying.new(method: :identifiers, space: :blueprints)
+          end.to_json
         end
 
         # Create blueprint
         post '/blueprints' do
+          Api.spaces.run do
+            ::Spaces::Commands::Saving.new(
+              identifier: @identifier,
+              model: params[:blueprint],
+              space: :blueprints
+            )
+          end.to_json
+
           Blueprint.create(params[:blueprint]).to_json
         end
 
         # Import blueprint
         post '/blueprints/import' do
-          Blueprint.import(params[:import]).to_json
+          Api.spaces.run do
+            ::Spaces::Commands::Saving.new(
+              model: params[:import],
+              space: :locations
+            )
+          end.tap do |i|
+            Api.spaces.run do
+              ::Publishing::Commands::Importing.new(identifier: :docker_arena, force: true)
+            end
+          end.to_json
         end
 
         # Show blueprint
@@ -56,7 +77,8 @@ module App
 
         # Publish blueprint
         post '/blueprints/@:identifier/publication' do
-          @blueprint.publication.create(params[:publication]).to_json
+          ::Publishing::Commands::Exporting.new(identifier: params[:identifier]).run.payload.to_json
+          #NOTE: this ignores the form details and uses the saved location instead
         end
 
         # Unpublish blueprint
