@@ -26,56 +26,40 @@ module App
         # Create blueprint
         post '/blueprints' do
           Api.spaces.run do
-            ::Spaces::Commands::Saving.new(
-              model: params[:blueprint],
-              space: :blueprints
-            )
+            ::Spaces::Commands::Saving.new(model: params[:blueprint], space: :blueprints)
           end.to_json
         end
 
         # Import blueprint
         post '/blueprints/import' do
           Api.spaces.run do
-            ::Spaces::Commands::Saving.new(
-              model: params[:import],
-              space: :locations
-            )
+            ::Spaces::Commands::Saving.new(model: params[:import], space: :locations)
           end.tap do |i|
             Api.spaces.run do
-              ::Publishing::Commands::Importing.new(identifier: :docker_arena, force: true)
+              ::Publishing::Commands::Importing.new(identifier: params[:identifier], force: true)
             end
           end.to_json
         end
 
         # Show blueprint
         get '/blueprints/@:identifier' do
-          @blueprint.to_json
-        end
-
-        # Show blueprint location
-        get '/blueprints/@:identifier/location' do
-          return unless Api.spaces.universe.locations.exist?(params[:identifier])
-          Api.spaces.universe.locations.by(params[:identifier]).to_json
-        end
-
-        # Reimport blueprint
-        post '/blueprints/@:identifier/reimport' do
-          @blueprint.reimport.to_json
+          Api.spaces.run do
+            ::Spaces::Commands::Reading.new(identifier: params[:identifier], space: :blueprints)
+          end.to_json
         end
 
         # Delete blueprint
         delete '/blueprints/@:identifier' do
-          @blueprint.delete.to_json
+          Api.spaces.run do
+            ::Spaces::Commands::Deleting.new(identifier: params[:identifier], space: :blueprints)
+          end.to_json
         end
 
-        # Show blueprint specification, i.e. blueprint.json
-        get '/blueprints/@:identifier/specification' do
-          @blueprint.specification.to_json
-        end
-
-        # Update blueprint specification, i.e. blueprint.json
-        put '/blueprints/@:identifier/specification' do
-          @blueprint.specification.save(params[:specification]).to_json
+        # Update blueprint
+        put '/blueprints/@:identifier' do
+          Api.spaces.run do
+            ::Spaces::Commands::Saving.new(model: params[:blueprint], space: :blueprints)
+          end.to_json
         end
 
         # Update blueprint location
@@ -98,15 +82,17 @@ module App
           ).run.payload.to_json
         end
 
-        # Show publication diff
-        get '/blueprints/@:identifier/publication/diff' do
-          @blueprint.publication.diff.to_json
+        # Show blueprint location
+        get '/blueprints/@:identifier/location' do
+          return unless Api.spaces.universe.locations.exist?(params[:identifier])
+          Api.spaces.universe.locations.by(params[:identifier]).to_json
         end
 
-        # Set blueprint publication branch
-        post '/blueprints/@:identifier/publication/branch' do
-          @blueprint.publication.checkout(params[:branch]).to_json
-        end
+        # Show publication diff
+        # TODO: come back to this
+        # get '/blueprints/@:identifier/publication/diff' do
+        #   @blueprint.publication.diff.to_json
+        # end
 
         # FORM
 
