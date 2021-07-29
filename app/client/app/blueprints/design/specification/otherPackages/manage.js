@@ -34,10 +34,10 @@ app.blueprints.design.specification.form({
             ]),
             a['div.pt-2.pb-2']([
               fff.object.target ? a.div([
-                fff.object.target.identifier || a._, ' ',
+                fff.object.target.identifier || null, ' ',
                 fff.object.target.repository || a['.error']('No repository'), ' ',
-                fff.object.target.branch ? a.small(`${fff.object.target.branch}`) : a._,
-              ]) : a._,
+                fff.object.target.branch ? a.small(`${fff.object.target.branch}`) : null,
+              ]) : null,
             ]),
           ]
         }),

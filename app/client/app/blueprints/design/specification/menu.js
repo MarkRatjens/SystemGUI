@@ -36,14 +36,14 @@ app.blueprints.design.specification.menu = (route, specification) => (a,x) => {
             }
           })
         ]
-      }) : a._,
+      }) : null,
       a.br,
       invalidDivisions.length ?
       a['.error']([
         'Unknown divisions',
         a.ul(invalidDivisions.map((division) => a.li(division))),
         a.hr,
-      ]) : a._,
+      ]) : null,
     ])
 
   }

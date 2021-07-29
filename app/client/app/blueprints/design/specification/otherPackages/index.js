@@ -8,10 +8,10 @@ app.blueprints.design.specification.otherPackages.index = (route, specification)
         app.clickable(
           a['div.p-1']([
             rr.object.target ? a.div([
-              rr.object.target.identifier || a._, ' ',
+              rr.object.target.identifier || null, ' ',
               rr.object.target.repository || a['.error']('No repository'), ' ',
-              rr.object.target.branch ? a.small(`${rr.object.target.branch}`) : a._,
-            ]) : a._,
+              rr.object.target.branch ? a.small(`${rr.object.target.branch}`) : null,
+            ]) : null,
           ]),
           () => route.open(`${rr.index}`),
         ),
