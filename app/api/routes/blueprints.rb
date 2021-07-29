@@ -52,6 +52,12 @@ module App
           @blueprint.to_json
         end
 
+        # Show blueprint location
+        get '/blueprints/@:identifier/location' do
+          return unless Api.spaces.universe.locations.exist?(params[:identifier])
+          Api.spaces.universe.locations.by(params[:identifier]).to_json
+        end
+
         # Reimport blueprint
         post '/blueprints/@:identifier/reimport' do
           @blueprint.reimport.to_json
@@ -72,20 +78,24 @@ module App
           @blueprint.specification.save(params[:specification]).to_json
         end
 
-        # Publish blueprint
-        post '/blueprints/@:identifier/publication' do
-          ::Publishing::Commands::Exporting.new(identifier: params[:identifier]).run.payload.to_json
-          #NOTE: this ignores the form details and uses the saved location instead
+        # Update blueprint location
+        post '/blueprints/@:identifier/location' do
+          ::Spaces::Commands::Saving.new(
+            params[:location]
+          ).run.payload.to_json
         end
 
-        # Unpublish blueprint
-        delete '/blueprints/@:identifier/publication' do
-          @blueprint.publication.delete.to_json
-        end
+        # # Unpublish blueprint
+        # delete '/blueprints/@:identifier/publication' do
+        #   @blueprint.publication.delete.to_json
+        # end
 
-        # Export blueprint publication
+        # Export blueprint
         post '/blueprints/@:identifier/publication/export' do
-          @blueprint.publication.export(params[:export]).to_json
+          # @blueprint.publication.export(params[:export]).to_json
+          ::Publishing::Commands::Exporting.new(
+            identifier: params[:identifier]
+          ).run.payload.to_json
         end
 
         # Show publication diff

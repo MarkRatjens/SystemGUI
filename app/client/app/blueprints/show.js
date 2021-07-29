@@ -2,22 +2,24 @@ app.blueprints.show = (route) => (a,x) => [
   app.fetch({
     url: [
       `/api/blueprints/@${route.params.blueprintIdentifier}`,
+      `/api/blueprints/@${route.params.blueprintIdentifier}/location`,
       `/api/blueprints/@${route.params.blueprintIdentifier}/specification`,
       `/api/blueprints/@${route.params.blueprintIdentifier}/readme`,
       `/api/blueprints/@${route.params.blueprintIdentifier}/license`,
     ],
     placeholder: app.spinner(`Loading ${route.params.blueprintIdentifier}`),
-    success: ([blueprint, specification, readme, license]) => [
+    success: ([blueprint, location, specification, readme, license]) => [
       app.float({
         left: [
+          location,
           a.p(
-            blueprint.publication ?
-            app.publicationLabel(blueprint.publication) :
+            location ?
+            app.publicationLabel(location) :
             app.placeholder('Not published'),
           ),
         ],
         right: [
-          blueprint.publication ?
+          location ?
           app.button({
             label: app.icon('fas fa-file-import', 'Reimport'),
             onclick: () => route.open(`/blueprints/@${route.params.blueprintIdentifier}/reimport`),
