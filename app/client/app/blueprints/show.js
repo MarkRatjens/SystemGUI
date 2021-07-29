@@ -20,7 +20,7 @@ app.blueprints.show = (route) => (a,x) => [
           blueprint.publication ?
           app.button({
             label: app.icon('fas fa-file-import', 'Reimport'),
-            onclick: () => route.open(`/blueprints/@${route.params.blueprintIdentifier}/reimport`),
+            onclick: () => route.open(`/blueprints/@${route.params.blueprintIdentifier}/import`),
           }) : null,
         ],
       }),
