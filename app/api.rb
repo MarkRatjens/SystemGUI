@@ -27,8 +27,9 @@ module App
     register Routes
 
     after do
+      return if content_type
       return 204 if response.body.empty?
-      content_type 'application/json' unless content_type
+      content_type 'application/json'
     end
 
     before do
