@@ -17,16 +17,19 @@ app.formDSL.designer.form.field.validation = (f) => [
             key: 'min',
             as: 'input',
             type: 'number',
+            horizontal: true,
           } ),
           ff.field( {
             key: 'max',
             as: 'input',
             type: 'number',
+            horizontal: true,
           } ),
           ff.field( {
             key: 'step',
             as: 'input',
             type: 'number',
+            horizontal: true,
           } ),
         ] } ),
         dependent: {
@@ -40,12 +43,14 @@ app.formDSL.designer.form.field.validation = (f) => [
           ff.field( {
             key: 'minlength',
             label: 'Min length',
+            horizontal: true,
             as: 'input',
             type: 'number',
           } ),
           ff.field( {
             key: 'maxlength',
             label: 'Max length',
+            horizontal: true,
             as: 'input',
             type: 'number',
           } ),
@@ -60,7 +65,7 @@ app.formDSL.designer.form.field.validation = (f) => [
         horizontal: true,
         dependent: {
           key: '[..]control',
-          pattern: '^(string|password|combobox)$',
+          pattern: '^(string|password|date|url|tel|email|combobox)$',
         },
       } ),
       ff.field( {
