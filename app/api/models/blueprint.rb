@@ -18,17 +18,6 @@ module App
 
         attr_reader :identifier
 
-        def reimport #TODO: should be in the route
-          model = { # Descriptor object?
-            identifier: @identifier,
-            repository: publication.repository, #NOW BROKEN!
-            branch: publication.branch, #NOW BROKEN!
-          }.delete_if{|k, v| v.empty?} #TODO: compact
-          Api.spaces.run do
-            ::Publishing::Commands::Importing.new(model: model, force: true)
-          end
-        end
-
         def to_json(*args)
           to_h.to_json
         end
@@ -71,12 +60,6 @@ module App
 
         def files
           @files ||= BlueprintFiles.new(self)
-        end
-
-        def delete #TODO: should be in routing
-          Api.spaces.run do
-            ::Spaces::Commands::Deleting.new(identifier: @identifier, space: :blueprints)
-          end
         end
 
         def pathname

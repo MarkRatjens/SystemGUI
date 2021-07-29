@@ -22,16 +22,6 @@ module App
             @model ||= Api.spaces.universe.blueprints.by(@blueprint.identifier)
           end
 
-          def save(specification)
-            Api.spaces.run do
-              ::Spaces::Commands::Saving.new(
-                identifier: @blueprint.identifier,
-                model: specification,
-                space: :blueprints
-              )
-            end
-          end
-
         end
       end
     end
