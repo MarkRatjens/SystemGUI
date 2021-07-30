@@ -5,23 +5,27 @@ module App
         extend Sinatra::Extension
         include Models
 
+        before '/blueprints/?*' do
+          @controller = ::Blueprinting::Controllers::Controller.new
+        end
+
         before '/blueprints/@:identifier/?*' do
           @blueprint = Blueprint.new(params[:identifier])
         end
 
         # Index blueprints
         get '/blueprints' do
-          ::Spaces::Commands::Querying.new(method: :summaries, space: :blueprints).run.payload.to_json
+          @controller.control(:index).to_json
         end
 
         # List blueprints
         get '/blueprints/list' do
-          ::Spaces::Commands::Querying.new(method: :identifiers, space: :blueprints).run.payload.to_json
+          @controller.control(:list).to_json
         end
 
         # Create blueprint
         post '/blueprints' do
-          ::Spaces::Commands::Saving.new(model: params[:blueprint], space: :blueprints).run.payload.to_json
+          @controller.control(:new, model: params[:blueprint]).to_json
         end
 
         # Import blueprint
@@ -33,22 +37,17 @@ module App
 
         # Show blueprint
         get '/blueprints/@:identifier' do
-          ::Spaces::Commands::Reading.new(identifier: params[:identifier], space: :blueprints).run.payload.to_json
-        end
-
-        # Show blueprint relations
-        get '/blueprints/@:identifier/relations' do
-          {result: @blueprint.relations}.to_json
+          @controller.control(:show, identifier: params[:identifier]).to_json
         end
 
         # Delete blueprint
         delete '/blueprints/@:identifier' do
-          ::Spaces::Commands::Deleting.new(identifier: params[:identifier], space: :blueprints).run.payload.to_json
+          @controller.control(:delete, identifier: params[:identifier]).to_json
         end
 
         # Update blueprint
         put '/blueprints/@:identifier' do
-          ::Spaces::Commands::Saving.new(model: params[:blueprint], space: :blueprints).run.payload.to_json
+          @controller.control(:update, model: params[:blueprint]).to_json
         end
 
         # Show blueprint location
