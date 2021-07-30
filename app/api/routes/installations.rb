@@ -11,17 +11,19 @@ module App
 
         # Show installation
         get '/installations/@:identifier' do
-          @installation.to_json
+          ::Spaces::Commands::Reading.new(identifier: params[:identifier], space: :installations).run.payload.to_json
         end
 
         # Delete installation
         delete '/installations/@:identifier' do
-          @installation.delete.to_json
+          ::Spaces::Commands::Deleting.new(identifier: params[:identifier], space: :installations).run.payload.to_json
         end
 
         # Update input
         put '/installations/@:identifier/input' do
-          @installation.input.save(params[:input]).to_json
+          installation = ::Spaces::Commands::Reading.new(identifier: params[:identifier], space: :installations).run.payload.result.to_h
+          installation[:input] = params[:input].to_h
+          ::Spaces::Commands::Saving.new(identifier: params[:identifier], model: installation, space: :installations).run.payload.to_json
         end
       end
     end

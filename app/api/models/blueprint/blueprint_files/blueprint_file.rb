@@ -11,11 +11,8 @@ module App
             end
 
             def to_s
-              if pathname.exist?
-                pathname.read
-              else
-                ''
-              end
+              return unless pathname.exist?
+              pathname.read
             end
 
             def save(file)

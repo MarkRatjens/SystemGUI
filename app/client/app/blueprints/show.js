@@ -2,25 +2,26 @@ app.blueprints.show = (route) => (a,x) => [
   app.fetch({
     url: [
       `/api/blueprints/@${route.params.blueprintIdentifier}`,
-      `/api/blueprints/@${route.params.blueprintIdentifier}/specification`,
+      `/api/blueprints/@${route.params.blueprintIdentifier}/location`,
+      `/api/blueprints/@${route.params.blueprintIdentifier}/relations`,
       `/api/blueprints/@${route.params.blueprintIdentifier}/readme`,
       `/api/blueprints/@${route.params.blueprintIdentifier}/license`,
     ],
     placeholder: app.spinner(`Loading ${route.params.blueprintIdentifier}`),
-    success: ([blueprint, specification, readme, license]) => [
+    success: ([blueprint, location, relations, readme, license]) => [
       app.float({
         left: [
           a.p(
-            blueprint.publication ?
-            app.publicationLabel(blueprint.publication) :
+            location ?
+            app.locationLabel(location) :
             app.placeholder('Not published'),
           ),
         ],
         right: [
-          blueprint.publication ?
+          location ?
           app.button({
             label: app.icon('fas fa-file-import', 'Reimport'),
-            onclick: () => route.open(`/blueprints/@${route.params.blueprintIdentifier}/import`),
+            onclick: () => route.open(`/blueprints/@${route.params.blueprintIdentifier}/reimport`),
           }) : null,
         ],
       }),
@@ -35,9 +36,9 @@ app.blueprints.show = (route) => (a,x) => [
                 width: '48'
               }),
               ' ',
-              (specification.about || {}).title || app.placeholder('No title')
+              (blueprint.about || {}).title || app.placeholder('No title')
             ]),
-            a.p((specification.about || {}).explanation || app.placeholder('No explanation')),
+            a.p((blueprint.about || {}).explanation || app.placeholder('No explanation')),
           ]),
         ],
         right: [
@@ -53,7 +54,7 @@ app.blueprints.show = (route) => (a,x) => [
           routes: {
             '/?': () => readme ? app.md(readme) : app.placeholder('No readme'),
             '/license': () => license ? app.md(license) : app.placeholder('No license'),
-            '/bindings/?*': app.blueprints.bindings(blueprint, specification),
+            '/bindings/?*': app.blueprints.bindings(blueprint, relations),
           }
         })
       ),

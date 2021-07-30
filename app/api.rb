@@ -15,7 +15,6 @@ module App
     require_relative 'api/settings'
     require_relative 'api/mime'
     require_relative 'api/errors'
-    require_relative 'api/model'
     require_relative 'api/models'
     require_relative 'api/sessions'
     require_relative 'api/setup'
@@ -27,7 +26,9 @@ module App
     register Routes
 
     after do
-      content_type 'application/json' unless content_type
+      return if content_type
+      return 204 if response.body.empty?
+      content_type 'application/json'
     end
 
     before do

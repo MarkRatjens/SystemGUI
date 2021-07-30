@@ -22,6 +22,6 @@ app.blueprints.design.files.new = (route) => (a, x) => [
 
       }),
     ],
-    success: (path) => route.open(`../@${path.replace(/\//g, '::')}`)
+    success: (path) => route.open(`../@${path.replace(/\//g, '::')}`),
   }),
 ]

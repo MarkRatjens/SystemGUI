@@ -29,7 +29,7 @@ module App
               identifier: @identifier,
               space: :installations
             )
-          end
+          end.result
         end
 
         def delete
@@ -38,7 +38,7 @@ module App
               identifier: @identifier,
               space: :installations
             )
-          end
+          end.result
         end
 
       end

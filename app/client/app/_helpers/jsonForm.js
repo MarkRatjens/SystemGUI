@@ -1,10 +1,10 @@
 app.jsonForm = (options={}) => (a, x) => app.form({
   ...options,
   encode: 'json',
-  success: options.success ? options.success : () => options.route.open('..'),
+  success: app.fetch.success(options.success || (() => options.route.open('..'))),
   form: f => [
     a.div(options.form(f)),
-    options.buttonless ? a._ : f.buttons({
+    options.buttonless ? null : f.buttons({
       cancel: {
         onclick: () => options.route.open(options.close || '..'),
         ...options.cancel

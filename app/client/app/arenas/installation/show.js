@@ -13,11 +13,11 @@ app.arenas.installation.show = (route) => (a,x) => [
           }),
         ],
       }),
-      a.hr,
-      app.button({
-        label: app.icon('fas fa-tools', 'Build'),
-        onclick: () => route.open('build'),
-      }),
+      // a.hr,
+      // app.button({
+      //   label: app.icon('fas fa-tools', 'Build'),
+      //   onclick: () => route.open('build'),
+      // }),
     ]
   }),
 ]

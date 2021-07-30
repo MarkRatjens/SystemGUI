@@ -10,8 +10,8 @@ app.form = (options = {}) => (a, x) =>
       x.form.async.shim,
       app.form.shim,
     ],
+    method: 'PUT',
+    catch: (error, el) => el.$send("app.disconnected"),
     ...options,
-    catch: options.catch || ((error, el) => el.$send("app.disconnected")),
-    when: app.when(options.when),
-    method: options.method || 'PUT',
+    when: app.fetch.when(options.when),
   });
