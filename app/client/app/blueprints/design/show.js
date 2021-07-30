@@ -1,36 +1,36 @@
 app.blueprints.design.show = (route) => (a, x) => [
   app.fetch({
-    url: `/api/blueprints/@${route.params.blueprintIdentifier}`,
-    success: blueprint => [
-      blueprint.publication ? [
-        a.p(app.publicationLabel(blueprint.publication)),
+    url: `/api/blueprints/@${route.params.blueprintIdentifier}/location`,
+    success: location => [
+      location ? [
+        a.p(app.locationLabel(location)),
         app.float({
           left: [
             app.button({
               label: app.icon("fas fa-file-export", "Export"),
               onclick: () => route.open(`/blueprints/@${route.params.blueprintIdentifier}/design/export`),
             }),
-            app.button({
-              label: app.icon("fas fa-project-diagram", "Branch"),
-              onclick: () => route.open(`/blueprints/@${route.params.blueprintIdentifier}/design/branch`),
-            }),
+            // app.button({
+            //   label: app.icon("fas fa-project-diagram", "Branch"),
+            //   onclick: () => route.open(`/blueprints/@${route.params.blueprintIdentifier}/design/branch`),
+            // }),
           ],
           right: [
             app.button({
-              label: app.icon("fas fa-minus-square", "Unpublish"),
-              onclick: () => route.open(`/blueprints/@${route.params.blueprintIdentifier}/design/unpublish`),
+              label: app.icon("fas fa-location-arrow", "Location"),
+              onclick: () => route.open(`/blueprints/@${route.params.blueprintIdentifier}/design/location`),
             }),
           ],
         })
       ] :
       app.float({
         left: [
-          app.placeholder('Not published'),
+          app.placeholder('No location'),
         ],
         right: [
           app.button({
-            label: app.icon("fas fa-plus-square", "Publish"),
-            onclick: () => route.open(`/blueprints/@${route.params.blueprintIdentifier}/design/publish`),
+            label: app.icon("fas fa-location-arrow", "Location"),
+            onclick: () => route.open(`/blueprints/@${route.params.blueprintIdentifier}/design/location`),
           }),
         ],
       }),
@@ -44,7 +44,7 @@ app.blueprints.design.show = (route) => (a, x) => [
           '/license/?*': app.blueprints.design.license,
           '/form/?*': app.blueprints.design.form,
           '/files/?*': app.blueprints.design.files,
-          '*': app.blueprints.design.specification,
+          '*': app.blueprints.design.blueprint,
         }
       }),
 

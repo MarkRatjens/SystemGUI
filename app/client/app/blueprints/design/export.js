@@ -1,17 +1,18 @@
 app.blueprints.design.export = (route, blueprint) => (a, x) => a.div([
   a.h3(`Export`),
   app.fetch({
-    url: [
-      `/api/blueprints/@${route.params.blueprintIdentifier}`,
-      `/api/blueprints/@${route.params.blueprintIdentifier}/publication/diff`,
-    ],
-    success: ([blueprint, diff]) => [
-      app.publicationLabel(blueprint.publication),
+    url: `/api/blueprints/@${route.params.blueprintIdentifier}/location`,
+    // [
+    //   `/api/blueprints/@${route.params.blueprintIdentifier}/location`,
+    //   // `/api/blueprints/@${route.params.blueprintIdentifier}/publication/diff`,
+    // ],
+    success: (location) => [
+      app.locationLabel(location),
       a.br,
-      app.collapse({
-        label: 'Diff',
-        body: a.pre(diff),
-      }),
+      // app.collapse({
+      //   label: 'Diff',
+      //   body: a.pre(diff),
+      // }),
       app.form({
         url: `/api/blueprints/@${route.params.blueprintIdentifier}/publication/export`,
         method: "POST",
