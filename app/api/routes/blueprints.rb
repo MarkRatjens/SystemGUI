@@ -85,6 +85,11 @@ module App
         #   @blueprint.publication.diff.to_json
         # end
 
+        # Show blueprint relations
+        get '/blueprints/@:identifier/relations' do
+          {result: @blueprint.relations}.to_json
+        end
+
         # FORM
 
         # Show blueprint form, i.e. form.json
