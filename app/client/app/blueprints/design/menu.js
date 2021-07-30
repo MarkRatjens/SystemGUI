@@ -2,9 +2,9 @@ app.blueprints.design.menu = (route) => (a,x) => {
 
   let renderMenu = (active) => [
     app.button({
-      label: 'Specification',
+      label: 'Blueprint',
       onclick: () => route.open(`/blueprints/@${route.params.blueprintIdentifier}/design`),
-      class: `btn app-btn${active == 'specification' ? ' active' : ''}`,
+      class: `btn app-btn${active == 'blueprint' ? ' active' : ''}`,
     }),
     app.button({
       label: 'Icon',
@@ -40,7 +40,7 @@ app.blueprints.design.menu = (route) => (a,x) => {
       '/license/?*': (route) => renderMenu('license'),
       '/form/?*': (route) => renderMenu('form'),
       '/files/?*': (route) => renderMenu('files'),
-      '*': (route) => renderMenu('specification'),
+      '*': (route) => renderMenu('blueprint'),
     },
     lazy: false,
     transition: false,
