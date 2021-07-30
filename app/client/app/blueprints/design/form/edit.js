@@ -8,6 +8,7 @@ app.blueprints.design.form.edit = (route) => (a, x) => a['app-blueprint-input-fo
       object: form,
       scope: 'form',
       form: app.formDSL.designer.form.components,
+      digest: form => app.compact(form),
     }),
   }),
 ])
