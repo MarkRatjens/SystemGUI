@@ -35,11 +35,12 @@ module App #TODO: consider whether this level is necessary
         end
 
         def to_h
-          model.to_h.tap do |model|
-            model[:installations] = installations #TODO: consider why couple this
-            model[:resolutions] = resolutions #TODO: consider why couple this
-            model[:packs] = packs #TODO: consider why couple this
-          end
+          model.to_h
+          # .tap do |model|
+          #   model[:installations] = installations #TODO: consider why couple this
+          #   model[:resolutions] = resolutions #TODO: consider why couple this
+          #   model[:packs] = packs #TODO: consider why couple this
+          # end
         end
 
         def model
