@@ -2,30 +2,29 @@ app.blueprints.show = (route) => (a,x) => [
   app.fetch({
     url: [
       `/api/blueprints/@${route.params.blueprintIdentifier}`,
-      `/api/blueprints/@${route.params.blueprintIdentifier}/location`,
       `/api/blueprints/@${route.params.blueprintIdentifier}/relations`,
       `/api/blueprints/@${route.params.blueprintIdentifier}/readme`,
       `/api/blueprints/@${route.params.blueprintIdentifier}/license`,
     ],
     placeholder: app.spinner(`Loading ${route.params.blueprintIdentifier}`),
-    success: ([blueprint, location, relations, readme, license]) => [
-      app.float({
-        left: [
-          a.p(
-            location ?
-            app.locationLabel(location) :
-            app.placeholder('Not published'),
-          ),
-        ],
-        right: [
-          location ?
-          app.button({
-            label: app.icon('fas fa-file-import', 'Reimport'),
-            onclick: () => route.open(`/blueprints/@${route.params.blueprintIdentifier}/reimport`),
-          }) : null,
-        ],
-      }),
-      a.hr,
+    success: ([blueprint, relations, readme, license]) => [
+      // app.float({
+      //   left: [
+      //     a.p(
+      //       location ?
+      //       app.locationLabel(location) :
+      //       app.placeholder('Not published'),
+      //     ),
+      //   ],
+      //   right: [
+      //     location ?
+      //     app.button({
+      //       label: app.icon('fas fa-file-import', 'Reimport'),
+      //       onclick: () => route.open(`/blueprints/@${route.params.blueprintIdentifier}/reimport`),
+      //     }) : null,
+      //   ],
+      // }),
+      // a.hr,
       app.float({
         left: [
           a.i([
