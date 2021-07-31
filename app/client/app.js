@@ -10,7 +10,7 @@ a["app"](
   {
     $on: {
       "ax.appkit.router.load": (e, el) => {
-        el.$$('.activateable').$activate();
+        el.$$('.activatable').$activate();
       },
       "app.disconnected": (e, el) => {
         router.$load('/disconnected');

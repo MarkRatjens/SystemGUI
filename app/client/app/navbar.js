@@ -1,5 +1,5 @@
 app.navbar = (route) => (a, x) =>
-  a["nav#navbar.navbar.navbar-expand.navbar-light.bg-transparent.mt-n1.mb-1.activateable"](
+  a["nav#navbar.navbar.navbar-expand.navbar-light.bg-transparent.mt-n1.mb-1.activatable"](
     [
       a.a([
         a({
