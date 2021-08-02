@@ -13,7 +13,7 @@ app.blueprints.blueprint = (route) => (a,x) => a['app-blueprints-blueprint']([
   route.mount({
     routes: {
       '/design/location': null,
-      '*': app.blueprints.location,
+      '*': app.blueprints.blueprint.location,
     }
   }),
   route.mount({

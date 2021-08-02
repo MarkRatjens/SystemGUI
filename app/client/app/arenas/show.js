@@ -71,6 +71,11 @@ app.arenas.show = (route) => (a,x) => [
             title: 'Pack arena',
             onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/pack`),
           }),
+          app.button({
+            label: app.icon('fas fa-cloud', 'Provision'),
+            title: 'Provision arena',
+            onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/provision`),
+          }),
         ],
         right: [
           app.button({

@@ -32,6 +32,18 @@ app.blueprints.design.form.show = (route) => (a, x) => [
           return true
         },
       }),
+      a.hr,
+      app.button({
+        label: '{}',
+        title: 'Raw form',
+        onclick: () => {
+          modal.$open({
+            title: `Raw ${route.params.blueprintIdentifier} form`,
+            size: 'lg',
+            body: [form],
+          })
+        },
+      }),
     ],
   }),
 ]

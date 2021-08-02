@@ -24,10 +24,10 @@ app.dashboard.menu.arenas.arena = (route, arena) => (a,x) => [
   }),
   app.fetch({
     url: `/api/arenas/@${arena.identifier}/installations`,
-    placeholder: a['div.p-2'](app.spinner("Loading arena installations")),
+    // placeholder: a['div.p-2'](app.spinner("Loading arena installations")),
     success: (installations => installations.map(installationIdentifier => {
       let blueprintIdentifier = installationIdentifier.split('::')[1]
-      
+
       return app.button({
         label: app.icon('fa fa-angle-right', blueprintIdentifier),
         buttonTag: {

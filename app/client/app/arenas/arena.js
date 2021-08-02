@@ -8,6 +8,7 @@ app.arenas.arena = (route) => (a,x) => a['app-arenas-arena']([
       '/delete': app.arenas.delete,
       '/resolve': app.arenas.resolve,
       '/pack': app.arenas.pack,
+      '/provision': app.arenas.provision,
       '/@:blueprintIdentifier/?*': app.arenas.installation,
     }
   }),

@@ -1,4 +1,4 @@
-app.blueprints.location = (route) => (a, x) => [
+app.blueprints.blueprint.location = (route) => (a, x) => [
   app.fetch({
     url: `/api/blueprints/@${route.params.blueprintIdentifier}/location`,
     success: location => [
@@ -35,6 +35,7 @@ app.blueprints.location = (route) => (a, x) => [
                       ] : null
                     )
                   },
+                  $init: (el) => el.$activate(),
                   $activate: (el) => () => {
                     if (
                       window.location.pathname
