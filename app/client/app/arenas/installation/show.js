@@ -4,7 +4,7 @@ app.arenas.installation.show = (route) => (a,x) => [
       `/api/installations/@${route.params.arenaIdentifier}::${route.params.blueprintIdentifier}`,
       // `/api/resolutions/@${route.params.arenaIdentifier}::${route.params.blueprintIdentifier}`,
     ],
-    success: [installation, resolution] => [
+    success: ([installation, resolution]) => [
       app.float({
         left: [
           x.out(installation.input),
