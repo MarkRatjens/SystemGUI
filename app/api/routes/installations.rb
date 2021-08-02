@@ -5,13 +5,14 @@ module App
         extend Sinatra::Extension
         include Models
 
-        before '/installations/@:identifier/?*' do
-          @installation = Installation.new(params[:identifier])
-        end
-
         # Show installation
         get '/installations/@:identifier' do
           ::Spaces::Commands::Reading.new(identifier: params[:identifier], space: :installations).run.payload.to_json
+        end
+
+        # Show installation status
+        get '/installations/@:identifier/status' do
+          ::Spaces::Commands::Status.new(identifier: params[:identifier], space: :installations).run.payload.to_json
         end
 
         # Delete installation
