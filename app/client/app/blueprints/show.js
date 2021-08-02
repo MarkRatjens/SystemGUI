@@ -8,23 +8,6 @@ app.blueprints.show = (route) => (a,x) => [
     ],
     placeholder: app.spinner(`Loading ${route.params.blueprintIdentifier}`),
     success: ([blueprint, relations, readme, license]) => [
-      // app.float({
-      //   left: [
-      //     a.p(
-      //       location ?
-      //       app.locationLabel(location) :
-      //       app.placeholder('Not published'),
-      //     ),
-      //   ],
-      //   right: [
-      //     location ?
-      //     app.button({
-      //       label: app.icon('fas fa-file-import', 'Reimport'),
-      //       onclick: () => route.open(`/blueprints/@${route.params.blueprintIdentifier}/reimport`),
-      //     }) : null,
-      //   ],
-      // }),
-      // a.hr,
       app.float({
         left: [
           a.i([

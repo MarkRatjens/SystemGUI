@@ -4,11 +4,6 @@ blueprint.bindings ? app.navBox(
   [
     'Bindings',
     x.out(blueprint.bindings),
-    // a.ul(
-    //   blueprint.bindings.map(binding => a.li([
-    //     app.bindingLabel(binding),
-    //   ]))
-    // ),
   ],
   'bindings'
 ) : null

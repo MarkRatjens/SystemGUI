@@ -41,6 +41,10 @@ module App
       request.fullpath.sub('/api', '')
     end
 
+    def action(action, options={})
+      @controller.control(action, options).to_json
+    end 
+
     ## This method is used to convert Sinatra::IndifferentHash to
     ## a Hash, because JSON.generate was failing with IndifferentHash.
     def deep_to_h(obj)

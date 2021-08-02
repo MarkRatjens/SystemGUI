@@ -7,12 +7,6 @@ app.arenas.show = (route) => (a,x) => [
         left: [
           a.i([
             a.h3([
-              // a.img([], {
-              //   src: `/api/blueprints/@${route.params.blueprintIdentifier}/icon/thumbnail`,
-              //   height: '48',
-              //   width: '48'
-              // }),
-              // ' ',
               (arena.about || {}).title || app.placeholder('No title')
             ]),
             a.p((arena.about || {}).explanation || app.placeholder('No explanation')),
