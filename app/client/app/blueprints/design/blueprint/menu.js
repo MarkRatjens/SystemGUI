@@ -37,15 +37,24 @@ app.blueprints.design.blueprint.menu = (route, blueprint) => (a,x) => {
           })
         ]
       }) : null,
-      a.br,
       invalidDivisions.length ?
-      a['.error']([
+      a['div.error.mt-1']([
         'Unknown divisions',
         a.ul(invalidDivisions.map((division) => a.li(division))),
-        a.hr,
       ]) : null,
+      a.hr,
+      app.button({
+        label: '{}',
+        title: 'Raw blueprint',
+        onclick: () => {
+          modal.$open({
+            title: `Raw ${route.params.blueprintIdentifier} blueprint`,
+            size: 'lg',
+            body: [blueprint],
+          })
+        },
+      }),
     ])
-
   }
 
   return a['app-menu'](

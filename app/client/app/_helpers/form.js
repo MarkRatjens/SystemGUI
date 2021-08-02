@@ -14,4 +14,5 @@ app.form = (options = {}) => (a, x) =>
     catch: (error, el) => el.$send("app.disconnected"),
     ...options,
     when: app.fetch.when(options.when),
+    success: app.fetch.success(options.success || (() => {options.route && options.route.open('..')})),
   });

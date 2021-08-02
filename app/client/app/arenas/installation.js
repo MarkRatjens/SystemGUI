@@ -4,12 +4,13 @@ app.arenas.installation = (route) => (a,x) => [
       a.h1(route.params.blueprintIdentifier),
     ],
   }),
-  app.fetch({
-    url: `/api/blueprints/@${route.params.blueprintIdentifier}`,
-    placeholder: app.spinner(`Loading ${route.params.blueprintIdentifier}`),
-    success: (blueprint) => [
-      app.float({
-        left: [
+  a.hr,
+  app.float({
+    left: [
+      app.fetch({
+        url: `/api/blueprints/@${route.params.blueprintIdentifier}`,
+        placeholder: app.spinner(`Loading ${route.params.blueprintIdentifier}`),
+        success: (blueprint) => [
           a.i([
             a.h3([
               a.img([], {
@@ -23,16 +24,16 @@ app.arenas.installation = (route) => (a,x) => [
             a.p((blueprint.about || {}).explanation || app.placeholder('No explanation')),
           ]),
         ],
-        right: [
-          app.button({
-            label: app.icon('fas fa-shapes', 'Blueprint'),
-            onclick: () => route.open(`/blueprints/@${route.params.blueprintIdentifier}`),
-          }),
-        ],
       }),
-      a.hr,
+    ],
+    right: [
+      app.button({
+        label: app.icon('fas fa-shapes', 'Blueprint'),
+        onclick: () => route.open(`/blueprints/@${route.params.blueprintIdentifier}`),
+      }),
     ],
   }),
+  a.hr,
   route.mount({
     routes: {
       '/?': app.arenas.installation.show,

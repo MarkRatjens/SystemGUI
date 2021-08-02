@@ -1,5 +1,5 @@
 let app = (a, x) =>
-a["app"](
+a['app'](
   [
     app.modal(),
     a["div.container-fluid"]([
@@ -9,10 +9,10 @@ a["app"](
   ],
   {
     $on: {
-      "ax.appkit.router.load": (e, el) => {
-        el.$$('.activateable').$activate();
+      'ax.appkit.router.pop': (e, el) => {
+        el.$$('.activatable').$activate();
       },
-      "app.disconnected": (e, el) => {
+      'app.disconnected': (e, el) => {
         router.$load('/disconnected');
       },
     },

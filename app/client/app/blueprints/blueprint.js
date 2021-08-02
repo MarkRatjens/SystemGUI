@@ -12,6 +12,12 @@ app.blueprints.blueprint = (route) => (a,x) => a['app-blueprints-blueprint']([
   ]),
   route.mount({
     routes: {
+      '/design/location': null,
+      '*': app.blueprints.blueprint.location,
+    }
+  }),
+  route.mount({
+    routes: {
       '/reimport': app.blueprints.reimport,
       '/delete': app.blueprints.delete,
       '/design/?*': app.blueprints.design,

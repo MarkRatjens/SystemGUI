@@ -1,7 +1,11 @@
 app.arenas.installation.show = (route) => (a,x) => [
   app.fetch({
-    url: `/api/installations/@${route.params.arenaIdentifier}::${route.params.blueprintIdentifier}`,
-    success: installation => [
+    url: [
+      `/api/installations/@${route.params.arenaIdentifier}::${route.params.blueprintIdentifier}`,
+      `/api/installations/@${route.params.arenaIdentifier}::${route.params.blueprintIdentifier}/status`,
+      // `/api/resolutions/@${route.params.arenaIdentifier}::${route.params.blueprintIdentifier}`,
+    ],
+    success: ([installation, status]) => [
       app.float({
         left: [
           x.out(installation.input),
@@ -13,11 +17,26 @@ app.arenas.installation.show = (route) => (a,x) => [
           }),
         ],
       }),
-      // a.hr,
-      // app.button({
-      //   label: app.icon('fas fa-tools', 'Build'),
-      //   onclick: () => route.open('build'),
-      // }),
+      a.hr,
+
+      a.h5([
+        app.icon(
+          status.resolution.exist ? 'fa fa-check' : 'fa fa-times', null,
+          {iconTag: {class: status.resolution.exist ? 'success' : 'error'}}
+        ),
+        ' Resolution'
+      ]),
+      // status,
+      status.resolution.exist ?
+      app.arenas.installation.resolution(route) :
+      null,
+      // status,
+      // status.resolution.exist ? [
+      //   app.button({
+      //     label: app.icon('fas fa-tools', 'Build'),
+      //     onclick: () => route.open('build'),
+      //   }),
+      // ] : null,
     ]
   }),
 ]

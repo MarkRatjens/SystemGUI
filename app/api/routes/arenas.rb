@@ -5,12 +5,17 @@ module App
         extend Sinatra::Extension
         include Models
 
+        # before '/arenas/?*' do
+        #   @controller = ::Arenas::Controllers::Controller.new
+        # end
+
         before '/arenas/@:identifier/?*' do
           @arena = Arena.new(params[:identifier])
         end
 
         # Index arenas
         get '/arenas' do
+          # @controller.control(:index).to_json
           {result: Arena.index}.to_json
         end
 
@@ -38,6 +43,23 @@ module App
         put '/arenas/@:identifier' do
           {result: @arena.save(params[:arena])}.to_json
         end
+
+        # Show arena installations
+        get '/arenas/@:identifier/installations' do
+          {result: @arena.installations}.to_json
+        end
+
+        # Show arena resolutions
+        get '/arenas/@:identifier/resolutions' do
+          {result: @arena.resolutions}.to_json
+        end
+
+        # Show arena packs
+        get '/arenas/@:identifier/packs' do
+          {result: @arena.packs}.to_json
+        end
+
+
 
         # Generate resolutions for an arena
         post '/arenas/@:identifier/resolve' do

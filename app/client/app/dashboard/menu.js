@@ -1,40 +1,16 @@
-app.dashboard.menu = (route) => (a,x) => a['app-menu#dashboardMenu.activateable']([], {
-
+app.dashboard.menu = (route) => (a,x) => a['app-menu#dashboardMenu.activatable']([], {
   $update: (el) => {
     if (el.$state == 'blueprints') {
       el.$nodes = [
-        app.fetch({
-          url: '/api/blueprints/list',
-          placeholder: a['div.p-2'](app.spinner("Loading menu")),
-          success: (blueprints =>
-            a['app-menu-buttons']([
-              blueprints.map(
-                blueprintIdentifier => a.div(
-                  app.dashboard.menu.blueprint(route, blueprintIdentifier)
-                ),
-              ),
-            ])
-          ),
-        }),
+        app.dashboard.menu.blueprints(route)
       ]
     } else {
       el.$nodes = [
-        app.fetch({
-          url: '/api/arenas',
-          placeholder: a['div.p-2'](app.spinner("Loading menu")),
-          success: (arenas =>
-            a['app-menu-buttons']([
-              arenas.map(
-                arena => a.p(
-                  app.dashboard.menu.arena(route, arena)
-                ),
-              ),
-            ])
-          ),
-        }),
+        app.dashboard.menu.arenas(route)
       ]
     }
   },
+  $init: (el) => el.$activate(),
   $activate: (el) => () => {
     let view = window.location.pathname.match(/^[\/]?(\w+)?/)[1]
     if (view == 'blueprints') {
