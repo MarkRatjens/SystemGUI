@@ -3,7 +3,6 @@ app.arenas.installation.show = (route) => (a,x) => [
     url: [
       `/api/installations/@${route.params.arenaIdentifier}::${route.params.blueprintIdentifier}`,
       `/api/installations/@${route.params.arenaIdentifier}::${route.params.blueprintIdentifier}/status`,
-      // `/api/resolutions/@${route.params.arenaIdentifier}::${route.params.blueprintIdentifier}`,
     ],
     success: ([installation, status]) => [
       app.float({
@@ -26,17 +25,9 @@ app.arenas.installation.show = (route) => (a,x) => [
         ),
         ' Resolution'
       ]),
-      // status,
       status.resolution.exist ?
       app.arenas.installation.resolution(route) :
       null,
-      // status,
-      // status.resolution.exist ? [
-      //   app.button({
-      //     label: app.icon('fas fa-tools', 'Build'),
-      //     onclick: () => route.open('build'),
-      //   }),
-      // ] : null,
     ]
   }),
 ]

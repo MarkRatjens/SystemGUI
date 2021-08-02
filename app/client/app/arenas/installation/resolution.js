@@ -18,17 +18,6 @@ app.arenas.installation.resolution = (route) => (a,x) => [
         ),
         ' Provisions'
       ]),
-
-
-
-
-      // status,
-      // status.resolution.exist ? [
-      //   app.button({
-      //     label: app.icon('fas fa-tools', 'Build'),
-      //     onclick: () => route.open('build'),
-      //   }),
-      // ] : null,
     ]
   }),
 ]

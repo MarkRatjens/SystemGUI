@@ -66,11 +66,6 @@ module App
           ::Publishing::Commands::Importing.new(identifier: params[:identifier], force: true).run.payload.to_json
         end
 
-        # # Unpublish blueprint
-        # delete '/blueprints/@:identifier/publication' do
-        #   @blueprint.publication.delete.to_json
-        # end
-
         # Export blueprint
         post '/blueprints/@:identifier/publication/export' do
           # @blueprint.publication.export(params[:export]).to_json
@@ -78,12 +73,6 @@ module App
             identifier: params[:identifier]
           ).run.payload.to_json
         end
-
-        # Show publication diff
-        # TODO: come back to this
-        # get '/blueprints/@:identifier/publication/diff' do
-        #   @blueprint.publication.diff.to_json
-        # end
 
         # Show blueprint relations
         get '/blueprints/@:identifier/relations' do
