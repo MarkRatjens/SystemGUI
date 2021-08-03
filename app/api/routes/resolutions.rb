@@ -3,22 +3,31 @@ module App
     module Routes
       module Resolutions
         extend Sinatra::Extension
-        include Models
 
-        # Show resolution
+        before '/resolutions/?*' do
+          @controller = ::Spaces::Controllers::RESTController.new(space: :resolutions)
+        end
+
+        get '/resolutions' do
+          action(:index, **params)
+        end
+
+        get '/resolutions/list' do
+          action(:list, **params)
+        end
+
         get '/resolutions/@:identifier' do
-          ::Spaces::Commands::Reading.new(identifier: params[:identifier], space: :resolutions).run.payload.to_json
+          action(:show, **params)
         end
 
-        # Show resolution status
-        get '/resolutions/@:identifier/status' do
-          ::Spaces::Commands::Status.new(identifier: params[:identifier], space: :resolutions).run.payload.to_json
+        get '/resolutions/@:identifier/summary' do
+          action(:summary, **params)
         end
 
-        # Delete resolution
         delete '/resolutions/@:identifier' do
-          ::Spaces::Commands::Deleting.new(identifier: params[:identifier], space: :resolutions).run.payload.to_json
+          action(:delete, **params)
         end
+
       end
     end
   end
