@@ -14,27 +14,27 @@ module App
         end
 
         get '/blueprints' do
-          action(:index)
+          action(:index, **params)
         end
 
         get '/blueprints/list' do
-          action(:list)
+          action(:list, **params)
         end
 
         post '/blueprints' do
-          action(:new, model: params[:model])
+          action(:new, **params)
         end
 
         get '/blueprints/@:identifier' do
-          action(:show, identifier: params[:identifier])
+          action(:show, **params)
         end
 
         delete '/blueprints/@:identifier' do
-          action(:delete, identifier: params[:identifier])
+          action(:delete, **params)
         end
 
         put '/blueprints/@:identifier' do
-          action(:update, model: params[:model])
+          action(:update, **params)
         end
 
         # Show blueprint relations

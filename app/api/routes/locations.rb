@@ -9,11 +9,11 @@ module App
         end
 
         get '/locations/@:identifier' do
-          action(:show, identifier: params[:identifier])
+          action(:show, **params)
         end
 
         put '/locations/@:identifier' do
-          action(:update, model: params[:model])
+          action(:update, **params)
         end
 
       end

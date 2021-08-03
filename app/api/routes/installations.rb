@@ -3,24 +3,29 @@ module App
     module Routes
       module Installations
         extend Sinatra::Extension
-        include Models
 
-        # Show installation
+        before '/installations/?*' do
+          @controller = ::Spaces::Controllers::RESTController.new(space: :installations)
+        end
+
         get '/installations/@:identifier' do
-          ::Spaces::Commands::Reading.new(identifier: params[:identifier], space: :installations).run.payload.to_json
+          action(:show, **params)
         end
 
-        # Show installation status
-        get '/installations/@:identifier/status' do
-          ::Spaces::Commands::Status.new(identifier: params[:identifier], space: :installations).run.payload.to_json
+        get '/installations/@:identifier/summary' do
+          action(:summary, **params)
         end
 
-        # Delete installation
         delete '/installations/@:identifier' do
-          ::Spaces::Commands::Deleting.new(identifier: params[:identifier], space: :installations).run.payload.to_json
+          action(:delete, **params)
+        end
+
+        put '/installations/@:identifier' do
+          action(:update, **params)
         end
 
         # Update input
+        # TODO is this needed?
         put '/installations/@:identifier/input' do
           installation = ::Spaces::Commands::Reading.new(identifier: params[:identifier], space: :installations).run.payload.result.to_h
           installation[:input] = params[:input].to_h
