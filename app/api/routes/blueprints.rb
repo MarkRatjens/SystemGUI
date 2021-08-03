@@ -6,72 +6,35 @@ module App
         include Models
 
         before '/blueprints/?*' do
-          @controller = ::Blueprinting::Controllers::Controller.new
+          @controller = ::Spaces::Controllers::RESTController.new(space: :blueprints)
         end
 
         before '/blueprints/@:identifier/?*' do
           @blueprint = Blueprint.new(params[:identifier])
         end
 
-        # Index blueprints
         get '/blueprints' do
           action(:index)
         end
 
-        # List blueprints
         get '/blueprints/list' do
           action(:list)
         end
 
-        # Create blueprint
         post '/blueprints' do
-          action(:new, model: params[:blueprint])
+          action(:new, model: params[:model])
         end
 
-        # Import blueprint
-        post '/blueprints/import' do
-          ::Spaces::Commands::Saving.new(model: params[:import], space: :locations).run.payload.tap do |payload|
-            ::Publishing::Commands::Importing.new(identifier: payload.result, force: true).run
-          end.to_json
-        end
-
-        # Show blueprint
         get '/blueprints/@:identifier' do
-          @controller.control(:show, identifier: params[:identifier]).to_json
+          action(:show, identifier: params[:identifier])
         end
 
-        # Delete blueprint
         delete '/blueprints/@:identifier' do
-          @controller.control(:delete, identifier: params[:identifier]).to_json
+          action(:delete, identifier: params[:identifier])
         end
 
-        # Update blueprint
         put '/blueprints/@:identifier' do
-          @controller.control(:update, model: params[:blueprint]).to_json
-        end
-
-        # Show blueprint location
-        get '/blueprints/@:identifier/location' do
-          return {result: nil}.to_json unless Api.spaces.universe.locations.exist?(params[:identifier])
-          ::Spaces::Commands::Reading.new(identifier: params[:identifier], space: :locations).run.payload.to_json
-        end
-
-        # Update blueprint location
-        put '/blueprints/@:identifier/location' do
-          ::Spaces::Commands::Saving.new(identifier: params[:identifier], model: params[:location], space: :locations).run.payload.to_json
-        end
-
-        # Reimport blueprint
-        post '/blueprints/@:identifier/reimport' do
-          ::Publishing::Commands::Importing.new(identifier: params[:identifier], force: true).run.payload.to_json
-        end
-
-        # Export blueprint
-        post '/blueprints/@:identifier/publication/export' do
-          # @blueprint.publication.export(params[:export]).to_json
-          ::Publishing::Commands::Exporting.new(
-            identifier: params[:identifier]
-          ).run.payload.to_json
+          action(:update, model: params[:model])
         end
 
         # Show blueprint relations

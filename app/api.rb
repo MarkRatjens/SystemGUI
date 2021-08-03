@@ -43,7 +43,7 @@ module App
 
     def action(action, options={})
       @controller.control(action, options).to_json
-    end 
+    end
 
     ## This method is used to convert Sinatra::IndifferentHash to
     ## a Hash, because JSON.generate was failing with IndifferentHash.
