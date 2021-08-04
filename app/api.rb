@@ -41,8 +41,8 @@ module App
       request.fullpath.sub('/api', '')
     end
 
-    def action(action, options={})
-      @controller.send(action, options).to_json
+    def action(action, **options)
+      @controller.control(action, **options).to_json
     end
 
     ## This method is used to convert Sinatra::IndifferentHash to
