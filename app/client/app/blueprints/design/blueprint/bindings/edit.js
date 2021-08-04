@@ -4,7 +4,7 @@ app.blueprints.design.blueprint.bindings.edit = (route, blueprint) => (a,x) => {
 
   return [
     app.fetch({
-      url: `/api/blueprints/@${binding.target_identifier}/blueprint`,
+      url: `/api/blueprints/@${binding.target_identifier}`,
       placeholder: app.spinner('Loading target blueprint'),
       success: (targetblueprint, el) => [
         'Binding to ',
@@ -58,7 +58,7 @@ app.blueprints.design.blueprint.bindings.edit = (route, blueprint) => (a,x) => {
             form.configuration = configuration
             form.identifier = form.identifier || form.target_identifier
             blueprint.bindings[route.params.bindingIndex] = app.compact(form);
-            return {blueprint: blueprint};
+            return {model: blueprint};
           },
         })
       ],

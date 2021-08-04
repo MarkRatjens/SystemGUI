@@ -42,6 +42,6 @@ app.blueprints.design.blueprint.form({
     } else {
       delete blueprint.bindings
     };
-    return {blueprint: blueprint};
+    return {model: blueprint};
   },
 })

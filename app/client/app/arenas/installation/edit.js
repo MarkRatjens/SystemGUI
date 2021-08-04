@@ -9,9 +9,13 @@ app.arenas.installation.edit = (route) => (a,x) => [
     app.formDSL.builder.form({
       components: form.components,
     }, installation.input, {
-      action: `/api/installations/@${route.params.arenaIdentifier}::${route.params.blueprintIdentifier}/input`,
-      scope: 'input',
+      action: `/api/installations/@${route.params.arenaIdentifier}::${route.params.blueprintIdentifier}`,
+      // scope: 'model',
       route: route,
+      digest: (form) => {
+        installation.input = app.compact(form)
+        return {model: installation}
+      }
     }) :
     [
       a.p(app.placeholder('Nothing to configure.')),

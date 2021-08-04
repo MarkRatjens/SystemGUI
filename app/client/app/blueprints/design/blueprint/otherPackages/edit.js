@@ -5,6 +5,6 @@ app.blueprints.design.blueprint.form({
   form: app.blueprints.design.blueprint.otherPackages.form,
   digest: (form) => {
     blueprint.other_packages[route.params.other_package_id] = app.compact(form);
-    return {blueprint: blueprint};
+    return {model: blueprint};
   },
 })

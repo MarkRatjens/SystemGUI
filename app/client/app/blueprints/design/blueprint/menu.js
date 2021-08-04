@@ -44,11 +44,11 @@ app.blueprints.design.blueprint.menu = (route, blueprint) => (a,x) => {
       ]) : null,
       a.hr,
       app.button({
-        label: '{}',
-        title: 'Raw blueprint',
+        label: '{} JSON',
+        title: 'Raw blueprint JSON',
         onclick: () => {
           modal.$open({
-            title: `Raw ${route.params.blueprintIdentifier} blueprint`,
+            title: `Raw ${route.params.blueprintIdentifier} blueprint JSON`,
             size: 'lg',
             body: [blueprint],
           })

@@ -40,7 +40,7 @@ app.blueprints.show = (route) => (a,x) => [
           }
         })
       ),
-      a.hr,
+      a.br,
       app.float({
        right: [
          app.button({

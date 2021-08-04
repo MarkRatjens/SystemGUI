@@ -23,6 +23,6 @@ app.blueprints.design.blueprint.form({
     } else {
       delete blueprint.about
     };
-    return {blueprint: blueprint};
+    return {model: blueprint};
   },
 })

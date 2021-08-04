@@ -35,6 +35,6 @@ app.blueprints.design.blueprint.form({
     } else {
       delete blueprint.configuration
     }
-    return {blueprint: blueprint};
+    return {model: blueprint};
   },
 })

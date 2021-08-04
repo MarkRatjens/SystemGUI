@@ -7,9 +7,10 @@ app.form.shim = {
           // Focus on first form control.
           setTimeout(
             () => {
-              let first = el.$("appkit-form-control");
+              let first = el.$("ax-appkit-form-control");
               if (first) first.$focus()
-            }
+            },
+            100
           )
         },
         ...options.asyncformTag,

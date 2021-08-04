@@ -10,7 +10,7 @@ app.arenas.edit = (route) => (a,x) => [
       app.jsonForm({
         url: `/api/arenas/@${route.params.arenaIdentifier}`,
         object: arena,
-        scope: 'arena',
+        scope: 'model',
         route: route,
         form: f => [
           f.field({

@@ -52,50 +52,50 @@ app.arenas.show = (route) => (a,x) => [
           }),
         ]
       }),
-      a.hr,
-      app.float({
-        left: [
-          app.button({
-            label: app.icon('fas fa-microscope', 'Resolve'),
-            title: 'Resolve arena',
-            onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/resolve`),
-          }),
-          app.button({
-            label: app.icon('fas fa-suitcase', 'Pack'),
-            title: 'Pack arena',
-            onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/pack`),
-          }),
-          app.button({
-            label: app.icon('fas fa-luggage-cart', 'Provision'),
-            title: 'Provision arena',
-            onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/provision`),
-          }),
-          ' ',
-          app.button({
-            label: app.icon('far fa-flag', 'Init'),
-            title: 'Init arena',
-            onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/init`),
-          }),
-          app.button({
-            label: app.icon('fas fa-flag', 'Plan'),
-            title: 'Plan arena',
-            onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/plan`),
-          }),
-          app.button({
-            label: app.icon('fas fa-flag-checkered', 'Apply'),
-            title: 'Apply arena',
-            onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/apply`),
-          }),
-        ],
-        right: [
-          app.button({
-            label: app.icon('fa fa-trash'),
-            title: 'Delete arena',
-            class: 'btn btn-outline-danger',
-            onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/delete`),
-          }),
-        ],
-      }),
     ]
+  }),
+  a.hr,
+  app.float({
+    left: [
+      app.button({
+        label: app.icon('fas fa-microscope', 'Resolve'),
+        title: 'Resolve arena',
+        onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/resolve`),
+      }),
+      app.button({
+        label: app.icon('fas fa-suitcase', 'Pack'),
+        title: 'Pack arena',
+        onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/pack`),
+      }),
+      app.button({
+        label: app.icon('fas fa-luggage-cart', 'Provision'),
+        title: 'Provision arena',
+        onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/provision`),
+      }),
+      ' ',
+      app.button({
+        label: app.icon('far fa-flag', 'Init'),
+        title: 'Init arena',
+        onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/init`),
+      }),
+      app.button({
+        label: app.icon('fas fa-flag', 'Plan'),
+        title: 'Plan arena',
+        onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/plan`),
+      }),
+      app.button({
+        label: app.icon('fas fa-flag-checkered', 'Apply'),
+        title: 'Apply arena',
+        onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/apply`),
+      }),
+    ],
+    right: [
+      app.button({
+        label: app.icon('fa fa-trash'),
+        title: 'Delete arena',
+        class: 'btn btn-outline-danger',
+        onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/delete`),
+      }),
+    ],
   }),
 ]
