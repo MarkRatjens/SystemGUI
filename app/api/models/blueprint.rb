@@ -13,6 +13,8 @@ module App
           @identifier = identifier
         end
 
+        attr_reader :identifier
+
         def icon
           @icon ||= Icon.new(self)
         end
