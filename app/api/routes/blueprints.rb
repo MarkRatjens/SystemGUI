@@ -3,14 +3,9 @@ module App
     module Routes
       module Blueprints
         extend Sinatra::Extension
-        include Models
 
         before '/blueprints/?*' do
-          @controller = ::Spaces::Controllers::RESTController.new(space: :blueprints)
-        end
-
-        before '/blueprints/@:identifier/?*' do
-          @blueprint = Blueprint.new(params[:identifier])
+          @controller = ::Blueprinting::Controllers::Controller.new
         end
 
         get '/blueprints' do
@@ -37,10 +32,19 @@ module App
           action(:update, **params)
         end
 
-        # Show blueprint relations
         get '/blueprints/@:identifier/relations' do
-          {result: @blueprint.relations}.to_json
+          action(:relations, **params)
         end
+
+        #-----------------------------------------------------------------------
+        # TODO: everything below here is still to be cleaned up
+
+        include Models
+
+        before '/blueprints/@:identifier/?*' do
+          @blueprint = Blueprint.new(params[:identifier])
+        end
+
 
         # FORM
 

@@ -46,10 +46,6 @@ module App
           @readme ||= Readme.new(self)
         end
 
-        def relations
-          @relations ||= Relations.new(self)
-        end
-
         def installations
           @installations ||= Installations.new(self)
         end
