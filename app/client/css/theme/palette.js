@@ -1,7 +1,7 @@
 app.theme.palette = (name, colors, options) => app.theme({
   name: name,
   color: colors.text1,
-  backgroundColor: !options.gradient ? colors.bg2 : undefined,
+  backgroundColor: colors.bg2,
   background: options.gradient ? `linear-gradient(to bottom, ${colors.bg1}, ${colors.bg2})` : undefined,
 
   placeholderColor: colors.text2,

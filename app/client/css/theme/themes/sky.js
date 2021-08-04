@@ -1,8 +1,8 @@
 app.theme.palette('sky', {
-  text1: '#303F4B',
-  text2: '#303F4B',
+  text1: '#03045E',
+  text2: '#04078B',
   bg1: '#B1CEE7',
-  bg2: '#F7F7FF',
+  bg2: '#E0EBF5',
   attention: '#FE5F55',
   look: '#BDD5EA',
   outline: '#577399',
