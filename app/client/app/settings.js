@@ -17,6 +17,7 @@ app.settings = (route) => (a, x) => [
           desert: 'Desert',
           forest: 'Forest',
           ocean: 'Ocean',
+          psyco: 'Psyco',
           sky: 'Sky',
           snow: 'Snow',
         },
@@ -39,7 +40,7 @@ app.settings = (route) => (a, x) => [
           sublime: "Sublime",
         },
       }),
-      f.buttons({route: route}),
+      f.buttons({route: route, cancel: {onclick: () => window.history.back()}}),
     ],
     action: (submission) => {
       let form = submission.form.$output()
@@ -49,7 +50,8 @@ app.settings = (route) => (a, x) => [
         form.editor_default_mode;
       window.localStorage.systemMenuWidthPercent =
         form.menu_width
-      location.assign("/");
+      window.history.back()
+      setTimeout(() => window.location.reload())
       return false;
     },
   }),
