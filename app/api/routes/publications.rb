@@ -9,23 +9,12 @@ module App
         end
 
         post '/publications/import' do
-          model = {}
-          model['repository'] = params[:model][:repository] if params[:model][:repository]
-          model['branch'] = params[:model][:branch] if params[:model][:branch]
-          model['identifier'] = params[:model][:identifier] if params[:model][:identifier]
-          action(:import, model: model)
+          action(:import, **params)
         end
 
         post '/publications/@:identifier/export' do
-          action(:export, identifier: params[:identifier])
+          action(:export, **params)
         end
-
-        post '/publications/@:identifier/import' do
-          action(:import, identifier: params[:identifier])
-        end
-
-# ::Publishing::Commands::Importing.new(identifier: params[:identifier], force: true).run.payload.to_json
-
       end
     end
   end
