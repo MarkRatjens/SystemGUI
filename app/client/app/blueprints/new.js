@@ -3,7 +3,7 @@ app.blueprints.new = (route) => (a, x) => a.div([
   app.form({
     url: "/api/blueprints",
     method: 'POST',
-    scope: 'blueprint',
+    scope: 'model',
     form: (f) => [
       f.field({
         key: "identifier",

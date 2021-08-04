@@ -23,7 +23,8 @@ app.dashboard.menu.arenas.arena = (route, arena) => (a,x) => [
     }
   }),
   app.fetch({
-    url: `/api/arenas/@${arena.identifier}/installations`,
+    url: '/api/installations/list',
+    query: {arena_identifier: arena.identifier},
     success: (installations => installations.map(installationIdentifier => {
       let blueprintIdentifier = installationIdentifier.split('::')[1]
 

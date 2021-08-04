@@ -30,6 +30,6 @@ app.blueprints.design.blueprint.form({
     } else {
       delete blueprint.volumes
     };
-    return {blueprint: blueprint};
+    return {model: blueprint};
   },
 })

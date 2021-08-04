@@ -9,13 +9,12 @@ module App
         end
 
         post '/publications/import' do
-          action(:import, model: params[:model])
+          action(:import, **params)
         end
 
         post '/publications/@:identifier/export' do
-          action(:export, identifier: params[:identifier])
+          action(:export, **params)
         end
-
       end
     end
   end

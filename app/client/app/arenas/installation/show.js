@@ -2,7 +2,7 @@ app.arenas.installation.show = (route) => (a,x) => [
   app.fetch({
     url: [
       `/api/installations/@${route.params.arenaIdentifier}::${route.params.blueprintIdentifier}`,
-      `/api/installations/@${route.params.arenaIdentifier}::${route.params.blueprintIdentifier}/status`,
+      `/api/installations/@${route.params.arenaIdentifier}::${route.params.blueprintIdentifier}/summary`,
     ],
     success: ([installation, status]) => [
       app.float({

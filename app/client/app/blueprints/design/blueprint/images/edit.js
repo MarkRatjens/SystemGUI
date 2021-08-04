@@ -5,6 +5,6 @@ app.blueprints.design.blueprint.form({
   form: app.blueprints.design.blueprint.images.form,
   digest: (form) => {
     blueprint.images[route.params.image_id] = form;
-    return {blueprint: blueprint};
+    return {model: blueprint};
   },
 })

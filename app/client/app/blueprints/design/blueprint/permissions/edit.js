@@ -31,6 +31,6 @@ app.blueprints.design.blueprint.form({
     } else {
       delete blueprint.permissions
     }
-    return {blueprint: blueprint};
+    return {model: blueprint};
   },
 })

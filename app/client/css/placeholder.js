@@ -1,5 +1,5 @@
 ax.style({
-  '.placeholder': {
-    color: '#6c757d',
-  }
-})
+  '.placeholder, .form-control::placeholder, .CodeMirror-placeholder, .custom-select.placeholder': {
+    fontStyle: "italic",
+  },
+});

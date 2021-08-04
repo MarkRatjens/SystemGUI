@@ -8,6 +8,14 @@ module App
           @controller = ::Spaces::Controllers::RESTController.new(space: :installations)
         end
 
+        get '/installations' do
+          action(:index, **params)
+        end
+
+        get '/installations/list' do
+          action(:list, **params)
+        end
+
         get '/installations/@:identifier' do
           action(:show, **params)
         end
@@ -22,14 +30,6 @@ module App
 
         put '/installations/@:identifier' do
           action(:update, **params)
-        end
-
-        # Update input
-        # TODO is this needed?
-        put '/installations/@:identifier/input' do
-          installation = ::Spaces::Commands::Reading.new(identifier: params[:identifier], space: :installations).run.payload.result.to_h
-          installation[:input] = params[:input].to_h
-          ::Spaces::Commands::Saving.new(identifier: params[:identifier], model: installation, space: :installations).run.payload.to_json
         end
       end
     end

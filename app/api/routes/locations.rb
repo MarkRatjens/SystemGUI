@@ -15,7 +15,6 @@ module App
         put '/locations/@:identifier' do
           action(:update, **params)
         end
-
       end
     end
   end

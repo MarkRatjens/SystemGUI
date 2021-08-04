@@ -1,7 +1,7 @@
 app.arenas.installation.resolution = (route) => (a,x) => [
   app.fetch({
     url: [
-      `/api/resolutions/@${route.params.arenaIdentifier}::${route.params.blueprintIdentifier}/status`,
+      `/api/resolutions/@${route.params.arenaIdentifier}::${route.params.blueprintIdentifier}/summary`,
     ],
     success: ([status]) => [
       a.h5([

@@ -20,6 +20,6 @@ app.blueprints.design.blueprint.form({
     } else {
       delete blueprint.provider
     }
-    return {blueprint: blueprint};
+    return {model: blueprint};
   },
 })

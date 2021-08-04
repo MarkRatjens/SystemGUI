@@ -9,7 +9,7 @@ app.blueprints.design.blueprint.otherPackages.new = (route, blueprint) => (a,x) 
       } else {
         blueprint.other_packages = [form]
       };
-      return {blueprint: blueprint};
+      return {model: blueprint};
     },
   })
 ])

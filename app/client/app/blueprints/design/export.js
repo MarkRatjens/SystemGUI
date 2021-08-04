@@ -1,7 +1,7 @@
 app.blueprints.design.export = (route, blueprint) => (a, x) => a.div([
   a.h3(`Export`),
   app.form({
-    url: `/api/blueprints/@${route.params.blueprintIdentifier}/publication/export`,
+    url: `/api/publications/@${route.params.blueprintIdentifier}/export`,
     method: "POST",
     scope: 'export',
     form: (f) => [

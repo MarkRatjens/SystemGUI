@@ -50,6 +50,6 @@ app.blueprints.design.blueprint.form({
     } else {
       delete blueprint.other_packages
     };
-    return {blueprint: blueprint};
+    return {model: blueprint};
   },
 })

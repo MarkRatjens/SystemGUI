@@ -1,12 +1,6 @@
 ax.style( {
   'ax-appkit-panes': {
-    top: '3rem',
-    '> *': {
-      borderTop: '1px solid #0001',
-    },
-    'ax-appkit-panes-proximate': {
-      backgroundColor: '#DDD',
-    },
+    top: '52px',
     'ax-appkit-panes-adjacent': {
       overflowY: 'scroll',
     }

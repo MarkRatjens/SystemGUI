@@ -8,10 +8,6 @@ module App
           @controller = ::Arenas::Controllers::Controller.new
         end
 
-        before '/arenas/@:identifier/?*' do
-          @arena = Arena.new(params[:identifier])
-        end
-
         get '/arenas' do
           action(:index, **params)
         end
@@ -52,10 +48,17 @@ module App
           action(:provision, **params)
         end
 
+        post '/arenas/@:identifier/init' do
+          action(:init, **params)
+        end
+
+        post '/arenas/@:identifier/plan' do
+          action(:plan, **params)
+        end
+
         post '/arenas/@:identifier/apply' do
           action(:apply, **params)
         end
-
       end
     end
   end

@@ -8,7 +8,7 @@ app.blueprints.design.blueprint.images.new = (route, blueprint) => (a,x) => a.di
       } else {
         blueprint.images = [form]
       };
-      return {blueprint: blueprint};
+      return {model: blueprint};
     },
   })
 ])

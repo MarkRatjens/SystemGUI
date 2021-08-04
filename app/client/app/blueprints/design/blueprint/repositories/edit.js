@@ -46,6 +46,6 @@ app.blueprints.design.blueprint.repositories.edit = (route, blueprint) => app.bl
     } else {
       delete blueprint.repositories
     };
-    return {blueprint: blueprint};
+    return {model: blueprint};
   },
 })
