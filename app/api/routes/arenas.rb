@@ -59,8 +59,6 @@ module App
           {result: @arena.packs}.to_json
         end
 
-
-
         # Generate resolutions for an arena
         post '/arenas/@:identifier/resolve' do
           {result: @arena.resolutions.generate}.to_json
@@ -71,9 +69,36 @@ module App
           {result: @arena.packs.generate}.to_json
         end
 
-        # Apply provisions for an arena
+        # Generate provisions for an arena
+        post '/arenas/@:identifier/provision' do
+          {result: @arena.provisions.generate}.to_json
+        end
+
+        # Init an arena
+        post '/arenas/@:identifier/init' do
+          ::Spaces::Commands::Executing.new(
+            identifier: params[:identifier],
+            space: :arenas,
+            execute: :init
+          ).run.payload.to_json
+        end
+
+        # Plan an arena
+        post '/arenas/@:identifier/plan' do
+          ::Spaces::Commands::Executing.new(
+            identifier: params[:identifier],
+            space: :arenas,
+            execute: :plan
+          ).run.payload.to_json
+        end
+
+        # Apply an arena
         post '/arenas/@:identifier/apply' do
-          {result: @arena.apply}.to_json
+          ::Spaces::Commands::Executing.new(
+            identifier: params[:identifier],
+            space: :arenas,
+            execute: :apply
+          ).run.payload.to_json
         end
       end
     end

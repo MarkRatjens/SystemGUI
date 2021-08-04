@@ -61,14 +61,30 @@ app.arenas.show = (route) => (a,x) => [
             onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/resolve`),
           }),
           app.button({
-            label: app.icon('fas fa-dolly', 'Pack'),
+            label: app.icon('fas fa-suitcase', 'Pack'),
             title: 'Pack arena',
             onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/pack`),
           }),
           app.button({
-            label: app.icon('fas fa-cloud', 'Provision'),
+            label: app.icon('fas fa-luggage-cart', 'Provision'),
             title: 'Provision arena',
             onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/provision`),
+          }),
+          ' ',
+          app.button({
+            label: app.icon('far fa-flag', 'Init'),
+            title: 'Init arena',
+            onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/init`),
+          }),
+          app.button({
+            label: app.icon('fas fa-flag', 'Plan'),
+            title: 'Plan arena',
+            onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/plan`),
+          }),
+          app.button({
+            label: app.icon('fas fa-flag-checkered', 'Apply'),
+            title: 'Apply arena',
+            onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/apply`),
           }),
         ],
         right: [
