@@ -3,7 +3,6 @@ module App
     module Routes
       module Arenas
         extend Sinatra::Extension
-        include Models
 
         before '/arenas/?*' do
           @controller = ::Arenas::Controllers::Controller.new
@@ -56,7 +55,7 @@ module App
         post '/arenas/@:identifier/apply' do
           action(:apply, **params)
         end
-        
+
       end
     end
   end
