@@ -6,6 +6,7 @@ module App #TODO: consider whether this level is necessary
         require_relative 'arena/installations'
         require_relative 'arena/resolutions'
         require_relative 'arena/packs'
+        require_relative 'arena/provisions'
 
         def initialize(identifier)
           @identifier = identifier
@@ -54,6 +55,10 @@ module App #TODO: consider whether this level is necessary
           @packs ||= Packs.new(self)
         end
 
+        def provisions
+          @provisions ||= Provisions.new(self)
+        end
+
         def save(arena)
           Api.spaces.run do
             ::Arenas::Commands::Saving.new(
@@ -63,16 +68,6 @@ module App #TODO: consider whether this level is necessary
           end.tap do
             installations.generate #TODO: Consider why. Seems like unnecessary coupling
           end
-        end
-
-        def apply
-          Api.spaces.run do
-            ::Spaces::Commands::Executing.new(
-              identifier: params[:identifier],
-              space: :arenas,
-              execute: :apply
-            )
-          end.to_json
         end
 
         def delete #TODO: should be in the route ... or a "Controller"
