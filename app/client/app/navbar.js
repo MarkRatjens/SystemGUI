@@ -1,5 +1,5 @@
 app.navbar = (route) => (a, x) =>
-  a["nav#navbar.navbar.navbar-expand.navbar-light.bg-transparent.mt-n1.mb-1.activatable"](
+  a["nav#navbar.navbar.navbar-expand.navbar-light.mt-n1.mb-1.activatable"](
     [
       a.a([
         a({
@@ -127,6 +127,7 @@ app.navbar = (route) => (a, x) =>
       ),
     ],
     {
+      $init: (el) => el.$activate(),
       $activate: (el) => () => {
         el.$$('.nav-item.active').classList.remove('active')
         let section = window.location.pathname.split('/')[1]

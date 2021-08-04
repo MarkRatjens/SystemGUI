@@ -2,14 +2,17 @@ app.router = () => (a, x) => x.router({
   id: 'router',
   routes: (route) => [
     app.navbar(route),
-    route.mount({
-      routes: {
-        '/settings/?*': app.settings,
-        '/disconnected': app.disconnected,
-        '/reconnect': app.reconnect,
-        '*': app.dashboard,
-      },
-    }),
+    a["div.container-fluid"]([
+      route.mount({
+        routes: {
+          '/settings/?*': app.settings,
+          '/disconnected': app.disconnected,
+          '/reconnect': app.reconnect,
+          '*': app.dashboard,
+        },
+      }),
+      a.br,
+    ])
   ],
   lazy: true,
   transition: 'fade',

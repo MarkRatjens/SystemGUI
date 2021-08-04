@@ -1,7 +1,6 @@
 ax.style({
   "ax-appkit-out": {
     label: {
-      color: "#666",
       fontSize: "0.8rem",
       marginBottom: "0rem",
     },

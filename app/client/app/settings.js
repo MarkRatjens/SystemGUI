@@ -14,6 +14,11 @@ app.settings = (route) => (a, x) => [
         placeholder: "Default",
         selections: {
           dark: "Dark",
+          desert: 'Desert',
+          forest: 'Forest',
+          ocean: 'Ocean',
+          sky: 'Sky',
+          snow: 'Snow',
         },
       }),
       f.field({

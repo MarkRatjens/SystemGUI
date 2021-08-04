@@ -7,8 +7,5 @@ ax.style({
     '*': {
       cursor: 'pointer',
     },
-    '&:hover': {
-      boxShadow: '0px 0px 10px gray',
-    }
   },
 })
