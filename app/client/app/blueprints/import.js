@@ -1,9 +1,10 @@
 app.blueprints.import = (route) => (a, x) => a.div([
   a.h1("Import blueprint"),
-  app.form({
-    url: "/api/blueprints/import",
+  app.jsonForm({
+    url: "/api/publications/import",
+    route: route,
     method: 'POST',
-    scope: 'import',
+    scope: 'model',
     form: (f) => [
       f.field({
         key: "repository",
@@ -17,8 +18,8 @@ app.blueprints.import = (route) => (a, x) => a.div([
       f.field({
         key: "identifier",
       }),
-      f.buttons({route: route}),
     ],
+    digest: (form) => app.compact(form),
     success: (blueprint_identifier) => {
       dashboardMenu.$render()
       route.open(`../@${blueprint_identifier}`)

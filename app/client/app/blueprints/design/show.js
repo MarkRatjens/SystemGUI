@@ -1,19 +1,13 @@
 app.blueprints.design.show = (route) => (a, x) => [
-  app.fetch({
-    url: `/api/blueprints/@${route.params.blueprintIdentifier}/location`,
-    success: location => [
-      a['div.mb-1'](app.blueprints.design.menu(route)),
-      route.mount({
-        routes: {
-          '/icon/?*': app.blueprints.design.icon,
-          '/readme/?*': app.blueprints.design.readme,
-          '/license/?*': app.blueprints.design.license,
-          '/form/?*': app.blueprints.design.form,
-          '/files/?*': app.blueprints.design.files,
-          '*': app.blueprints.design.blueprint,
-        }
-      }),
-
-    ]
+  a['div.mb-1'](app.blueprints.design.menu(route)),
+  route.mount({
+    routes: {
+      '/icon/?*': app.blueprints.design.icon,
+      '/readme/?*': app.blueprints.design.readme,
+      '/license/?*': app.blueprints.design.license,
+      '/form/?*': app.blueprints.design.form,
+      '/files/?*': app.blueprints.design.files,
+      '*': app.blueprints.design.blueprint,
+    }
   }),
 ]

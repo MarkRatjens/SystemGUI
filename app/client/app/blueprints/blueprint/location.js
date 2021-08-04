@@ -1,6 +1,6 @@
 app.blueprints.blueprint.location = (route) => (a, x) => [
   app.fetch({
-    url: `/api/blueprints/@${route.params.blueprintIdentifier}/location`,
+    url: `/api/locations/@${route.params.blueprintIdentifier}`,
     success: location => [
       app.float({
         left: [
