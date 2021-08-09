@@ -11,7 +11,7 @@ app.formDSL.designer.form.field.control = (f) => [
     placeholder: 'Default',
     horizontal: true,
     selections: [
-      { value: 'string', label: 'String' },
+      // { value: 'string', label: 'String' },
       { value: 'select', label: 'Select' },
       { value: 'text', label: 'Text' },
       { disabled: 'hr' },

@@ -33,7 +33,7 @@ app.formDSL.designer.form.field.appearance = (f) => [
     ],
     dependent: {
       key: 'control',
-      pattern: '^(?!hidden).+$',
+      pattern: '^(?!hidden).*$',
     },
   } ),
 
@@ -44,7 +44,7 @@ app.formDSL.designer.form.field.appearance = (f) => [
     horizontal: true,
     dependent: {
       key: 'control',
-      pattern: '^(?!hidden).+$',
+      pattern: '^(?!hidden).*$',
     },
   } ),
 
@@ -54,7 +54,7 @@ app.formDSL.designer.form.field.appearance = (f) => [
     horizontal: true,
     dependent: {
       key: 'control',
-      pattern: '^(?!hidden).+$',
+      pattern: '^(?!hidden).*$',
     },
   } ),
 
@@ -64,7 +64,7 @@ app.formDSL.designer.form.field.appearance = (f) => [
     horizontal: true,
     dependent: {
       key: 'control',
-      pattern: '^(?!(hidden|checkbox|checkboxes|radios|one|many|table|json)$).+',
+      pattern: '^(?!(hidden|checkbox|checkboxes|radios|one|many|table|json)).*$',
     }
   } ),
 
@@ -152,7 +152,7 @@ app.formDSL.designer.form.field.appearance = (f) => [
     ],
     dependent: {
       key: 'control',
-      pattern: '^(hidden|)$',
+      pattern: '^hidden$',
     },
   })
 

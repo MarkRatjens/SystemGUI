@@ -7,7 +7,7 @@ app.formDSL.designer.form.field.collection = (f) => [
     control: { label: 'Collection' },
     dependent: {
       key: 'control',
-      pattern: '^(?!(checkbox|checkboxes|hidden|radios|multiselect|one|many|table)$).+$',
+      pattern: '^(?!(checkbox|checkboxes|hidden|radios|multiselect|one|many|table)$).*$',
     }
   } ),
 
@@ -54,7 +54,7 @@ app.formDSL.designer.form.field.collection = (f) => [
     ],
     dependent: {
       key: 'control',
-      pattern: '^(checkbox|checkboxes|hidden|radios|multiselect|one|many|table|)$',
+      pattern: '^(checkbox|checkboxes|hidden|radios|multiselect)$',
     },
   }),
 
