@@ -21,7 +21,22 @@ module App
         end
 
         post '/arenas' do
-          action(:new, **params)
+          # TODO: USE action(:new, **params)
+          if params[:model][:identifier].blank?
+            params[:model][:identifier] = params[:model][:blueprint_identifier]
+          end
+          @controller.control(:new, **params).tap do |payload|
+            arena = @controller.control(:show, identifier: payload[:result]).result.to_h
+            blueprint = ::Blueprinting::Controllers::Controller.new.control(:show, identifier: params[:model][:blueprint_identifier]).result.to_h
+            arena[:about] = blueprint[:about]
+            # Saving :blueprint_identifier in :about for the time being.
+            # Better for it to be saved in the top-level of arena model.
+            arena[:about][:blueprint_identifier] = params[:model][:blueprint_identifier]
+            arena[:bindings] = blueprint[:bindings]
+            arena[:configuration] = blueprint[:configuration]
+            # debugger
+            action(:update, model: arena)
+          end.to_json
         end
 
         delete '/arenas/@:identifier' do
@@ -32,7 +47,16 @@ module App
           action(:update, **params)
         end
 
-        post '/arenas/@:identifier/install' do
+        get '/arenas/@:identifier/state' do
+          # TODO: USE action(:state, **params)
+          {result: Api.spaces.universe.arenas.by(params[:identifier]).state}.to_json
+        end
+
+        # post '/arenas/@:identifier/input' do
+        #   action(:input, **params)
+        # end
+
+        post '/arenas/@:identifier/assemble' do
           action(:install, **params)
         end
 
@@ -44,8 +68,22 @@ module App
           action(:pack, **params)
         end
 
-        post '/arenas/@:identifier/provision' do
+        post '/arenas/@:identifier/provision/runtime' do
+          # save provisions for the arena's runtime
+          action(:runtime, **params)
+          # RUN INIT HERE?
+        end
+
+        post '/arenas/@:identifier/provision/providers' do
+          # save provisions for the arena's other providers
           action(:provision, **params)
+          # RUN APPLY HERE FOR INITIAL PROVISIONING? IT MUST HAPPEN BEFORE ...
+        end
+
+        post '/arenas/@:identifier/provision/post-init' do
+          # save post-initialization provisions for providers
+          action(:provision_providers, **params)
+          # RUN APPLY HERE FOR INITIAL PROVISIONING?
         end
 
         post '/arenas/@:identifier/init' do
