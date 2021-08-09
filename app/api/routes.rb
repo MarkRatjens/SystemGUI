@@ -11,6 +11,8 @@ module App
       require_relative 'routes/publications'
       require_relative 'routes/installations'
       require_relative 'routes/resolutions'
+      require_relative 'routes/packs'
+      require_relative 'routes/provisioning'
       require_relative 'routes/system'
 
       register Arenas
@@ -19,6 +21,8 @@ module App
       register Publications
       register Installations
       register Resolutions
+      register Packs
+      register Provisioning
       register System
     end
   end
