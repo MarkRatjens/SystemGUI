@@ -1,6 +1,6 @@
 app.theme.palette('dark', {
   text1: '#eee',
-  text2: '#eee',
+  text2: '#ccc',
   bg1: '#333',
   bg2: '#000',
   attention: 'pink',

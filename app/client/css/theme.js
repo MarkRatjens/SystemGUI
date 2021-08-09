@@ -19,11 +19,6 @@ app.theme = (theme) => {
         color: theme.buttonColorHover,
       },
     },
-    'ax-appkit-panes': {
-      'ax-appkit-panes-proximate': {
-        backgroundColor: theme.buttonBackgroundColor,
-      },
-    },
     '.border': {
       border: `1px solid ${theme.borderColor} !important`,
     },
@@ -101,7 +96,10 @@ app.theme = (theme) => {
     'ax-appkit-report .form-control': {
       color: `${theme.color} !important`,
     },
-    axAppkitPanes: {
+    'ax-appkit-panes': {
+      'ax-appkit-panes-proximate': {
+        backgroundColor: theme.buttonBackgroundColor,
+      },
       '&.dragable': {
         axAppkitPanesDrag: {
           backgroundColor: theme.borderColor,
@@ -140,6 +138,25 @@ app.theme = (theme) => {
         color: theme.color,
       },
     },
+    'ax-appkit-context-popup': {
+    },
+    'ax-appkit-menu': {
+      'ax-appkit-menu-item button': {
+        '&:hover': {
+          color: theme.buttonColorHover,
+          backgroundColor: theme.buttonBackgroundColorHover,
+        },
+        color: theme.buttonColor,
+        backgroundColor: theme.buttonBackgroundColor,
+        boxShadow: `0px 0px 5px ${theme.controlBoxShadowColor}`,
+      },
+      // menu: {
+      //   color: theme.buttonColor,
+      //   backgroundColor: theme.buttonBackgroundColor,
+      //   boxShadow: `0px 0px 5px ${theme.controlBoxShadowColor}`,
+      // },
+    },
+
   }
 
   ax.style(style)

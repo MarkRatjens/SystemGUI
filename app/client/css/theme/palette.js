@@ -17,11 +17,11 @@ app.theme.palette = (name, colors, options) => app.theme({
   buttonColorHover: colors.bg1,
   buttonBackgroundColorHover: colors.text1,
 
-  navbarBrandColor: colors.text1,
-  navbarButtonColor: colors.text2,
-  navbarButtonColorActive: colors.text1,
-  navbarButtonColorHover: colors.text1,
   navbarBackgroundColor: colors.bg1,
+  navbarBrandColor: colors.text1,
+  navbarButtonColor: colors.text1,
+  navbarButtonColorActive: colors.text2,
+  navbarButtonColorHover: colors.text2,
 
   outColor: colors.text2,
   outNullColor: colors.attention,
