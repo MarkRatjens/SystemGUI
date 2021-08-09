@@ -1,17 +1,12 @@
 app.blueprints.show = (route) => (a,x) => [
   app.fetch({
-    url: [
-      `/api/blueprints/@${route.params.blueprintIdentifier}`,
-      `/api/blueprints/@${route.params.blueprintIdentifier}/relations`,
-      `/api/blueprints/@${route.params.blueprintIdentifier}/readme`,
-      `/api/blueprints/@${route.params.blueprintIdentifier}/license`,
-    ],
-    placeholder: app.spinner(`Loading ${route.params.blueprintIdentifier}`),
-    success: ([blueprint, relations, readme, license]) => [
+    url: `/api/blueprints/@${route.params.blueprintIdentifier}`,
+    placeholder: app.spinner(`Loading blueprint`),
+    success: (blueprint) => [
       app.float({
         left: [
           a.i([
-            a.h3([
+            a.h1([
               a.img([], {
                 src: `/api/blueprints/@${route.params.blueprintIdentifier}/icon/thumbnail`,
                 height: '48',
@@ -34,9 +29,10 @@ app.blueprints.show = (route) => (a,x) => [
       a['div.border.border-1.p-1'](
         route.mount({
           routes: {
-            '/?': () => readme ? app.md(readme) : app.placeholder('No readme'),
-            '/license': () => license ? app.md(license) : app.placeholder('No license'),
-            '/bindings/?*': app.blueprints.bindings(blueprint, relations),
+            '/?': app.blueprints.readme,
+            '/license': app.blueprints.license,
+            '/bindings/?*': app.blueprints.bindings(blueprint),
+            '/relations/?*': app.blueprints.relations(blueprint),
           }
         })
       ),

@@ -3,7 +3,7 @@ app.blueprints.design.export = (route, blueprint) => (a, x) => a.div([
   app.form({
     url: `/api/publications/@${route.params.blueprintIdentifier}/export`,
     method: "POST",
-    scope: 'export',
+    scope: 'model',
     form: (f) => [
       f.field({
         key: 'message',

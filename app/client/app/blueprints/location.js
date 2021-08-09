@@ -1,10 +1,10 @@
-app.blueprints.blueprint.location = (route) => (a, x) => [
+app.blueprints.location = (route) => (a, x) => [
   app.fetch({
     url: `/api/locations/@${route.params.blueprintIdentifier}`,
     success: location => [
       app.float({
         left: [
-          location ? a.p(app.locationLabel(location)) : app.placeholder('No location'),
+          a['div.mt-2.mb-2'](location ? app.locationLabel(location) : app.placeholder('No location')),
         ],
         right: [
           route.mount({
@@ -77,7 +77,6 @@ app.blueprints.blueprint.location = (route) => (a, x) => [
           }),
         ],
       }),
-      a.hr,
     ]
   }),
 ]

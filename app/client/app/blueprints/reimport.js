@@ -8,10 +8,8 @@ app.blueprints.reimport = (route) => (a, x) => a.div([
       f.field({
         key: 'identifier',
         value: route.params.blueprintIdentifier,
-        type: 'hidden'
+        as: 'hidden'
       })
-      // f.buttons({route: route}),
     ],
-    // success: () => route.open('..'),
   }),
 ]);

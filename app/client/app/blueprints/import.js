@@ -16,7 +16,7 @@ app.blueprints.import = (route) => (a, x) => a.div([
         key: "branch",
       }),
       f.field({
-        key: "identifier",
+        key: 'identifier',
       }),
     ],
     digest: (form) => app.compact(form),

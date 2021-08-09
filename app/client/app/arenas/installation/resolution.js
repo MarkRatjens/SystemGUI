@@ -1,23 +1,37 @@
 app.arenas.installation.resolution = (route) => (a,x) => [
   app.fetch({
     url: [
+      `/api/resolutions/@${route.params.arenaIdentifier}::${route.params.blueprintIdentifier}`,
       `/api/resolutions/@${route.params.arenaIdentifier}::${route.params.blueprintIdentifier}/summary`,
     ],
-    success: ([status]) => [
-      a.h5([
-        app.icon(
-          status.pack.exist ? 'fa fa-check' : 'fa fa-times', null,
-          {iconTag: {class: status.pack.exist ? 'success' : 'error'}}
-        ),
-        ' Pack'
-      ]),
-      a.h5([
-        app.icon(
-          status.provisions.exist ? 'fa fa-check' : 'fa fa-times', null,
-          {iconTag: {class: status.provisions.exist ? 'success' : 'error'}}
-        ),
-        ' Provisions'
-      ]),
+    success: ([resolution, summary]) => [
+      app.float({
+        left: [
+          a.h5('Resolution'),
+        ],
+        right: [
+          app.button({
+            label: '{} JSON',
+            title: 'Raw blueprint JSON',
+            onclick: () => {
+              modal.$open({
+                title: `Raw ${route.params.arenaIdentifier}::${route.params.blueprintIdentifier} resolution JSON`,
+                size: 'lg',
+                body: [resolution],
+              })
+            },
+          }),
+
+        ],
+      }),
+      a.hr,
+      summary.pack.exist ?
+      app.arenas.installation.pack(route) :
+      app.placeholder('No pack'),
+      a.hr,
+      summary.provisions.exist ?
+      app.arenas.installation.provisions(route) :
+      app.placeholder('No provisions'),
     ]
   }),
 ]
