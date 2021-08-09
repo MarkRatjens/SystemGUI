@@ -57,7 +57,7 @@ app.formDSL.designer.form.field.validation = (f) => [
         ] } ),
         dependent: {
           key: '[..]control',
-          pattern: '^(string|password|combobox)$',
+          pattern: '^(string|password|combobox|)$',
         },
       } ),
       ff.field( {
@@ -65,7 +65,7 @@ app.formDSL.designer.form.field.validation = (f) => [
         horizontal: true,
         dependent: {
           key: '[..]control',
-          pattern: '^(string|password|date|url|tel|email|combobox)$',
+          pattern: '^(string|password|date|url|tel|email|combobox|)$',
         },
       } ),
       ff.field( {
@@ -76,7 +76,7 @@ app.formDSL.designer.form.field.validation = (f) => [
     ],
     dependent: {
       key: 'control',
-      pattern: '^(string|select|text|checkbox|checkboxes|radios|password|combobox|color|date|email|number|tel|time|url|code|markdown|country|language|timezone)$',
+      pattern: '^(string|select|text|checkbox|checkboxes|radios|password|combobox|color|date|email|number|tel|time|url|code|markdown|country|language|timezone|)$',
     },
 
   } ),
@@ -87,7 +87,7 @@ app.formDSL.designer.form.field.validation = (f) => [
     ],
     dependent: {
       key: 'control',
-      pattern: '^(hidden|multiselect|)$',
+      pattern: '^(hidden|multiselect)$',
     },
   }),
 ]

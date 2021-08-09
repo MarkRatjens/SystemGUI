@@ -7,7 +7,7 @@ app.formDSL.designer.form.field.value = (f) => [
     horizontal: true,
     dependent: {
       key: 'control',
-      pattern: '^(?!(one|many|table)$).+$',
+      pattern: '^(?!(one|many|table)$).*$',
     }
   } ),
 
@@ -62,7 +62,7 @@ app.formDSL.designer.form.field.value = (f) => [
     as: 'one',
     dependent: {
       key: 'control',
-      pattern: '^(string|number|url|email|color|date|tel|time)$',
+      pattern: '^(string|number|url|email|color|date|tel|time|)$',
     },
     form: ff => [
       ff.field( {
@@ -102,7 +102,7 @@ app.formDSL.designer.form.field.value = (f) => [
     ],
     dependent: {
       key: 'control',
-      pattern: '^(one|many|table|)$',
+      pattern: '^(one|many|table)$',
     },
   }),
 

@@ -19,7 +19,7 @@ app.formDSL.designer.form.field.dependent = (f) => [
     ],
     dependent: {
       key: 'control',
-      pattern: '^.+$',
+      pattern: '^(?!hidden).*$',
     }
   } ),
 
@@ -29,7 +29,7 @@ app.formDSL.designer.form.field.dependent = (f) => [
     ],
     dependent: {
       key: 'control',
-      pattern: '^$',
+      pattern: '^hidden$',
     },
   }),
 ]

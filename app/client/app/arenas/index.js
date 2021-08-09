@@ -1,6 +1,6 @@
 app.arenas.index = (route) => (a,x) => a.div([
   app.close(route),
-  a.h1('Arenas'),
+  a.h5('Arenas'),
   a.p([
     app.button({
       label: app.icon('fa fa-plus', 'New'),

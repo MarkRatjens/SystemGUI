@@ -5,7 +5,7 @@ app.formDSL.designer.form.field.help = (f) => [
     as: 'markdown',
     dependent: {
       key: 'control',
-      pattern: '^(?!hidden).+$',
+      pattern: '^(?!hidden).*$',
     },
   } ),
 
@@ -15,7 +15,7 @@ app.formDSL.designer.form.field.help = (f) => [
     ],
     dependent: {
       key: 'control',
-      pattern: '^(hidden|)$',
+      pattern: '^hidden$',
     },
   }),
 ]

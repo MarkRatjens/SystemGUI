@@ -2,7 +2,6 @@ app.blueprints.design.blueprint.bindings.new = (route, blueprint) => (a,x) => a.
   app.fetch({
     url: '/api/blueprints/list',
     success: (blueprints, el) => [
-      "hi",
       app.blueprints.design.blueprint.form({
         route: route,
         form: (f) => [

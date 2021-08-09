@@ -1,4 +1,4 @@
-app.arenas.installation.edit = (route) => (a,x) => [
+app.arenas.installation.configuration = (route) => (a,x) => [
   app.fetch({
     url: [
       `/api/installations/@${route.params.arenaIdentifier}::${route.params.blueprintIdentifier}`,

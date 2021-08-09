@@ -1,18 +1,12 @@
 app.arenas.installation = (route) => (a,x) => [
   app.float({
     left: [
-      a.h1(route.params.blueprintIdentifier),
-    ],
-  }),
-  a.hr,
-  app.float({
-    left: [
       app.fetch({
         url: `/api/blueprints/@${route.params.blueprintIdentifier}`,
         placeholder: app.spinner(`Loading ${route.params.blueprintIdentifier}`),
         success: (blueprint) => [
           a.i([
-            a.h3([
+            a.h1([
               a.img([], {
                 src: `/api/blueprints/@${route.params.blueprintIdentifier}/icon/thumbnail`,
                 height: '48',
@@ -37,8 +31,10 @@ app.arenas.installation = (route) => (a,x) => [
   route.mount({
     routes: {
       '/?': app.arenas.installation.show,
-      '/edit/?': app.arenas.installation.edit,
-      '/build': app.arenas.installation.build,
+      '/configuration/?': app.arenas.installation.configuration,
+      '/domain': app.arenas.installation.domain,
+      '/commit': app.arenas.installation.commit,
+      '/delete': app.arenas.installation.delete,
     }
   }),
 ]

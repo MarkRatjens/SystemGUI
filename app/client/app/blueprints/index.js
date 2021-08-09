@@ -1,6 +1,6 @@
 app.blueprints.index = (route) => (a,x) => [
   app.close(route),
-  a.h1('Blueprints'),
+  a.h5('Blueprints'),
   a.p([
     app.button({
       label: app.icon('fas fa-file-import', 'Import'),
