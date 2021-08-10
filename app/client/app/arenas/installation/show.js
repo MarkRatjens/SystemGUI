@@ -22,12 +22,24 @@ app.arenas.installation.show = (route) => (a,x) => [
       a.hr,
       app.float({
         left: [
-          a['div.mt-2']((installation.domain || {}).identifier),
+          a['div.mt-2.ml-4']((installation.domain || {}).identifier),
         ],
         right: [
           app.button({
             label: app.icon('fas fa-globe', 'Domain'),
             onclick: () => route.open('domain'),
+          }),
+        ],
+      }),
+      a.hr,
+      app.float({
+        left: [
+          a.ol(((installation.bindings || []).map((binding) => a.li(app.bindingLabel(binding))))),
+        ],
+        right: [
+          app.button({
+            label: app.icon('fas fa-project-diagram', 'Bindings'),
+            onclick: () => route.open('bindings'),
           }),
         ],
       }),

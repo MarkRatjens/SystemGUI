@@ -46,7 +46,7 @@ app.arenas.show = (route) => (a,x) => [
       a.hr,
       app.float({
         left: [
-          a['div.mt-2']((arena.domain || {}).identifier),
+          a['div.mt-2.ml-4']((arena.domain || {}).identifier),
         ],
         right: [
           app.button({
@@ -58,7 +58,7 @@ app.arenas.show = (route) => (a,x) => [
       a.hr,
       app.float({
         left: [
-          x.out(arena.bindings),
+          a.ol(((arena.bindings || []).map((binding) => a.li(app.bindingLabel(binding))))),
         ],
         right: [
           app.button({
