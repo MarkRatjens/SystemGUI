@@ -34,7 +34,6 @@ module App
             arena[:about][:blueprint_identifier] = params[:model][:blueprint_identifier]
             arena[:bindings] = blueprint[:bindings]
             arena[:configuration] = blueprint[:configuration]
-            # debugger
             action(:update, model: arena)
           end.to_json
         end
@@ -51,10 +50,6 @@ module App
           # TODO: USE action(:state, **params)
           {result: Api.spaces.universe.arenas.by(params[:identifier]).state}.to_json
         end
-
-        # post '/arenas/@:identifier/input' do
-        #   action(:input, **params)
-        # end
 
         post '/arenas/@:identifier/assemble' do
           action(:install, **params)
