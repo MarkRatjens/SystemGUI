@@ -25,10 +25,23 @@ app.arenas.bindings = (route) => (a,x) => [
               ff.field({
                 key: 'target_identifier',
                 as: 'select',
+                placeholder: ' ',
                 selections: blueprints,
+                required: true,
+                fieldTag: {
+                  $on: {
+                    'change: update identifier validation': (e, el) => {
+                      let value = el.$('^tr select[name$="[target_identifier]"]').value
+                      let input = el.$('^tr input[name$="[identifier]"]')
+                      input.setAttribute('pattern', `^(?!${value}).*$`)
+                    },
+                  },
+                },
               }),
               ff.field({
                 key: 'identifier',
+                pattern: `^(?!${ff.object.target_identifier}).*$`,
+                invalid: 'Should not be the same as the Target identifier',
               }),
               ff.field({
                 key: 'type',
