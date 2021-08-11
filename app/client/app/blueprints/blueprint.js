@@ -14,7 +14,6 @@ app.blueprints.blueprint = (route) => (a,x) => a['app-blueprints-blueprint']([
     ],
     right: [
       app.close(route),
-
     ],
   }),
   route.mount({
