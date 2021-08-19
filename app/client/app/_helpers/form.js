@@ -13,6 +13,10 @@ app.form = (options = {}) => (a, x) =>
     method: 'PUT',
     catch: (error, el) => el.$send("app.disconnected"),
     ...options,
+    form: f => [
+      f.input({name: 'authenticity_token', value: authenticityToken}),
+      options.form(f),
+    ],
     when: app.fetch.when(options.when),
     success: app.fetch.success(options.success || (() => {options.route && options.route.open('..')})),
   });
