@@ -56,10 +56,5 @@ module App
         obj
       end
     end
-
-    # def query
-    #   request.env['rack.request.query_hash'].transform_keys!(&:to_sym)
-    # end
-
   end
 end
