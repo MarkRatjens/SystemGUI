@@ -1,4 +1,5 @@
 app.blueprints.design.blueprint.otherPackages.new = (route, blueprint) => (a,x) => a.div([
+  'New other package',
   app.blueprints.design.blueprint.form({
     route: route,
     form: app.blueprints.design.blueprint.otherPackages.form,
