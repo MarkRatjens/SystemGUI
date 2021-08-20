@@ -4,6 +4,7 @@ app.blueprints.design.blueprint.bindings.new = (route, blueprint) => (a,x) => a.
     success: (blueprints, el) => [
       app.blueprints.design.blueprint.form({
         route: route,
+        scope: 'binding',
         form: (f) => [
           f.field({
             key: 'target_identifier',
@@ -13,16 +14,9 @@ app.blueprints.design.blueprint.bindings.new = (route, blueprint) => (a,x) => a.
             selections: blueprints,
             required: true,
           }),
-          f.field({
-            key: 'identifier',
-            placeholder: 'Optional binding identifier',
-          }),
         ],
         digest: (form) => {
-          let binding = {
-            target_identifier: form.target_identifier,
-            identifier: form.identifier || form.target_identifier,
-          }
+          let binding = app.compact(form.binding)
           if (blueprint.bindings) {
             blueprint.bindings.push(binding)
           } else {
