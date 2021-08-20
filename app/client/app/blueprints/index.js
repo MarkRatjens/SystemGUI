@@ -16,7 +16,7 @@ app.blueprints.index = (route) => (a,x) => [
     placeholder: a['div.p-2'](app.spinner("Loading blueprints")),
     success: blueprints => [
       a.table([
-        a.tbody(blueprints.map(blueprint => a.tr([
+        a.tbody(app.sortByIdentifier(blueprints).map(blueprint => a.tr([
           a.td([blueprint.identifier]),
           a.td([
             (blueprint.about || {}).title || a['!']('&nbsp;'),
@@ -34,5 +34,4 @@ app.blueprints.index = (route) => (a,x) => [
       })
     ],
   }),
-
 ]

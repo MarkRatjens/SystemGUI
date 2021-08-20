@@ -16,24 +16,27 @@ app.blueprints.design.blueprint.repositories.edit = (route, blueprint) => app.bl
           label: 'URL',
           type: "url",
           required: true,
+          horizontal: true,
         }),
         f.field({
           key: 'key',
-          horizontal: true,
           as: 'one',
+          label: false,
           form: ff => [
             ff.field({
               key: "url",
-              label: 'URL',
+              label: 'Key URL',
               type: "url",
               required: true,
+              horizontal: true,
             }),
             ff.field({
               key: "id",
-              label: 'ID',
+              label: 'Key ID',
               pattern: "[a-fA-F0-9]+",
               invalid: 'Please enter a hexadecimal string using characters a-f, A-F and 0-9.',
               required: true,
+              horizontal: true,
             }),
           ]
         }),

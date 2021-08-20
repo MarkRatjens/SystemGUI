@@ -12,7 +12,7 @@ app.arenas.index = (route) => (a,x) => a.div([
     placeholder: app.spinner('Loading arenas'),
     success: (arenas, el) => [
       a.table([
-        a.tbody(arenas.map(arena => a.tr([
+        a.tbody(app.sortByIdentifier(arenas).map(arena => a.tr([
           a.td([arena.identifier]),
           a.td([
             (arena.about || {}).title || a['!']('&nbsp;'),

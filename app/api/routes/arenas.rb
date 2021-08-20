@@ -47,8 +47,7 @@ module App
         end
 
         get '/arenas/@:identifier/state' do
-          # TODO: USE action(:state, **params)
-          {result: Api.spaces.universe.arenas.by(params[:identifier]).state}.to_json
+          action(:state, **params)
         end
 
         post '/arenas/@:identifier/assemble' do
