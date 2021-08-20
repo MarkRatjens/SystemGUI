@@ -11,7 +11,9 @@ app.blueprints.design.blueprint.bindings.edit = (route, blueprint) => (a,x) => {
       url: `/api/blueprints/@${binding.target_identifier}`,
       placeholder: app.spinner('Loading target blueprint'),
       success: (targetBlueprint, el) => [
-        'Binding to ',
+        'Binding ',
+        Number(route.params.bindingIndex) + 1,
+        ' - ',
         binding.target_identifier,
         app.blueprints.design.blueprint.form({
           horizontal: true,
@@ -19,7 +21,24 @@ app.blueprints.design.blueprint.bindings.edit = (route, blueprint) => (a,x) => {
           object: binding,
           form: f => [
             f.field({
+              key: 'custom_identifier',
+              label: 'Identifier',
+              as: 'radios',
+              value: f.object.identifier ? 'custom' : 'default',
+              selections: {
+                default: `Default - ${f.object.target_identifier}`,
+                custom: 'Custom',
+              }
+            }),
+            f.field({
               key: 'identifier',
+              label: false,
+              required: true,
+              dependent: {
+                key: 'custom_identifier',
+                value: 'custom',
+              },
+              placeholder: 'Binding identifier',
             }),
             f.field({
               key: 'target_identifier',
@@ -49,6 +68,7 @@ app.blueprints.design.blueprint.bindings.edit = (route, blueprint) => (a,x) => {
                   key: 'key',
                   datalist: Object.keys(targetBlueprint.binding_target || {}),
                   control: {
+                    autocomplete: 'off',
                     controlTag: {
                       $on: {
                         'input': (e, el) => {
@@ -69,12 +89,12 @@ app.blueprints.design.blueprint.bindings.edit = (route, blueprint) => (a,x) => {
             }),
           ],
           digest: (form) => {
+            delete form.custom_identifier
             let configuration = {}
             for (let parameter of form.configuration) {
               configuration[parameter.key] = parameter.value
             }
             form.configuration = configuration
-            form.identifier = form.identifier || form.target_identifier
             blueprint.bindings[route.params.bindingIndex] = app.compact(form);
             return {model: blueprint};
           },
