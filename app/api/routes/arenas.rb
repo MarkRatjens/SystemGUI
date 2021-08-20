@@ -21,21 +21,7 @@ module App
         end
 
         post '/arenas' do
-          # TODO: USE action(:new, **params)
-          if params[:model][:identifier].blank?
-            params[:model][:identifier] = params[:model][:blueprint_identifier]
-          end
-          @controller.control(:new, **params).tap do |payload|
-            arena = @controller.control(:show, identifier: payload[:result]).result.to_h
-            blueprint = ::Blueprinting::Controllers::Controller.new.control(:show, identifier: params[:model][:blueprint_identifier]).result.to_h
-            arena[:about] = blueprint[:about]
-            # Saving :blueprint_identifier in :about for the time being.
-            # Better for it to be saved in the top-level of arena model.
-            arena[:about][:blueprint_identifier] = params[:model][:blueprint_identifier]
-            arena[:bindings] = blueprint[:bindings]
-            arena[:configuration] = blueprint[:configuration]
-            action(:update, model: arena)
-          end.to_json
+          action(:new, **params)
         end
 
         delete '/arenas/@:identifier' do

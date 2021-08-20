@@ -14,7 +14,7 @@ app.form = (options = {}) => (a, x) =>
     catch: (error, el) => el.$send("app.disconnected"),
     ...options,
     form: f => [
-      f.input({name: 'authenticity_token', value: authenticityToken}),
+      f.input({name: 'authenticity_token', value: authenticityToken, type: 'hidden'}),
       options.form(f),
     ],
     when: app.fetch.when(options.when),
