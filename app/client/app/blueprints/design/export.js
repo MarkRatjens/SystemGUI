@@ -8,7 +8,6 @@ app.blueprints.design.export = (route, blueprint) => (a, x) => a.div([
       f.field({
         key: 'message',
         as: 'textarea',
-        required: true,
       }),
       f.buttons({route: route}),
     ],
