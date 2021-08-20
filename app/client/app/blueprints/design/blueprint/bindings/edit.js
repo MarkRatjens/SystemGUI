@@ -1,12 +1,16 @@
 app.blueprints.design.blueprint.bindings.edit = (route, blueprint) => (a,x) => {
 
   let binding = blueprint.bindings[route.params.bindingIndex]
+  let valueHintFor = (targetBlueprint, keyName) => [
+    'target default value: ',
+    (targetBlueprint.binding_target || {})[keyName] || a['.error']('no match')
+  ]
 
   return [
     app.fetch({
       url: `/api/blueprints/@${binding.target_identifier}`,
       placeholder: app.spinner('Loading target blueprint'),
-      success: (targetblueprint, el) => [
+      success: (targetBlueprint, el) => [
         'Binding to ',
         binding.target_identifier,
         app.blueprints.design.blueprint.form({
@@ -27,10 +31,10 @@ app.blueprints.design.blueprint.bindings.edit = (route, blueprint) => (a,x) => {
               as: 'checkbox',
               checked: 'embed',
             }),
-            targetblueprint,
             f.field({
               key: 'configuration',
-              as: 'table',
+              as: 'many',
+              horizontal: false,
               addable: true,
               moveable: true,
               removeable: true,
@@ -43,10 +47,24 @@ app.blueprints.design.blueprint.bindings.edit = (route, blueprint) => (a,x) => {
               form: (ff) => [
                 ff.field({
                   key: 'key',
+                  datalist: Object.keys(targetBlueprint.binding_target || {}),
+                  control: {
+                    controlTag: {
+                      $on: {
+                        'input': (e, el) => {
+                          let defaultValueOutput = el.$('^li input[name$="[value]"] ^ax-appkit-form-field ax-appkit-form-field-hint small')
+                          let keyName = el.$('input').value
+                          defaultValueOutput.$nodes = valueHintFor(targetBlueprint, keyName)
+                        }
+                      }
+                    },
+                  },
                 }),
                 ff.field({
                   key: 'value',
+                  hint: valueHintFor(targetBlueprint, ff.object.key)
                 }),
+
               ]
             }),
           ],
