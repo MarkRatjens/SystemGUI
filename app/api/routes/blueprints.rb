@@ -20,6 +20,10 @@ module App
           action(:new, **params)
         end
 
+        get '/blueprints/@:identifier/summary' do
+          action(:summary, **params)
+        end
+
         get '/blueprints/@:identifier' do
           action(:show, **params)
         end
@@ -83,11 +87,6 @@ module App
         end
 
         # ICON
-
-        # Show icon metadata.
-        get '/blueprints/@:identifier/icon' do
-          {result: @blueprint.icon.to_json}
-        end
 
         # Send raw icon.
         get '/blueprints/@:identifier/icon/raw' do

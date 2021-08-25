@@ -9,5 +9,6 @@ module App
         session_timeout_seconds: ( ENV['SESSION_TIMEOUT_MINUTES'] || 15 ).to_f * 60,
         library_url: ENV['APPLICATION_LIBRARY_URL'] || 'https://library.engines.org/api/v0/apps'
 
+    # use Rack::Protection::AuthenticityToken
   end
 end

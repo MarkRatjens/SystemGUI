@@ -150,11 +150,6 @@ app.theme = (theme) => {
         backgroundColor: theme.buttonBackgroundColor,
         boxShadow: `0px 0px 5px ${theme.controlBoxShadowColor}`,
       },
-      // menu: {
-      //   color: theme.buttonColor,
-      //   backgroundColor: theme.buttonBackgroundColor,
-      //   boxShadow: `0px 0px 5px ${theme.controlBoxShadowColor}`,
-      // },
     },
 
   }

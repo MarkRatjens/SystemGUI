@@ -1,8 +1,9 @@
 app.jsonForm = (options={}) => (a, x) => app.form({
   ...options,
   encode: 'json',
+  authenticity: false,
   digest: (form) => ({
-    authenticity_token: authenticityToken,
+    ...options.authenticity == false ? {} : {authenticity_token: authenticityToken},
     ...options.digest ? options.digest(form) : form,
   }),
   form: f => [

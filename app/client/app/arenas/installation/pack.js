@@ -2,18 +2,23 @@ app.arenas.installation.pack = (route) => (a,x) => [
   app.fetch({
     url: [
       `/api/packs/@${route.params.arenaIdentifier}::${route.params.blueprintIdentifier}`,
-      `/api/packs/@${route.params.arenaIdentifier}::${route.params.blueprintIdentifier}/artifacts`,
+      `/api/packs/@${route.params.arenaIdentifier}::${route.params.blueprintIdentifier}/summary`,
     ],
-    success: ([pack, artifacts]) => [
+    success: ([pack, summary]) => [
       app.float({
         left: [
           a.h5('Pack'),
         ],
         right: [
           app.button({
-            label: app.icon('fas fa-hammer', 'Commit'),
-            onclick: () => route.open('commit'),
+            label: app.icon('fas fa-hammer', 'Build'),
+            onclick: () => route.open('build'),
           }),
+          ' ',
+          summary.log.exist ? app.button({
+            label: app.icon('fas fa-file', 'Log'),
+            onclick: () => route.open('log'),
+          }) : null,
           ' ',
           app.button({
             label: '{} JSON',

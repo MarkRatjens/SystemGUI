@@ -20,9 +20,9 @@ app.blueprints.menu = (route) => (a,x) => a({
       class: 'btn app-btn',
     }),
     app.button({
-      label: 'Relations',
-      data: {view: 'relations'},
-      onclick: () => route.open(`/blueprints/@${route.params.blueprintIdentifier}/relations`),
+      label: 'Utilization',
+      data: {view: 'utilization'},
+      onclick: () => route.open(`/blueprints/@${route.params.blueprintIdentifier}/utilization`),
       class: 'btn app-btn',
     }),
   ],

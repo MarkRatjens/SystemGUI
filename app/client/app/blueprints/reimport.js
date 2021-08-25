@@ -1,5 +1,5 @@
 app.blueprints.reimport = (route) => (a, x) => a.div([
-  a.h3("Reimport blueprint"),
+  a.h3('Reimport'),
   app.jsonForm({
     url: `/api/publications/import`,
     method: 'POST',

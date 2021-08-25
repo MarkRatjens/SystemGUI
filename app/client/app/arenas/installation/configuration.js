@@ -10,7 +10,6 @@ app.arenas.installation.configuration = (route) => (a,x) => [
       components: form.components,
     }, installation.input, {
       action: `/api/installations/@${route.params.arenaIdentifier}::${route.params.blueprintIdentifier}`,
-      // scope: 'model',
       route: route,
       digest: (form) => {
         installation.input = app.compact(form)

@@ -13,6 +13,7 @@ app.arenas.domain = (route) => (a,x) => [
         form: f => [
           f.field({
             key: 'domain',
+            label: false,
             as: 'one',
             form: ff => [
               ff.field({
