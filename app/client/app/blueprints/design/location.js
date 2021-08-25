@@ -1,12 +1,12 @@
 app.blueprints.design.location = (route, blueprint) => (a, x) => a.div([
   a.h3('Location'),
   app.fetch({
-    url: `/api/locations/@${route.params.blueprintIdentifier}`,
-    success: location => [
+    url: `/api/blueprints/@${route.params.blueprintIdentifier}/summary`,
+    success: summary => [
       app.form({
         url: `/api/locations/@${route.params.blueprintIdentifier}`,
         method: "PUT",
-        object: location,
+        object: summary.location,
         scope: 'model',
         form: (f) => [
           f.field({

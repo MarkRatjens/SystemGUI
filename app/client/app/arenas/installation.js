@@ -32,8 +32,9 @@ app.arenas.installation = (route) => (a,x) => [
     routes: {
       '/?': app.arenas.installation.show,
       '/configuration/?': app.arenas.installation.configuration,
-      '/domain': app.arenas.installation.domain,
-      '/commit': app.arenas.installation.commit,
+      '/build': app.arenas.installation.build,
+      '/building': app.arenas.installation.building,
+      '/log': app.arenas.installation.log,
       '/delete': app.arenas.installation.delete,
     }
   }),

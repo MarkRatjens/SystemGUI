@@ -24,6 +24,7 @@ app.blueprints.design.form.show = (route) => (a, x) => [
           label: {display: 'custom', custom: 'Test'},
         },
       }, {}, {
+        authenticity: false,
         action: (submission) => {
           modal.$open({
             title: `Test ${route.params.blueprintIdentifier} form`,

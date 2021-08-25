@@ -32,7 +32,7 @@ app.blueprints.show = (route) => (a,x) => [
             '/?': app.blueprints.readme,
             '/license': app.blueprints.license,
             '/bindings/?*': app.blueprints.bindings(blueprint),
-            '/relations/?*': app.blueprints.relations(blueprint),
+            '/utilization/?*': app.blueprints.utilization(blueprint),
           }
         })
       ),

@@ -10,18 +10,11 @@ app.blueprints.design.icon.edit = (route) => (a, x) => [
             src: `/api/blueprints/@${route.params.blueprintIdentifier}/icon/raw`,
             height: 258,
             width: 258,
-            // style: {border: 'none'},
             $on: {
               'load: style iframe': (e, el) => {
-                // debugger
                 const new_style_element = document.createElement("style");
                 new_style_element.textContent = "img {height: 256px; width: 256px;}"
                 el.contentDocument.head.appendChild(new_style_element);
-
-                // $init: (el) => {
-                //   //               frame.addEventListener("load", ev => {
-                //     // });
-                //   },
               },
             },
           }),

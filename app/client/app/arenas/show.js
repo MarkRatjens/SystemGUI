@@ -8,45 +8,7 @@ app.arenas.show = (route) => (a,x) => [
     success: ([arena, state]) => [
       app.float({
         left: [
-          a.i([
-            a.h1([
-              a.img([], {
-                src: `/api/blueprints/@${(arena.about || {}).blueprint_identifier}/icon/thumbnail`,
-                height: '48',
-                width: '48'
-              }),
-              ' ',
-              (arena.about || {}).title || app.placeholder('No title')
-            ]),
-            a.p((arena.about || {}).explanation || app.placeholder('No explanation')),
-          ]),
-        ],
-        right: [
-          app.button({
-            label: app.icon('fas fa-shapes', 'Blueprint'),
-            onclick: () => route.open(`/blueprints/@${(arena.about || {}).blueprint_identifier}`),
-          }),
-        ],
-      }),
-      a.hr,
-      app.float({
-        left: [
-          x.out({
-            arena: arena.configuration,
-            input: (arena.about || {}).input,
-          }),
-        ],
-        right: [
-          app.button({
-            label: app.icon('fas fa-sliders-h', 'Configuration'),
-            onclick: () => route.open('configuration'),
-          }),
-        ],
-      }),
-      a.hr,
-      app.float({
-        left: [
-          a['div.mt-2.ml-4']((arena.domain || {}).identifier),
+          a['div.my-2.mx-4']((arena.domain || {}).identifier),
         ],
         right: [
           app.button({
@@ -58,12 +20,14 @@ app.arenas.show = (route) => (a,x) => [
       a.hr,
       app.float({
         left: [
-          a.ol(((arena.bindings || []).map((binding) => a.li(app.bindingLabel(binding))))),
+          (arena.bindings || []).length ?
+          a.ul(((arena.bindings || []).map((binding) => a.li(app.bindingLabel(binding))))) :
+          a['div.my-2.mx-4'](app.placeholder('No blueprints')),
         ],
         right: [
           app.button({
-            label: app.icon('fas fa-project-diagram', 'Bindings'),
-            onclick: () => route.open('bindings'),
+            label: app.icon('fas fa-shapes', 'Blueprints'),
+            onclick: () => route.open('blueprints'),
           }),
         ],
       }),
@@ -71,12 +35,12 @@ app.arenas.show = (route) => (a,x) => [
       app.float({
         left: [
           app.button({
-            label: app.icon('fas fa-folder-plus', 'Assemble'),
+            label: app.icon('fas fa-layer-group', 'Assemble'),
             title: 'Assebmle arena installations',
             onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/assemble`),
           }),
           app.button({
-            label: app.icon('fas fa-microscope', 'Resolve'),
+            label: app.icon('fab fa-mixer', 'Resolve'),
             title: 'Resolve arena',
             onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/resolve`),
           }),

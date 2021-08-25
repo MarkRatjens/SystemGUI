@@ -14,7 +14,7 @@ app.blueprints.new = (route) => (a, x) => a.div([
     digest: (form) => ({model: form.blueprint}),
     success: (blueprint_identifier) => {
       dashboardMenu.$render()
-      route.open(`../@${blueprint_identifier}`)
+      route.open(`../@${blueprint_identifier}/design`)
     },
   }),
 ]);

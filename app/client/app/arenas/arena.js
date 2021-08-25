@@ -26,10 +26,8 @@ app.arenas.arena = (route) => (a,x) => a['app-arenas-arena']([
   route.mount({
     routes: {
       '/?': app.arenas.show,
-      // '/edit': app.arenas.edit,
-      '/configuration': app.arenas.configuration,
       '/domain': app.arenas.domain,
-      '/bindings': app.arenas.bindings,
+      '/blueprints': app.arenas.blueprints,
       '/assemble': app.arenas.assemble,
       '/resolve': app.arenas.resolve,
       '/pack': app.arenas.pack,

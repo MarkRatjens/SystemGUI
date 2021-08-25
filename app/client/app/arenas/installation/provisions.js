@@ -2,7 +2,6 @@ app.arenas.installation.provisions = (route) => (a,x) => [
   app.fetch({
     url: [
       `/api/provisioning/@${route.params.arenaIdentifier}::${route.params.blueprintIdentifier}`,
-      // `/api/provisioning/@${route.params.arenaIdentifier}::${route.params.blueprintIdentifier}/artifacts`,
     ],
     success: ([provisions]) => [
       app.float({

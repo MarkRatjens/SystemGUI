@@ -1,10 +1,10 @@
 app.blueprints.location = (route) => (a, x) => [
   app.fetch({
-    url: `/api/locations/@${route.params.blueprintIdentifier}`,
-    success: location => [
+    url: `/api/blueprints/@${route.params.blueprintIdentifier}/summary`,
+    success: summary => [
       app.float({
         left: [
-          a['div.mt-2.mb-2'](location ? app.locationLabel(location) : app.placeholder('No location')),
+          a['div.mt-2.mb-2'](summary.location.exist ? app.locationLabel(summary.location) : app.placeholder('No location')),
         ],
         right: [
           route.mount({
@@ -16,7 +16,7 @@ app.blueprints.location = (route) => (a, x) => [
                   $state: false,
                   $update: (el, state) => {
                     el.$('ax-appkit-transition').$to(
-                      state ? [
+                      (state && summary.location.exist) ? [
                         app.button({
                           label: app.icon('fas fa-file-import', 'Reimport'),
                           onclick: () => route.open(`/blueprints/@${route.params.blueprintIdentifier}/reimport`),
@@ -46,7 +46,7 @@ app.blueprints.location = (route) => (a, x) => [
                   $update: (el, state) => {
                     el.$('ax-appkit-transition').$to(
                       state ? [
-                        location ? app.button({
+                        summary.location.exist ? app.button({
                           label: app.icon("fas fa-file-export", "Export"),
                           onclick: () => route.open(`/blueprints/@${route.params.blueprintIdentifier}/design/export`),
                         }) : null,
