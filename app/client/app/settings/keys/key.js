@@ -4,7 +4,7 @@ app.settings.keys.key = (route, blueprint) => (a, x) => a.div([
       '/edit': null,
       '*': () => [
         app.fetch({
-          url: `/api/settings/keys/@${route.params.keyIdentifier}`,
+          url: `/api/keys/@${route.params.keyIdentifier}`,
           success: token => [
             a.h5(`${token.username}@${token.domain}`),
             a.p(token.explanation),

@@ -1,7 +1,7 @@
 app.settings.keys.new = (route, blueprint) => (a, x) => a.div([
   a.h5('New'),
   app.form({
-    url: `/api/settings/keys`,
+    url: `/api/keys`,
     method: "POST",
     scope: 'model',
     horizontal: true,

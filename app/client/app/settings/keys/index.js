@@ -5,7 +5,7 @@ app.settings.keys.index = (route, blueprint) => (a, x) => a.div([
   }),
   a.hr,
   app.fetch({
-    url: `/api/settings/keys`,
+    url: `/api/keys`,
     success: tokens => [
       tokens.map((token) =>
         app.button({
