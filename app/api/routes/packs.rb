@@ -34,11 +34,15 @@ module App
           #       OR ::Packing::Controllers::Controller.new.commit(identifier: params[:identifier]).to_json
           content_type "text/event-stream"
           identifier = params[:identifier]
+          model = params[:model]
           started = Time.now.strftime("%H:%M:%S")
           begin
             stream(:keep_open) do |out|
               logger.info "STREAM:#{started} Builder log stream started."
-              result = ::Packing::Controllers::Controller.new.commit(identifier: identifier) do |line|
+              result = ::Packing::Controllers::Controller.new.commit(
+                identifier: identifier,
+                model: model,
+              ) do |line|
                 out.puts "data: #{line}\n\n"
               end
               if result[:errors]

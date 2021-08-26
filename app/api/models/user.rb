@@ -3,40 +3,60 @@ module App
     module Models
       class User
 
+        require_relative 'user/keys'
+
+        def self.users_table
+          [
+            {username: 'jack', password: '123'},
+            {username: 'jill', password: '456'},
+          ]
+        end
+
+        def self.authenticate(args)
+          user = users_table.find { |u| u[:username] == args['username'] }
+          raise Error::NotAuthenticated unless user && user[:password] == args['password']
+          {
+            username: user[:username],
+            token: 'AN-AUTH-TOKEN-FROM-SOME-USERS-RESOURCE',
+          }
+        end
+
         def initialize( settings, session )
           @settings = settings
           @session = session
         end
 
-        def to_s
-          'user'
-        end
-
         def authenticate!
-          raise Error::NotAuthenticated unless api_token
+          raise Error::NotAuthenticated unless token
           raise Error::Timeout unless within_timeout
-          reset_timeout
+          touch_file
           return self
         end
 
         def logout!
           File.delete( filepath ) if File.exist? filepath
-          return ''
+          @session['username'] = ''
         end
 
-        def login( token )
-          save_api_token token
-          reset_timeout
+        def login(args)
+          authentication = self.class.authenticate(args)
+          save_authentication authentication
           return self
         end
 
-        def api_token
+        def username
+          @session['username']
+        end
+
+        def token
           File.read filepath
         rescue Errno::ENOENT
         end
 
-        def save_api_token( token )
-          File.write filepath, token
+        def save_authentication( authentication )
+          # FileUtils.mkdir(dirpath) unless Dir.exists?(dirpath)
+          # File.write filepath, authentication[:token]
+          @session['username'] = authentication[:username]
         end
 
         def session_timeout_seconds
@@ -49,17 +69,29 @@ module App
           last_activity_at + session_timeout_seconds > Time.now
         end
 
+        def keys
+          Keys.new(self)
+        end
+
         private
 
+        def workspace
+          Api.spaces.universe.workspace
+        end
+
+        def dirpath
+          Api.spaces.universe.workspace.join('sessions')
+        end
+
         def filepath
-          "sessions/#{ @session['session_id'] }"
+          dirpath.join(@session['session_id'])
         end
 
         def timestamp
           File.mtime filepath
         end
 
-        def reset_timeout
+        def touch_file
           FileUtils.touch filepath
         end
 

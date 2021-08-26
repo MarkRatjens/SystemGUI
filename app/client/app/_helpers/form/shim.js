@@ -60,6 +60,7 @@ app.form.shim = {
 
   submit: (f, target) => (options = {}) =>
     target({
+      label: app.icon("fa fa-check", "Submit"),
       ...options,
       button: {
         to: app.spinner("Submitting…"),
@@ -118,10 +119,7 @@ app.form.shim = {
         " ",
         options.submit == false
           ? null
-          : f.submit({
-              label: app.icon("fa fa-check", "Submit"),
-              ...options.submit,
-            }),
+          : f.submit(options.submit),
       ],
       {
         ...options.buttonsTag,

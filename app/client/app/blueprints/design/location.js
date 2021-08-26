@@ -13,7 +13,6 @@ app.blueprints.design.location = (route, blueprint) => (a, x) => a.div([
             key: 'repository',
             label: false,
             placeholder: 'Git repo URL',
-            type: 'url',
             required: true,
           }),
           f.field({

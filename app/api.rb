@@ -16,7 +16,7 @@ module App
     require_relative 'api/mime'
     require_relative 'api/errors'
     require_relative 'api/models'
-    require_relative 'api/sessions'
+    require_relative 'api/session'
     require_relative 'api/setup'
     require_relative 'api/routes'
 

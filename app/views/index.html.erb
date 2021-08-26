@@ -106,7 +106,7 @@
 <script>
 
 const inDevelopment = <%= Sinatra::Base.development? %>;
-const authenticityToken = '<%= Rack::Protection::AuthenticityToken.token(env['rack.session']) %>';
+const authenticityToken = '<%= 'FAKE-TOKEN' || Rack::Protection::AuthenticityToken.token(env['rack.session']) %>';
 
 // The UMD for FitAddon returns an object
 FitAddon = FitAddon.FitAddon

@@ -2,7 +2,8 @@ module App
   class Api
 
     set sessions: true,
-        session_secret: Sinatra::Base.development? ? '0' : ENV['SESSION_SECRET'],
+        same_site: :none,
+        session_secret: Sinatra::Base.development? ? 'SESSION_SECRET' : ENV['SESSION_SECRET'],
         logging: Sinatra::Base.development? ? Logger::DEBUG : Logger::INFO,
         dump_errors: Sinatra::Base.development?,
         show_exceptions: false,
