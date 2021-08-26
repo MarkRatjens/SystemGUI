@@ -104,14 +104,14 @@ app.navbar = (route) => (a, x) =>
                 href: '#',
                 $on: {click: (e) => {
                   e.preventDefault();
-                  route.open("/logout")
+                  route.load("/signout")
                 }},
               }),
               {
                 class: 'nav-item',
                 title: 'Logout',
                 data: {
-                  path: '/logout'
+                  path: '/signout'
                 },
               }
             ),
