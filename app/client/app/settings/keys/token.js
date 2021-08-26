@@ -1,6 +1,6 @@
 app.settings.keys.token = (route, blueprint) => (a, x) => a.div([
   app.form({
-    url: `/api/settings/keys/@${route.params.keyIdentifier}`,
+    url: `/api/keys/@${route.params.keyIdentifier}`,
     method: "PUT",
     scope: 'model',
     form: (f) => [

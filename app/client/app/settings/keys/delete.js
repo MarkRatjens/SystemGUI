@@ -6,7 +6,6 @@ app.settings.keys.delete = (route) => (a,x) => a.div([
     method: "DELETE",
     form: (f) => [f.buttons({route: route})],
     success: () => {
-      dashboardMenu.$render()
       route.open('../..')
     },
   }),
