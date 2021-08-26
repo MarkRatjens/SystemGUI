@@ -9,33 +9,84 @@ module App
           end
 
           def index
-            store.map.with_index { |s, i| show(i) }
+            store.keys.map { |key| summary(key) }
+          end
+
+          def list
+            store.keys
+          end
+
+          def summary(identifier)
+            key = store[identifier]
+            {
+              identifier: identifier,
+            }.tap do |result|
+              result[:explanation] = key['explanation'] if key['explanation']
+            end
           end
 
           def show(identifier)
-            c = store[identifier.to_i]
+            key = store[identifier]
             {
-              identifier: identifier.to_i,
-              domain: c['domain'],
-              username: c['username'],
-              explanation: c['explanation'],
-            }
+              identifier: identifier,
+              host: key['host'],
+              username: key['username'],
+            }.tap do |result|
+              result[:explanation] = key['explanation'] if key['explanation']
+            end
+          end
+
+          def identifier_for(model)
+            return "#{model['username']}@#{model['host']}" if model['identifier'].blank?
+            model['identifier']
           end
 
           def store
-            @store ||= File.exists?(filepath) ? YAML.load_file(filepath) : []
+            @store ||= File.exists?(filepath) ? YAML.load_file(filepath) : {}
           end
 
           def update(args)
-            save { |s| s[args['identifier'].to_i].merge!(args['model']) }
+            if args['model']['token']
+              update_token(args)
+            else
+              update_details(args)
+            end
+          end
+
+          def update_token(args)
+            identifier = args['identifier']
+            store[identifier].merge!(args['model'])
+            identifier
+          end
+
+          def update_details(args)
+            identifier = args['identifier']
+            identifier_for(args['model']).tap do |updatedIdentifier|
+              save do |store|
+                if identifier == updatedIdentifier
+                  store[identifier].merge!(args['model'])
+                else
+                  raise "Key #{updatedIdentifier} already exists." if store[updatedIdentifier]
+                  store[updatedIdentifier] = store[identifier].merge(args['model'])
+                  store.delete(identifier)
+                end
+                store[updatedIdentifier].delete('explanation') if args['model']['explanation'].blank?
+              end
+            end
           end
 
           def create(args)
-            save { |s| s.push(args['model']) }
+            identifier_for(args['model']).tap do |identifier|
+              save do |store|
+                raise "Key #{identifier} already exists." if store[identifier]
+                store[identifier] = args['model']
+              end
+            end
           end
 
           def delete(args)
-            save { |s| s.delete_at(args['identifier'].to_i) }
+            save { |s| s.delete(args['identifier']) }
+            ''
           end
 
           def filepath

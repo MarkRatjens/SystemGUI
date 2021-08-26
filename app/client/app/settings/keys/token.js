@@ -10,6 +10,11 @@ app.settings.keys.token = (route, blueprint) => (a, x) => a.div([
         as: 'textarea',
         placeholder: 'Token',
         required: true,
+        control: {
+          textareaTag: {
+            class: 'form-control text-monospace',
+          },
+        },
       }),
       f.buttons({route: route}),
     ],

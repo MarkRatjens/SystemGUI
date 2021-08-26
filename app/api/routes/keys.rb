@@ -14,10 +14,14 @@ module App
 
         post '/keys' do
           {result: @current_user.keys.create(**params)}.to_json
+        rescue => e
+          {errors: [e.message]}.to_json
         end
 
         put '/keys/@:identifier' do
           {result: @current_user.keys.update(**params)}.to_json
+        rescue => e
+          {errors: [e.message]}.to_json
         end
 
         delete '/keys/@:identifier' do

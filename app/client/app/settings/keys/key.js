@@ -6,8 +6,8 @@ app.settings.keys.key = (route, blueprint) => (a, x) => a.div([
         app.fetch({
           url: `/api/keys/@${route.params.keyIdentifier}`,
           success: token => [
-            a.h5(`${token.username}@${token.domain}`),
-            a.p(token.explanation),
+            a.h5(token.identifier),
+            a.p(token.explanation || app.placeholder('No explanation')),
           ]
         }),
       ],
