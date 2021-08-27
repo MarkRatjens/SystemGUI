@@ -23,7 +23,7 @@ app.blueprints.index = (route) => (a,x) => [
             a.br,
             a.small([(blueprint.about || {}).explanation || a['!']('&nbsp;')]),
           ]),
-          a.td([app.locationLabel(blueprint.location) || '']),
+          a.td([app.locationLabel(blueprint.location)]),
           a.td([blueprint.utilized ? app.icon('fas fa-dot-circle') : null]),
         ], {
           $on: {click: () => route.open(`@${blueprint.identifier}`)},

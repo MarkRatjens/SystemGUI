@@ -1,7 +1,7 @@
 ax.style({
   "#navbar": {
     position: 'static',
-    '.app-navbar-brand-icon': {
+    'app-navbar-brand-icon': {
       position: 'relative',
       top: '-2px',
     },

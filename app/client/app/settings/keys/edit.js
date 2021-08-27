@@ -1,9 +1,9 @@
-app.settings.keys.edit = (route, blueprint) => (a, x) => a.div([
+app.settings.keys.edit = (route) => (a, x) => a.div([
   app.fetch({
-    url: `/api/keys/@${route.params.keyIdentifier}`,
+    url: `/api/settings/keys/@${route.params.keyIdentifier}`,
     success: token => [
       app.jsonForm({
-        url: `/api/keys/@${route.params.keyIdentifier}`,
+        url: `/api/settings/keys/@${route.params.keyIdentifier}`,
         method: "PUT",
         object: token,
         route: route,
@@ -14,9 +14,9 @@ app.settings.keys.edit = (route, blueprint) => (a, x) => a.div([
             key: 'identifier_type',
             label: 'Identifier',
             as: 'radios',
-            value: (f.object.identifier == `${f.object.username}@${f.object.host}`) ? 'default' : 'custom',
+            value: (f.object.identifier == `${f.object.userme}@${f.object.host}`) ? 'default' : 'custom',
             selections: {
-              default: 'Default <username>@<host>',
+              default: 'Default <userme>@<host>',
               custom: 'Custom'
             }
           }),
@@ -35,7 +35,7 @@ app.settings.keys.edit = (route, blueprint) => (a, x) => a.div([
             required: true,
           }),
           f.field({
-            key: 'username',
+            key: 'userme',
             required: true,
           }),
           f.field({

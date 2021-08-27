@@ -1,4 +1,4 @@
-app.settings.keys = (route, blueprint) => (a, x) => a.div([
+app.settings.keys = (route) => (a, x) => a.div([
   a.h3('Keys'),
   route.mount({
     routes: {

@@ -4,7 +4,7 @@ app.blueprints.location = (route) => (a, x) => [
     success: summary => [
       app.float({
         left: [
-          a['div.mt-2.mb-2'](summary.location.exist ? app.locationLabel(summary.location) : app.placeholder('No location')),
+          a['div.mt-2.mb-2'](app.locationLabel(summary.location)),
         ],
         right: [
           route.mount({

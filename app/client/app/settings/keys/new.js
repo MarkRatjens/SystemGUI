@@ -1,7 +1,7 @@
-app.settings.keys.new = (route, blueprint) => (a, x) => a.div([
+app.settings.keys.new = (route) => (a, x) => a.div([
   a.h5('New'),
   app.jsonForm({
-    url: `/api/keys`,
+    url: `/api/settings/keys`,
     method: "POST",
     scope: 'model',
     route: route,
@@ -13,7 +13,7 @@ app.settings.keys.new = (route, blueprint) => (a, x) => a.div([
         as: 'radios',
         value: 'default',
         selections: {
-          default: 'Default <username>@<host>',
+          default: 'Default <userme>@<host>',
           custom: 'Custom'
         }
       }),
@@ -37,7 +37,7 @@ app.settings.keys.new = (route, blueprint) => (a, x) => a.div([
         required: true,
       }),
       f.field({
-        key: 'username',
+        key: 'userme',
         placeholder: 'Which user is the token for?',
         required: true,
       }),

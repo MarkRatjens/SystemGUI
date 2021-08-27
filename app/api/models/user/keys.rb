@@ -30,14 +30,14 @@ module App
             {
               identifier: identifier,
               host: key['host'],
-              username: key['username'],
+              user: key['user'],
             }.tap do |result|
               result[:explanation] = key['explanation'] if key['explanation']
             end
           end
 
           def identifier_for(model)
-            return "#{model['username']}@#{model['host']}" if model['identifier'].blank?
+            return "#{model['user']}@#{model['host']}" if model['identifier'].blank?
             model['identifier']
           end
 
@@ -90,7 +90,7 @@ module App
           end
 
           def filepath
-            Api.spaces.universe.workspace.join('keys.yaml')
+            Api.spaces.universe.workspace.join('settings-keys.yaml')
           end
 
           def save
