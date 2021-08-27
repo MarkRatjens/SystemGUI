@@ -1,8 +1,9 @@
-app.settings.keys.token = (route) => (a, x) => a.div([
+app.keys.token = (route) => (a, x) => a.div([
   app.form({
-    url: `/api/settings/keys/@${route.params.keyIdentifier}`,
+    url: `/api/keys/@${route.params.keyIdentifier}`,
     method: "PUT",
     scope: 'model',
+    horizontal: true,
     form: (f) => [
       f.field({
         key: 'token',

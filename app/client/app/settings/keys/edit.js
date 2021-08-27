@@ -1,28 +1,52 @@
-app.settings.keys.edit = (route, blueprint) => (a, x) => a.div([
+app.settings.keys.edit = (route) => (a, x) => a.div([
   app.fetch({
-    url: `/api/keys/@${route.params.keyIdentifier}`,
+    url: `/api/settings/keys/@${route.params.keyIdentifier}`,
     success: token => [
-      app.form({
-        url: `/api/keys/@${route.params.keyIdentifier}`,
+      app.jsonForm({
+        url: `/api/settings/keys/@${route.params.keyIdentifier}`,
         method: "PUT",
         object: token,
+        route: route,
         scope: 'model',
         horizontal: true,
         form: (f) => [
           f.field({
-            key: 'domain',
+            key: 'identifier_type',
+            label: 'Identifier',
+            as: 'radios',
+            value: (f.object.identifier == `${f.object.userme}@${f.object.host}`) ? 'default' : 'custom',
+            selections: {
+              default: 'Default <userme>@<host>',
+              custom: 'Custom'
+            }
+          }),
+          f.field({
+            key: 'identifier',
+            label: false,
+            placeholder: 'Enter custom identifier',
+            dependent: {
+              key: 'identifier_type',
+              value: 'custom',
+            },
             required: true,
           }),
           f.field({
-            key: 'username',
+            key: 'host',
+            required: true,
+          }),
+          f.field({
+            key: 'userme',
             required: true,
           }),
           f.field({
             key: 'explanation',
           }),
-          f.buttons({route: route}),
         ],
-        success: () => route.open('..'),
+        digest: (form) => {
+          delete form.model.identifier_type
+          return app.compact(form)
+        },
+        success: (identifier) => route.open(`../../@${identifier}`),
       }),
     ]
   }),
