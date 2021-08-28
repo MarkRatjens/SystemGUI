@@ -66,16 +66,16 @@ module App
           # RUN APPLY HERE FOR INITIAL PROVISIONING?
         end
 
-        post '/arenas/@:identifier/init' do
-          action(:init, **params)
+        # TODO: Terraform instruction should be initiated with a POST.
+        # Doing it in the GET below as hack to get SSE to client for JS dev work.
+        # TODO: USE action(:init, **params)
+        post '/arenas/@:identifier/instruction' do
+          {result: params[:instruction]}.to_json
         end
 
-        post '/arenas/@:identifier/plan' do
-          action(:plan, **params)
-        end
-
-        post '/arenas/@:identifier/apply' do
-          action(:apply, **params)
+        get '/arenas/@:identifier/instruction' do
+          content_type "text/event-stream"
+          stream_for(**params)
         end
       end
     end

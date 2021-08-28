@@ -5,11 +5,10 @@ module App
         extend Sinatra::Extension
 
         before '/keys/?*' do
-          @controller = ::Spaces::Controllers::RESTController.new(space: :keys)
+          @controller = ::Spaces::Controllers::RESTController.new(space: :user_keys)
         end
 
         get '/keys' do
-          # @controller.control(:index).to_json
           action(:index, **params)
         end
 
@@ -36,43 +35,6 @@ module App
         put '/keys/@:identifier' do
           action(:update, **params)
         end
-
-
-
-        #
-        # get '/keys/@:identifier' do
-        #   action(:show, **params)
-        # end
-        #
-        # get '/keys/@:identifier' do
-        #   action(:show, **params)
-        # end
-        #
-        #
-        #
-        # get '/keys' do
-        #   {result: @current_user.keys.index}.to_json
-        # end
-        #
-        # get '/keys/@:identifier' do
-        #   {result: @current_user.keys.show(params[:identifier])}.to_json
-        # end
-        #
-        # post '/keys' do
-        #   {result: @current_user.keys.create(**params)}.to_json
-        # rescue => e
-        #   {errors: [e.message]}.to_json
-        # end
-        #
-        # put '/keys/@:identifier' do
-        #   {result: @current_user.keys.update(**params)}.to_json
-        # rescue => e
-        #   {errors: [e.message]}.to_json
-        # end
-        #
-        # delete '/keys/@:identifier' do
-        #   {result: @current_user.keys.delete(**params)}.to_json
-        # end
 
         # Routes below are to be deprecated.
 

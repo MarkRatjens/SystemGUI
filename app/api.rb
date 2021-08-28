@@ -34,7 +34,7 @@ module App
     before do
       return unless request.content_type == 'application/json'
       params.merge!(JSON.parse(request.body.read))
-      puts params.to_yaml
+      puts params
     end
 
     def path
@@ -43,6 +43,30 @@ module App
 
     def action(action, **options)
       @controller.control(action, **options).to_json
+    end
+
+    def stream_for(params)
+      started = Time.now.strftime("%H:%M:%S")
+      begin
+        stream(:keep_open) do |out|
+          logger.info "STREAM:#{started} Builder log stream started."
+          @controller.control(params['instruction'].to_sym, **params) do |line|
+            out.puts "data: #{line}\n\n"
+          end.tap do |result|
+            if result[:errors]
+              output = "\n\033[1;31mArena instruction command error.\n\033[0;31m#{result[:errors]}\033[0m"
+              output.split("\n").each do |line|
+                out.puts "data: #{line}\n\n"
+              end
+            end
+          end
+          out.puts "data: #{4.chr}\n\n" # ASCII 4 is EOT (end of transmission)
+          out.close
+        end
+        logger.info "STREAM:#{started} Builder log stream complete."
+      rescue IOError => e
+        logger.info "STREAM:#{started} Builder log stream lost its connection with user agent."
+      end
     end
 
     ## This method is used to convert Sinatra::IndifferentHash to

@@ -5,18 +5,7 @@ app.keys.token = (route) => (a, x) => a.div([
     scope: 'model',
     horizontal: true,
     form: (f) => [
-      f.field({
-        key: 'token',
-        label: false,
-        as: 'textarea',
-        placeholder: 'Token',
-        required: true,
-        control: {
-          textareaTag: {
-            class: 'form-control text-monospace',
-          },
-        },
-      }),
+      app.keys.form.token(f),
       f.buttons({route: route}),
     ],
     success: () => route.open('..'),

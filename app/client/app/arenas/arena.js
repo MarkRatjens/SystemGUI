@@ -34,9 +34,8 @@ app.arenas.arena = (route) => (a,x) => a['app-arenas-arena']([
       '/runtime': app.arenas.provision.runtime,
       '/providers': app.arenas.provision.providers,
       '/post-init': app.arenas.provision['post-init'],
-      '/init': app.arenas.init,
-      '/plan': app.arenas.plan,
-      '/apply': app.arenas.apply,
+      '/instruction/?': app.arenas.instruction,
+      '/instruction/follow': app.arenas.instruction.follow,
       '/delete': app.arenas.delete,
       '/@:blueprintIdentifier/?*': app.arenas.installation,
     }

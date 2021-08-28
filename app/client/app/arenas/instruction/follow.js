@@ -1,8 +1,8 @@
-app.arenas.installation.building = (route) => (a,x) => [
-  app.xterm({label: 'Building'}),
+app.arenas.instruction.follow = (route) => (a,x) => a.div([
+  app.xterm({label: 'Initializing'}),
   a['appkit-event-source']( null, {
     $init: (el) => {
-      el.$eventsource = new EventSource( `/api/packs/@${route.params.arenaIdentifier}::${route.params.blueprintIdentifier}/build` )
+      el.$eventsource = new EventSource( `/api/arenas/@${route.params.arenaIdentifier}/instruction?instruction=${route.params.instruction}` )
       el.$eventsource.onmessage = function(e) {
         let line = e.data
         if ( line == String.fromCharCode(4) ) el.$complete()
@@ -30,10 +30,10 @@ app.arenas.installation.building = (route) => (a,x) => [
         a.br,
         app.button({
           label: app.icon('fas fa-check', 'Done'),
-          onclick: () => route.open('..'),
+          onclick: () => route.open('../..'),
           class: 'btn btn-primary',
         }),
       ]
     },
   } ),
-]
+])
