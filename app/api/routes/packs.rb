@@ -37,7 +37,7 @@ module App
         get '/packs/@:identifier/build/follow' do
           content_type "text/event-stream"
           params[:command] = :commit
-          stream_for(params.to_h)
+          streaming
         end
 
         get '/packs/@:identifier/log' do

@@ -39,7 +39,7 @@ module App
 
         get '/arenas/@:identifier/instruction' do
           content_type "text/event-stream"
-          stream_for(params)
+          streaming
         end
       end
     end
