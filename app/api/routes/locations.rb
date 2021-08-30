@@ -13,14 +13,7 @@ module App
         end
 
         put '/locations/@:identifier' do
-          # TODO: Use action(:update, **params)
-          dirpath = "/tmp/spaces/Universe/locations/#{params[:identifier]}"
-          FileUtils.mkpath(dirpath) unless Dir.exist?(dirpath)
-          path = "#{dirpath}/descriptor.yaml"
-          model = params[:model]
-          struct = OpenStruct.new(model)
-          File.write(path, struct.to_yaml)
-          {result: ''}.to_json
+          action(:update, **params)
         end
       end
     end

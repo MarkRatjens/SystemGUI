@@ -28,10 +28,15 @@ module App
           ::Packing::Controllers::Controller.new.artifacts(identifier: params[:identifier]).to_json
         end
 
-        get '/packs/@:identifier/build' do
-          # TODO: Should be a POST. Using GET as hack to get SSE to client for JS dev work.
+        post '/packs/@:identifier/build' do
+          # TODO: Build should be initiated with a POST. Doing it in the GET below as hack to get SSE to client for JS dev work.
           # TODO: USE action(:commit, **params)
           #       OR ::Packing::Controllers::Controller.new.commit(identifier: params[:identifier]).to_json
+          {result: 'Building'}.to_json
+        end
+
+        get '/packs/@:identifier/build/follow' do
+          # TODO: USE stream_for(**params)
           content_type "text/event-stream"
           identifier = params[:identifier]
           model = params[:model]
