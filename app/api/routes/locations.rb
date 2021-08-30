@@ -7,14 +7,6 @@ module App
         before '/locations/?*' do
           @controller = ::Spaces::Controllers::RESTController.new(space: :locations)
         end
-
-        get '/locations/@:identifier' do
-          action(:show, **params)
-        end
-
-        put '/locations/@:identifier' do
-          action(:update, **params)
-        end
       end
     end
   end

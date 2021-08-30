@@ -28,6 +28,17 @@ module App
       register Resolutions
       register Session
       register System
+
+      get '/:resource' do; action(:index) ;end
+      post '/:resource' do; action(:new) ;end
+
+      get '/:resource/@:identifier' do; action(:show) ;end
+      put '/:resource/@:identifier' do; action(:update) ;end
+      delete '/:resource/@:identifier' do; action(:delete) ;end
+
+      get '/:resource/:action' do; action(params[:action]); end
+      get '/:resource/@:identifier/:action' do; action(params[:action]) ;end
+      post '/:resource/@:identifier/:action' do; action(params[:action]) ;end
     end
   end
 end

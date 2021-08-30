@@ -1,12 +1,24 @@
 app.arenas.instruction.follow = (route) => (a,x) => a.div([
-  app.xterm({label: 'Initializing'}),
+  app.xterm({label: {
+    init: 'Initializing',
+    plan: 'Planning',
+    apply: 'Applying',
+  }[route.params.command]}),
   a['appkit-event-source']( null, {
     $init: (el) => {
-      el.$eventsource = new EventSource( `/api/arenas/@${route.params.arenaIdentifier}/instruction?instruction=${route.params.instruction}` )
+      el.$eventsource = new EventSource( `/api/arenas/@${route.params.arenaIdentifier}/instruction?command=${route.params.command}` )
       el.$eventsource.onmessage = function(e) {
-        let line = e.data
-        if ( line == String.fromCharCode(4) ) el.$complete()
-        if ( line ) el.previousSibling.$write( `${ line }\n` )
+        let message = JSON.parse(e.data)
+        if ( message.eot ) {
+          el.$complete()
+          return
+        }
+        if ( message.log ) el.previousSibling.$write( `${ message.log }` )
+        if ( message.exception ) {
+          el.$complete()
+          el.previousSibling.$nodes = app.exception(message.exception)
+          return
+        }
       }
       el.$eventsource.onerror = function(e) {
         // Timeout to stop error when eventstream exits on new page load.

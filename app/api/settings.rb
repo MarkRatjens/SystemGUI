@@ -2,7 +2,6 @@ module App
   class Api
 
     set sessions: true,
-        # same_site: :none,
         secure: true,
         session_secret: Sinatra::Base.development? ? 'SESSION_SECRET' : ENV['SESSION_SECRET'],
         logging: Sinatra::Base.development? ? Logger::DEBUG : Logger::INFO,
@@ -13,7 +12,6 @@ module App
 
     set (:cookie_options) do {
         :same_site => "none",
-        # :expires => Time.now + 1.month,
         :secure => true
     }
   end

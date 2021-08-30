@@ -5,7 +5,6 @@ app.settings = (route) => (a, x) => [
     routes: {
       '/?': app.settings.show,
       '/appearance': app.settings.appearance,
-      '/keys/?*': app.settings.keys,
       '/editor': app.settings.editor,
     },
   }),

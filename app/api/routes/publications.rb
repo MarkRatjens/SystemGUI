@@ -9,12 +9,8 @@ module App
         end
 
         post '/publications/import' do
-          # TODO: USE action(:import, **params)
+          # TODO: USE action(:import)
           ::Publishing::Controllers::Controller.new.import(model: params[:model]).to_json
-        end
-
-        post '/publications/@:identifier/export' do
-          action(:export, **params)
         end
       end
     end
