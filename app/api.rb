@@ -46,20 +46,10 @@ module App
     end
 
     def command_args
-      symbolize_keys(params.to_h).without(:authenticity_token, :resource, :action)
+      params.without(:authenticity_token, :resource, :action).to_h.symbolize_keys
     end
 
-    def symbolize_keys(obj)
-      return obj
-      .map{|v| symbolize_keys(v)} if obj.is_a?(Array)
-      return obj
-      .transform_keys { |k| k.to_sym }
-      .transform_values { |v| symbolize_keys(v) } if obj.is_a?(Hash)
-      return obj
-    end
-
-
-    def stream_for(params)
+    def streaming
       started = Time.now.strftime("%H:%M:%S")
       args = command_args
       begin
