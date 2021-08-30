@@ -41,43 +41,51 @@ module App
       request.fullpath.sub('/api', '')
     end
 
-    def action(action, **options)
-      @controller.control(action, **options).to_json
+    def action(command)
+      @controller.control(command: command, **command_args).to_json
     end
+
+    def command_args
+      symbolize_keys(params.to_h).without(:authenticity_token, :resource, :action)
+    end
+
+    def symbolize_keys(obj)
+      return obj
+      .map{|v| symbolize_keys(v)} if obj.is_a?(Array)
+      return obj
+      .transform_keys { |k| k.to_sym }
+      .transform_values { |v| symbolize_keys(v) } if obj.is_a?(Hash)
+      return obj
+    end
+
 
     def stream_for(params)
       started = Time.now.strftime("%H:%M:%S")
+      args = command_args
       begin
         stream(:keep_open) do |out|
-          logger.info "STREAM:#{started} Builder log stream started."
-          @controller.control(params['instruction'].to_sym, **params) do |line|
-            out.puts "data: #{line}\n\n"
-          end.tap do |result|
-            if result[:errors]
-              output = "\n\033[1;31mArena instruction command error.\n\033[0;31m#{result[:errors]}\033[0m"
-              output.split("\n").each do |line|
-                out.puts "data: #{line}\n\n"
+          logger.info "STREAM:#{started} Stream started."
+          begin
+            @controller.control(**args) do |line|
+              out.puts "data: #{{log: line}.to_json}\n\n"
+            end.tap do |result|
+              if result[:errors]
+                message = "\n\033[1;31mCommand error.\n\033[0;31m#{result[:errors]}\033[0m"
+                out.puts "data: #{{log: message}.to_json}\n\n"
               end
             end
+          rescue => e
+            message = [e.message, *e.backtrace].join("\n")
+            logger.error(message)
+            out.puts "data: #{{exception: message}.to_json}\n\n"
+          ensure
+            out.puts "data: #{{eot: true}.to_json}\n\n"
+            out.close
           end
-          out.puts "data: #{4.chr}\n\n" # ASCII 4 is EOT (end of transmission)
-          out.close
         end
-        logger.info "STREAM:#{started} Builder log stream complete."
+        logger.info "STREAM:#{started} Stream complete."
       rescue IOError => e
-        logger.info "STREAM:#{started} Builder log stream lost its connection with user agent."
-      end
-    end
-
-    ## This method is used to convert Sinatra::IndifferentHash to
-    ## a Hash, because JSON.generate was failing with IndifferentHash.
-    def deep_to_h(obj)
-      if obj.is_a?(Array)
-        obj.map{|v| deep_to_h(v)}
-      elsif obj.is_a?(Sinatra::IndifferentHash)
-        obj.to_h.transform_values{|v| deep_to_h(v)}
-      else
-        obj
+        logger.info "STREAM:#{started} Stream lost its connection with user agent."
       end
     end
   end

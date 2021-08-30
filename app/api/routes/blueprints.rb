@@ -8,38 +8,6 @@ module App
           @controller = ::Blueprinting::Controllers::Controller.new
         end
 
-        get '/blueprints' do
-          action(:index, **params)
-        end
-
-        get '/blueprints/list' do
-          action(:list, **params)
-        end
-
-        post '/blueprints' do
-          action(:new, **params)
-        end
-
-        get '/blueprints/@:identifier/summary' do
-          action(:summary, **params)
-        end
-
-        get '/blueprints/@:identifier' do
-          action(:show, **params)
-        end
-
-        delete '/blueprints/@:identifier' do
-          action(:delete, **params)
-        end
-
-        put '/blueprints/@:identifier' do
-          action(:update, **params)
-        end
-
-        get '/blueprints/@:identifier/relations' do
-          action(:relations, **params)
-        end
-
         #-----------------------------------------------------------------------
         # TODO: everything below here is still to be cleaned up
 
@@ -48,7 +16,6 @@ module App
         before '/blueprints/@:identifier/?*' do
           @blueprint = Blueprint.new(params[:identifier])
         end
-
 
         # FORM
 
@@ -59,7 +26,7 @@ module App
 
         # Update blueprint form, i.e. form.json
         put '/blueprints/@:identifier/form' do
-          {result: @blueprint.form.save(deep_to_h(params[:form]))}.to_json
+          {result: @blueprint.form.save(symbolize_keys(params[:form].to_h))}.to_json
         end
 
         # LICENSE

@@ -10,7 +10,7 @@ module App
 
         # No authentication on this route.
         post '/session' do
-          {result: @current_user.login(session: session, **params)}.to_json
+          {result: @current_user.login(session: session)}.to_json
         end
 
         delete '/session' do

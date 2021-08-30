@@ -29,7 +29,6 @@ app.blueprints.menu = (route) => (a,x) => a({
   $init: (el) => el.$activate(),
   $update: (el, active) => {
     el.$$(`button`).classList.remove('active')
-    if (!el.$(`button[data-view="${active}"]`)) {debugger}
     el.$(`button[data-view="${active}"]`).classList.add('active')
   },
   $activate: (el) => () => {

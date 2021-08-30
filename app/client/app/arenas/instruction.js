@@ -5,7 +5,7 @@ app.arenas.instruction = (route) => (a,x) => a.div([
     method: "POST",
     form: (f) => [
       f.field({
-        key: 'instruction',
+        key: 'command',
         as: 'select',
         label: false,
         placeholder: 'Select an instruction',
@@ -17,6 +17,6 @@ app.arenas.instruction = (route) => (a,x) => a.div([
       }),
       f.buttons({route: route})
     ],
-    success: (instruction) => route.open('follow', {instruction: instruction}),
+    success: (command) => route.open('follow', {command: command}),
   }),
 ]);

@@ -151,7 +151,11 @@ app.theme = (theme) => {
         boxShadow: `0px 0px 5px ${theme.controlBoxShadowColor}`,
       },
     },
-
+    'ax-appkit-xtermjs': {
+      'ax-appkit-xtermjs-toolbar': {
+        color: '#333',
+      },
+    },
   }
 
   ax.style(style)

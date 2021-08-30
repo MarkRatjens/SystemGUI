@@ -4,9 +4,20 @@ app.arenas.installation.build.follow = (route) => (a,x) => [
     $init: (el) => {
       el.$eventsource = new EventSource( `/api/packs/@${route.params.arenaIdentifier}::${route.params.blueprintIdentifier}/build/follow` )
       el.$eventsource.onmessage = function(e) {
-        let line = e.data
-        if ( line == String.fromCharCode(4) ) el.$complete()
-        if ( line ) el.previousSibling.$write( `${ line }\n` )
+        let message = JSON.parse(e.data)
+        if ( message.eot ) {
+          el.$complete()
+          return
+        }
+        if ( message.log ) el.previousSibling.$write( `${ message.log }` )
+        if ( message.exception ) {
+          el.$complete()
+          el.$nodes = [
+            app.exception(message.exception),
+            el.$nodes
+          ]
+          return
+        }
       }
       el.$eventsource.onerror = function(e) {
         // Timeout to stop error when eventstream exits on new page load.
@@ -27,7 +38,6 @@ app.arenas.installation.build.follow = (route) => (a,x) => [
       el.$eventsource.close()
       delete el.$eventsource
       el.$nodes = [
-        a.br,
         app.button({
           label: app.icon('fas fa-check', 'Done'),
           onclick: () => route.open('../..'),
