@@ -28,10 +28,12 @@ module App
         end
 
         post '/packs/@:identifier/build' do
-          # TODO: Build should be initiated with a POST. Doing it in the GET below as hack to get SSE to client for JS dev work.
+          # TODO: Build should be initiated with a POST.
+          # Doing it in the GET below as hack to get SSE to client for JS dev work.
           # TODO: USE action(:commit)
           #       OR ::Packing::Controllers::Controller.new.commit(identifier: params[:identifier]).to_json
-          {result: 'Building'}.to_json
+          {result: {identifier: params[:identifier]}}.to_json
+          # action(:commit)
         end
 
         get '/packs/@:identifier/build/follow' do

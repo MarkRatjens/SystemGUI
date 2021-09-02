@@ -24,7 +24,7 @@ app.blueprints.design.location = (route, blueprint) => (a, x) => a.div([
             placeholder: 'Optional branch',
           }),
           f.field({
-            key: 'key',
+            key: 'key_identifier',
             as: 'select',
             placeholder: 'Optional key',
             selections: keys.map((key) => [key.identifier, [key.identifier, key.explanation ? ` - ${key.explanation}` : ''].join('')]),

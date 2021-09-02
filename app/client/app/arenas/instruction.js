@@ -17,6 +17,6 @@ app.arenas.instruction = (route) => (a,x) => a.div([
       }),
       f.buttons({route: route})
     ],
-    success: (command) => route.open('follow', {command: command}),
+    success: (result) => route.open('follow', {command: result.command}),
   }),
 ]);

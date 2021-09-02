@@ -71,56 +71,63 @@
   <script type="application/javascript" src="<%= ax_path %>/@engines/ax-appkit-xtermjs/ax-appkit-xtermjs.js" ></script>
 
   <script type="application/javascript" src="/app.js" ></script>
-
+  <style>
+    #loadingSpinner {
+      transition: opacity 0.75s ease;
+      text-align: center;
+      line-height: 80vh;
+      position: fixed;
+      left: 0; top: 0; right: 0; bottom: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+    #loadingSpinner svg {
+      vertical-align: middle;
+    }
+    #loadingSpinner path {
+      fill:#48D9;
+      stroke-width:0
+    }
+  </style>
 </head>
 <body>
 
-<div id="loadingSpinner" style="
-  transition: opacity 0.75s ease;
-  text-align: center;
-  line-height: 80vh;
-  position: fixed;
-  left: 0; top: 0; right: 0; bottom: 0;
-  pointer-events: none;
-  z-index: 1;
-  ">
-  <svg width="100" height="100" style="vertical-align: middle;">
+<div id="loadingSpinner">
+  <svg width="100" height="100">
     <g transform="scale(0.33333)">
-      <path d="
-        M 150,300 L 280,225 L 280,75 L 150,0 L 20,75 L 20,225 L 150,300
-        M 40,150 A 110,110 0 1,0 260,150 A 110,110 0 1,0 40,150 Z"
-        style="fill:#48D9;stroke-width:0" fill-rule="evenodd">
-        <animateTransform
-          attributeName="transform"
-          attributeType="XML"
-          type="rotate"
-          from="0 150 150"
-          to="360 150 150"
-          dur="2s"
-          repeatCount="indefinite"/>
-      </path>
+      <path
+      d="M 150,300 L 280,225 L 280,75 L 150,0 L 20,75 L 20,225 L 150,300 M 40,150 A 110,110 0 1,0 260,150 A 110,110 0 1,0 40,150 Z"
+      fill-rule="evenodd">
+      <animateTransform
+      attributeName="transform"
+      attributeType="XML"
+      type="rotate"
+      from="0 150 150"
+      to="360 150 150"
+      dur="2s"
+      repeatCount="indefinite"/>
     </g>
   </svg>
 </div>
 
 <script>
 
-const inDevelopment = <%= Sinatra::Base.development? %>;
-const authenticityToken = '<%= 'FAKE-TOKEN' || Rack::Protection::AuthenticityToken.token(env['rack.session']) %>';
+  const inDevelopment = <%= Sinatra::Base.development? %>;
+  const authenticityToken = '<%= 'FAKE-TOKEN' || Rack::Protection::AuthenticityToken.token(env['rack.session']) %>';
 
-// The UMD for FitAddon returns an object
-FitAddon = FitAddon.FitAddon
+  // The UMD for FitAddon returns an object
+  FitAddon = FitAddon.FitAddon
 
-window.onload = () => {
-  if( window.localStorage.cssTheme ) {
-    document.body.classList.add(
+  window.onload = () => {
+    if( window.localStorage.cssTheme ) {
+      document.body.classList.add(
       `app-theme-${ window.localStorage.cssTheme }`
-    )
+      )
+    }
+    ax( app )
+    loadingSpinner.style.opacity = 0
+    setTimeout( function() { loadingSpinner.remove() }, 1000 )
   }
-  ax( app )
-  loadingSpinner.style.opacity = 0
-  setTimeout( function() { loadingSpinner.remove() }, 1000 )
-}
 </script>
 
 </body>

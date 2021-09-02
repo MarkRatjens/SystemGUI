@@ -34,7 +34,7 @@ module App
         # Doing it in the GET below as hack to get SSE to client for JS dev work.
         # TODO: USE action(:init)
         post '/arenas/@:identifier/instruction' do
-          {result: params[:command]}.to_json
+          {result: {identifier: params[:identifier], command: params[:command]}}.to_json
         end
 
         get '/arenas/@:identifier/instruction' do

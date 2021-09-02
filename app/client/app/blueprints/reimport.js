@@ -1,7 +1,7 @@
 app.blueprints.reimport = (route) => (a, x) => a.div([
   a.h3('Reimport'),
   app.jsonForm({
-    url: `/api/publications/import`,
+    url: `/api/publications/@:identifier/reimport`,
     method: 'POST',
     route: route,
     form: (f) => [
@@ -11,5 +11,6 @@ app.blueprints.reimport = (route) => (a, x) => a.div([
         as: 'hidden'
       })
     ],
+    success: () => route.open('follow'),
   }),
 ]);

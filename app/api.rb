@@ -46,24 +46,45 @@ module App
     end
 
     def command_args
-      params.without(:authenticity_token, :resource, :action).to_h.symbolize_keys
+      params.slice(:identifier, :model, :command).to_h.symbolize_keys
     end
 
     def streaming
+      command_stream_for do |emit|
+
+if params[:command] == :import && params[:model]
+  ::Publishing::Controllers::Controller.new.import({
+    model: params[:model],
+  }) do |message|
+    emit.call(message)
+  end.tap do |result|
+    emit.call("\n\033[1;31mCommand error\n\033[0;31m#{result[:errors]}\033[0m") if result[:errors]
+  end
+elsif params[:command] == :import && params[:identifier]
+  ::Publishing::Controllers::Controller.new.import({
+    model: Api.spaces.universe.locations.by(params[:identifier]).to_h,
+  }.compact) do |message|
+    emit.call(message)
+  end.tap do |result|
+    emit.call("\n\033[1;31mCommand error\n\033[0;31m#{result[:errors]}\033[0m") if result[:errors]
+  end
+else
+        @controller.control(**command_args) do |message|
+          emit.call(message)
+        end.tap do |result|
+          emit.call("\n\033[1;31mCommand error\n\033[0;31m#{result[:errors]}\033[0m") if result[:errors]
+        end
+end
+      end
+    end
+
+    def command_stream_for
       started = Time.now.strftime("%H:%M:%S")
-      args = command_args
       begin
         stream(:keep_open) do |out|
           logger.info "STREAM:#{started} Stream started."
           begin
-            @controller.control(**args) do |line|
-              out.puts "data: #{{log: line}.to_json}\n\n"
-            end.tap do |result|
-              if result[:errors]
-                message = "\n\033[1;31mCommand error.\n\033[0;31m#{result[:errors]}\033[0m"
-                out.puts "data: #{{log: message}.to_json}\n\n"
-              end
-            end
+            yield ->(message) { out.puts "data: #{{log: message}.to_json}\n\n" }
           rescue => e
             message = [e.message, *e.backtrace].join("\n")
             logger.error(message)
