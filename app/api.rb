@@ -53,17 +53,18 @@ module App
       command_stream_for do |emit|
 
 if params[:command] == :import && params[:model]
-  ::Publishing::Controllers::Controller.new.import({
+  ::Publishing::Controllers::Controller.new(force: true).import({
     model: params[:model],
+    force: true,
   }) do |message|
     emit.call(message)
   end.tap do |result|
     emit.call("\n\033[1;31mCommand error\n\033[0;31m#{result[:errors]}\033[0m") if result[:errors]
   end
 elsif params[:command] == :import && params[:identifier]
-  ::Publishing::Controllers::Controller.new.import({
+  ::Publishing::Controllers::Controller.new(force: true).import({
     model: Api.spaces.universe.locations.by(params[:identifier]).to_h,
-  }.compact) do |message|
+  }) do |message|
     emit.call(message)
   end.tap do |result|
     emit.call("\n\033[1;31mCommand error\n\033[0;31m#{result[:errors]}\033[0m") if result[:errors]
