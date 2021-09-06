@@ -13,11 +13,7 @@ module App
         end
 
         post '/publications/import' do
-          # TODO: USE action(:import)
-          # TODO: Set thread: true to build in a thread.
-          ::Publishing::Controllers::Controller.new(force: true).import({
-            model: params[:model],
-          }).to_json
+          action(:import)
         end
 
         get '/publications/import/output' do

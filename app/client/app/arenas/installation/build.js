@@ -5,6 +5,6 @@ app.arenas.installation.build = (route) => (a,x) => a.div([
     url: `/api/packs/@${route.params.arenaIdentifier}::${route.params.blueprintIdentifier}/build`,
     method: "POST",
     form: (f) => [f.buttons({route: route})],
-    success: () => route.open('output'),
+    success: () => route.load('output'),
   }),
 ]);

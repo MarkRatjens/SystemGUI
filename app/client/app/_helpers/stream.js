@@ -41,7 +41,7 @@ app.stream = (options) => (a,x) => a.div([
         el.$nodes,
         app.button({
           label: app.icon('fas fa-check', 'Done'),
-          onclick: () => options.route.open('../..'),
+          onclick: () => options.route.open('..'),
           class: 'btn btn-primary',
         }),
       ]

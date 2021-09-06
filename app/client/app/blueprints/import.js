@@ -18,8 +18,14 @@ app.blueprints.import = (route) => (a, x) => a.div([
       f.field({
         key: 'identifier',
       }),
+      f.field({
+        key: 'force',
+        as: 'checkbox',
+        label: false,
+        control: {label: 'Force'},
+      }),
     ],
     digest: (form) => app.compact(form),
-    success: () => route.open('output'),
+    success: () => route.load('output'),
   }),
 ]);
