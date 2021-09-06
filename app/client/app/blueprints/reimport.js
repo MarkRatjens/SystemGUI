@@ -9,7 +9,20 @@ app.blueprints.reimport = (route) => (a, x) => a.div([
         key: 'identifier',
         value: route.params.blueprintIdentifier,
         as: 'hidden'
-      })
+      }),
+      f.field({
+        key: 'model',
+        as: 'one',
+        label: false,
+        form: (ff) => [
+          f.field({
+            key: 'force',
+            as: 'checkbox',
+            label: false,
+            control: {label: 'Force'},
+          }),
+        ]
+      }),
     ],
     success: () => route.load('output'),
   }),
