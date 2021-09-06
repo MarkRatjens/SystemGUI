@@ -26,15 +26,12 @@ module App
         end
 
         post '/publications/@:identifier/reimport' do
-          # TODO: USE action(:import)
-          ::Publishing::Controllers::Controller.new(force: true).import({
-            model: Api.spaces.universe.locations.by(params[:identifier]).to_h,
-          }).to_json
+          action(:import)
         end
 
         get '/publications/@:identifier/reimport/output' do
           content_type "text/event-stream"
-          stream_output_from(spaces_path_for(:publications, params[:identifier], 'import.out'))
+          stream_output_from(spaces_path_for(:publications, 'import.out'))
         end
 
       end
