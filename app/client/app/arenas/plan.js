@@ -5,6 +5,6 @@ app.arenas.plan = (route) => (a,x) => a.div([
     url: `/api/arenas/@${route.params.arenaIdentifier}/plan`,
     method: "POST",
     form: (f) => [f.buttons({route: route})],
-    success: () => route.open('..'),
+    success: () => route.open('output'),
   }),
 ]);

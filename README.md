@@ -33,7 +33,7 @@ For example, to install on Mac OS X
 
 4. Start
 
-`bundle exec thin start`
+`bundle exec thin start --threaded`
 
 
 Test

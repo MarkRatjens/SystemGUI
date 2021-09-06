@@ -33,7 +33,7 @@ app.arenas.installation = (route) => (a,x) => [
       '/?': app.arenas.installation.show,
       '/configuration/?': app.arenas.installation.configuration,
       '/build/?': app.arenas.installation.build,
-      '/build/follow': app.arenas.installation.build.follow,
+      '/build/output': app.arenas.installation.build.output,
       '/log': app.arenas.installation.log,
       '/delete': app.arenas.installation.delete,
     }

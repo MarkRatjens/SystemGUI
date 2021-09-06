@@ -20,9 +20,6 @@ app.blueprints.import = (route) => (a, x) => a.div([
       }),
     ],
     digest: (form) => app.compact(form),
-    success: (identifier) => {
-      dashboardMenu.$render()
-      route.open(`../@${identifier}`)
-    },
+    success: () => route.open('output'),
   }),
 ]);

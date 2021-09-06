@@ -25,6 +25,7 @@ app.blueprints.blueprint = (route) => (a,x) => a['app-blueprints-blueprint']([
   route.mount({
     routes: {
       '/reimport': app.blueprints.reimport,
+      '/reimport/output': app.blueprints.reimport.output,
       '/delete': app.blueprints.delete,
       '/design/?*': app.blueprints.design,
       '*': app.blueprints.show,

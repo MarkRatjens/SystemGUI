@@ -68,14 +68,27 @@ app.arenas.show = (route) => (a,x) => [
               }
             ]
           }),
-        ],
-        right: [
-          app.button({
-            label: app.icon('far fa-flag', 'Instruction'),
-            title: 'Instruction',
-            onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/instruction`),
+          x.popup(app.icon('far fa-flag', 'Instruction'), {
+            contentTag: {
+              class: 'btn app-btn',
+            },
+            menu: [
+              {
+                label: 'Initialize',
+                onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/init`),
+              },
+              {
+                label: 'Plan',
+                onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/plan`),
+              },
+              {
+                label: 'Apply',
+                onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/apply`),
+              }
+            ]
           }),
         ],
+        right: [],
       }),
       x.out(state),
       a.hr,

@@ -15,6 +15,7 @@ module App
     require_relative 'api/settings'
     require_relative 'api/mime'
     require_relative 'api/errors'
+    require_relative 'api/helpers'
     require_relative 'api/models'
     require_relative 'api/session'
     require_relative 'api/setup'
@@ -22,6 +23,7 @@ module App
 
     helpers Sinatra::Cookies
     helpers Sinatra::Streaming
+    helpers Helpers
 
     register Routes
 
@@ -33,50 +35,9 @@ module App
 
     before do
       return unless request.content_type == 'application/json'
-      params.merge!(JSON.parse(request.body.read))
+      params.merge!(parse(request.body.read))
       puts params
     end
 
-    def path
-      request.fullpath.sub('/api', '')
-    end
-
-    def action(command)
-      @controller.control(command: command, **command_args).to_json
-    end
-
-    def command_args
-      params.without(:authenticity_token, :resource, :action).to_h.symbolize_keys
-    end
-
-    def streaming
-      started = Time.now.strftime("%H:%M:%S")
-      args = command_args
-      begin
-        stream(:keep_open) do |out|
-          logger.info "STREAM:#{started} Stream started."
-          begin
-            @controller.control(**args) do |line|
-              out.puts "data: #{{log: line}.to_json}\n\n"
-            end.tap do |result|
-              if result[:errors]
-                message = "\n\033[1;31mCommand error.\n\033[0;31m#{result[:errors]}\033[0m"
-                out.puts "data: #{{log: message}.to_json}\n\n"
-              end
-            end
-          rescue => e
-            message = [e.message, *e.backtrace].join("\n")
-            logger.error(message)
-            out.puts "data: #{{exception: message}.to_json}\n\n"
-          ensure
-            out.puts "data: #{{eot: true}.to_json}\n\n"
-            out.close
-          end
-        end
-        logger.info "STREAM:#{started} Stream complete."
-      rescue IOError => e
-        logger.info "STREAM:#{started} Stream lost its connection with user agent."
-      end
-    end
   end
 end
