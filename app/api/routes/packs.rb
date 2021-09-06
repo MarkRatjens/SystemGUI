@@ -28,25 +28,15 @@ module App
         end
 
         post '/packs/@:identifier/build' do
-          # TODO: Build should be initiated with a POST.
-          # Doing it in the GET below as hack to get SSE to client for JS dev work.
-          # TODO: USE action(:commit)
-          #       OR ::Packing::Controllers::Controller.new.commit(identifier: params[:identifier]).to_json
-          {result: {identifier: params[:identifier]}}.to_json
-          # action(:commit)
+          # TODO: Set thread: true to build in a thread.
+          action(:commit)
         end
 
-        get '/packs/@:identifier/build/follow' do
+        get '/packs/@:identifier/build/output' do
           content_type "text/event-stream"
-          params[:command] = :commit
-          streaming
+          stream_output_from(spaces_path_for(:packs, *params[:identifier].split('::'), 'build.out'))
         end
 
-        get '/packs/@:identifier/log' do
-          pack = Api.spaces.universe.packs.by(params[:identifier])
-          filepath = Api.spaces.universe.packs.path_for(pack).join('build.log')
-          {result: File.read(filepath)}.to_json
-        end
       end
     end
   end

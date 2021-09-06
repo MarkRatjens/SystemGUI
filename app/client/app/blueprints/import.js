@@ -20,6 +20,6 @@ app.blueprints.import = (route) => (a, x) => a.div([
       }),
     ],
     digest: (form) => app.compact(form),
-    success: (params) => route.open('follow', params),
+    success: () => route.open('output'),
   }),
 ]);

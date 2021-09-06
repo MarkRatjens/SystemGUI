@@ -11,6 +11,6 @@ app.blueprints.reimport = (route) => (a, x) => a.div([
         as: 'hidden'
       })
     ],
-    success: () => route.open('follow'),
+    success: () => route.open('output'),
   }),
 ]);

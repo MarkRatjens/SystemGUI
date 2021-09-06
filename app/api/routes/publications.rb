@@ -13,34 +13,30 @@ module App
         end
 
         post '/publications/import' do
-          # TODO: Import should be initiated with a POST.
-          # Doing it in the GET below as hack to get SSE to client for JS dev work.
           # TODO: USE action(:import)
-          #       OR ::Publishing::Controllers::Controller.new.import(model: params[:model]).to_json
-          {result: {model: params[:model]}}.to_json
+          # TODO: Set thread: true to build in a thread.
+          ::Publishing::Controllers::Controller.new(force: true).import({
+            model: params[:model],
+          }).to_json
         end
 
-        get '/publications/import/follow' do
+        get '/publications/import/output' do
           content_type "text/event-stream"
-          params[:resource] = :publications
-          params[:command] = :import
-          streaming
+          stream_output_from(spaces_path_for(:publications, 'import.out'))
         end
 
         post '/publications/@:identifier/reimport' do
-          # TODO: Import should be initiated with a POST.
-          # Doing it in the GET below as hack to get SSE to client for JS dev work.
           # TODO: USE action(:import)
-          #       OR ::Publishing::Controllers::Controller.new.import(identifier: params[:identifier]).to_json
-          {result: {identifier: params[:identifier]}}.to_json
+          ::Publishing::Controllers::Controller.new(force: true).import({
+            model: Api.spaces.universe.locations.by(params[:identifier]).to_h,
+          }).to_json
         end
 
-        get '/publications/@:identifier/reimport/follow' do
+        get '/publications/@:identifier/reimport/output' do
           content_type "text/event-stream"
-          params[:resource] = :publications
-          params[:command] = :import
-          streaming
+          stream_output_from(spaces_path_for(:publications, params[:identifier], 'import.out'))
         end
+
       end
     end
   end

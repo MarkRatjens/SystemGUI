@@ -5,6 +5,6 @@ app.arenas.apply = (route) => (a,x) => a.div([
     url: `/api/arenas/@${route.params.arenaIdentifier}/apply`,
     method: "POST",
     form: (f) => [f.buttons({route: route})],
-    success: () => route.open('..'),
+    success: () => route.open('output'),
   }),
 ]);
