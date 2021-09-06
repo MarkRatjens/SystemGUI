@@ -5,6 +5,6 @@ app.arenas.init = (route) => (a,x) => a.div([
     url: `/api/arenas/@${route.params.arenaIdentifier}/init`,
     method: "POST",
     form: (f) => [f.buttons({route: route})],
-    success: () => route.open('output'),
+    success: () => route.load('output'),
   }),
 ]);

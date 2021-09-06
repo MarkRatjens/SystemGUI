@@ -11,6 +11,6 @@ app.blueprints.reimport = (route) => (a, x) => a.div([
         as: 'hidden'
       })
     ],
-    success: () => route.open('output'),
+    success: () => route.load('output'),
   }),
 ]);
