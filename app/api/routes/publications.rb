@@ -25,9 +25,18 @@ module App
           action(:import)
         end
 
-        get '/publications/@:identifier/reimport/output' do
+        get '/publications/@:identifier/import/output' do
           content_type "text/event-stream"
           stream_output_from(spaces_path_for(:publications, 'import.out'))
+        end
+
+        post '/publications/@:identifier/import' do
+          action(:export)
+        end
+
+        get '/publications/@:identifier/export/output' do
+          content_type "text/event-stream"
+          stream_output_from(spaces_path_for(:publications, 'export.out'))
         end
 
       end

@@ -11,8 +11,14 @@ app.blueprints.design.export = (route, blueprint) => (a, x) => a.div([
         label: false,
         placeholder: 'Message',
       }),
+      f.field({
+        key: 'force',
+        as: 'checkbox',
+        label: false,
+        control: {label: 'Force'},
+      }),
       f.buttons({route: route}),
     ],
-    success: () => route.open('..'),
+    success: () => route.load('output'),
   }),
 ]);
