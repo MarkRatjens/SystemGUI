@@ -25,7 +25,7 @@ app.stream = (options) => (a,x) => a.div([
     },
     $colors: {black: '30', red: '31', green: '32', yellow: '33', blue: '34', magenta: '35', cyan: '36', white: '37' },
     $write: (el) => (text, opts={}) => {
-      let encoded = ['\033[', opts.bold ? '1' : '0', ';', el.$colors[opts.color], 'm', text, '\033[0m'].join('')
+      let encoded = ['\u001b[', opts.bold ? '1' : '0', ';', el.$colors[opts.color], 'm', text, '\u001b[0m'].join('')
       el.previousSibling.$write(encoded)
     },
     $exit: (el) => {
