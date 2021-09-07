@@ -28,7 +28,6 @@ module App
         end
 
         post '/packs/@:identifier/build' do
-          # TODO: Set thread: true to build in a thread.
           action(:commit)
         end
 

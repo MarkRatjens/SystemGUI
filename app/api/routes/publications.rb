@@ -8,26 +8,19 @@ module App
           @controller = ::Publishing::Controllers::Controller.new
         end
 
-        post '/publications/@:identifier/export' do
-          @controller.control(command: 'export', **command_args).to_json
-        end
-
-        post '/publications/import' do
-          action(:import)
-        end
-
         get '/publications/import/output' do
           content_type "text/event-stream"
           stream_output_from(spaces_path_for(:publications, 'import.out'))
         end
 
-        post '/publications/@:identifier/reimport' do
-          action(:import)
-        end
-
-        get '/publications/@:identifier/reimport/output' do
+        get '/publications/@:identifier/import/output' do
           content_type "text/event-stream"
           stream_output_from(spaces_path_for(:publications, 'import.out'))
+        end
+
+        get '/publications/@:identifier/export/output' do
+          content_type "text/event-stream"
+          stream_output_from(spaces_path_for(:publications, 'export.out'))
         end
 
       end

@@ -3,6 +3,7 @@ app.blueprints.design = (route) => (a,x) => a.div([
     routes: {
       "/location": app.blueprints.design.location,
       "/export": app.blueprints.design.export,
+      "/export/output": app.blueprints.design.export.output,
       "/branch": app.blueprints.design.branch,
       '*': app.blueprints.design.show,
     },

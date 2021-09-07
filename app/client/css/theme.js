@@ -33,7 +33,8 @@ app.theme = (theme) => {
         backgroundColor: theme.backgroundColor,
       },
       '.close': {
-        color: theme.color,
+        color: theme.buttonColor,
+        textShadow: `0 1px 0 ${theme.controlBoxShadowColor}`,
       }
     },
     '.error': {

@@ -26,7 +26,7 @@ module App
 
         # Update blueprint form, i.e. form.json
         put '/blueprints/@:identifier/form' do
-          {result: @blueprint.form.save(symbolize_keys(params[:form].to_h))}.to_json
+          {result: @blueprint.form.save(params[:form].to_h.symbolize_keys)}.to_json
         end
 
         # LICENSE
