@@ -1,7 +1,3 @@
-# Require docker here bacuase app fails to start when spaces left to do it.
-# Probably some mac vs. linux file loading thing.
-require 'docker'
-
 require 'spaces'
 
 module App
