@@ -18,6 +18,16 @@ module App
         params.slice(:identifier, :model, :command).to_h.symbolize_keys
       end
 
+      def exception_message_for(e)
+        [e.message, '', *exception_backtrace_for(e)].join("\n")
+      end
+
+      def exception_backtrace_for(e)
+        e.backtrace.map do |line|
+          line.sub(Pathname.new(Dir.pwd).parent.to_path, '')
+        end
+      end
+
       def spaces_path_for(space, *joins)
         Api.spaces.universe.send(space).path.join(*joins)
       end

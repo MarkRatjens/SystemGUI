@@ -16,7 +16,7 @@ module App
     error do |e|
       content_type :text
       status 500
-      [e.message, *e.backtrace].join("\n").tap { |message| logger.error(message) }
+      exception_message_for(e).tap { |message| logger.error(message) }
     end
 
   end
