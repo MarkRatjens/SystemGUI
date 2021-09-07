@@ -24,7 +24,10 @@ app.blueprints.design.blueprint.bindings.edit = (route, blueprint) => (a,x) => {
               key: 'custom_identifier',
               label: 'Identifier',
               as: 'radios',
-              value: f.object.identifier ? 'custom' : 'default',
+              value: (
+                f.object.identifier &&
+                (f.object.identifier != f.object.target_identifier)
+              ) ? 'custom' : 'default',
               selections: {
                 default: `Default - ${f.object.target_identifier}`,
                 custom: 'Custom',
