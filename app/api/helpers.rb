@@ -10,7 +10,7 @@ module App
         request.fullpath.sub('/api', '')
       end
 
-      # TODO: move to universe settings to spaces
+      # TODO: move settings to spaces
       def settings_filepath
         universe_dir.mkpath
         universe_dir.join('settings.yaml').tap { |file| FileUtils.touch(file) }

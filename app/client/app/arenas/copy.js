@@ -3,6 +3,7 @@ app.arenas.copy = (route) => (a,x) => a.div([
   app.jsonForm({
     url: `/api/arenas/@${route.params.arenaIdentifier}/copy`,
     method: 'POST',
+    route: route,
     scope: 'arena',
     form: (f) => [
       f.field({

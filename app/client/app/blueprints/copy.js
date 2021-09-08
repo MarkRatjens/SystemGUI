@@ -3,6 +3,7 @@ app.blueprints.copy = (route) => (a,x) => a.div([
   app.jsonForm({
     url: `/api/blueprints/@${route.params.blueprintIdentifier}/copy`,
     method: 'POST',
+    route: route,
     scope: 'blueprint',
     form: (f) => [
       f.field({

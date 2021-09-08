@@ -74,10 +74,8 @@ app.settings.edit = (route) => (a, x) => [
             max: '90',
             step: '1',
           }),
-          a.h3("Editor"),
           f.field({
             key: "editor_keymap",
-            label: 'Keymap',
             as: "select",
             placeholder: "None",
             selections: {
