@@ -1,4 +1,4 @@
-app.keys.form.token = (f) => [
+app.user_keys.form.token = (f) => [
   f.field({
     key: 'token',
     as: 'textarea',

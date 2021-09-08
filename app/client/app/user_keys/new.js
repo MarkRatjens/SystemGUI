@@ -1,14 +1,15 @@
-app.keys.new = (route) => (a, x) => a.div([
-  a.h5('New'),
+app.user_keys.new = (route) => (a, x) => a.div([
+  a.h3('New user key'),
   app.jsonForm({
-    url: `/api/keys`,
+    url: `/api/user_keys`,
     method: "POST",
     scope: 'model',
     route: route,
     horizontal: true,
     form: (f) => [
-      app.keys.form.key(f),
-      app.keys.form.token(f),
+      app.user_keys.form.token(f),
+      app.user_keys.form.issuer(f),
+      app.user_keys.form.about(f),
     ],
     digest: (form) => app.compact(form),
     success: (identifier) => route.open(`../@${identifier}`),

@@ -44,7 +44,7 @@ a["nav#navbar.navbar.navbar-expand.navbar-light.mt-n1.mb-1.activatable"](
         app.navbar.item({
           route: route,
           icon: 'fas fa-key',
-          path: '/keys',
+          path: '/user_keys',
           title: 'Keys',
         }),
         app.navbar.item({

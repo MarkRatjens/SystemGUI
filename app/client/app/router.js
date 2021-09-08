@@ -6,7 +6,7 @@ app.router = () => (a, x) => x.router({
       route.mount({
         routes: {
           '/settings/?*': app.settings,
-          '/keys/?*': app.keys,
+          '/user_keys/?*': app.user_keys,
           '/disconnected': app.disconnected,
           '/reconnect': app.reconnect,
           '/signedout': app.signedout,

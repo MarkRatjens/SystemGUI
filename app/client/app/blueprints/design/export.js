@@ -1,8 +1,9 @@
 app.blueprints.design.export = (route, blueprint) => (a, x) => a.div([
   a.h3(`Export`),
-  app.form({
+  app.jsonForm({
     url: `/api/publications/@${route.params.blueprintIdentifier}/export`,
     method: "POST",
+    route: route,
     scope: 'model',
     form: (f) => [
       f.field({
@@ -11,13 +12,6 @@ app.blueprints.design.export = (route, blueprint) => (a, x) => a.div([
         label: false,
         placeholder: 'Message',
       }),
-      f.field({
-        key: 'force',
-        as: 'checkbox',
-        label: false,
-        control: {label: 'Force'},
-      }),
-      f.buttons({route: route}),
     ],
     success: () => route.load('output'),
   }),

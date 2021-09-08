@@ -4,19 +4,25 @@ app.blueprints.import = (route) => (a, x) => a.div([
     url: "/api/publications/import",
     route: route,
     method: 'POST',
-    scope: 'model',
     form: (f) => [
       f.field({
-        key: "repository",
-        label: 'Repository URL',
-        type: 'url',
-        required: true,
-      }),
-      f.field({
-        key: "branch",
-      }),
-      f.field({
-        key: 'identifier',
+        key: 'model',
+        label: false,
+        as: 'one',
+        form: (ff) => [
+          ff.field({
+            key: "repository",
+            label: 'Repository URL',
+            type: 'url',
+            required: true,
+          }),
+          ff.field({
+            key: "branch",
+          }),
+          ff.field({
+            key: 'identifier',
+          }),
+        ]
       }),
       f.field({
         key: 'force',

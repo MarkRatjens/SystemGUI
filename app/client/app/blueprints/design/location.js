@@ -3,7 +3,7 @@ app.blueprints.design.location = (route, blueprint) => (a, x) => a.div([
   app.fetch({
     url: [
       `/api/blueprints/@${route.params.blueprintIdentifier}/summary`,
-      `/api/keys`,
+      `/api/user_keys`,
     ],
     success: ([blueprint, keys]) => [
       app.jsonForm({

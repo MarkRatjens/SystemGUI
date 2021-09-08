@@ -1,10 +1,10 @@
-app.keys.key = (route) => (a, x) => a.div([
+app.user_keys.key = (route) => (a, x) => a.div([
   route.mount({
     routes: {
       '/edit': null,
       '*': () => [
         app.fetch({
-          url: `/api/keys/@${route.params.keyIdentifier}`,
+          url: `/api/user_keys/@${route.params.userKeyIdentifier}`,
           success: token => [
             a.h5(token.identifier),
             a.p(token.explanation || app.placeholder('No explanation')),
@@ -15,10 +15,10 @@ app.keys.key = (route) => (a, x) => a.div([
   }),
   route.mount({
     routes: {
-      '/?': app.keys.show,
-      '/edit': app.keys.edit,
-      '/token': app.keys.token,
-      '/delete': app.keys.delete,
+      '/?': app.user_keys.show,
+      '/edit': app.user_keys.edit,
+      '/token': app.user_keys.token,
+      '/delete': app.user_keys.delete,
     },
   }),
 ]);
