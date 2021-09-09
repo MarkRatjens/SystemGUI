@@ -11,6 +11,7 @@ module App
         put '/locations/@:identifier' do
           @controller.update(identifier: params[:identifier], model: params[:model]).to_json
         end
+
       end
     end
   end

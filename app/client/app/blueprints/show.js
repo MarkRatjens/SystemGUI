@@ -38,6 +38,13 @@ app.blueprints.show = (route) => (a,x) => [
       ),
       a.br,
       app.float({
+       left: [
+         app.button({
+           label: app.icon('fas fa-clone', 'Copy'),
+           title: 'Copy blueprint',
+           onclick: () => route.open(`/blueprints/@${route.params.blueprintIdentifier}/copy`),
+         }),
+       ],
        right: [
          app.button({
            label: app.icon('fa fa-trash'),

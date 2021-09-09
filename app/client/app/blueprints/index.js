@@ -6,6 +6,7 @@ app.blueprints.index = (route) => (a,x) => [
       label: app.icon('fas fa-file-import', 'Import'),
       onclick: () => route.open('import'),
     }),
+    ' ',
     app.button({
       label: app.icon('fa fa-plus', 'New'),
       onclick: () => route.open('new'),

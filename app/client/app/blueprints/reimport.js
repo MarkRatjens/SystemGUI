@@ -11,19 +11,13 @@ app.blueprints.reimport = (route) => (a, x) => a.div([
         as: 'hidden'
       }),
       f.field({
-        key: 'model',
-        as: 'one',
+        key: 'force',
+        as: 'checkbox',
         label: false,
-        form: (ff) => [
-          f.field({
-            key: 'force',
-            as: 'checkbox',
-            label: false,
-            control: {label: 'Force'},
-          }),
-        ]
+        control: {label: 'Force'},
       }),
     ],
+    digest: (form) => app.compact(form),
     success: () => route.load('output'),
   }),
 ]);

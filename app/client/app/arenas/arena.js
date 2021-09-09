@@ -40,6 +40,7 @@ app.arenas.arena = (route) => (a,x) => a['app-arenas-arena']([
       '/plan/output': app.arenas.plan.output,
       '/apply/?': app.arenas.apply,
       '/apply/output': app.arenas.apply.output,
+      '/copy': app.arenas.copy,
       '/delete': app.arenas.delete,
       '/@:blueprintIdentifier/?*': app.arenas.installation,
     }

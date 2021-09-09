@@ -1,10 +1,10 @@
 module App
   class Api
     module Routes
-      module Keys
+      module UserKeys
         extend Sinatra::Extension
 
-        before '/keys/?*' do
+        before '/user_keys/?*' do
           @controller = ::Spaces::Controllers::RESTController.new(space: :user_keys)
         end
       end

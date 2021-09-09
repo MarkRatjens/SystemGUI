@@ -4,7 +4,7 @@ app.arenas.init.output = (route) => (a,x) => app.stream({
   route: route,
   begin: (el) => {
     el.$write('\nInitialize begin ', {color: 'green', bold: true})
-    el.$write('with Terraform\n\n', {color: 'green'})
+    el.$write('with Terraform\n', {color: 'green'})
   },
   digest: (el, data) => {
     let message = JSON.parse(data)

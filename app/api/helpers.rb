@@ -10,22 +10,26 @@ module App
         request.fullpath.sub('/api', '')
       end
 
+      # TODO: move to universe settings to spaces
+      def settings_filepath
+        universe_dir.mkpath
+        universe_dir.join('settings.yaml').tap { |file| FileUtils.touch(file) }
+      end
+      def universe_dir
+        Api.spaces.universe.workspace
+      end
+
       def action(command)
+        # TODO: Use **params instead of **command_args. Remove :command_args method.
         @controller.control(command: command, **command_args).to_json
       end
 
       def command_args
-        params.slice(:identifier, :model, :command).to_h.symbolize_keys
+        params.slice(:identifier, :model, :command, :new_identifier, :force).to_h.symbolize_keys
       end
 
       def exception_message_for(e)
-        [e.message, '', *exception_backtrace_for(e)].join("\n")
-      end
-
-      def exception_backtrace_for(e)
-        e.backtrace.map do |line|
-          line.sub(Pathname.new(Dir.pwd).parent.to_path, '')
-        end
+        [e.message, '', *e.backtrace].join("\n")
       end
 
       def spaces_path_for(space, *joins)

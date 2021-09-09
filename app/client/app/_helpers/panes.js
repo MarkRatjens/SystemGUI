@@ -1,6 +1,6 @@
 app.panes = (options={}) => (a,x) => {
 
-  let percent = window.localStorage.systemMenuWidthPercent
+  let percent = window.localStorage.dashboardMenuWidthPercent
 
   if (!percent) {
     percent = (200 / document.documentElement.clientWidth) * 100
@@ -13,7 +13,7 @@ app.panes = (options={}) => (a,x) => {
       $on: {
         'ax.appkit.panes.resize': (e, el) => {
           let percent = e.detail.percent
-          window.localStorage.systemMenuWidthPercent = percent
+          window.localStorage.dashboardMenuWidthPercent = percent
         }
       }
     },

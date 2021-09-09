@@ -1,11 +1,9 @@
 app.settings = (route) => (a, x) => [
-  app.close(route),
   a.h1("Settings"),
   route.mount({
     routes: {
-      '/?': app.settings.show,
-      '/appearance': app.settings.appearance,
-      '/editor': app.settings.editor,
+      '/?': app.settings.edit,
+      '/reload': app.settings.reload,
     },
   }),
 ];

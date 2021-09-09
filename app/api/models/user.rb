@@ -3,8 +3,6 @@ module App
     module Models
       class User
 
-        require_relative 'user/keys'
-
         def self.users_table
           [
             {username: 'jack', password: '123'},
@@ -67,10 +65,6 @@ module App
           last_activity_at = timestamp
           return false unless last_activity_at
           last_activity_at + session_timeout_seconds > Time.now
-        end
-
-        def keys
-          Keys.new(self)
         end
 
         private

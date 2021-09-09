@@ -25,10 +25,14 @@ app.arenas.blueprints = (route) => (a,x) => [
               ff.field({
                 key: 'target_identifier',
                 as: 'select',
-                label: false,
-                placeholder: ' ',
+                label: 'Target',
+                placeholder: 'Please select a blueprint to bind to',
                 selections: blueprints,
                 required: true,
+              }),
+              ff.field({
+                key: 'identifier',
+                placeholder: 'Optional binding identifier',
               }),
             ]
           }),

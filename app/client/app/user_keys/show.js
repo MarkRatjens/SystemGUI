@@ -1,4 +1,4 @@
-app.keys.show = (route) => (a, x) => a.div([
+app.user_keys.show = (route) => (a, x) => a.div([
   app.button({
     label: app.icon('fas fa-edit', 'Edit'),
     title: 'Edit token information',

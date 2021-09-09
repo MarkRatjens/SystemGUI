@@ -1,11 +1,11 @@
-app.keys.index = (route) => (a, x) => a.div([
+app.user_keys.index = (route) => (a, x) => a.div([
   app.button({
     label: app.icon('fa fa-plus', 'New'),
     onclick: () => route.open('new')
   }),
   a.hr,
   app.fetch({
-    url: `/api/keys`,
+    url: `/api/user_keys`,
     success: tokens => [
       tokens.map((token) =>
         app.button({
