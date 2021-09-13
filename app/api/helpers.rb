@@ -16,76 +16,70 @@ module App
         universe_dir.join('settings.yaml').tap { |file| FileUtils.touch(file) }
       end
       def universe_dir
-        Api.spaces.universe.workspace
+        Api.spaces.path
       end
 
-      def action(command)
-        # TODO: Use **params instead of **command_args. Remove :command_args method.
-        @controller.control(command: command, **command_args).to_json
+      # TODO: Once spaces is handling IndifferentHash params, remove
+      #  - params_with(args)
+      #  - deep_symbolize_keys
+      def action(**args, &block)
+        @controller.action(**params_with(args), &block).to_json
       end
-
-      def command_args
-        params.slice(:identifier, :model, :command, :new_identifier, :force).to_h.symbolize_keys
+      def params_with(args)
+        deep_symbolize_keys(params.merge(args))
+      end
+      def deep_symbolize_keys(object)
+        return object unless object.is_a?(Hash)
+        {}.tap { |h| object.each { |k, v|
+          h[k.to_sym] = deep_symbolize_keys(v)
+        } }
       end
 
       def exception_message_for(e)
         [e.message, '', *e.backtrace].join("\n")
       end
 
-      def spaces_path_for(space, *joins)
-        Api.spaces.universe.send(space).path.join(*joins)
+      def stream_action
+        stream { |out| streaming(out) }
       end
 
-      def stream_output_from(filepath)
-        stream do |out|
-          begin
-            keep_alive(out)
-            output_events_from(filepath, out)
-          rescue => e
-            output_exception(e, out)
-          end
-          @stream_open = false # to close keep_alive
+      def streaming(out)
+        @stream_open = true
+        begin
+          keep_alive(out)
+          send_action_output(out)
+        rescue => e
+          send_exception(out, e)
         end
+        @stream_open = false # to close keep_alive
+        send_eot(out)
+      rescue IOError => e
+        logger.warn("Failed to stream event. #{e}")
       end
 
-      def output_events_from(filepath, out)
-        tail_file(filepath) do |line|
-          break if line.strip == 4.chr
-          out.puts("event: output")
-          out.puts("data: #{line}\n")
-        end
+      def send_action_output(out)
+        action { |line| send_output(out, line) }
+      end
+
+      def send_eot(out)
         out.puts("event: eot")
         out.puts("data: EOT\n")
       end
 
-      def output_exception(e, out)
-        out.puts("event: exception")
-        [e.message, '', *e.backtrace].join("\n").split("\n").tap do |lines|
-          lines.each do |line|
-            out.puts("data: #{line}")
-          end
-          out.puts("data: \n\n")
-        end
+      def send_output(out, line)
+        out.puts("event: output")
+        out.puts("data: #{line}\n")
       end
 
-      def tail_file(filepath)
-        File.open(filepath, 'r').tap do |file|
-          while !@tail_file_stopped do
-            sleep 0.01
-            file.seek(0,IO::SEEK_SET) unless @tail_file_started
-            select([file])
-            file.gets.tap do |line|
-              next unless line
-              @tail_file_started = true
-              @tail_file_stopped = line.strip == 4.chr # ascii 04 is EOT
-              yield line if !@tail_file_stopped
-            end
-          end
+      def send_exception(out, e)
+        out.puts("event: exception")
+        exception_message_for(e).split("\n").each do |line|
+          out.puts("data: #{line}")
         end
+        out.puts("data: \n\n")
       end
 
       def keep_alive(out)
-        @stream_open = true
         Thread.new do
           while @stream_open do
             out.puts(':')

@@ -36,7 +36,7 @@ module App
         end
 
         def pathname
-          Api.spaces.universe.blueprints.path.join(@identifier)
+          Api.spaces.path.join('blueprints', @identifier)
         end
       end
     end

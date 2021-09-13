@@ -15,8 +15,8 @@ app.modal = (options = {}) => (a, x) =>
           a["div.modal-body"](options.body),
           options.footer ? a["div.modal-footer"](options.footer) : null,
         ];
-
         $(el.$(".modal")).modal({ backdrop: "static" });
+        el.$(".modal-body pre").scrollLeft = 0;
       },
     }
   );

@@ -8,7 +8,6 @@ module App
       require_relative 'routes/arenas'
       require_relative 'routes/blueprints'
       require_relative 'routes/installations'
-      require_relative 'routes/user_keys'
       require_relative 'routes/locations'
       require_relative 'routes/packs'
       require_relative 'routes/provisioning'
@@ -16,11 +15,12 @@ module App
       require_relative 'routes/resolutions'
       require_relative 'routes/session'
       require_relative 'routes/settings'
+      require_relative 'routes/streaming'
+      require_relative 'routes/user_keys'
 
       register Arenas
       register Blueprints
       register Installations
-      register UserKeys
       register Locations
       register Packs
       register Provisioning
@@ -28,18 +28,20 @@ module App
       register Resolutions
       register Session
       register Settings
+      register Streaming
+      register UserKeys
 
-      get '/:space' do; action(:index) ;end
-      post '/:space' do; action(:new) ;end
+      get('/:space') { action(action: :index) }
+      post('/:space') { action(action: :create) }
+      get('/:space/@:identifier') { action(action: :show) }
+      put('/:space/@:identifier') { action(action: :update) }
+      delete('/:space/@:identifier') { action(action: :delete) }
 
-      get '/:space/@:identifier' do; action(:show) ;end
-      put '/:space/@:identifier' do; action(:update) ;end
-      delete '/:space/@:identifier' do; action(:delete) ;end
+      get('/:space/:action') { action }
+      post('/:space/:action') { action }
+      get('/:space/@:identifier/:action') { action }
+      post('/:space/@:identifier/:action') { action }
 
-      get '/:space/:action' do; action(params[:action]); end
-      post '/:space/:action' do; action(params[:action]); end
-      get '/:space/@:identifier/:action' do; action(params[:action]) ;end
-      post '/:space/@:identifier/:action' do; action(params[:action]) ;end
     end
   end
 end

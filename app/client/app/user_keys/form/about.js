@@ -3,7 +3,6 @@ app.user_keys.form.about = (f) => (a,x) => [
     key: 'about',
     as: 'one',
     horizontal: false,
-    // label: false,
     form: (ff) => [
       ff.field({
         key: 'label',

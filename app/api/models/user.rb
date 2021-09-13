@@ -69,12 +69,8 @@ module App
 
         private
 
-        def workspace
-          Api.spaces.universe.workspace
-        end
-
         def dirpath
-          Api.spaces.universe.workspace.join('sessions')
+          Api.spaces.path.join('sessions')
         end
 
         def filepath

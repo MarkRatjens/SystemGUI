@@ -7,6 +7,7 @@ module App
         before '/resolutions/?*' do
           @controller = ::Spaces::Controllers::RESTController.new(space: :resolutions)
         end
+        
       end
     end
   end
