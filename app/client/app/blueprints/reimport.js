@@ -1,5 +1,6 @@
 app.blueprints.reimport = (route) => (a, x) => a.div([
   a.h3('Reimport'),
+  a.p('Are you sure that you want to reimport this blueprint and overwrite any local changes?'),
   app.jsonForm({
     url: `/api/publications/@${route.params.blueprintIdentifier}/import`,
     method: 'POST',
@@ -9,12 +10,6 @@ app.blueprints.reimport = (route) => (a, x) => a.div([
         key: 'identifier',
         value: route.params.blueprintIdentifier,
         as: 'hidden'
-      }),
-      f.field({
-        key: 'force',
-        as: 'checkbox',
-        label: false,
-        control: {label: 'Force'},
       }),
     ],
     digest: (form) => app.compact(form),

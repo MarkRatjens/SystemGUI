@@ -35,21 +35,21 @@ app.arenas.show = (route) => (a,x) => [
       app.float({
         left: [
           app.button({
-            label: app.icon('fas fa-layer-group', 'Assemble'),
+            label: app.icon('fas fa-layer-group', 'Installations'),
             title: 'Assebmle arena installations',
-            onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/assemble`),
+            onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/installations`),
           }),
           app.button({
-            label: app.icon('fab fa-mixer', 'Resolve'),
-            title: 'Resolve arena',
-            onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/resolve`),
+            label: app.icon('fab fa-mixer', 'Resolutions'),
+            title: 'Resolutions arena',
+            onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/resolutions`),
           }),
           app.button({
-            label: app.icon('fas fa-suitcase', 'Pack'),
-            title: 'Pack arena',
-            onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/pack`),
+            label: app.icon('fas fa-suitcase', 'Packs'),
+            title: 'Packs arena',
+            onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/packs`),
           }),
-          x.popup(app.icon('fas fa-luggage-cart', 'Provision'), {
+          x.popup(app.icon('fas fa-luggage-cart', 'Provisions'), {
             contentTag: {
               class: 'btn app-btn',
             },
@@ -68,24 +68,9 @@ app.arenas.show = (route) => (a,x) => [
               }
             ]
           }),
-          x.popup(app.icon('far fa-flag', 'Instruction'), {
-            contentTag: {
-              class: 'btn app-btn',
-            },
-            menu: [
-              {
-                label: 'Initialize',
-                onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/init`),
-              },
-              {
-                label: 'Plan',
-                onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/plan`),
-              },
-              {
-                label: 'Apply',
-                onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/apply`),
-              }
-            ]
+          app.button({
+            label: app.icon('far fa-flag', 'Instruct'),
+            onclick: () => route.open('instruct'),
           }),
         ],
         right: [],

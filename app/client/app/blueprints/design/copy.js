@@ -1,8 +1,9 @@
-app.blueprints.copy = (route) => (a,x) => a.div([
+app.blueprints.design.copy = (route) => (a,x) => a.div([
   a.h3('Copy'),
   app.jsonForm({
     url: `/api/blueprints/@${route.params.blueprintIdentifier}/copy`,
     method: 'POST',
+    route: route,
     scope: 'blueprint',
     form: (f) => [
       f.field({
@@ -14,7 +15,7 @@ app.blueprints.copy = (route) => (a,x) => a.div([
     digest: (form) => form.blueprint,
     success: (identifier) => {
       dashboardMenu.$render()
-      route.open(`../../@${identifier}`)
+      route.open('..')
     },
   }),
 ]);

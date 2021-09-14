@@ -22,6 +22,7 @@ module App
         get '/reconnected' do
           {result: 'Connected'}.to_json
         end
+        
       end
     end
   end

@@ -107,6 +107,7 @@ module App
         delete '/blueprints/@:identifier/files/@*' do
           {result: @blueprint.files.find(params[:splat][0]).delete}.to_json
         end
+        
       end
     end
   end

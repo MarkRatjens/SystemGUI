@@ -36,7 +36,6 @@ module App
     before do
       return unless request.content_type == 'application/json'
       params.merge!(parse(request.body.read))
-      puts params
     end
 
   end

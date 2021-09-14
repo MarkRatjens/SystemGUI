@@ -10,16 +10,8 @@ module App
           @controller = ::Packing::Controllers::Controller.new
         end
 
-        get '/packs/@:identifier' do
-          # TODO: USE action(:show)
-          ::Packing::Controllers::Controller.new
-          .show(identifier: params[:identifier]).to_json
-        end
-
         get '/packs/@:identifier/summary' do
-          pack = Api.spaces.universe.packs.by(params[:identifier])
-          filepath = Api.spaces.universe.packs.path_for(pack).join('build.log')
-          {result: {log: {exist: File.exists?(filepath)}}}.to_json
+          {result: {log: {exist: false}}}.to_json
         end
 
         get '/packs/@:identifier/artifacts' do
@@ -28,12 +20,8 @@ module App
         end
 
         post '/packs/@:identifier/build' do
-          action(:commit)
-        end
-
-        get '/packs/@:identifier/build/output' do
-          content_type "text/event-stream"
-          stream_output_from(spaces_path_for(:packs, *params[:identifier].split('::'), 'build.out'))
+          params[:threaded] = true
+          action(action: :commit)
         end
 
       end
