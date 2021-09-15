@@ -9,6 +9,7 @@ app.arenas.copy = (route) => (a,x) => a.div([
       f.field({
         key: 'new_identifier',
         label: false,
+        required: true,
         placeholder: 'Enter an identifier for the copy',
       }),
     ],

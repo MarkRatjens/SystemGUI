@@ -11,6 +11,11 @@ app.arenas.installation.pack = (route) => (a,x) => [
         ],
         right: [
           app.button({
+            label: app.icon('fas fa-code', 'Atrifact'),
+            onclick: () => route.open('artifact'),
+          }),
+          ' ',
+          app.button({
             label: app.icon('fas fa-hammer', 'Build'),
             onclick: () => route.open('build'),
           }),

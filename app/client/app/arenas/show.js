@@ -81,7 +81,7 @@ app.arenas.show = (route) => (a,x) => [
         left: [
           app.button({
             label: app.icon('fas fa-clone', 'Copy'),
-            title: 'Copy blueprint',
+            title: 'Copy arena',
             onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/copy`),
           }),
           ' ',

@@ -29,6 +29,7 @@ app.blueprints.import = (route) => (a, x) => a.div([
         as: 'checkbox',
         label: false,
         control: {label: 'Force'},
+        value: 'on',
       }),
     ],
     digest: (form) => app.compact(form),
