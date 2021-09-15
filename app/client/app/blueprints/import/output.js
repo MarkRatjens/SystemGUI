@@ -1,6 +1,6 @@
 app.blueprints.import.output = (route) => (a,x) => app.stream({
   label: ['Importing', 'Import', 'Git'],
   url: `/api/outputting/import`,
-  route: route,
+  done: () => route.open('..'),
   complete: (el) => dashboardMenu.$render(),
 })

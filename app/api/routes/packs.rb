@@ -14,9 +14,14 @@ module App
           {result: {log: {exist: false}}}.to_json
         end
 
-        get '/packs/@:identifier/artifacts' do
+        get '/packs/@:identifier/artifact' do
           # TODO: USE action(:artifacts)
-          ::Packing::Controllers::Controller.new.artifacts(identifier: params[:identifier]).to_json
+          {
+            result: Api.spaces.universe.packs.provider_aspect_for(
+              Api.spaces.universe.packs.by('my-arena::wap'),
+              Api.spaces.universe.packs
+            ).artifact
+          }.to_json
         end
 
         post '/packs/@:identifier/build' do

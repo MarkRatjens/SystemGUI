@@ -30,6 +30,10 @@ module App
           # RUN APPLY HERE FOR INITIAL PROVISIONING?
         end
 
+        post '/arenas/@:identifier/copy' do
+          action
+        end
+
         post '/arenas/@:identifier/:action' do
           params[:threaded] = true
           action
