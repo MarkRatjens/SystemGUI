@@ -72,7 +72,6 @@ app.arenas.show = (route) => (a,x) => [
           'Input required',
           x.out(inputRequired)
         ] : null,
-        a.hr,
         app.button({
           label: app.icon('fab fa-mixer', 'Resolve'),
           title: 'Resolve arena',
