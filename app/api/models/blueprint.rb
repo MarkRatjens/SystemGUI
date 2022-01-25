@@ -15,20 +15,6 @@ module App
 
         attr_reader :identifier
 
-        def spaces_objct
-          Api.spaces.universe.blueprints.by(identifier)
-        end
-
-        def deep_connects
-          spaces_objct.bindings.deep_connect_bindings.map(&:target_identifier).uniq.sort
-        end
-
-        def forms
-          deep_connects.map do |target_identifier|
-            Blueprint.new(target_identifier).form
-          end
-        end
-
         def icon
           @icon ||= Icon.new(self)
         end

@@ -14,16 +14,6 @@ module App
           File.write(settings_filepath, params[:model].to_yaml)
           {result: nil}.to_json
         end
-
-        get '/domains' do
-          {
-            result: [
-              'localhost',
-              'fizz.com',
-              'buzz.com',
-            ],
-          }.to_json
-        end
       end
     end
   end
