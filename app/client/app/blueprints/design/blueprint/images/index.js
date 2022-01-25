@@ -11,15 +11,17 @@ app.report({
             columns: [
               [
                 rr.field({
-                  key: 'type',
-                  as: 'select',
-                  selections: {
-                    docker: 'Docker',
-                    lxd: 'LXD',
-                  },
+                  key: 'runtimes',
+                  horizontal: true,
+                  collection: true,
                 }),
                 rr.field({
-                  key: 'image',
+                  key: 'identifier',
+                  horizontal: true,
+                }),
+                rr.field({
+                  key: 'output_identifier',
+                  horizontal: true,
                 }),
               ],
             ]

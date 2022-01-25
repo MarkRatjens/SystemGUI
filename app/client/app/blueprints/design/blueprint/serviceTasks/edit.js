@@ -1,4 +1,4 @@
-app.blueprints.design.blueprint.service_tasks.edit = (route, blueprint) =>
+app.blueprints.design.blueprint.serviceTasks.edit = (route, blueprint) =>
 app.blueprints.design.blueprint.form({
   route: route,
   object: blueprint,

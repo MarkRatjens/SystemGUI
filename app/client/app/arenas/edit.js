@@ -6,11 +6,10 @@ app.arenas.edit = (route) => (a,x) => [
     ],
     placeholder: app.spinner(`Loading ${route.params.arenaIdentifier}`),
     success: ([arena, blueprints]) => [
-      a.h3('Edit'),
+      a.h3('Edit arena'),
       app.jsonForm({
         url: `/api/arenas/@${route.params.arenaIdentifier}`,
         object: arena,
-        scope: 'model',
         route: route,
         form: f => [
           f.field({
@@ -26,67 +25,11 @@ app.arenas.edit = (route) => (a,x) => [
               }),
             ]
           }),
-          f.field({
-            key: 'bindings',
-            as: 'table',
-            addable: true,
-            removeable: true,
-            moveable: true,
-            collection: true,
-            singular: 'binding',
-            form: ff => [
-              ff.field({
-                key: 'target_identifier',
-                as: 'select',
-                selections: blueprints,
-              }),
-            ]
-          }),
-          f.field({
-            key: 'configuration',
-            as: 'table',
-            addable: true,
-            removeable: true,
-            moveable: true,
-            collection: true,
-            singular: 'configuration parameter',
-            ingest: (value) => Object.keys(value || {}).map(key => ({key: key, value: value[key]})),
-            digest: (value) => {
-              let configuration = {}
-              for (let parameter of value) {
-                configuration[parameter.key] = parameter.value
-              }
-              return configuration
-            },
-            form: ff => [
-              ff.field({
-                key: 'key',
-              }),
-              ff.field({
-                key: 'value',
-              }),
-            ]
-          }),
-          f.field({
-            key: 'domain',
-            as: 'one',
-            form: ff => [
-              ff.field({
-                key: 'identifier',
-                label: false,
-              })
-            ]
-          }),
-          // f.field({
-          //   key: 'domains',
-          //   collection: true,
-          //   singular: 'domain',
-          //   required: true,
-          //   addable: true,
-          //   removeable: true,
-          //   moveable: true,
-          // }),
         ],
+        digest: (form) => {
+          arena.about = app.compact(form.about)
+          return {model: arena}
+        },
         success: () => {
           dashboardMenu.$render()
           route.open('..')

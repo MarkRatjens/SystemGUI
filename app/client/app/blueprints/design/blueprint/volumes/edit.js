@@ -14,11 +14,15 @@ app.blueprints.design.blueprint.form({
       collection: true,
       form: (ff) => [
         ff.field({
+          key: 'type',
+          required: true,
+        }),
+        ff.field({
           key: 'destination',
           required: true,
         }),
         ff.field({
-          key: 'source',
+          key: 'name',
           required: true,
         }),
       ]

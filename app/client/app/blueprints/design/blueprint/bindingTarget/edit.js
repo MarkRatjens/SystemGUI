@@ -3,6 +3,7 @@ app.blueprints.design.blueprint.form({
   route: route,
   object: blueprint,
   form: f => [
+    'Binding target',
     f.field({
       key: 'binding_target',
       label: false,

@@ -18,7 +18,7 @@ app.tabs = (options) => (a,x) => a['div.app-tabs']([
     tab.body
   ], {
     ...options.tabBodyTag,
-    class: `${options.tabBodyTag.class} ${i == 0 ? '' : 'd-none'}`,
+    class: `${(options.tabBodyTag || {}).class || ''} ${i == 0 ? '' : 'd-none'}`,
   })),
 ], {
   $open: (el) => (i) => {

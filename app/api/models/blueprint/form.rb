@@ -13,11 +13,12 @@ module App
           end
 
           def to_h
-            if pathname.exist?
-              JSON.parse(pathname.read)
-            else
-              {}
-            end
+            return base unless pathname.exist?
+            base.merge(JSON.parse(pathname.read))
+          end
+
+          def base
+            {blueprint_identifier: @blueprint.identifier}
           end
 
           def save(form)

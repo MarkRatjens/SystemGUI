@@ -5,18 +5,7 @@ app.blueprints.show = (route) => (a,x) => [
     success: (blueprint) => [
       app.float({
         left: [
-          a.i([
-            a.h1([
-              a.img([], {
-                src: `/api/blueprints/@${route.params.blueprintIdentifier}/icon/thumbnail`,
-                height: '48',
-                width: '48'
-              }),
-              ' ',
-              (blueprint.about || {}).title || app.placeholder('No title')
-            ]),
-            a.p((blueprint.about || {}).explanation || app.placeholder('No explanation')),
-          ]),
+          app.blueprintLabel(blueprint),
         ],
         right: [
           app.button({
@@ -31,8 +20,8 @@ app.blueprints.show = (route) => (a,x) => [
           routes: {
             '/?': app.blueprints.readme,
             '/license': app.blueprints.license,
-            '/bindings/?*': app.blueprints.bindings(blueprint),
-            '/utilization/?*': app.blueprints.utilization(blueprint),
+            // '/bindings/?*': app.blueprints.bindings(blueprint),
+            // '/utilization/?*': app.blueprints.utilization(blueprint),
           }
         })
       ),

@@ -5,13 +5,7 @@ module App
         extend Sinatra::Extension
 
         before '/packs/?*' do
-          # TODO: USE @controller = ::Spaces::Controllers::RESTController.new(space: :packing)
-          # Currently not working for commit/build
           @controller = ::Packing::Controllers::Controller.new
-        end
-
-        get '/packs/@:identifier/summary' do
-          {result: {log: {exist: false}}}.to_json
         end
 
         get '/packs/@:identifier/artifact' do
@@ -26,7 +20,7 @@ module App
 
         post '/packs/@:identifier/build' do
           params[:threaded] = true
-          action(action: :commit)
+          action(action: :build)
         end
 
       end

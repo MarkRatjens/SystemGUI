@@ -21,7 +21,7 @@ app.formDSL.designer.form.field.control = (f) => [
       { value: 'multiselect', label: 'Multiselect' },
       // { value: 'combobox', label: 'Combo box' },
       { disabled: 'hr' },
-      { value: 'hidden', label: 'Hidden' },
+      // { value: 'hidden', label: 'Hidden' },
       { value: 'password', label: 'Password' },
       { disabled: 'hr' },
       { value: 'number', label: 'Number' },

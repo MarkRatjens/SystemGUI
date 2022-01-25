@@ -28,9 +28,9 @@ app.blueprints.design.blueprint.form({
               as: 'hidden',
             }),
             a['div.float-right']([
-              fff.up({buttonTag: {class: 'btn app-btn'}}),
-              fff.down({buttonTag: {class: 'btn app-btn'}}),
-              fff.remove({buttonTag: {class: 'btn app-btn'}}),
+              fff.up({xbuttonTag: {class: 'btn app-btn'}}),
+              fff.down({xbuttonTag: {class: 'btn app-btn'}}),
+              fff.remove({xbuttonTag: {class: 'btn app-btn'}}),
             ]),
             a['div.pt-2.pb-2']([
               fff.object.target ? a.div([

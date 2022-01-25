@@ -5,7 +5,7 @@ app.topology.tree = (route, data, height) => (a,x) => a({
         height: height,
       },
       chartjs: {
-        type: 'tree',
+        type: 'dendogram',
         data: {
           labels: data.map((d) => d.id),
           datasets: [{

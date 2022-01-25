@@ -3,8 +3,6 @@ module App
     module Routes
       extend Sinatra::Extension
 
-      require_relative 'routes/dashboard'
-
       require_relative 'routes/arenas'
       require_relative 'routes/blueprints'
       require_relative 'routes/installations'

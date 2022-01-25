@@ -9,7 +9,11 @@ module App
         end
 
         put '/locations/@:identifier' do
-          @controller.update(identifier: params[:identifier], model: params[:model]).to_json
+          if Api.spaces.universe.locations.identifiers.include?(params[:identifier])
+            @controller.update(identifier: params[:identifier], model: params[:model]).to_json
+          else
+            @controller.create(identifier: params[:identifier], model: params[:model]).to_json
+          end
         end
 
       end

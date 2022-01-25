@@ -58,12 +58,6 @@ app.settings.edit = (route) => (a, x) => [
             placeholder: "Default",
             selections: {
               dark: "Dark",
-              desert: 'Desert',
-              forest: 'Forest',
-              ocean: 'Ocean',
-              psyco: 'Psyco',
-              sky: 'Sky',
-              snow: 'Snow',
             },
           }),
           f.field({

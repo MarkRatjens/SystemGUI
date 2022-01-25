@@ -14,15 +14,15 @@ app.blueprints.design.blueprint.form({
           removeable: true,
           form: (fff) => [
             fff.field({
-              key: 'type',
+              key: 'runtimes',
               as: 'hidden',
             }),
             fff.field({
-              key: 'image',
+              key: 'identifier',
               as: 'hidden',
             }),
             fff.field({
-              key: 'scripts',
+              key: 'output_identifier',
               as: 'hidden',
             }),
             a['div.float-right']([
@@ -31,9 +31,8 @@ app.blueprints.design.blueprint.form({
               fff.remove({buttonTag: {class: 'btn app-btn'}}),
             ]),
             a['div.pt-2.pb-2']([
-              `${fff.object.type}:${fff.object.image}`,
-              x.lib.object.dig(fff.object, ['scripts', 'shell', 'length']) ?
-              a.small(` ${fff.object.scripts.shell.length} shell scripts`) : null
+              `${fff.object.identifier} `,
+              a.small((fff.object.runtimes || []).join(', ')),
             ]),
           ]
         }),

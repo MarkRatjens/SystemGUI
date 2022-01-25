@@ -3,11 +3,7 @@ app.blueprints.design.blueprint.images.new = (route, blueprint) => (a,x) => a.di
     route: route,
     form: app.blueprints.design.blueprint.images.form,
     digest: (form) => {
-      if (ax.is.array(blueprint.images)) {
-        blueprint.images.push(form)
-      } else {
-        blueprint.images = [form]
-      };
+      blueprint.images.push(app.compact(form));
       return {model: blueprint};
     },
   })

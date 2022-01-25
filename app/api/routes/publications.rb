@@ -8,7 +8,6 @@ module App
           params[:threaded] = true
           @controller = ::Publishing::Controllers::Controller.new
         end
-
       end
     end
   end
