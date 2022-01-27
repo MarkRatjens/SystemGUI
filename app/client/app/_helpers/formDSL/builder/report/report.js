@@ -4,7 +4,7 @@ app.formDSL.builder.report.report = ( options={} ) => (a,x) => {
     ( componentSpec ) => app.formDSL.builder.report.component( r, componentSpec, options.params )
   )
 
-  return cc.report( {
+  return app.report( {
     report: components,
     params: options.params,
     object: options.object,

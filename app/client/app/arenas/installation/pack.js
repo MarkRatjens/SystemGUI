@@ -20,11 +20,11 @@ app.arenas.installation.pack = (route) => (a,x) => [
             onclick: () => route.open('build'),
           }),
           ' ',
-          summary.log.exist ? app.button({
-            label: app.icon('fas fa-file', 'Log'),
-            onclick: () => route.open('log'),
-          }) : null,
-          ' ',
+          // summary.log.exist ? app.button({
+          //   label: app.icon('fas fa-file', 'Log'),
+          //   onclick: () => route.open('log'),
+          // }) : null,
+          // ' ',
           app.button({
             label: '{} JSON',
             title: 'Raw blueprint JSON',

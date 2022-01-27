@@ -1,20 +1,24 @@
 app.blueprints.design.blueprint.images.form =
-(f) => f.row({
-  columns: [
-    [
-      f.field({
-        key: 'type',
-        required: true,
-        as: 'select',
-        selections: {
-          docker: 'Docker',
-          lxd: 'LXD',
-        },
-      }),
-      f.field({
-        key: 'image',
-        required: true,
-      }),
-    ],
-  ]
-}),
+(f) => [
+  f.field({
+    key: 'runtimes',
+    horizontal: true,
+    as: 'select',
+    required: true,
+    placeholder: 'Select a runtime',
+    selections: app.providers.runtime,
+    collection: true,
+    addable: true,
+    removeable: true,
+    moveable: true,
+  }),
+  f.field({
+    key: 'identifier',
+    horizontal: true,
+    required: true,
+  }),
+  f.field({
+    key: 'output_identifier',
+    horizontal: true,
+  }),
+]

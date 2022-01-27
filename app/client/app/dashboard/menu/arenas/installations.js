@@ -1,6 +1,6 @@
 app.dashboard.menu.arenas.installations = (route, arenaIdentifier) => (a,x) => [
   app.fetch({
-    url: '/api/installations/list',
+    url: '/api/installations/index',
     query: {arena_identifier: arenaIdentifier},
     success: installations => installations.sort().map(installationIdentifier =>
       app.dashboard.menu.arenas.installations.installation(route, installationIdentifier)),

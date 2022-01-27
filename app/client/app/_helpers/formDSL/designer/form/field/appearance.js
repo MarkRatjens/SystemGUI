@@ -123,23 +123,17 @@ app.formDSL.designer.form.field.appearance = (f) => [
 
   // CODE
   f.field( {
-    key: 'code',
-    as: 'one',
-    form: (ff) => [
-      ff.field( {
-        key: 'mode',
-        as: 'select',
-        selections: {
-          '': '',
-          shell: 'Shell',
-          javascript: 'JavaScript',
-          ruby: 'Ruby',
-          python: 'Python',
-          xml: 'XML',
-          yaml: 'YAML',
-        },
-      } ),
-    ],
+    key: 'syntax',
+    as: 'select',
+    selections: {
+      '': '',
+      shell: 'Shell',
+      javascript: 'JavaScript',
+      ruby: 'Ruby',
+      python: 'Python',
+      xml: 'XML',
+      yaml: 'YAML',
+    },
     dependent: {
       key: 'control',
       value: 'code',

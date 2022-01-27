@@ -19,7 +19,7 @@ module App
 
         # FORM
 
-        # Show blueprint form, i.e. form.json
+        # Show blueprint form, i.e. object from form.json
         get '/blueprints/@:identifier/form' do
           {result: @blueprint.form}.to_json
         end
@@ -107,7 +107,7 @@ module App
         delete '/blueprints/@:identifier/files/@*' do
           {result: @blueprint.files.find(params[:splat][0]).delete}.to_json
         end
-        
+
       end
     end
   end

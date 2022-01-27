@@ -22,10 +22,11 @@ module App
       # TODO: Once spaces is handling IndifferentHash params, remove
       #  - params_with(args)
       #  - deep_symbolize_keys
-      def action(**args, &block)
-        @controller.action(**params_with(args), &block).to_json
+      def action(args = {}, &block)
+        @controller.control(**params_with(args), &block).to_json
       end
       def params_with(args)
+        params[:action] = 'summarize' if params[:action] == 'summary'
         deep_symbolize_keys(params.merge(args))
       end
       def deep_symbolize_keys(object)
@@ -58,8 +59,12 @@ module App
       end
 
       def send_action_output(out)
-        action { |line| send_output(out, line) }
+        action(action: :tail, callback: callback(out))
       end
+
+      def callback(out)
+        ->(line) { send_output(out, line) }
+     end
 
       def send_eot(out)
         out.puts("event: eot")
@@ -87,7 +92,6 @@ module App
           end
         end
       end
-
     end
   end
 end

@@ -97,6 +97,9 @@ app.theme = (theme) => {
     'ax-appkit-report .form-control': {
       color: `${theme.color} !important`,
     },
+    'ax-appkit-report .custom-control-label': {
+      color: `${theme.color} !important`,
+    },
     'ax-appkit-panes': {
       'ax-appkit-panes-proximate': {
         backgroundColor: theme.buttonBackgroundColor,

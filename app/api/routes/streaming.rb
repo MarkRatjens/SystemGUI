@@ -4,13 +4,12 @@ module App
       module Streaming
         extend Sinatra::Extension
 
-        before '/outputting/?*' do
+        before('/streaming/:space/*') do
           content_type("text/event-stream")
-          @controller = ::Outputting::Controllers::Controller.new(space: :outputting)
+          @controller = ::Spaces::Controllers::Streaming.new
         end
 
-        get('/outputting/@:identifier/:action') { stream_action }
-        get('/outputting/:action') { stream_action }
+        get('/streaming/:space/:stream') { stream_action }
 
       end
     end

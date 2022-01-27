@@ -1,7 +1,7 @@
 app.stream = (options) => (a,x) => a.div([
   app.xterm({label: options.label[0]}),
   a['appkit-event-source']( null, {
-    $errors: 0,
+    $error: false,
     $start: (el) => () => {
       el.$begin()
       el.$eventsource = new EventSource(options.url)
@@ -25,24 +25,18 @@ app.stream = (options) => (a,x) => a.div([
     },
     $begin: (el) => () => {
       el.$write(`\n${options.label[1]} begin `, {color: 'green', bold: true})
-      el.$write(`with ${options.label[2]}\n\n`, {color: 'green'})
+      el.$write(`with ${options.label[2]}\n`, {color: 'green'})
     },
     $digest: (el) => (raw) => {
       let data = JSON.parse(raw)
-      if (data.message) {
-        let message = JSON.parse(data.message)
-        let keys = options.keys || {}
-        let output = message[keys.output || 'output']
-        let error = message[keys.error || 'error']
-        if ( output ) el.$write(output)
-        if ( error ) {
-          el.$errors++
-          el.$write(`${options.label[1]} error\n`, {color: 'yellow', bold: true})
-          el.$write(`${error}\n`, {color: 'yellow'})
-        }
+      if (data.output) el.$write(data.output)
+      if (data.error) {
+        el.$error = true
+        el.$write(`\n${options.label[1]} error\n`, {color: 'yellow', bold: true})
+        el.$write(`${data.error}\n`, {color: 'yellow'})
       }
       if ( data.exception ) {
-        el.$write(`${options.label[1]} exception\n`, {color: 'red', bold: true})
+        el.$write(`\n${options.label[1]} exception\n`, {color: 'red', bold: true})
         el.$write(`${data.exception}\n`, {color: 'red'})
       }
     },
@@ -60,9 +54,9 @@ app.stream = (options) => (a,x) => a.div([
     $complete: (el) => () => {
       el.$eventsource.close()
       delete el.$eventsource
-      if (el.$errors) {
-        el.$write(`${options.label[1]} complete `, {color: 'yellow', bold: true})
-        el.$write(`${el.$errors} error${el.$errors != 1 ? 's' : ''}\n`, {color: 'yellow'})
+      if (el.$error) {
+        el.$write(`${options.label[1]} complete`, {color: 'yellow', bold: true})
+        el.$write(' with errors\n', {color: 'yellow'})
       } else {
         el.$write(`${options.label[1]} complete\n`, {color: 'green', bold: true})
       }

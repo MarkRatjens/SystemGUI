@@ -7,6 +7,7 @@ gem 'rest-client'
 
 gem 'engines-logger',   '0.2.0',    :git => 'git@github.com:engines/logger'
 gem 'docker-api'
+gem 'docker-compose'
 gem 'spaces',           '0.1.0',    :path => '../Spaces'
 
 gem 'letter_avatar'

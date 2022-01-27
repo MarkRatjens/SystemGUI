@@ -89,7 +89,11 @@ app.formDSL.builder.form.form = ( options={} ) => (a,x) => {
   ]
 
   let asyncformTag = {
-    $catch: (e) => a['p.error'](`Failed to render form.`),
+    $catch: (e) => {
+      let message = 'Failed to render form.'
+      console.warn(message, e)
+      return a['p.error'](message)
+    },
   }
 
   return app.jsonForm( {

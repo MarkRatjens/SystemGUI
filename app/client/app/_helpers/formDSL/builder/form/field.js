@@ -18,8 +18,8 @@ app.formDSL.builder.form.field = ( f, fieldSpec, params ) => {
     tel: { as: 'input', type: 'tel' },
     time: { as: 'input', type: 'time' },
     url: { as: 'input', type: 'url' },
-    code: { as: 'codemirror' },
-    markdown: { as: 'easymde' },
+    code: { as: 'code' },
+    markdown: { as: 'markdown' },
     country: { as: 'country' },
     language: { as: 'language' },
     timezone: { as: 'timezone' },
@@ -28,7 +28,6 @@ app.formDSL.builder.form.field = ( f, fieldSpec, params ) => {
     many: { as: 'many' },
     table: { as: 'table' },
   }
-
   let as = fieldSpec.control || 'string'
   let controlType = controlTypes[as]
   let validation = fieldSpec.validation || {}
@@ -58,6 +57,7 @@ app.formDSL.builder.form.field = ( f, fieldSpec, params ) => {
     maxlength: validation.maxlength || undefined,
     step: validation.step || undefined,
     invalid: validation.message || undefined,
+    mode: fieldSpec.syntax || undefined,
   }
 
   if ( fieldSpec.dependent ) {
@@ -69,7 +69,7 @@ app.formDSL.builder.form.field = ( f, fieldSpec, params ) => {
   }
 
   if ( fieldSpec.components ) {
-    let componentsSpec = fieldSpec.dependent || []
+    let componentsSpec = fieldSpec.components || []
     field.form = (ff) => componentsSpec.map(
       componentSpec => app.formDSL.builder.form.component( ff, componentSpec, params )
     )
@@ -79,7 +79,7 @@ app.formDSL.builder.form.field = ( f, fieldSpec, params ) => {
     let selectionsSpec = fieldSpec.selections
     if ( selectionsSpec.type === 'dynamic' && selectionsSpec.dig ) {
       let match = selectionsSpec.dig.match( /\w+/g )
-      field.selections = x.lib.object.dig( params, match )
+      field.selections = ax.x.lib.object.dig( params, match )
     } else {
       field.selections = (fieldSpec.selections.static || []).map(
         selection => ([selection.value, selection.label || selection.value])
@@ -91,7 +91,7 @@ app.formDSL.builder.form.field = ( f, fieldSpec, params ) => {
     let datalistSpec = fieldSpec.datalist
     if ( datalistSpec.type === 'dynamic' && datalistSpec.dig ) {
       let match = datalistSpec.dig.match( /\w+/g )
-      field.datalist = x.lib.object.dig( params, match )
+      field.datalist = ax.x.lib.object.dig( params, match )
     } else {
       field.datalist = fieldSpec.datalist.static || []
     }
@@ -103,8 +103,6 @@ app.formDSL.builder.form.field = ( f, fieldSpec, params ) => {
   } else if ( label.type === 'none' ) {
     field.label = false
   }
-
-  field.control = fieldSpec[field.as]
 
   return f.field( field )
 

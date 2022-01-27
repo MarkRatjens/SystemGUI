@@ -24,7 +24,7 @@ app.formDSL.designer.form.row = (f) => f.field( {
         let nest = f
         while (nest) {
           if (ax.is.number(nest.index)) {
-            counts.push(nest.index + 1)
+            counts.unshift(nest.index + 1)
           }
           nest = nest.parent
         }

@@ -1,8 +1,13 @@
-app.dashboard.menu.arenas.installations.installation = (route, identifier) => (a,x) => {
-  let [arenaIdentifier, blueprintIdentifier] = identifier.split('::')
+app.dashboard.menu.arenas.installations.installation = (route, installation) => (a,x) => {
+  let [arenaIdentifier, blueprintIdentifier] = installation.identifier.split('::')
 
   return app.button({
-    label: app.icon('fa fa-angle-right', blueprintIdentifier),
+    label: a['div.position-relative']([
+      a['div.position-relative'](app.icon('fa fa-angle-right', blueprintIdentifier)),
+      installation.stale ? a['div.position-absolute.error'](app.icon('fa fa-exclamation-circle'), {
+        style: 'top:0px; right:0px;',
+      }) : null,
+    ]),
     buttonTag: {
       $init: (el) => {
         setTimeout(el.$activate, 0)

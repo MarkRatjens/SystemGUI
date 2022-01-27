@@ -1,11 +1,11 @@
-app.arenas.instruct.show = (route) => (a,x) => a['app-arenas-instruct-show']([
+app.arenas.instructions.show = (route) => (a,x) => a['app-arenas-instruct-show']([
   a['div.btn-group']([
     'init',
     'plan',
     'show',
     'apply',
   ].map((instruction) => app.jsonForm({
-    url: `/api/arenas/@${route.params.arenaIdentifier}/${instruction}`,
+    url: `/api/arenas/@${route.params.arenaIdentifier}/terraform/${instruction}`,
     method: "POST",
     buttonless: true,
     form: (f) => [

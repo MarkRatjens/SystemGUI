@@ -15,7 +15,7 @@ app.formDSL.designer.form.components = f => (a,x) => [
       let nest = f
       while (nest) {
         if (ax.is.number(nest.index)) {
-          counts.push(nest.index + 1)
+          counts.unshift(nest.index + 1)
         }
         nest = nest.parent
       }

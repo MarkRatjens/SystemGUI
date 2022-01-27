@@ -7,7 +7,6 @@ module App
         before '/provisioning/?*' do
           @controller = ::Spaces::Controllers::RESTController.new(space: :provisioning)
         end
-        
       end
     end
   end

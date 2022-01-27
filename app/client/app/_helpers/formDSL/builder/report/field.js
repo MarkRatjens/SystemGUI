@@ -3,7 +3,40 @@ app.formDSL.builder.report.field = ( r, fieldSpec, params ) => {
   let a = ax.a
   let x = ax.x
 
+  let controlTypes = {
+    string: { as: 'string' },
+    text: { as: 'textarea' },
+    preformatted: { as: 'preformatted' },
+    select: { as: 'select' },
+    boolean: { as: 'boolean' },
+    checkbox: { as: 'checkbox' },
+    checkboxes: { as: 'checkboxes' },
+    radios: { as: 'radios' },
+    password: { as: 'password' },
+    color: { as: 'color' },
+    datetime: { as: 'datetime' },
+    email: { as: 'email' },
+    number: { as: 'number' },
+    tel: { as: 'tel' },
+    url: { as: 'url' },
+    json: { as: 'json' },
+    output: { as: 'output' },
+    country: { as: 'country' },
+    language: { as: 'language' },
+    timezone: { as: 'timezone' },
+    markdown: { as: 'markdown' },
+    code: { as: 'code' },
+    terminal: { as: 'xtermjs' },
+    one: { as: 'one' },
+    many: { as: 'many' },
+    table: { as: 'table' },
+  }
+
+  let as = fieldSpec.control || 'string'
+  let controlType = controlTypes[as]
+
   let field = {
+    as: controlType.as,
     key: fieldSpec.key,
     value: params[fieldSpec.key],
     layout: fieldSpec.layout,
@@ -12,6 +45,8 @@ app.formDSL.builder.report.field = ( r, fieldSpec, params ) => {
     layout: fieldSpec.layout,
     dependent: fieldSpec.dependent,
     placeholder: fieldSpec.placeholder,
+    collection: fieldSpec.collection,
+    mode: fieldSpec.syntax,
   }
 
   if ( fieldSpec.components ) {
@@ -40,40 +75,6 @@ app.formDSL.builder.report.field = ( r, fieldSpec, params ) => {
   } else if ( label.display == 'none' ) {
     field.label = false
   }
-
-  let controlTypes = {
-    string: { as: 'string' },
-    text: { as: 'textarea' },
-    preformatted: { as: 'preformatted' },
-    select: { as: 'select' },
-    boolean: { as: 'boolean' },
-    checkbox: { as: 'checkbox' },
-    checkboxes: { as: 'checkboxes' },
-    radios: { as: 'radios' },
-    password: { as: 'password' },
-    color: { as: 'color' },
-    datetime: { as: 'datetime' },
-    email: { as: 'email' },
-    number: { as: 'number' },
-    tel: { as: 'tel' },
-    url: { as: 'url' },
-    json: { as: 'json' },
-    output: { as: 'output' },
-    country: { as: 'country' },
-    language: { as: 'language' },
-    timezone: { as: 'timezone' },
-    markdown: { as: 'markdown' },
-    code: { as: 'codemirror' },
-    terminal: { as: 'xtermjs' },
-    one: { as: 'one' },
-    many: { as: 'many' },
-    table: { as: 'table' },
-  }
-
-  let as = fieldSpec.as || 'string'
-  let controlType = controlTypes[as]
-  field.as = controlType.as
-  field.control = fieldSpec.control
 
   return r.field( field )
 

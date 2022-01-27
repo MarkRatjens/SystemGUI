@@ -7,8 +7,10 @@ app.form.shim = {
           // Focus on first form control.
           setTimeout(
             () => {
-              let first = el.$("ax-appkit-form-control");
-              if (first) first.$focus()
+              if (options.focus != false) {
+                let first = el.$("ax-appkit-form-control");
+                if (first) first.$focus()
+              }
             },
             100
           )
@@ -56,6 +58,14 @@ app.form.shim = {
           if (el.$from) el.$html = el.$from;
         },
       },
+    }),
+
+  cancel: (f, target) => (options = {}) =>
+    f.button({
+      label: app.icon("fa fa-times", "Cancel"),
+      to: app.spinner("Cancelling…"),
+      onclick: () => options.route.open(".."),
+      ...options,
     }),
 
   submit: (f, target) => (options = {}) =>
@@ -110,12 +120,10 @@ app.form.shim = {
       [
         options.cancel == false
           ? null
-          : f.button({
-              label: app.icon("fa fa-times", "Cancel"),
-              to: app.spinner("Cancelling…"),
-              onclick: () => options.route.open(".."),
-              ...options.cancel,
-            }),
+          : f.cancel({
+            route: options.route,
+            ...options.cancel,
+          }),
         " ",
         options.submit == false
           ? null

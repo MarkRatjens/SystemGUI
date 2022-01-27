@@ -12,9 +12,8 @@ module App
         # TODO: move to spaces
         post '/settings' do
           File.write(settings_filepath, params[:model].to_yaml)
-          {result: ''}.to_json
+          {result: nil}.to_json
         end
-
       end
     end
   end

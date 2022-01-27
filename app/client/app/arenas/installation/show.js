@@ -3,16 +3,18 @@ app.arenas.installation.show = (route) => (a,x) => [
     url: [
       `/api/installations/@${route.params.arenaIdentifier}::${route.params.blueprintIdentifier}`,
       `/api/installations/@${route.params.arenaIdentifier}::${route.params.blueprintIdentifier}/summary`,
+      `/api/blueprints/@${route.params.blueprintIdentifier}/form`,
     ],
-    success: ([installation, summary]) => [
+    success: ([installation, summary, form]) => [
       app.float({
         left: [
           x.out(installation.input),
+
         ],
         right: [
           app.button({
-            label: app.icon('fas fa-sliders-h', 'Configuration'),
-            onclick: () => route.open('configuration'),
+            label: app.icon('fas fa-sliders-h', 'Input'),
+            onclick: () => route.open('input'),
           }),
         ],
       }),

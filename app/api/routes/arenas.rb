@@ -8,35 +8,18 @@ module App
           @controller = ::Arenas::Controllers::Controller.new
         end
 
-        post '/arenas/@:identifier/assemble' do
-          action(action: :install)
+        post '/arenas/@:identifier/bind' do
+          @controller.bind(
+            identifier: params[:identifier],
+            blueprint_identifier: params[:target_identifier],
+          )
         end
 
-        post '/arenas/@:identifier/provision/runtime' do
-          # save provisions for the arena's runtime
-          action(action: :runtime)
-          # RUN INIT HERE?
-        end
-
-        post '/arenas/@:identifier/provision/providers' do
-          # save provisions for the arena's other providers
-          action(action: :provision)
-          # RUN APPLY HERE FOR INITIAL PROVISIONING? IT MUST HAPPEN BEFORE ...
-        end
-
-        post '/arenas/@:identifier/provision/post-init' do
-          # save post-initialization provisions for providers
-          action(action: :provision_providers)
-          # RUN APPLY HERE FOR INITIAL PROVISIONING?
-        end
-
-        post '/arenas/@:identifier/copy' do
-          action
-        end
-
-        post '/arenas/@:identifier/:action' do
-          params[:threaded] = true
-          action
+        post '/arenas/@:identifier/connect' do
+          @controller.connect(
+            identifier: params[:identifier],
+            other_identifier: params[:target_identifier],
+          )
         end
 
       end
