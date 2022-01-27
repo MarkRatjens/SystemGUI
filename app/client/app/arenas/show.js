@@ -87,6 +87,11 @@ app.arenas.show = (route) => (a,x) => [
           title: 'Provision arena',
           onclick: () => route.open('provision'),
         }),
+        app.button({
+          label: app.icon('fas fa-arrow-up', 'Up'),
+          title: 'Bring up arena',
+          onclick: () => route.open('up'),
+        }),
         a.hr,
         app.float({
           left: [

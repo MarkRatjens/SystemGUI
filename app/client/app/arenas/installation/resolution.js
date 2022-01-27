@@ -21,7 +21,6 @@ app.arenas.installation.resolution = (route) => (a,x) => [
               })
             },
           }),
-
         ],
       }),
       a.hr,
