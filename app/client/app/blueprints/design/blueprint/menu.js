@@ -16,7 +16,7 @@ app.blueprints.design.blueprint.menu = (route, blueprint) => (a,x) => {
       a.div(validDivisions.map((division) => app.button({
         label: app.blueprints.divisions[division] || a['.error'](division),
         data: {division: division},
-        onclick: () => route.open(`/blueprints/@${route.params.blueprintIdentifier}/design/${division}`),
+        onclick: (e, el) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/design/${division}`),
         class: 'btn app-btn d-block w-100 text-left',
         buttonTag: {
           $init: (el) => {
@@ -46,7 +46,7 @@ app.blueprints.design.blueprint.menu = (route, blueprint) => (a,x) => {
       app.button({
         label: app.icon('fas fa-clone', 'Copy'),
         title: 'Copy blueprint',
-        onclick: () => route.open('copy') //`/blueprints/@${route.params.blueprintIdentifier}/copy`),
+        onclick: (e, el) => route.open('copy') //`/blueprints/@${route.params.blueprintIdentifier}/copy`),
       }),
     ])
   }

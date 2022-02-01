@@ -10,7 +10,7 @@ app.blueprints.show = (route) => (a,x) => [
         right: [
           app.button({
             label: app.icon('fas fa-drafting-compass', 'Design'),
-            onclick: () => route.open(`/blueprints/@${route.params.blueprintIdentifier}/design`),
+            onclick: (e, el) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/design`),
           }),
         ],
       }),
@@ -33,7 +33,7 @@ app.blueprints.show = (route) => (a,x) => [
            label: app.icon('fa fa-trash'),
            title: 'Delete blueprint',
            class: 'btn btn-outline-danger',
-           onclick: () => route.open(`/blueprints/@${route.params.blueprintIdentifier}/delete`),
+           onclick: (e, el) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/delete`),
          }),
        ],
      }),

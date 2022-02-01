@@ -12,7 +12,7 @@ app.blueprints.design.files.show = (route) => (a, x) => [
       }),
       app.button({
         label: app.icon('fa fa-check', 'Done'),
-        onclick: () => route.open('..'),
+        onclick: (e, el) => route.open('..'),
         class: 'btn btn-primary',
       }),
     ]

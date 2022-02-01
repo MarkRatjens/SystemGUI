@@ -23,7 +23,7 @@ app.blueprints.design.files.edit = (route) => (a, x) => [
             label: app.icon('fas fa-trash'),
             title: 'Delete file',
             class: 'btn btn-outline btn-outline-danger',
-            onclick: () => route.open('delete'),
+            onclick: (e, el) => route.open('delete'),
           }),
         ],
       }),

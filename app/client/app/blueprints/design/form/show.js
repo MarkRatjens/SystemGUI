@@ -3,7 +3,7 @@ app.blueprints.design.form.show = (route) => (a, x) => [
     right: [
       app.button({
         label: app.icon('fa fa-edit', 'Edit'),
-        onclick: () => route.open('edit'),
+        onclick: (e, el) => route.open('edit'),
       }),
     ]
   }),
@@ -37,7 +37,7 @@ app.blueprints.design.form.show = (route) => (a, x) => [
       app.button({
         label: '{} JSON',
         title: 'Raw form JSON',
-        onclick: () => {
+        onclick: (e, el) => {
           modal.$open({
             title: `Raw ${route.params.blueprintIdentifier} form JSON`,
             size: 'lg',

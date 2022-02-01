@@ -28,7 +28,7 @@ app.formDSL.builder.navigation.button = ( buttonSpec, params ) => {
     button.label = ax.x.lib.text.labelize( buttonSpec.dialogue || '' )
   }
 
-  button.onclick = (e,el) => {
+  button.onclick = (e, el) => {
 
     let whitelist = buttonSpec.parameters || []
 

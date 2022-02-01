@@ -18,7 +18,7 @@ app.formDSL.designer.navigation.row = blueprint => f => f.field( {
         label: false,
         itemsTag: {
           $on: {
-            'ax.appkit.form.nest.items.change: rerender headings': (e,el) => {
+            'ax.appkit.form.nest.items.change: rerender headings': (e, el) => {
               el.$$('|dialogue-navigation-row-column-heading').$render()
             },
           }

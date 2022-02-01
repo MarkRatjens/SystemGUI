@@ -3,9 +3,12 @@ app.polling.wait = () => (a, x) =>
     app.spinner(
       a({
         $text: (el) =>
-          `Try again in ${el.$state} second${el.$state === 1 ? "" : "s"}`,
-        $state: 8,
-        $init: (el) => setInterval(() => el.$state--, 1000),
+          `Try again in ${el.$count} second${el.$count === 1 ? "" : "s"}`,
+        $count: 8,
+        $init: (el) => setInterval(() => {
+          el.$count--
+          el.$render()
+        }, 1000),
       })
     ),
     {

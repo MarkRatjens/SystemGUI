@@ -80,7 +80,7 @@ app.blueprints.design.icon.edit = (route) => (a, x) => [
       app.button({
         label: app.icon('fa fa-trash'),
         title: 'Delete icon',
-        onclick: () => route.open('delete'),
+        onclick: (e, el) => route.open('delete'),
         class: 'btn btn-outline-danger',
       }),
     ],
@@ -89,7 +89,7 @@ app.blueprints.design.icon.edit = (route) => (a, x) => [
   a.p(
     app.button({
       label: app.icon('fa fa-check', 'Done'),
-      onclick: () => route.open('..'),
+      onclick: (e, el) => route.open('..'),
       class: 'btn btn-primary',
     }),
   )

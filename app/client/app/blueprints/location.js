@@ -13,16 +13,21 @@ app.blueprints.location = (route) => (a, x) => [
                 a['.activatable']([
                   x.transition.fade({}),
                 ], {
-                  $state: false,
-                  $update: (el, state) => {
-                    el.$('ax-appkit-transition').$to(
-                      (state && summary.location.exist) ? [
-                        app.button({
-                          label: app.icon('fas fa-file-import', 'Reimport'),
-                          onclick: () => route.open(`/blueprints/@${route.params.blueprintIdentifier}/reimport`),
-                        })
-                      ] : null
-                    )
+                  $active: false,
+                  $update: (el) => (active) => {
+                    if (active && !el.$active) {
+                      el.$active = true
+                      el.$('ax-appkit-transition').$to(
+                        summary.location.exist ? [
+                          app.button({
+                            label: app.icon('fas fa-file-import', 'Reimport'),
+                            onclick: (e, el) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/reimport`),
+                          })
+                        ] : null
+                      )
+                    } else if (!active) {
+                      el.$active = false
+                    }
                   },
                   $init: (el) => el.$activate(),
                   $activate: (el) => () => {
@@ -31,9 +36,9 @@ app.blueprints.location = (route) => (a, x) => [
                       .replace(/^\/blueprints\/@[\w\-]+/, '')
                       .match(/^(?!\/reimport).*/)
                     ) {
-                      el.$state = true
+                      el.$update(true)
                     } else {
-                      el.$state = false
+                      el.$update(false)
                     }
                   }
                 }),
@@ -42,34 +47,39 @@ app.blueprints.location = (route) => (a, x) => [
                 a['.activatable']([
                   x.transition.fade({}),
                 ], {
-                  $state: false,
-                  $update: (el, state) => {
-                    el.$('ax-appkit-transition').$to(
-                      state ? [
-                        summary.location.exist ? app.button({
-                          label: app.icon("fas fa-file-export", "Export"),
-                          onclick: () => route.open(`/blueprints/@${route.params.blueprintIdentifier}/design/export`),
-                        }) : null,
-                        ' ',
-                        app.button({
-                          label: app.icon("fas fa-location-arrow", "Location"),
-                          onclick: () => route.open(`/blueprints/@${route.params.blueprintIdentifier}/design/location`),
-                        })
-                      ] : null
-                    )
+                  $active: false,
+                  $update: (el) => (active) => {
+                    if (active && !el.$active) {
+                      el.$active = true
+                      el.$('ax-appkit-transition').$to(
+                        summary.location.exist ? [
+                          summary.location.exist ? app.button({
+                            label: app.icon("fas fa-file-export", "Export"),
+                            onclick: (e, el) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/design/export`),
+                          }) : null,
+                          ' ',
+                          app.button({
+                            label: app.icon("fas fa-location-arrow", "Location"),
+                            onclick: (e, el) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/design/location`),
+                          })
+                        ] : null
+                      )
+                    } else if (!active) {
+                      el.$active = false
+                    }
                   },
                   $init: (el) => el.$activate(),
                   $activate: (el) => () => {
                     if (
                       window.location.pathname
-                      .replace(/^\/blueprints\/@[\w\-]+\/design/, '')
-                      .match(/^(?!\/export).*/)
+                      .replace(/^\/blueprints\/@[\w\-]+/, '')
+                      .match(/^(?!\/reimport).*/)
                     ) {
-                      el.$state = true
+                      el.$update(true)
                     } else {
-                      el.$state = false
+                      el.$update(false)
                     }
-                  }
+                  },
                 }),
               ],
               '*': null,

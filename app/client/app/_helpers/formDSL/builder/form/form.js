@@ -39,7 +39,7 @@ app.formDSL.builder.form.form = ( options={} ) => (a,x) => {
       cancel.label = 'Cancel'
     }
 
-    cancel.onclick = cancelSpec.onclick || ((e,el) => {
+    cancel.onclick = cancelSpec.onclick || ((e, el) => {
       options.route && options.route.open('..');
     })
 

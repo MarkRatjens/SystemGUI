@@ -21,7 +21,7 @@ app.arenas.index = (route) => (a,x) => a.div([
           ]),
           a.td([(arena.domain || {}).identifier || null]),
         ], {
-          $on: {click: () => route.open(`@${arena.identifier}`)},
+          $on: {click: (e, el) => route.open(`@${arena.identifier}`)},
           class: 'app-clickable',
         }))),
       ], {

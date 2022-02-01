@@ -17,10 +17,7 @@ app.form.shim = {
         },
         ...options.asyncformTag,
         $on: {
-          "ax.appkit.form.async.complete: revert submit button label": (
-            e,
-            el
-          ) => {
+          "ax.appkit.form.async.complete: revert submit button label": (e, el) => {
             for (let button of el.$$('app-form-buttons button').$$) {
               button.$revert && button.$revert();
             }

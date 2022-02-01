@@ -1,6 +1,6 @@
 app.dashboard.menu = (route) => (a,x) => a['app-menu#dashboardMenu.activatable']([], {
-  $update: (el) => {
-    if (el.$state == 'blueprints') {
+  $update: (el) => (view) => {
+    if (view == 'blueprints') {
       el.$nodes = [
         app.dashboard.menu.blueprints(route)
       ]
@@ -14,11 +14,10 @@ app.dashboard.menu = (route) => (a,x) => a['app-menu#dashboardMenu.activatable']
   $activate: (el) => () => {
     let view = window.location.pathname.match(/^[\/]?(\w+)?/)[1]
     if (view == 'blueprints') {
-      if (!el.$state || el.$state == 'arenas') el.$state = 'blueprints'
+      el.$update('blueprints')
     } else {
-      if (!el.$state || el.$state == 'blueprints') el.$state = 'arenas'
+      el.$update('arenas')
     }
-
     el.$$('button').$activate()
   }
 })
