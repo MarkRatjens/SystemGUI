@@ -21,7 +21,7 @@ app.dashboard.menu.arenas.installations.installation = (route, installation) => 
         }
       },
       $on: {
-        click: (e, el) => {
+        click: (el) => (e) => {
           route.open(`/arenas/@${arenaIdentifier}/@${blueprintIdentifier}`)
         },
       },

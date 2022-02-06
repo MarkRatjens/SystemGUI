@@ -1,4 +1,4 @@
-ax.style({
+ax.css({
   html: {
     minHeight: '100%',
     position: 'relative',

@@ -26,7 +26,7 @@ app.arenas.show = (route) => (a,x) => [
           right: [
             app.button({
               label: app.icon('fas fa-globe', 'Domain'),
-              onclick: () => route.open('domain'),
+              onclick: (el) => () => route.open('domain'),
             }),
           ],
         }),
@@ -53,12 +53,12 @@ app.arenas.show = (route) => (a,x) => [
                       {
                         label: 'Blueprint',
                         title: 'Bind a blueprint to this arena',
-                        onclick: () => route.open('bind'),
+                        onclick: (el) => () => route.open('bind'),
                       },
                       {
                         label: 'Arena',
                         title: 'Bind another arena to this arena',
-                        onclick: () => route.open('connect'),
+                        onclick: (el) => () => route.open('connect'),
                       },
                     ]
                   }),
@@ -75,17 +75,22 @@ app.arenas.show = (route) => (a,x) => [
         app.button({
           label: app.icon('fab fa-mixer', 'Resolve'),
           title: 'Resolve arena',
-          onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/resolve`),
+          onclick: (el) => () => route.open(`/arenas/@${route.params.arenaIdentifier}/resolve`),
         }),
         app.button({
           label: app.icon('fas fa-suitcase', 'Pack'),
           title: 'Pack arena',
-          onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/pack`),
+          onclick: (el) => () => route.open(`/arenas/@${route.params.arenaIdentifier}/pack`),
         }),
         app.button({
           label: app.icon('fas fa-luggage-cart', 'Provision'),
           title: 'Provision arena',
-          onclick: () => route.open('provision'),
+          onclick: (el) => () => route.open('provision'),
+        }),
+        app.button({
+          label: app.icon('fas fa-arrow-up', 'Up'),
+          title: 'Bring up arena',
+          onclick: (el) => () => route.open('up'),
         }),
         a.hr,
         app.float({
@@ -93,13 +98,13 @@ app.arenas.show = (route) => (a,x) => [
             app.button({
               label: app.icon('fas fa-clone', 'Copy'),
               title: 'Copy arena',
-              onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/copy`),
+              onclick: (el) => () => route.open(`/arenas/@${route.params.arenaIdentifier}/copy`),
             }),
             ' ',
             app.button({
               label: '{} JSON',
               title: 'Raw arena JSON',
-              onclick: () => {
+              onclick: (el) => () => {
                 modal.$open({
                   title: `Raw ${route.params.arenaIdentifier} arena JSON`,
                   size: 'lg',
@@ -118,7 +123,7 @@ app.arenas.show = (route) => (a,x) => [
               label: app.icon('fa fa-trash'),
               title: 'Delete arena',
               class: 'btn btn-outline-danger',
-              onclick: () => route.open(`/arenas/@${route.params.arenaIdentifier}/delete`),
+              onclick: (el) => () => route.open(`/arenas/@${route.params.arenaIdentifier}/delete`),
             }),
           ],
         }),

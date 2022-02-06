@@ -64,7 +64,7 @@ app.stream = (options) => (a,x) => a.div([
         el.$nodes,
         app.button({
           label: app.icon('fas fa-check', 'Done'),
-          onclick: options.done,
+          onclick: (el) => (evt) => options.done(evt, el),
           class: 'btn btn-primary',
         }),
       ]
@@ -73,7 +73,7 @@ app.stream = (options) => (a,x) => a.div([
   } ),
 ], {
   $on: {
-    'ax.appkit.xtermjs.ready': (e, el) => {
+    'ax.appkit.xtermjs.ready': (el) => (e) => {
       el.$('appkit-event-source').$start()
     },
   }

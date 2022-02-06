@@ -1,24 +1,27 @@
 app.dashboard.menu = (route) => (a,x) => a['app-menu#dashboardMenu.activatable']([], {
-  $update: (el) => {
-    if (el.$state == 'blueprints') {
-      el.$nodes = [
-        app.dashboard.menu.blueprints(route)
-      ]
-    } else {
-      el.$nodes = [
-        app.dashboard.menu.arenas(route)
-      ]
+  $update: (el) => (view) => {
+    if (el.$view != view) {
+      el.$view = view
+      if (view == 'blueprints') {
+        el.$nodes = [
+          app.dashboard.menu.blueprints(route)
+        ]
+      } else {
+        el.$nodes = [
+          app.dashboard.menu.arenas(route)
+        ]
+      }
     }
+
   },
   $init: (el) => el.$activate(),
   $activate: (el) => () => {
     let view = window.location.pathname.match(/^[\/]?(\w+)?/)[1]
     if (view == 'blueprints') {
-      if (!el.$state || el.$state == 'arenas') el.$state = 'blueprints'
+      el.$update('blueprints')
     } else {
-      if (!el.$state || el.$state == 'blueprints') el.$state = 'arenas'
+      el.$update('arenas')
     }
-
     el.$$('button').$activate()
   }
 })

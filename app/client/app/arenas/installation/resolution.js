@@ -13,7 +13,7 @@ app.arenas.installation.resolution = (route) => (a,x) => [
           app.button({
             label: '{} JSON',
             title: 'Raw resolution JSON',
-            onclick: () => {
+            onclick: (el) => () => {
               modal.$open({
                 title: `Raw ${route.params.arenaIdentifier}::${route.params.blueprintIdentifier} resolution JSON`,
                 size: 'lg',
@@ -21,7 +21,6 @@ app.arenas.installation.resolution = (route) => (a,x) => [
               })
             },
           }),
-
         ],
       }),
       a.hr,

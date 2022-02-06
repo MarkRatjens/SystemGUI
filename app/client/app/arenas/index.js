@@ -4,7 +4,7 @@ app.arenas.index = (route) => (a,x) => a.div([
   a.p([
     app.button({
       label: app.icon('fa fa-plus', 'New'),
-      onclick: () => route.open('new'),
+      onclick: (el) => () => route.open('new'),
     }),
   ]),
   app.fetch({
@@ -21,7 +21,7 @@ app.arenas.index = (route) => (a,x) => a.div([
           ]),
           a.td([(arena.domain || {}).identifier || null]),
         ], {
-          $on: {click: () => route.open(`@${arena.identifier}`)},
+          $on: {click: (el) => (e) => route.open(`@${arena.identifier}`)},
           class: 'app-clickable',
         }))),
       ], {

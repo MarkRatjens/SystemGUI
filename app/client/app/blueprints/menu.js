@@ -4,39 +4,39 @@ app.blueprints.menu = (route) => (a,x) => a({
     app.button({
       label: 'Readme',
       data: {view: 'readme'},
-      onclick: () => route.open(`/blueprints/@${route.params.blueprintIdentifier}`),
+      onclick: (el) => (e) => route.open(`/blueprints/@${route.params.blueprintIdentifier}`),
       class: 'btn app-btn',
     }),
     app.button({
       label: 'License',
       data: {view: 'license'},
-      onclick: () => route.open(`/blueprints/@${route.params.blueprintIdentifier}/license`),
+      onclick: (el) => (e) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/license`),
       class: 'btn app-btn',
     }),
     // app.button({
     //   label: 'Bindings',
     //   data: {view: 'bindings'},
-    //   onclick: () => route.open(`/blueprints/@${route.params.blueprintIdentifier}/bindings`),
+    //   onclick: (el) => (e) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/bindings`),
     //   class: 'btn app-btn',
     // }),
     // app.button({
     //   label: 'Utilization',
     //   data: {view: 'utilization'},
-    //   onclick: () => route.open(`/blueprints/@${route.params.blueprintIdentifier}/utilization`),
+    //   onclick: (el) => (e) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/utilization`),
     //   class: 'btn app-btn',
     // }),
   ],
   $init: (el) => el.$activate(),
-  $update: (el, active) => {
+  $update: (el) => (active) => {
     el.$$(`button`).classList.remove('active')
     el.$(`button[data-view="${active}"]`).classList.add('active')
   },
   $activate: (el) => () => {
     let fragment = window.location.pathname.split('/')[3]
     if (el.$(`button[data-view="${fragment}"]`)) {
-      el.$state = fragment
+      el.$update(fragment)
     } else {
-      el.$state = 'readme'
+      el.$update('readme')
     }
   },
 })

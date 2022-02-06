@@ -9,7 +9,7 @@ app.blueprints.utilization = (blueprint) => (route) => (a, x) => {
           label: identifier,
           title: 'Open arena',
           class:'btn app-btn d-block w-100 text-left',
-          onclick: () => route.open(`/blueprints/@${identifier}`),
+          onclick: (el) => (e) => route.open(`/blueprints/@${identifier}`),
         })
       ))
     } else {
@@ -27,7 +27,7 @@ app.blueprints.utilization = (blueprint) => (route) => (a, x) => {
           label: bindings.includes(identifier) ? a.strong(identifier) : identifier,
           title: 'Open arena',
           class:'btn app-btn d-block w-100 text-left',
-          onclick: () => route.open(`/arenas/@${identifier}`),
+          onclick: (el) => (e) => route.open(`/arenas/@${identifier}`),
         })
       ))
     } else {

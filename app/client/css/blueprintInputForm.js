@@ -1,4 +1,4 @@
-ax.style({
+ax.css({
   'app-blueprint-input-form': {
     'ax-appkit-form-nest > ax-appkit-form-nest-many-wrapper': {
       display: 'block',

@@ -6,8 +6,6 @@ app.blueprints.design.files.delete = (route) => (a, x) => [
     url: `/api/blueprints/@${route.params.blueprintIdentifier}/files/@${route.params.fileIdentifier.replace(/::/g, '/')}`,
     method: "DELETE",
     form: (f) => [f.buttons({route: route})],
-    success: () => {
-      route.open('../..')
-    },
+    success: () => route.open('../..'),
   }),
 ]

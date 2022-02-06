@@ -21,7 +21,6 @@ module App
             other_identifier: params[:target_identifier],
           )
         end
-
       end
     end
   end

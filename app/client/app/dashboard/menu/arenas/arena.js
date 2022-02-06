@@ -13,7 +13,7 @@ app.dashboard.menu.arenas.arena = (route, identifier) => (a,x) => [
         }
       },
       $on: {
-        click: (e, el) => {
+        click: (el) => (e) => {
           route.open(`/arenas/@${identifier}`)
         },
       },

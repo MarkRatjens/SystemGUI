@@ -1,4 +1,4 @@
-ax.style({
+ax.css({
   "#navbar": {
     position: 'static',
     'app-navbar-brand-icon': {

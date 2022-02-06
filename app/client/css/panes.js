@@ -1,4 +1,4 @@
-ax.style( {
+ax.css( {
   'ax-appkit-panes': {
     top: '52px',
     'ax-appkit-panes-adjacent': {

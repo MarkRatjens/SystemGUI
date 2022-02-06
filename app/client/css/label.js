@@ -1,4 +1,4 @@
-ax.style({
+ax.css({
   label: {
     overflowWrap: "anywhere",
   },

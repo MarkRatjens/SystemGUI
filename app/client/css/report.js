@@ -1,4 +1,4 @@
-ax.style({
+ax.css({
   "ax-appkit-report": {
     ".list-group-item": {
       padding: "0.375rem 0.75rem",

@@ -14,7 +14,7 @@ app.arenas.installation.show = (route) => (a,x) => [
         right: [
           app.button({
             label: app.icon('fas fa-sliders-h', 'Input'),
-            onclick: () => route.open('input'),
+            onclick: (el) => () => route.open('input'),
           }),
         ],
       }),
@@ -28,7 +28,7 @@ app.arenas.installation.show = (route) => (a,x) => [
           app.button({
             label: '{} JSON',
             title: 'Raw installation JSON',
-            onclick: () => {
+            onclick: (el) => () => {
               modal.$open({
                 title: `Raw ${route.params.arenaIdentifier} > ${route.params.blueprintIdentifier} installation JSON`,
                 size: 'lg',
@@ -47,7 +47,7 @@ app.arenas.installation.show = (route) => (a,x) => [
             label: app.icon('fa fa-trash'),
             title: 'Delete installation',
             class: 'btn btn-outline-danger',
-            onclick: () => route.open('delete'),
+            onclick: (el) => () => route.open('delete'),
           }),
         ],
       }),

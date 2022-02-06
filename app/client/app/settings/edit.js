@@ -2,7 +2,6 @@ app.settings.edit = (route) => (a, x) => [
   app.fetch({
     url: '/api/settings',
     placeholder: app.spinner('Loading settings'),
-    horizontal: true,
     success: (settings, el) => [
       app.jsonForm({
         url: '/api/settings',

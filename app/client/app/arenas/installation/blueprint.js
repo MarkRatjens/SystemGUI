@@ -23,7 +23,7 @@ app.arenas.installation.blueprint = (route, installation) => (a,x) => [
     right: [
       app.button({
         label: app.icon('fas fa-shapes', 'Blueprint'),
-        onclick: () => route.open(`/blueprints/@${route.params.blueprintIdentifier}`),
+        onclick: (el) => () => route.open(`/blueprints/@${route.params.blueprintIdentifier}`),
       }),
     ],
   }),

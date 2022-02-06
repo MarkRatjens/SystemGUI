@@ -17,10 +17,7 @@ app.form.shim = {
         },
         ...options.asyncformTag,
         $on: {
-          "ax.appkit.form.async.complete: revert submit button label": (
-            e,
-            el
-          ) => {
+          "ax.appkit.form.async.complete: revert submit button label": (el) => (e) => {
             for (let button of el.$$('app-form-buttons button').$$) {
               button.$revert && button.$revert();
             }
@@ -47,7 +44,7 @@ app.form.shim = {
       buttonTag: {
         ...options.buttonTag,
         $on: {
-          "click: change button label": (e, el) => {
+          "click: change button label": (el) => (e) => {
             let to = options.to;
             el.$from = el.innerHTML;
             if (to) el.$nodes = [to];
@@ -64,7 +61,7 @@ app.form.shim = {
     f.button({
       label: app.icon("fa fa-times", "Cancel"),
       to: app.spinner("Cancelling…"),
-      onclick: () => options.route.open(".."),
+      onclick: (el) => () => options.route.open(".."),
       ...options,
     }),
 
@@ -79,10 +76,10 @@ app.form.shim = {
       buttonTag: {
         ...options.buttonTag,
         $on: {
-          "click: turn off all sorting": (e, el) => {
+          "click: turn off all sorting": (el) => (e) => {
             el.$("^form").$$("|appkit-form-nest-sort-off button").click();
           },
-          "click: revert label when invalid": (e, el) => {
+          "click: revert label when invalid": (el) => (e) => {
             let valid = el.$("^form").checkValidity();
             if (!valid) el.$revert();
           },
