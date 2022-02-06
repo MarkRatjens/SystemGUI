@@ -1,4 +1,4 @@
-ax.style({
+ax.css({
   ".well": {
     display: 'block',
     padding: ".5rem",

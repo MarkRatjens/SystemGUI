@@ -40,20 +40,20 @@ app.report({
   a['div.mb-1']([
     app.button({
       label: app.icon('fa fa-list', 'Manage images'),
-      onclick: (e, el) => route.open('manage'),
+      onclick: (el) => (e) => route.open('manage'),
       class: 'btn btn-secondary',
     }),
     ' ',
     app.button({
       label: app.icon('fa fa-plus', 'Add image'),
-      onclick: (e, el) => route.open('new'),
+      onclick: (el) => (e) => route.open('new'),
       class: 'btn btn-secondary',
     }),
   ]),
   a['div.mb-1']([
     app.button({
       label: app.icon('fa fa-check', 'Done'),
-      onclick: (e, el) => route.open('..'),
+      onclick: (el) => (e) => route.open('..'),
       class: 'btn btn-primary',
     }),
   ]),

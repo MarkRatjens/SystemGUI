@@ -1,4 +1,4 @@
-ax.style({
+ax.css({
   "ax-appkit-out": {
     label: {
       fontSize: "0.8rem",

@@ -6,16 +6,16 @@ a['app'](
   ],
   {
     $on: {
-      'ax.appkit.router.pop': (e, el) => {
+      'ax.appkit.router.pop': (el) => (e) => {
         el.$$('.activatable').$activate();
       },
-      'app.disconnected': (e, el) => {
+      'app.disconnected': (el) => (e) => {
         router.$load('/disconnected');
       },
-      'app.signedout': (e, el) => {
+      'app.signedout': (el) => (e) => {
         router.$load('/signedout');
       },
-      'app.timedout': (e, el) => {
+      'app.timedout': (el) => (e) => {
         router.$load('/timedout');
       },
     },

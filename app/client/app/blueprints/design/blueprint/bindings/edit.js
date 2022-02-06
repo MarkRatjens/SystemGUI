@@ -74,8 +74,8 @@ app.blueprints.design.blueprint.bindings.edit = (route, blueprint) => (a,x) => {
                     autocomplete: 'off',
                     controlTag: {
                       $on: {
-                        'input': (e, el) => {
-                          let defaultValueOutput = el.$('^li input[name$="[value]"] ^ax-appkit-form-field ax-appkit-form-field-hint small')
+                        'input': (el) => (e) => {
+                          let defaultValueOutput = el.$('^ax-appkit-form-nest-item input[name$="[value]"] ^ax-appkit-form-field ax-appkit-form-field-hint small')
                           let keyName = el.$('input').value
                           defaultValueOutput.$nodes = valueHintFor(targetBlueprint, keyName)
                         }

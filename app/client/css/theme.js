@@ -162,5 +162,5 @@ app.theme = (theme) => {
     },
   }
 
-  ax.style(style)
+  ax.css(style)
 }

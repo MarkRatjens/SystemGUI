@@ -28,7 +28,7 @@ app.blueprints.design.blueprint.body = (route, blueprint) => (a,x) => a['div']([
      app.button({
        label: '{} JSON',
        title: 'Raw blueprint JSON',
-       onclick: (e, el) => {
+       onclick: (el) => (e) => {
          modal.$open({
            title: `Raw ${route.params.blueprintIdentifier} blueprint JSON`,
            size: 'lg',

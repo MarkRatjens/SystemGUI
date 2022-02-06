@@ -1,7 +1,7 @@
 app.blueprints.design.files.index = (route) => (a, x) => [
   app.button({
     label: app.icon('fa fa-plus', 'New'),
-    onclick: (e, el) => route.open('new'),
+    onclick: (el) => (e) => route.open('new'),
   }),
   a.hr,
   app.fetch({

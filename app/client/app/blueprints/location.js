@@ -21,7 +21,7 @@ app.blueprints.location = (route) => (a, x) => [
                         summary.location.exist ? [
                           app.button({
                             label: app.icon('fas fa-file-import', 'Reimport'),
-                            onclick: (e, el) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/reimport`),
+                            onclick: (el) => (e) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/reimport`),
                           })
                         ] : null
                       )
@@ -55,12 +55,12 @@ app.blueprints.location = (route) => (a, x) => [
                         summary.location.exist ? [
                           summary.location.exist ? app.button({
                             label: app.icon("fas fa-file-export", "Export"),
-                            onclick: (e, el) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/design/export`),
+                            onclick: (el) => (e) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/design/export`),
                           }) : null,
                           ' ',
                           app.button({
                             label: app.icon("fas fa-location-arrow", "Location"),
-                            onclick: (e, el) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/design/location`),
+                            onclick: (el) => (e) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/design/location`),
                           })
                         ] : null
                       )

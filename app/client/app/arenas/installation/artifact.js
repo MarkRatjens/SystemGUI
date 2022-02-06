@@ -7,7 +7,7 @@ app.arenas.installation.artifact = (route) => (a,x) => [
       a.br,
       app.button({
         label: app.icon('fas fa-check', 'Done'),
-        onclick: () => route.open('..'),
+        onclick: (el) => () => route.open('..'),
         class: 'btn btn-primary',
       }),
     ]

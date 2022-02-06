@@ -1,14 +1,18 @@
 app.dashboard.menu = (route) => (a,x) => a['app-menu#dashboardMenu.activatable']([], {
   $update: (el) => (view) => {
-    if (view == 'blueprints') {
-      el.$nodes = [
-        app.dashboard.menu.blueprints(route)
-      ]
-    } else {
-      el.$nodes = [
-        app.dashboard.menu.arenas(route)
-      ]
+    if (el.$view != view) {
+      el.$view = view
+      if (view == 'blueprints') {
+        el.$nodes = [
+          app.dashboard.menu.blueprints(route)
+        ]
+      } else {
+        el.$nodes = [
+          app.dashboard.menu.arenas(route)
+        ]
+      }
     }
+
   },
   $init: (el) => el.$activate(),
   $activate: (el) => () => {

@@ -1,4 +1,4 @@
-ax.style({
+ax.css({
   ".app-btn": {
     position: 'relative',
     '&:before': {
