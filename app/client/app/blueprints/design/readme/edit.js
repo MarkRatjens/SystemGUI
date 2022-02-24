@@ -1,9 +1,9 @@
-app.blueprints.design.readme.edit = (route, blueprint) => (a, x) => a.div([
+app.blueprints.design.readme.edit = (route, blueprint) => a.div([
   app.fetch({
     url: `/api/blueprints/@${route.params.blueprintIdentifier}/readme`,
     placeholder: app.spinner('Loading blueprint readme'),
-    success: (readme, el) => [
-      app.form({
+    success: (readme, el) => a.div([
+      app.jsonForm({
         url: `/api/blueprints/@${route.params.blueprintIdentifier}/readme`,
         method: "PUT",
         object: {readme: readme},
@@ -19,6 +19,6 @@ app.blueprints.design.readme.edit = (route, blueprint) => (a, x) => a.div([
           route.open('..')
         },
       }),
-    ],
+    ]),
   }),
 ]);

@@ -1,7 +1,7 @@
-app.blueprints.design.blueprint.body = (route, blueprint) => (a,x) => a['div']([
+app.blueprints.design.blueprint.body = (route, blueprint) => a['div']([
   route.mount({
    routes: {
-     '*': route => [
+     '*': route => a.div([
        app.blueprints.design.blueprint.about(route, blueprint),
        app.blueprints.design.blueprint.bindings(route, blueprint),
        app.blueprints.design.blueprint.bindingTarget(route, blueprint),
@@ -17,9 +17,9 @@ app.blueprints.design.blueprint.body = (route, blueprint) => (a,x) => a['div']([
        app.blueprints.design.blueprint.systemPackages(route, blueprint),
        app.blueprints.design.blueprint.volumes(route, blueprint),
        app.blueprints.design.blueprint.serviceTasks(route, blueprint),
-     ],
+     ]),
    },
-   default: () => null,
+   default: () => '',
  }),
  a.br,
  app.float({
@@ -28,7 +28,7 @@ app.blueprints.design.blueprint.body = (route, blueprint) => (a,x) => a['div']([
      app.button({
        label: '{} JSON',
        title: 'Raw blueprint JSON',
-       onclick: (el) => (e) => {
+       onclick: (e, el) => {
          modal.$open({
            title: `Raw ${route.params.blueprintIdentifier} blueprint JSON`,
            size: 'lg',

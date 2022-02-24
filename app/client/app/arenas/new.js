@@ -1,4 +1,4 @@
-app.arenas.new = (route) => (a,x) => a.div([
+app.arenas.new = (route) => a.div([
   a.h1('New arena'),
   app.jsonForm({
     url: '/api/arenas',
@@ -12,7 +12,6 @@ app.arenas.new = (route) => (a,x) => a.div([
     ],
     digest: (form) => ({model: form.arena}),
     success: (arenaIdentifier) => {
-      dashboardMenu.$render()
       route.open(`../@${arenaIdentifier}`)
     },
   }),

@@ -1,4 +1,4 @@
-app.dashboard.menu.blueprints.blueprint = (route, blueprintIdentifier) => (a,x) => [
+app.dashboard.menu.blueprints.blueprint = (route, blueprintIdentifier) => a.div([
   app.button({
     label: blueprintIdentifier,
     buttonTag: {
@@ -13,12 +13,12 @@ app.dashboard.menu.blueprints.blueprint = (route, blueprintIdentifier) => (a,x) 
         }
       },
       $on: {
-        click: (el) => (e) => {
+        click: (e, el) => {
           let match = el.$match()
           let path = [
             `/blueprints/@${blueprintIdentifier}`,
-            match[2] ? match[2] : null,
-            match[3] ? match[3] : null,
+            match[2] ? match[2] : '',
+            match[3] ? match[3] : '',
           ].filter(Boolean).join('/')
           route.open(path)
         },
@@ -28,4 +28,4 @@ app.dashboard.menu.blueprints.blueprint = (route, blueprintIdentifier) => (a,x) 
       },
     }
   })
-]
+])

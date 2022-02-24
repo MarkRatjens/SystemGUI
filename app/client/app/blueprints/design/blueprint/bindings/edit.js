@@ -1,19 +1,17 @@
-app.blueprints.design.blueprint.bindings.edit = (route, blueprint) => (a,x) => {
+app.blueprints.design.blueprint.bindings.edit = (route, blueprint) => {
 
   let binding = blueprint.bindings[route.params.bindingIndex]
-  let valueHintFor = (targetBlueprint, keyName) => [
+  let configurationValueHintFor = (targetBlueprint, keyName) => [
     'target default value: ',
-    (targetBlueprint.binding_target || {})[keyName] || a['.error']('no match')
+    ((targetBlueprint.binding_target || {}).configuration || {})[keyName] || a['.error']('no match')
   ]
 
-  return [
+  return a.div([
     app.fetch({
       url: `/api/blueprints/@${binding.target_identifier}`,
       placeholder: app.spinner('Loading target blueprint'),
-      success: (targetBlueprint, el) => [
-        'Binding ',
-        Number(route.params.bindingIndex) + 1,
-        ' - ',
+      success: (targetBlueprint, el) => a.div([
+        `Binding ${Number(route.params.bindingIndex) + 1} - `,
         binding.target_identifier,
         app.blueprints.design.blueprint.form({
           horizontal: true,
@@ -61,7 +59,7 @@ app.blueprints.design.blueprint.bindings.edit = (route, blueprint) => (a,x) => {
               moveable: true,
               removeable: true,
               collection: true,
-              singular: 'parameter',
+              singular: 'configuration parameter',
               ingest: (v) => Object.keys(v || {}).map((key) => ({
                 key: key,
                 value: v[key],
@@ -69,15 +67,15 @@ app.blueprints.design.blueprint.bindings.edit = (route, blueprint) => (a,x) => {
               form: (ff) => [
                 ff.field({
                   key: 'key',
-                  datalist: Object.keys(targetBlueprint.binding_target || {}),
+                  datalist: Object.keys((targetBlueprint.binding_target || {}).configuration || {}),
                   control: {
                     autocomplete: 'off',
                     controlTag: {
                       $on: {
-                        'input': (el) => (e) => {
+                        'input': (e, el) => {
                           let defaultValueOutput = el.$('^ax-appkit-form-nest-item input[name$="[value]"] ^ax-appkit-form-field ax-appkit-form-field-hint small')
                           let keyName = el.$('input').value
-                          defaultValueOutput.$nodes = valueHintFor(targetBlueprint, keyName)
+                          defaultValueOutput.$nodes = configurationValueHintFor(targetBlueprint, keyName)
                         }
                       }
                     },
@@ -85,10 +83,13 @@ app.blueprints.design.blueprint.bindings.edit = (route, blueprint) => (a,x) => {
                 }),
                 ff.field({
                   key: 'value',
-                  hint: valueHintFor(targetBlueprint, ff.object.key)
+                  hint: configurationValueHintFor(targetBlueprint, ff.object.key)
                 }),
-
-              ]
+              ],
+              dependent: {
+                key: 'type',
+                value: 'embed',
+              }
             }),
           ],
           digest: (form) => {
@@ -102,7 +103,7 @@ app.blueprints.design.blueprint.bindings.edit = (route, blueprint) => (a,x) => {
             return {model: blueprint};
           },
         })
-      ],
+      ]),
     }),
-  ];
+  ]);
 }

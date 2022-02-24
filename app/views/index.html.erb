@@ -120,12 +120,10 @@
   FitAddon = FitAddon.FitAddon
 
   window.onload = () => {
-    if( window.localStorage.cssTheme ) {
-      document.body.classList.add(`app-theme-${window.localStorage.cssTheme}`)
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.body.classList.add('app-theme-dark')
     }
-    ax(app)
-    loadingSpinner.style.opacity = 0
-    setTimeout(() => loadingSpinner.remove(), 1000)
+    ax(app())
   }
 </script>
 

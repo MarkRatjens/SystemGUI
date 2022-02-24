@@ -1,9 +1,9 @@
-app.blueprints.design.branch = (route, blueprint) => (a, x) => a.div([
+app.blueprints.design.branch = (route, blueprint) => a.div([
   a.h3(`Branch`),
   app.fetch({
     url: `/api/blueprints/@${route.params.blueprintIdentifier}`,
-    success: blueprint => [
-      app.form({
+    success: blueprint => a.div([
+      app.jsonForm({
         url: `/api/blueprints/@${route.params.blueprintIdentifier}/publication/branch`,
         method: "POST",
         form: (f) => [
@@ -41,9 +41,9 @@ app.blueprints.design.branch = (route, blueprint) => (a, x) => a.div([
           }),
           f.buttons({route: route}),
         ],
-        success: () => route.open('..'),
+        success: () => a({$init: () => route.open('..')}),
       }),
-    ]
+    ])
   }),
 
 ]);

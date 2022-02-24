@@ -1,14 +1,14 @@
-app.blueprints.bindings.menu = (route) => (a,x) => {
+app.blueprints.bindings.menu = (route) => {
 
   let renderMenu = (active) => [
     app.button({
       label: 'Specified',
-      onclick: (el) => (e) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/bindings`),
+      onclick: (e, el) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/bindings`),
       class: `btn app-btn${active == 'specified' ? ' active' : ''}`,
     }),
     app.button({
       label: 'Resolved',
-      onclick: (el) => (e) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/bindings/resolved`),
+      onclick: (e, el) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/bindings/resolved`),
       class: `btn app-btn${active == 'resolved' ? ' active' : ''}`,
     }),
   ]

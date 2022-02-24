@@ -14,7 +14,7 @@ app.formDSL.builder = function( components, params={}, options={} ) {
       
       return app.formDSL.builder.navigation( componentSpec.navigation || {}, params, options )
     } else {
-      return null
+      return ''
     }
 
   } )

@@ -1,4 +1,4 @@
-app.blueprints.design.blueprint.serviceTasks.preview = (route, blueprint) => (a,x) =>
+app.blueprints.design.blueprint.serviceTasks.preview = (route, blueprint) => 
 blueprint.service_tasks ? app.navBox(
   route,
   [
@@ -6,4 +6,4 @@ blueprint.service_tasks ? app.navBox(
     x.out(blueprint.service_tasks),
   ],
   'service_tasks',
-) : null
+) : ''

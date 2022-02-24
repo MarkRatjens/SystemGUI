@@ -1,8 +1,8 @@
-app.signin = route => (a,x) => [
+app.signin = route => a.div([
   a.h5( "Sign in" ),
   a['div.row']([
     a['div.col-sm-8.col-md-6.col-lg-4.col-xl-2']([
-      app.form({
+      app.jsonForm({
         url: '/api/session',
         method: 'POST',
         when: {401: () => 'Failed to authenticate.'},
@@ -30,4 +30,4 @@ app.signin = route => (a,x) => [
       }),
     ]),
   ]),
-]
+])

@@ -1,4 +1,4 @@
-app.formDSL.designer.form.field.help = (f) => [
+app.formDSL.designer.form.field.help = (f) => a['app-form-field-control']([
   f.field( {
     key: 'help',
     label: false,
@@ -10,12 +10,10 @@ app.formDSL.designer.form.field.help = (f) => [
   } ),
 
   f.fieldset({
-    body: [
-      app.placeholder('Nothing to configure'),
-    ],
+    body: app.placeholder('Nothing to configure'),
     dependent: {
       key: 'control',
       pattern: '^hidden$',
     },
   }),
-]
+])

@@ -1,11 +1,11 @@
-app.arenas.edit = (route) => (a,x) => [
+app.arenas.edit = (route) => a.div([
   app.fetch({
     url: [
       `/api/arenas/@${route.params.arenaIdentifier}`,
       `/api/blueprints/list`,
     ],
     placeholder: app.spinner(`Loading ${route.params.arenaIdentifier}`),
-    success: ([arena, blueprints]) => [
+    success: ([arena, blueprints]) => a.div([
       a.h3('Edit arena'),
       app.jsonForm({
         url: `/api/arenas/@${route.params.arenaIdentifier}`,
@@ -31,10 +31,10 @@ app.arenas.edit = (route) => (a,x) => [
           return {model: arena}
         },
         success: () => {
-          dashboardMenu.$render()
+          // dashboardMenu.$render()
           route.open('..')
         },
       })
-    ]
+    ])
   }),
-]
+])

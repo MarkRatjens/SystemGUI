@@ -1,8 +1,9 @@
-app.formDSL.designer.form.field.appearance = (f) => [
+app.formDSL.designer.form.field.appearance = (f) => a['app-form-field-appearance']([
 
   // LABEL
   f.fieldset( {
-    body: [
+    body: a.div([
+
       f.field( {
         key: 'label',
         horizontal: true,
@@ -30,7 +31,7 @@ app.formDSL.designer.form.field.appearance = (f) => [
         ],
       } ),
 
-    ],
+    ]),
     dependent: {
       key: 'control',
       pattern: '^(?!hidden).*$',
@@ -91,7 +92,7 @@ app.formDSL.designer.form.field.appearance = (f) => [
   // CONFIRM
   f.fieldset( {
     label: false,
-    body: [
+    body: a.div([
       f.field( {
         key: 'confirm',
         as: 'checkbox',
@@ -114,7 +115,7 @@ app.formDSL.designer.form.field.appearance = (f) => [
         },
       } ),
 
-    ],
+    ]),
     dependent: {
       key: 'control',
       value: 'password',
@@ -141,13 +142,11 @@ app.formDSL.designer.form.field.appearance = (f) => [
   } ),
 
   f.fieldset({
-    body: [
-      app.placeholder('Nothing to configure'),
-    ],
+    body: app.placeholder('Nothing to configure'),
     dependent: {
       key: 'control',
       pattern: '^hidden$',
     },
   })
 
-]
+])

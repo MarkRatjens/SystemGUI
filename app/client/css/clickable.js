@@ -1,11 +1,17 @@
 ax.css({
   'app-clickable': {
-    display: 'block',
+    $: {
+      display: 'block',
+    }
   },
   'app-clickable, .app-clickable': {
-    cursor: 'pointer',
-    '*': {
+    $: {
       cursor: 'pointer',
+    },
+    '*': {
+      $: {
+        cursor: 'pointer',
+      },
     },
   },
 })

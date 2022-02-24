@@ -1,4 +1,4 @@
-app.blueprints = (route) => (a,x) => a['app-blueprints']([
+app.blueprints = (route) => a['app-blueprints']([
   route.mount({
     routes: {
       '/?': app.blueprints.index,

@@ -1,21 +1,29 @@
-let app = (a, x) =>
+let app = () =>
 a['app'](
   [
     app.modal(),
-    app.router(),
+    app.fetch({
+      url: '/api/settings',
+      success: (settings) => {
+        loadingSpinner.style.opacity = 0
+        setTimeout(() => loadingSpinner.remove(), 1000)
+        app.universe.settings = settings
+        return app.router()
+      },
+    }),
   ],
   {
     $on: {
-      'ax.appkit.router.pop': (el) => (e) => {
+      'ax.appkit.router.pop': (e, el) => {
         el.$$('.activatable').$activate();
       },
-      'app.disconnected': (el) => (e) => {
+      'app.disconnected': (e, el) => {
         router.$load('/disconnected');
       },
-      'app.signedout': (el) => (e) => {
+      'app.signedout': (e, el) => {
         router.$load('/signedout');
       },
-      'app.timedout': (el) => (e) => {
+      'app.timedout': (e, el) => {
         router.$load('/timedout');
       },
     },

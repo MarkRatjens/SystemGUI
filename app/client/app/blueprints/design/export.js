@@ -1,4 +1,4 @@
-app.blueprints.design.export = (route, blueprint) => (a, x) => a.div([
+app.blueprints.design.export = (route, blueprint) => a.div([
   a.h3(`Export`),
   app.jsonForm({
     url: `/api/publications/@${route.params.blueprintIdentifier}/export`,
@@ -13,6 +13,6 @@ app.blueprints.design.export = (route, blueprint) => (a, x) => a.div([
         placeholder: 'Message',
       }),
     ],
-    success: () => route.load('output'),
+    success: () => a({$init: () => route.load('output')}),
   }),
 ]);

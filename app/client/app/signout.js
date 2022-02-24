@@ -1,8 +1,8 @@
-app.signout = route => (a,x) => [
+app.signout = route => a.div([
   a.h5( "Sign out" ),
   a['div.row']([
     a['div.col-sm-8.col-md-6.col-lg-4.col-xl-2']([
-      app.form({
+      app.jsonForm({
         url: '/api/session',
         method: 'DELETE',
         when: {401: () => 'Already signed out.'},
@@ -15,4 +15,4 @@ app.signout = route => (a,x) => [
       }),
     ]),
   ]),
-]
+])

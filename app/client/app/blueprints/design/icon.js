@@ -1,4 +1,4 @@
-app.blueprints.design.icon = (route) => (a, x) => a['#app-blueprint-icon'](
+app.blueprints.design.icon = (route) => a['#app-blueprint-icon'](
   route.mount({
     routes: {
       '/?': route => app.blueprints.design.icon.edit(route),

@@ -1,4 +1,4 @@
-app.settings = (route) => (a, x) => [
+app.settings = (route) => a.div([
   a.h1("Settings"),
   route.mount({
     routes: {
@@ -6,4 +6,4 @@ app.settings = (route) => (a, x) => [
       '/reload': app.settings.reload,
     },
   }),
-];
+])

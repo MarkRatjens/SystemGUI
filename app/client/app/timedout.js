@@ -1,7 +1,7 @@
-app.timedout = route => (a,x) => [
+app.timedout = route => a.div([
   a.h5( "Timed out" ),
   app.button({
     label: app.icon('fas fa-sign-in-alt', 'Sign in'),
-    onclick: (el) => () => route.load('/signin'),
+    onclick: () => route.load('/signin'),
   })
-]
+])

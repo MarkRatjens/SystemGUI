@@ -1,4 +1,4 @@
-app.collapse = ( options={} ) => (a,x) => a['app-collapse']( [
+app.collapse = ( options={} ) => a['app-collapse']( [
   app.button( {
     label: a({
       $tag: 'app-collapse-indicator',
@@ -11,7 +11,7 @@ app.collapse = ( options={} ) => (a,x) => a['app-collapse']( [
       $iconClass: (el) => () => el.$display ?
       'fa fa-caret-down' : 'fa fa-caret-right',
     }),
-    onclick: (el) => (e) => el.$('^').$toggle(),
+    onclick: (e, el) => el.$('^').$toggle(),
     class: 'btn app-btn',
     ...options.button,
   } ),

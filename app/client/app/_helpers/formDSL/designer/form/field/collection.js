@@ -1,4 +1,4 @@
-app.formDSL.designer.form.field.collection = (f) => [
+app.formDSL.designer.form.field.collection = (f) => a['app-form-field-collection']([
   // COLLECTION SELECTION
   f.field( {
     key: 'collection',
@@ -13,7 +13,7 @@ app.formDSL.designer.form.field.collection = (f) => [
 
   // COLLECTION DETAILS
   f.fieldset( {
-    body: [
+    body: a.div([
       f.field( {
         key: 'singular',
         hint: "singular inflection for an item, such as 'pet' when key is 'pets'",
@@ -36,7 +36,7 @@ app.formDSL.designer.form.field.collection = (f) => [
           } ),
         ]
       })
-    ],
+    ]),
     dependent: [
       {
         key: 'control',
@@ -49,13 +49,11 @@ app.formDSL.designer.form.field.collection = (f) => [
   } ),
 
   f.fieldset({
-    body: [
-      app.placeholder('Nothing to configure'),
-    ],
+    body: app.placeholder('Nothing to configure'),
     dependent: {
       key: 'control',
       pattern: '^(checkbox|checkboxes|hidden|radios|multiselect)$',
     },
   }),
 
-]
+])

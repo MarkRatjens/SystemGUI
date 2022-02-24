@@ -1,7 +1,7 @@
-app.blueprints.design.blueprint.bindings.new = (route, blueprint) => (a,x) => a.div([
+app.blueprints.design.blueprint.bindings.new = (route, blueprint) => a.div([
   app.fetch({
     url: '/api/blueprints/list',
-    success: (blueprints, el) => [
+    success: (blueprints, el) => a.div([
       app.blueprints.design.blueprint.form({
         route: route,
         scope: 'binding',
@@ -24,8 +24,8 @@ app.blueprints.design.blueprint.bindings.new = (route, blueprint) => (a,x) => a.
           }
           return {model: blueprint}
         },
-        success: () => route.open(`../${blueprint.bindings.length - 1}`)
+        success: () => a({$init: () => route.open(`../${blueprint.bindings.length - 1}`)}),
       }),
-    ]
+    ])
   }),
 ])

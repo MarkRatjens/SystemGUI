@@ -1,4 +1,4 @@
-app.dashboard.menu.arenas.arena = (route, identifier) => (a,x) => [
+app.dashboard.menu.arenas.arena = (route, identifier) => a['app-menu-arenas']([
   app.button({
     label: identifier,
     buttonTag: {
@@ -13,7 +13,7 @@ app.dashboard.menu.arenas.arena = (route, identifier) => (a,x) => [
         }
       },
       $on: {
-        click: (el) => (e) => {
+        click: (e, el) => {
           route.open(`/arenas/@${identifier}`)
         },
       },
@@ -22,5 +22,5 @@ app.dashboard.menu.arenas.arena = (route, identifier) => (a,x) => [
       },
     }
   }),
-  app.dashboard.menu.arenas.installations(route, identifier)
-]
+  app.dashboard.menu.arenas.resolutions(route, identifier)
+])

@@ -1,4 +1,4 @@
-app.blueprints.design.blueprint.modules.preview = (route, blueprint) => (a,x) =>
+app.blueprints.design.blueprint.modules.preview = (route, blueprint) => 
 blueprint.modules ? app.navBox(
   route,
   [
@@ -6,4 +6,4 @@ blueprint.modules ? app.navBox(
     x.out(blueprint.modules),
   ],
   'modules',
-) : null
+) : ''

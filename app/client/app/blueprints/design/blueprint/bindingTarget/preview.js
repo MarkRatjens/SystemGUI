@@ -1,4 +1,4 @@
-app.blueprints.design.blueprint.bindingTarget.preview = (route, blueprint) => (a,x) =>
+app.blueprints.design.blueprint.bindingTarget.preview = (route, blueprint) => 
 blueprint.binding_target ? app.navBox(
   route,
   [
@@ -6,4 +6,4 @@ blueprint.binding_target ? app.navBox(
     x.out(blueprint.binding_target),
   ],
   'binding_target',
-) : null
+) : ''

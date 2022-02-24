@@ -1,4 +1,4 @@
-app.formDSL.designer.form.field.validation = (f) => [
+app.formDSL.designer.form.field.validation = (f) => a['app-form-field-control']([
   f.field( {
     key: 'validation',
     label: false,
@@ -82,12 +82,10 @@ app.formDSL.designer.form.field.validation = (f) => [
   } ),
 
   f.fieldset({
-    body: [
-      app.placeholder('Nothing to configure'),
-    ],
+    body: app.placeholder('Nothing to configure'),
     dependent: {
       key: 'control',
       pattern: '^(hidden|multiselect)$',
     },
   }),
-]
+])

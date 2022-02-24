@@ -1,4 +1,4 @@
-app.blueprints.utilization = (blueprint) => (route) => (a, x) => {
+app.blueprints.utilization = (blueprint) => (route) => {
 
   let none = () => a['div.pl-4'](app.placeholder('None'))
 
@@ -9,7 +9,7 @@ app.blueprints.utilization = (blueprint) => (route) => (a, x) => {
           label: identifier,
           title: 'Open arena',
           class:'btn app-btn d-block w-100 text-left',
-          onclick: (el) => (e) => route.open(`/blueprints/@${identifier}`),
+          onclick: (e, el) => route.open(`/blueprints/@${identifier}`),
         })
       ))
     } else {
@@ -27,7 +27,7 @@ app.blueprints.utilization = (blueprint) => (route) => (a, x) => {
           label: bindings.includes(identifier) ? a.strong(identifier) : identifier,
           title: 'Open arena',
           class:'btn app-btn d-block w-100 text-left',
-          onclick: (el) => (e) => route.open(`/arenas/@${identifier}`),
+          onclick: (e, el) => route.open(`/arenas/@${identifier}`),
         })
       ))
     } else {
@@ -35,11 +35,11 @@ app.blueprints.utilization = (blueprint) => (route) => (a, x) => {
     }
   }
 
-  return [
+  return a.div([
     app.fetch({
       url: `/api/blueprints/@${route.params.blueprintIdentifier}/relations`,
       placeholder: app.spinner(`Loading ${route.params.blueprintIdentifier}`),
-      success: (relations) => [
+      success: (relations) => a.div([
         a.p([
           'Arenas',
           blueprintArenasMenu(relations.arenas),
@@ -52,7 +52,7 @@ app.blueprints.utilization = (blueprint) => (route) => (a, x) => {
           'Descendants',
           blueprintsMenu(relations.blueprints.descendants),
         ]),
-      ]
+      ])
     }),
-  ]
+  ])
 }

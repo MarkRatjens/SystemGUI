@@ -1,4 +1,4 @@
-app.tabs = (options) => (a,x) => a['div.app-tabs']([
+app.tabs = (options) => a['div.app-tabs']([
   a["ul.nav.nav-tabs"](
     (options.tabs || []).map((tab, i) => a["li.nav-item"]([
       a.a(tab.label, {
@@ -6,7 +6,7 @@ app.tabs = (options) => (a,x) => a['div.app-tabs']([
         ...options.navTag,
         class: `nav-link${i == 0 ? ' active' : ''}`,
         $on: {
-          'click: open a tab': (el) => (e) => {
+          'click: open a tab': (e, el) => {
             e.preventDefault
             el.$('^.app-tabs').$open(i)
           },
@@ -14,12 +14,12 @@ app.tabs = (options) => (a,x) => a['div.app-tabs']([
       }),
     ])),
   ),
-  (options.tabs || []).map((tab, i) => a["app-tabs-tab-body"]([
+  a.div((options.tabs || []).map((tab, i) => a["app-tabs-tab-body"]([
     tab.body
   ], {
     ...options.tabBodyTag,
     class: `${(options.tabBodyTag || {}).class || ''} ${i == 0 ? '' : 'd-none'}`,
-  })),
+  }))),
 ], {
   $open: (el) => (i) => {
     if (el.$$('a.nav-link').$$[i].classList.contains('active')) return

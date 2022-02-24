@@ -1,4 +1,4 @@
-app.link = (options = {}) => (a, x) =>
+app.link = (options = {}) => 
   app.button({
     ...options,
     buttonTag: {

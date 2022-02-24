@@ -1,4 +1,4 @@
-app.blueprints.design.readme = (route) => (a, x) => a['#app-blueprint-readme'](
+app.blueprints.design.readme = (route) => a['#app-blueprint-readme'](
   route.mount({
     routes: {
       '/?': route => app.blueprints.design.readme.edit(route),

@@ -1,4 +1,4 @@
-app.polling.wait = () => (a, x) =>
+app.polling.wait = () => 
   a["app-polling-wait"](
     app.spinner(
       a({

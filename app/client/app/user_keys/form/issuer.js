@@ -1,4 +1,4 @@
-app.user_keys.form.issuer = (f) => (a,x) => [
+app.user_keys.form.issuer = (f) => [
   f.field({
     key: 'domain',
     required: true,
@@ -12,24 +12,22 @@ app.user_keys.form.issuer = (f) => (a,x) => [
     ],
   }),
   f.fieldset({
-    body: [
-      f.row({
-        columns: [
-          f.field({
-            key: 'username',
-            horizontal: false,
-            label: false,
-            required: true,
-            placeholder: 'Username'
-          }),
-          f.field({
-            key: 'tie_breaker',
-            horizontal: false,
-            label: false,
-            placeholder: 'Optional epithet'
-          }),
-        ]
-      }),
-    ],
+    body: f.row({
+      columns: [
+        f.field({
+          key: 'username',
+          horizontal: false,
+          label: false,
+          required: true,
+          placeholder: 'Username'
+        }),
+        f.field({
+          key: 'tie_breaker',
+          horizontal: false,
+          label: false,
+          placeholder: 'Optional identifier'
+        }),
+      ]
+    }),
   }),
 ]

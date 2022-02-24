@@ -1,8 +1,8 @@
-app.settings.edit = (route) => (a, x) => [
+app.settings.edit = (route) => a.div([
   app.fetch({
     url: '/api/settings',
     placeholder: app.spinner('Loading settings'),
-    success: (settings, el) => [
+    success: (settings, el) => a.div([
       app.jsonForm({
         url: '/api/settings',
         method: 'POST',
@@ -88,6 +88,6 @@ app.settings.edit = (route) => (a, x) => [
           route.load('/settings/reload')
         }
       }),
-    ],
+    ]),
   }),
-]
+])

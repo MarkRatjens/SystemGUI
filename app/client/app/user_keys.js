@@ -1,4 +1,4 @@
-app.user_keys = (route) => (a, x) => a.div([
+app.user_keys = (route) => a.div([
   a.h1('User keys'),
   route.mount({
     routes: {

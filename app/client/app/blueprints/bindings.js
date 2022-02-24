@@ -1,8 +1,8 @@
-app.blueprints.bindings = (blueprint) => (route) => (a, x) => [
+app.blueprints.bindings = (blueprint) => (route) => a.div([
   app.fetch({
     url: `/api/blueprints/@${route.params.blueprintIdentifier}/relations`,
     placeholder: app.spinner(`Loading ${route.params.blueprintIdentifier}`),
-    success: (relations) => [
+    success: (relations) => a.div([
       a['div.mt-1'](app.blueprints.bindings.menu(route)),
       route.mount({
         routes: {
@@ -10,6 +10,6 @@ app.blueprints.bindings = (blueprint) => (route) => (a, x) => [
           '/resolved/?': app.blueprints.chart(route, route.params.blueprintIdentifier, relations.blueprints.bindings),
         }
       }),
-    ]
+    ])
   }),
-]
+])

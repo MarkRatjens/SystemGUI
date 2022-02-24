@@ -1,4 +1,4 @@
-app.blueprints.design.blueprint.otherPackages.manage = (route, blueprint) => (a, x) =>
+app.blueprints.design.blueprint.otherPackages.manage = (route, blueprint) => 
 app.blueprints.design.blueprint.form({
   route: route,
   object: blueprint,
@@ -34,10 +34,10 @@ app.blueprints.design.blueprint.form({
             ]),
             a['div.pt-2.pb-2']([
               fff.object.target ? a.div([
-                fff.object.target.identifier || null, ' ',
+                fff.object.target.identifier || '', ' ',
                 fff.object.target.repository || a['.error']('No repository'), ' ',
-                fff.object.target.branch ? a.small(`${fff.object.target.branch}`) : null,
-              ]) : null,
+                fff.object.target.branch ? a.small(`${fff.object.target.branch}`) : '',
+              ]) : '',
             ]),
           ]
         }),

@@ -1,4 +1,4 @@
-app.polling = (route, success, options = {}) => (a, x) =>
+app.polling = (route, success, options = {}) => 
   a["app-polling"]([], {
     $init: (el) => {
       el.$check();

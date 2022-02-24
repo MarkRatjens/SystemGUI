@@ -1,4 +1,4 @@
-app.blueprintLabel = (blueprint) => (a,x) => a.i([
+app.blueprintLabel = (blueprint) => a.i([
   a.h1([
     a.img([], {
       src: `/api/blueprints/@${blueprint.identifier}/icon/thumbnail`,

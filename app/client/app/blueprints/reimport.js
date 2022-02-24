@@ -1,4 +1,4 @@
-app.blueprints.reimport = (route) => (a, x) => a.div([
+app.blueprints.reimport = (route) => a.div([
   a.h3('Reimport'),
   a.p('Are you sure that you want to reimport this blueprint and overwrite any local changes?'),
   app.jsonForm({
@@ -13,6 +13,6 @@ app.blueprints.reimport = (route) => (a, x) => a.div([
       }),
     ],
     digest: (form) => app.compact(form),
-    success: () => route.load('output'),
+    success: () => a({$init: () => route.load('output')}),
   }),
 ]);

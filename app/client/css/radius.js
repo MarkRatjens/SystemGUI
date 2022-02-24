@@ -1,3 +1,7 @@
 ax.css({
-  "*": { borderRadius: "0px !important" },
+  "*": {
+    $: {
+      borderRadius: "0px !important"
+    }
+  },
 });

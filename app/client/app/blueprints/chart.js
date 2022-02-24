@@ -1,4 +1,4 @@
-app.blueprints.chart = (route, identifier, bindings) => (a,x) => {
+app.blueprints.chart = (route, identifier, bindings) => {
 
   bindings = (bindings || []).sort(function(a,b) {
     let first = a.type || 'connect'

@@ -1,12 +1,12 @@
-app.arenas.delete = (route) => (a,x) => a.div([
+app.arenas.delete = (route) => a.div([
   a.h3(`Delete`),
   a.p('Are you sure that you want to delete this arena?'),
-  app.form({
+  app.jsonForm({
     url: `/api/arenas/@${route.params.arenaIdentifier}`,
     method: "DELETE",
-    form: (f) => [f.buttons({route: route})],
+    form: (f) => [route, f.buttons({route: route})],
     success: () => {
-      dashboardMenu.$render()
+      // dashboardMenu.$render()
       route.open('../..')
     },
   }),

@@ -1,14 +1,14 @@
-app.user_keys.show = (route) => (a, x) => a.div([
+app.user_keys.show = (route) => a.div([
   app.button({
     label: app.icon('fas fa-edit', 'Edit'),
     title: 'Edit token information',
-    onclick: (el) => () => route.open('edit'),
+    onclick: () => route.open('edit'),
   }),
   ' ',
   app.button({
     label: app.icon('fas fa-user-secret', 'Token'),
     title: 'Replace token',
-    onclick: (el) => () => route.open('token'),
+    onclick: () => route.open('token'),
   }),
   a.hr,
   app.float({
@@ -17,7 +17,7 @@ app.user_keys.show = (route) => (a, x) => a.div([
         label: app.icon('fa fa-check', 'Done'),
         title: 'Open tokens',
         class: 'btn btn-primary',
-        onclick: (el) => () => route.open('..'),
+        onclick: () => route.open('..'),
       }),
     ],
     right: [
@@ -25,7 +25,7 @@ app.user_keys.show = (route) => (a, x) => a.div([
         label: app.icon('fa fa-trash'),
         title: 'Delete tokens',
         class: 'btn btn-outline-danger',
-        onclick: (el) => () => route.open('delete'),
+        onclick: () => route.open('delete'),
       }),
     ],
   }),

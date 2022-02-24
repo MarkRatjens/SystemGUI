@@ -1,4 +1,4 @@
-app.blueprints.design.blueprint.provider.preview = (route, blueprint) => (a,x) =>
+app.blueprints.design.blueprint.provider.preview = (route, blueprint) => 
 blueprint.provider ? app.navBox(
   route,
   [
@@ -6,4 +6,4 @@ blueprint.provider ? app.navBox(
     x.out(blueprint.provider),
   ],
   'provider',
-) : null
+) : ''

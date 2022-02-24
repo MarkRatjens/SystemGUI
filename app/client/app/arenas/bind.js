@@ -1,8 +1,8 @@
-app.arenas.bind = (route) => (a,x) => [
+app.arenas.bind = (route) => a.div([
   app.fetch({
     url: `/api/blueprints/list`,
     placeholder: app.spinner(`Loading blueprints`),
-    success: (blueprints) => [
+    success: (blueprints) => a.div([
       a.h3('Bind blueprint'),
       app.jsonForm({
         url: `/api/arenas/@${route.params.arenaIdentifier}/bind`,
@@ -19,10 +19,9 @@ app.arenas.bind = (route) => (a,x) => [
           }),
         ],
         success: (result) => {
-          dashboardMenu.$render()
           route.open('..')
         },
       })
-    ]
+    ])
   }),
-]
+])

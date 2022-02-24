@@ -1,4 +1,4 @@
-app.blueprints.design.blueprint.input.preview = (route, blueprint) => (a,x) =>
+app.blueprints.design.blueprint.input.preview = (route, blueprint) => 
 blueprint.input ? app.navBox(
   route,
   [
@@ -6,4 +6,4 @@ blueprint.input ? app.navBox(
     x.out(blueprint.input),
   ],
   'input',
-) : null
+) : ''

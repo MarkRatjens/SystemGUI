@@ -2,7 +2,7 @@ app.blueprints.divisions = {
   about: 'About',
   bindings: 'Bindings',
   binding_target: 'Binding target',
-  configuration: 'Configuration',
+  // configuration: 'Configuration',
   images: 'Images',
   input: 'Input',
   modules: 'Modules',

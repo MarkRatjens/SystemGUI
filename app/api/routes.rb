@@ -5,7 +5,8 @@ module App
 
       require_relative 'routes/arenas'
       require_relative 'routes/blueprints'
-      require_relative 'routes/installations'
+      require_relative 'routes/domains'
+      # require_relative 'routes/installations'
       require_relative 'routes/locations'
       require_relative 'routes/packs'
       require_relative 'routes/provisioning'
@@ -18,7 +19,8 @@ module App
 
       register Arenas
       register Blueprints
-      register Installations
+      register Domains
+      # register Installations
       register Locations
       register Packs
       register Provisioning

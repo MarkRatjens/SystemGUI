@@ -1,4 +1,4 @@
-app.topology.tree = (route, data, height) => (a,x) => a({
+app.topology.tree = (route, data, height) => a({
   $nodes: [
     x.chartjs({
       canvasTag: {

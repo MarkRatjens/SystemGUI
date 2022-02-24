@@ -1,4 +1,4 @@
-app.blueprints.design.blueprint.otherPackages.index = (route, blueprint) => (a,x) => a.div([
+app.blueprints.design.blueprint.otherPackages.index = (route, blueprint) => a.div([
   app.report({
     object: blueprint,
     report: (r) => r.field({
@@ -8,10 +8,10 @@ app.blueprints.design.blueprint.otherPackages.index = (route, blueprint) => (a,x
         app.clickable(
           a['div.p-1']([
             rr.object.target ? a.div([
-              rr.object.target.identifier || null, ' ',
+              rr.object.target.identifier || '', ' ',
               rr.object.target.repository || a['.error']('No repository'), ' ',
-              rr.object.target.branch ? a.small(`${rr.object.target.branch}`) : null,
-            ]) : null,
+              rr.object.target.branch ? a.small(`${rr.object.target.branch}`) : '',
+            ]) : '',
           ]),
           () => route.open(`${rr.index}`),
         ),
@@ -22,20 +22,20 @@ app.blueprints.design.blueprint.otherPackages.index = (route, blueprint) => (a,x
   a['div.mb-1']([
     app.button({
       label: app.icon('fa fa-list-ol', 'Manage other packages'),
-      onclick: (el) => (e) => route.open('manage'),
+      onclick: (e, el) => route.open('manage'),
       class: 'btn btn-secondary',
     }),
     ' ',
     app.button({
       label: app.icon('fa fa-plus', 'Add other package'),
-      onclick: (el) => (e) => route.open('new'),
+      onclick: (e, el) => route.open('new'),
       class: 'btn btn-secondary',
     }),
   ]),
   a['div.mb-1']([
     app.button({
       label: app.icon('fa fa-check', 'Done'),
-      onclick: (el) => (e) => route.open('..'),
+      onclick: (e, el) => route.open('..'),
       class: 'btn btn-primary',
     }),
   ]),

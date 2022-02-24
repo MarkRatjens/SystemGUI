@@ -1,28 +1,28 @@
-app.blueprints.menu = (route) => (a,x) => a({
+app.blueprints.menu = (route) => a({
   class: 'activatable',
   $nodes: [
     app.button({
       label: 'Readme',
       data: {view: 'readme'},
-      onclick: (el) => (e) => route.open(`/blueprints/@${route.params.blueprintIdentifier}`),
+      onclick: (e, el) => route.open(`/blueprints/@${route.params.blueprintIdentifier}`),
       class: 'btn app-btn',
     }),
     app.button({
       label: 'License',
       data: {view: 'license'},
-      onclick: (el) => (e) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/license`),
+      onclick: (e, el) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/license`),
       class: 'btn app-btn',
     }),
     // app.button({
     //   label: 'Bindings',
     //   data: {view: 'bindings'},
-    //   onclick: (el) => (e) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/bindings`),
+    //   onclick: (e, el) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/bindings`),
     //   class: 'btn app-btn',
     // }),
     // app.button({
     //   label: 'Utilization',
     //   data: {view: 'utilization'},
-    //   onclick: (el) => (e) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/utilization`),
+    //   onclick: (e, el) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/utilization`),
     //   class: 'btn app-btn',
     // }),
   ],

@@ -1,4 +1,4 @@
-app.blueprints.design = (route) => (a,x) => a.div([
+app.blueprints.design = (route) => a.div([
   route.mount({
     routes: {
       "/location": app.blueprints.design.location,

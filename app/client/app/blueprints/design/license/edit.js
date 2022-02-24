@@ -1,9 +1,9 @@
-app.blueprints.design.license.edit = (route, blueprint) => (a, x) => a.div([
+app.blueprints.design.license.edit = (route, blueprint) => a.div([
   app.fetch({
     url: `/api/blueprints/@${route.params.blueprintIdentifier}/license`,
     placeholder: app.spinner('Loading blueprint license'),
-    success: (license, el) => [
-      app.form({
+    success: (license, el) => a.div([
+      app.jsonForm({
         url: `/api/blueprints/@${route.params.blueprintIdentifier}/license`,
         method: "PUT",
         object: {license: license},
@@ -19,6 +19,6 @@ app.blueprints.design.license.edit = (route, blueprint) => (a, x) => a.div([
           route.open('..')
         },
       }),
-    ],
+    ]),
   }),
 ]);

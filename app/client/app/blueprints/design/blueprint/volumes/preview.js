@@ -1,4 +1,4 @@
-app.blueprints.design.blueprint.volumes.preview = (route, blueprint) => (a,x) =>
+app.blueprints.design.blueprint.volumes.preview = (route, blueprint) => 
 blueprint.volumes ? app.navBox(
   route,
   [
@@ -6,4 +6,4 @@ blueprint.volumes ? app.navBox(
     x.out(blueprint.volumes),
   ],
   'volumes',
-) : null
+) : ''

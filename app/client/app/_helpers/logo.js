@@ -1,8 +1,7 @@
 app.logo = function (size = 100) {
   let scale = size / 100 / 3;
 
-  return (a, x) =>
-    a['!'](
+  return a['!'](
 `<svg width='${size}' height='${size}'>
   <g transform='scale(${scale})'>
     <path d='

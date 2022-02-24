@@ -1,4 +1,4 @@
-app.blueprints.design.icon.preview = (route, blueprint) => (a, x) =>
+app.blueprints.design.icon.preview = (route, blueprint) => 
 blueprint.icon ? [
   app.navBox(
     route,
@@ -8,4 +8,4 @@ blueprint.icon ? [
     ],
     'icon'
   )
-] : null
+] : ''

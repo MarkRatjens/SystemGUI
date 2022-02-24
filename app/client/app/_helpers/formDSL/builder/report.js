@@ -1,4 +1,4 @@
-app.formDSL.builder.report = ( reportSpec, params ) => (a,x) => {
+app.formDSL.builder.report = ( reportSpec, params ) => {
 
   return app.formDSL.builder.report.report( {
     components: reportSpec.components || [],

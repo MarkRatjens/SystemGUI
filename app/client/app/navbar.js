@@ -1,5 +1,5 @@
-app.navbar = (route) => (a, x) =>
-a["nav#navbar.navbar.navbar-expand.navbar-light.mt-n1.mb-1.activatable"](
+app.navbar = (route) =>
+a["nav#navbar.navbar.navbar-expand.navbar-light.mt-n1.activatable"](
   [
     a.a([
       a['app-navbar-brand-icon'](app.logo(24)),
@@ -29,6 +29,12 @@ a["nav#navbar.navbar.navbar-expand.navbar-light.mt-n1.mb-1.activatable"](
           icon: 'fas fa-shapes',
           path: '/blueprints',
           title: 'Blueprints',
+        }),
+        app.navbar.item({
+          route: route,
+          icon: 'fas fa-globe',
+          path: '/domains',
+          title: 'Domains',
         }),
       ])
     ),
@@ -66,21 +72,3 @@ a["nav#navbar.navbar.navbar-expand.navbar-light.mt-n1.mb-1.activatable"](
     },
   }
 );
-
-app.navbar.item = (args) => (a,x) => a.li(
-  a.a(app.icon(args.icon), {
-    class: 'nav-link',
-    href: '#',
-    $on: {click: (el) => (e) => {
-      e.preventDefault();
-      args.route.open(args.path)
-    }},
-  }),
-  {
-    class: 'nav-item',
-    title: args.title,
-    data: {
-      path: args.path
-    },
-  }
-)

@@ -18,7 +18,7 @@ app.blueprints.design.blueprint.images.form =
     required: true,
   }),
   f.field({
-    key: 'output_identifier',
+    key: 'target_identifier',
     horizontal: true,
   }),
 ]

@@ -1,5 +1,5 @@
-app.blueprints.design.export.output = (route) => (a,x) => app.stream({
-  label: ['Exporting', 'Export', 'Git'],
+app.blueprints.design.export.output = (route) => app.stream({
+  label: {stream: 'Exporting', action: 'Export', tool: 'Git'},
   url: `/api/streaming/publications/export`,
   done: () => route.open('..'),
 })

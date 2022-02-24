@@ -1,4 +1,4 @@
-app.blueprints.new = (route) => (a, x) => a.div([
+app.blueprints.new = (route) => a.div([
   a.h1("New blueprint"),
   app.jsonForm({
     url: "/api/blueprints",
@@ -13,7 +13,7 @@ app.blueprints.new = (route) => (a, x) => a.div([
     ],
     digest: (form) => ({model: form.blueprint}),
     success: (blueprint_identifier) => {
-      dashboardMenu.$render()
+      // dashboardMenu.$render()
       route.open(`../@${blueprint_identifier}/design`)
     },
   }),

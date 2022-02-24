@@ -1,4 +1,4 @@
-app.arenas = (route) => (a,x) => a['app-arenas']([
+app.arenas = (route) => a['app-arenas']([
   route.mount({
     routes: {
       '/?': app.arenas.index,
