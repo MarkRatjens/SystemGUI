@@ -1,4 +1,4 @@
-app.blueprints.import = (route) => (a, x) => a.div([
+app.blueprints.import = (route) => a.div([
   a.h1("Import blueprint"),
   app.jsonForm({
     url: "/api/publications/import",
@@ -15,12 +15,15 @@ app.blueprints.import = (route) => (a, x) => a.div([
             label: 'Repository URL',
             type: 'url',
             required: true,
+            horizontal: true,
           }),
           ff.field({
             key: "branch",
+            horizontal: true,
           }),
           ff.field({
             key: 'identifier',
+            horizontal: true,
           }),
         ]
       }),
@@ -30,6 +33,7 @@ app.blueprints.import = (route) => (a, x) => a.div([
         label: false,
         control: {label: 'Force'},
         value: 'on',
+        horizontal: true,
       }),
     ],
     digest: (form) => app.compact(form),

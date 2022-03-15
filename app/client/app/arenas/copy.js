@@ -1,4 +1,4 @@
-app.arenas.copy = (route) => (a,x) => a.div([
+app.arenas.copy = (route) => a.div([
   a.h3('Copy'),
   app.jsonForm({
     url: `/api/arenas/@${route.params.arenaIdentifier}/copy`,
@@ -15,7 +15,6 @@ app.arenas.copy = (route) => (a,x) => a.div([
     ],
     digest: (form) => form.arena,
     success: (identifier) => {
-      dashboardMenu.$render()
       route.open(`../../@${identifier}`)
     },
   }),

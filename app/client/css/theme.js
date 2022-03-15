@@ -1,145 +1,251 @@
 app.theme = (theme) => {
+
   let style = {}
 
   let nameClass = theme.name ? `.app-theme-${theme.name}` : ''
 
   style[`body${nameClass}`] = {
-    backgroundColor: theme.backgroundColor,
-    background: theme.background,
-    color: theme.color,
+    $: {
+      backgroundColor: theme.backgroundColor,
+      background: theme.background,
+      color: theme.color,
+    },
     ".app-btn": {
-      color: theme.buttonColor,
-      backgroundColor: theme.buttonBackgroundColor,
+      $: {
+        color: theme.buttonColor,
+        backgroundColor: theme.buttonBackgroundColor,
+      },
       "&.active": {
-        backgroundColor: theme.buttonBackgroundColorActive,
-        color: theme.buttonColorActive,
+        $: {
+          backgroundColor: theme.buttonBackgroundColorActive,
+          color: theme.buttonColorActive,
+        },
       },
       "&:hover": {
-        backgroundColor: theme.buttonBackgroundColorHover,
-        color: theme.buttonColorHover,
+        $: {
+          backgroundColor: theme.buttonBackgroundColorHover,
+          color: theme.buttonColorHover,
+        },
       },
     },
     '.border': {
-      border: `1px solid ${theme.borderColor} !important`,
+      $: {
+        border: `1px solid ${theme.borderColor} !important`,
+      },
     },
     hr: {
-      borderTopColor: theme.borderColor,
+      $: {
+        borderTopColor: theme.borderColor,
+      },
     },
     pre: {
-      color: theme.color,
+      $: {
+        color: theme.color,
+      },
     },
     'app-modal': {
       '.modal-content': {
-        backgroundColor: theme.backgroundColor,
+        $: {
+          backgroundColor: theme.backgroundColor,
+        },
+      },
+      '.modal-body': {
+        $: {
+          overflowX: 'scroll',
+        },
       },
       '.close': {
-        color: theme.buttonColor,
-        textShadow: `0 1px 0 ${theme.controlBoxShadowColor}`,
+        $: {
+          color: theme.buttonColor,
+          textShadow: `0 1px 0 ${theme.controlBoxShadowColor}`,
+        },
       }
     },
     '.error': {
-      color: theme.errorColor,
-      pre: {
+      $: {
         color: theme.errorColor,
+      },
+      pre: {
+        $: {
+          color: theme.errorColor,
+        },
+      },
+    },
+    '.warn': {
+      $: {
+        color: theme.warnColor,
+      },
+      pre: {
+        $: {
+          color: theme.warnColor,
+        },
+      },
+    },
+    '.info': {
+      $: {
+        color: theme.infoColor,
+      },
+      pre: {
+        $: {
+          color: theme.infoColor,
+        },
       },
     },
     '.success': {
-      color: theme.successColor,
-      pre: {
+      $: {
         color: theme.successColor,
+      },
+      pre: {
+        $: {
+          color: theme.successColor,
+        },
       },
     },
     ".form-control:focus, .custom-select:focus": {
-      boxShadow: `0 0 0 .2rem ${theme.controlBoxShadowColor}`,
+      $: {
+        boxShadow: `0 0 0 .2rem ${theme.controlBoxShadowColor}`,
+      },
     },
     ".custom-control-input:focus ~ .custom-control-label::before": {
-      boxShadow: `0 0 0 .2rem ${theme.controlBoxShadowColor}`,
+      $: {
+        boxShadow: `0 0 0 .2rem ${theme.controlBoxShadowColor}`,
+      },
     },
     '.table': {
-      color: theme.color,
+      $: {
+        color: theme.color,
+      },
       'td': {
-        borderTop: `1px solid ${theme.borderColor}`
+        $: {
+          borderTop: `1px solid ${theme.borderColor}`
+        },
       },
     },
     '.well': {
-      border: `1px solid ${theme.borderColor}`,
+      $: {
+        border: `1px solid ${theme.borderColor}`,
+      },
     },
     '.navbar.navbar-light': {
-      backgroundColor: theme.navbarBackgroundColor,
+      $: {
+        backgroundColor: theme.navbarBackgroundColor,
+      },
       '.navbar-nav': {
         '.nav-link': {
-          color: theme.navbarButtonColor,
+          $: {
+            color: theme.navbarButtonColor,
+          },
         },
         '.nav-item.active': {
           '.nav-link': {
-            color: theme.navbarButtonColorActive,
+            $: {
+              color: theme.navbarButtonColorActive,
+            },
           },
           'app-icon': {
-            borderBottom: `1px solid ${theme.borderColor}`,
+            $: {
+              borderBottom: `1px solid ${theme.borderColor}`,
+            },
           },
         },
         '.nav-item:hover': {
           '.nav-link': {
-            color: theme.navbarButtonColorHover,
+            $: {
+              color: theme.navbarButtonColorHover,
+            },
           },
         },
       },
       '.navbar-brand': {
-        color: theme.navbarBrandColor,
+        $: {
+          color: theme.navbarBrandColor,
+        },
       },
       '.navbar-brand.active': {
-        color: theme.navbarButtonColorActive,
+        $: {
+          color: theme.navbarButtonColorActive,
+        },
       },
       '.navbar-brand:hover': {
-        color: theme.navbarButtonColorHover,
+        $: {
+          color: theme.navbarButtonColorHover,
+        },
       },
     },
     'ax-appkit-report .form-control': {
-      color: `${theme.color} !important`,
+      $: {
+        color: `${theme.color} !important`,
+      },
     },
     'ax-appkit-report .custom-control-label': {
-      color: `${theme.color} !important`,
+      $: {
+        color: `${theme.color} !important`,
+      },
     },
     'ax-appkit-panes': {
       'ax-appkit-panes-proximate': {
-        backgroundColor: theme.buttonBackgroundColor,
+        $: {
+          backgroundColor: theme.buttonBackgroundColor,
+        },
       },
       '&.dragable': {
-        axAppkitPanesDrag: {
-          backgroundColor: theme.borderColor,
+        'ax-appkit-panes-drag': {
+          $: {
+            backgroundColor: theme.borderColor,
+          },
         },
       },
       '> *': {
-        borderTop: `1px solid ${theme.borderColor}`,
+        $: {
+          borderTop: `1px solid ${theme.borderColor}`,
+        },
       },
     },
     'app-clickable:hover, .app-clickable:hover': {
-      boxShadow: `0px 0px 10px ${theme.borderColor}`,
+      $: {
+        boxShadow: `0px 0px 10px ${theme.borderColor}`,
+      },
     },
     "ax-appkit-out": {
-      color: theme.outColor,
+      $: {
+        color: theme.outColor,
+      },
       "ax-appkit-out-null": {
-        color: theme.outNullColor,
+        $: {
+          color: theme.outNullColor,
+        },
       },
       "ax-appkit-out-number": {
-        color: theme.outNumberColor,
+        $: {
+          color: theme.outNumberColor,
+        },
       },
       "ax-appkit-out-boolean": {
-        color: theme.outBooleanColor,
+        $: {
+          color: theme.outBooleanColor,
+        },
       },
       "ax-appkit-out-text": {
-        color: theme.outTextColor,
+        $: {
+          color: theme.outTextColor,
+        },
       }
     },
     '.placeholder': {
-      color: theme.placeholderColor,
+      $: {
+        color: theme.placeholderColor,
+      },
     },
     '.form-control::placeholder, .CodeMirror-placeholder, .custom-select.placeholder': {
-      color: 'gray !important',
+      $: {
+        color: 'gray !important',
+      },
     },
     '.app-tabs': {
       '.nav-item': {
-        color: theme.color,
+        $: {
+          color: theme.color,
+        },
       },
     },
     'ax-appkit-context-popup': {
@@ -147,19 +253,38 @@ app.theme = (theme) => {
     'ax-appkit-menu': {
       'ax-appkit-menu-item button': {
         '&:hover': {
-          color: theme.buttonColorHover,
-          backgroundColor: theme.buttonBackgroundColorHover,
+          $: {
+            color: theme.buttonColorHover,
+            backgroundColor: theme.buttonBackgroundColorHover,
+          },
         },
-        color: theme.buttonColor,
-        backgroundColor: theme.buttonBackgroundColor,
-        boxShadow: `0px 0px 5px ${theme.controlBoxShadowColor}`,
+        $: {
+          color: theme.buttonColor,
+          backgroundColor: theme.buttonBackgroundColor,
+          boxShadow: `0px 0px 5px ${theme.controlBoxShadowColor}`,
+        },
       },
     },
     'ax-appkit-xtermjs': {
       'ax-appkit-xtermjs-toolbar': {
-        color: '#333',
+        $: {
+          color: '#333',
+        },
       },
     },
+    '.app-dashboard': {
+      '.app-dashboard-item-heading': {
+        $: {
+          display: 'block',
+        },
+        '&:hover': {
+          $: {
+            backgroundColor: theme.buttonBackgroundColor,
+          },
+        }
+      }
+    }
+
   }
 
   ax.css(style)

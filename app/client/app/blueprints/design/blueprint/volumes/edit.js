@@ -1,4 +1,4 @@
-app.blueprints.design.blueprint.volumes.edit = (route, blueprint) => (a,x) =>
+app.blueprints.design.blueprint.volumes.edit = (route, blueprint) =>
 app.blueprints.design.blueprint.form({
   route: route,
   object: blueprint,
@@ -13,10 +13,6 @@ app.blueprints.design.blueprint.form({
       moveable: true,
       collection: true,
       form: (ff) => [
-        ff.field({
-          key: 'type',
-          required: true,
-        }),
         ff.field({
           key: 'destination',
           required: true,

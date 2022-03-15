@@ -16,6 +16,8 @@ module App
     Dir.glob([path]).select do |file|
       File.file?(file)
     end.sort do |a, b|
+      File.basename(a) <=> File.basename(b)
+    end.sort do |a, b|
       a.count('/') <=> b.count('/')
     end
   end

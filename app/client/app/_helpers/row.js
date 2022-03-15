@@ -1,4 +1,4 @@
-app.row = (options) => (a,x) => a["div.row"](
-  (options.columns || []).map((column) => a["div.col-sm"](column)),
-  options.rowTag
-),
+app.row = (options) => a["div.row"](
+  (options.columns || []).map((column) => a[`div.col-${options.size || 'lg'}.overflow-hidden`](column, options.columnTag || {})),
+  options.rowTag || {}
+)

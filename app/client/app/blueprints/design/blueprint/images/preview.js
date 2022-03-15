@@ -1,4 +1,4 @@
-app.blueprints.design.blueprint.images.preview = (route, blueprint) => (a,x) =>
+app.blueprints.design.blueprint.images.preview = (route, blueprint) => 
 blueprint.images ? app.navBox(
   route,
   [
@@ -6,4 +6,4 @@ blueprint.images ? app.navBox(
     x.out(blueprint.images),
   ],
   'images',
-) : null
+) : ''

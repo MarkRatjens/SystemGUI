@@ -18,13 +18,13 @@ app.formDSL.designer.navigation.row = blueprint => f => f.field( {
         label: false,
         itemsTag: {
           $on: {
-            'ax.appkit.form.nest.items.change: rerender headings': (el) => (e) => {
+            'ax.appkit.form.nest.items.change: rerender headings': (e, el) => {
               el.$$('|dialogue-navigation-row-column-heading').$render()
             },
           }
         },
         form: fff => [
-          ax.a['h6|dialogue-navigation-row-column-heading'](null, {
+          ax.a['h6|dialogue-navigation-row-column-heading']({
             $text: (el) => `Column ${fff.index + 1}`,
           }),
           app.formDSL.designer.navigation.components(blueprint)(fff),

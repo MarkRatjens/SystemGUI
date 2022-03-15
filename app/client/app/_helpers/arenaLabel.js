@@ -1,4 +1,4 @@
-app.arenaLabel = (arena) => (a,x) => a.i([
+app.arenaLabel = (arena) => a.i([
   a.h1([
     (arena.about || {}).title || app.placeholder('No title')
   ]),

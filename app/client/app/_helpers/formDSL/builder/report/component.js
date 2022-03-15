@@ -13,7 +13,7 @@ app.formDSL.builder.report.component = ( r, componentSpec, params ) => {
   } else if ( componentSpec.type == 'navigation' ) {
     return app.formDSL.builder.navigation( componentSpec.navigation, { ...params, ...r.object } )
   } else {
-    return null
+    return ''
   }
 
 }

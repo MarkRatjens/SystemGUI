@@ -1,5 +1,5 @@
-app.navbar = (route) => (a, x) =>
-a["nav#navbar.navbar.navbar-expand.navbar-light.mt-n1.mb-1.activatable"](
+app.navbar = (route) =>
+a["nav#navbar.navbar.navbar-expand.navbar-light.activatable"](
   [
     a.a([
       a['app-navbar-brand-icon'](app.logo(24)),
@@ -20,7 +20,7 @@ a["nav#navbar.navbar.navbar-expand.navbar-light.mt-n1.mb-1.activatable"](
         }),
         app.navbar.item({
           route: route,
-          icon: 'fas fa-dot-circle',
+          icon: 'fas fa-vector-square',
           path: '/arenas',
           title: 'Arenas',
         }),
@@ -43,12 +43,6 @@ a["nav#navbar.navbar.navbar-expand.navbar-light.mt-n1.mb-1.activatable"](
         }),
         app.navbar.item({
           route: route,
-          icon: 'fas fa-key',
-          path: '/user_keys',
-          title: 'Keys',
-        }),
-        app.navbar.item({
-          route: route,
           icon: 'fa fa-sign-out-alt',
           path: '/signout',
           title: 'Sign out',
@@ -66,21 +60,3 @@ a["nav#navbar.navbar.navbar-expand.navbar-light.mt-n1.mb-1.activatable"](
     },
   }
 );
-
-app.navbar.item = (args) => (a,x) => a.li(
-  a.a(app.icon(args.icon), {
-    class: 'nav-link',
-    href: '#',
-    $on: {click: (el) => (e) => {
-      e.preventDefault();
-      args.route.open(args.path)
-    }},
-  }),
-  {
-    class: 'nav-item',
-    title: args.title,
-    data: {
-      path: args.path
-    },
-  }
-)

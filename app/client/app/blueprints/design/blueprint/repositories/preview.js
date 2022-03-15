@@ -1,4 +1,4 @@
-app.blueprints.design.blueprint.repositories.preview = (route, blueprint) => (a,x) =>
+app.blueprints.design.blueprint.repositories.preview = (route, blueprint) => 
 blueprint.repositories ? app.navBox(
   route,
   [
@@ -6,4 +6,4 @@ blueprint.repositories ? app.navBox(
     x.out(blueprint.repositories),
   ],
   'repositories',
-) : null
+) : ''

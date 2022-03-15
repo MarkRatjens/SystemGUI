@@ -1,4 +1,4 @@
-app.formDSL.designer.form.field.dependent = (f) => [
+app.formDSL.designer.form.field.dependent = (f) => a['app-form-field-control']([
   f.field( {
     key: 'dependent',
     label: false,
@@ -24,12 +24,10 @@ app.formDSL.designer.form.field.dependent = (f) => [
   } ),
 
   f.fieldset({
-    body: [
-      app.placeholder('Nothing to configure'),
-    ],
+    body: app.placeholder('Nothing to configure'),
     dependent: {
       key: 'control',
       pattern: '^hidden$',
     },
   }),
-]
+])

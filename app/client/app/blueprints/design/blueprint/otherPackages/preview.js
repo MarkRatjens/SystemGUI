@@ -1,4 +1,4 @@
-app.blueprints.design.blueprint.otherPackages.preview = (route, blueprint) => (a,x) =>
+app.blueprints.design.blueprint.otherPackages.preview = (route, blueprint) => 
 blueprint.other_packages ? app.navBox(
   route,
   [
@@ -6,4 +6,4 @@ blueprint.other_packages ? app.navBox(
     x.out(blueprint.other_packages),
   ],
   'other_packages',
-) : null
+) : ''

@@ -1,4 +1,4 @@
-app.report = (options = {}) => (a, x) =>
+app.report = (options = {}) => 
   x.report({
     shims: [
       x.report.field.shim,

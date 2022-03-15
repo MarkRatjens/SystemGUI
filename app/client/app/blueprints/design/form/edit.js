@@ -1,4 +1,4 @@
-app.blueprints.design.form.edit = (route) => (a, x) => a['app-blueprint-input-form']([
+app.blueprints.design.form.edit = (route) => a['app-blueprint-input-form']([
   app.fetch({
     url: `/api/blueprints/@${route.params.blueprintIdentifier}/form`,
     placeholder: app.spinner('Loading blueprint form'),

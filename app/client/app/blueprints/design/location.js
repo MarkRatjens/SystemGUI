@@ -1,11 +1,11 @@
-app.blueprints.design.location = (route, blueprint) => (a, x) => a.div([
+app.blueprints.design.location = (route, blueprint) => a.div([
   a.h3('Location'),
   app.fetch({
     url: [
       `/api/blueprints/@${route.params.blueprintIdentifier}/summary`,
       `/api/user_keys`,
     ],
-    success: ([blueprint, keys]) => [
+    success: ([blueprint, keys]) => a.div([
       app.jsonForm({
         url: `/api/locations/@${route.params.blueprintIdentifier}`,
         method: "PUT",
@@ -33,6 +33,6 @@ app.blueprints.design.location = (route, blueprint) => (a, x) => a.div([
         digest: (form) => app.compact(form),
         success: () => route.open('..'),
       }),
-    ]
+    ])
   }),
 ]);

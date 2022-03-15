@@ -1,10 +1,10 @@
-app.polling.wait = () => (a, x) =>
+app.polling.wait = () =>
   a["app-polling-wait"](
     app.spinner(
       a({
         $text: (el) =>
           `Try again in ${el.$count} second${el.$count === 1 ? "" : "s"}`,
-        $count: 8,
+        $count: 5,
         $init: (el) => setInterval(() => {
           el.$count--
           el.$render()
@@ -12,6 +12,6 @@ app.polling.wait = () => (a, x) =>
       })
     ),
     {
-      $init: (el) => setTimeout(() => el.$("^app-polling").$check(), 8000),
+      $init: (el) => setTimeout(() => el.$("^app-polling").$check(), 5000),
     }
   );

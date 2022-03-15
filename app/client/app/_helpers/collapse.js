@@ -1,4 +1,4 @@
-app.collapse = ( options={} ) => (a,x) => a['app-collapse']( [
+app.collapse = ( options={} ) => a['app-collapse']( [
   app.button( {
     label: a({
       $tag: 'app-collapse-indicator',
@@ -11,7 +11,7 @@ app.collapse = ( options={} ) => (a,x) => a['app-collapse']( [
       $iconClass: (el) => () => el.$display ?
       'fa fa-caret-down' : 'fa fa-caret-right',
     }),
-    onclick: (el) => (e) => el.$('^').$toggle(),
+    onclick: (e, el) => el.$('^').$toggle(),
     class: 'btn app-btn',
     ...options.button,
   } ),
@@ -26,20 +26,19 @@ app.collapse = ( options={} ) => (a,x) => a['app-collapse']( [
     }
   ),
 ], {
-  $display: options.display,
-  $toggle: (el) => () => { el.$update(!el.$display) },
+  $toggle: (el) => () => { el.$update(!el.$('app-collapse-indicator').$display) },
   $update: (el) => (display) => {
     el.$('app-collapse-indicator').$update(display)
     el.$render()
     let body = el.$('app-collapse-body')
     if ( display ) {
       x.lib.animate.fade.in( body )
-      let firstControl = el.$$('|appkit-form-control').$$[0]
+      let firstControl = el.$$('appkit-form-control').$$[0]
       if ( firstControl ) {
         firstControl.$focus()
       }
-      // SimpleMDE needs to be refreshed when it appears.
-      el.$$('|appkit-form-simplemde').$refresh()
+      // Libs needs to be refreshed when appear.
+      el.$$('appkit-form-simplemde').$refresh()
     } else {
       x.lib.animate.fade.out( body )
     }

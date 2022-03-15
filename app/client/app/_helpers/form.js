@@ -1,4 +1,4 @@
-app.form = (options = {}) => (a, x) =>
+app.form = (options = {}) =>
   x.form({
     shims: [
       x.form.field.shim,
@@ -11,12 +11,21 @@ app.form = (options = {}) => (a, x) =>
       app.form.shim,
     ],
     method: 'PUT',
-    catch: (error, el) => el.$send("app.disconnected"),
+    catch: (error, el) => {
+      el.$send("app.disconnected")
+      return ''
+    },
     ...options,
     form: f => [
-      options.authenticity == false ? null : f.input({name: 'authenticity_token', value: authenticityToken, type: 'hidden'}),
-      options.form(f),
+      options.authenticity == false ? '' : f.input({name: 'authenticity_token', value: authenticityToken, type: 'hidden'}),
+      ...options.form(f),
     ],
     when: app.fetch.when(options.when),
-    success: app.fetch.success(options.success || (() => {options.route && options.route.open('..')})),
+    success: app.fetch.success(
+      options.success ||
+      (() => {
+        options.route && options.route.open('..')
+        return ''
+      })
+    ),
   });

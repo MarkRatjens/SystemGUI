@@ -1,5 +1,7 @@
 ax.css({
   label: {
-    overflowWrap: "anywhere",
+    $: {
+      overflowWrap: "anywhere",
+    }
   },
 });

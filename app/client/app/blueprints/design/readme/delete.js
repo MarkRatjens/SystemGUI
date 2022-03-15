@@ -1,9 +1,9 @@
-app.blueprints.design.readme.delete = (route, blueprint) => (a, x) => a.div([
+app.blueprints.design.readme.delete = (route, blueprint) => a.div([
   a.h3(`Delete readme?`),
-  app.form({
+  app.jsonForm({
     url: `/api/blueprints/@${route.params.blueprintIdentifier}/readme`,
     method: "DELETE",
-    form: (f) => [f.buttons({route: route})],
+    route: route,
     success: () => {
       blueprint.readme = ''
       route.open('../..')

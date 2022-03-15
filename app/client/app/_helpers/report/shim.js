@@ -1,6 +1,6 @@
 app.report.shim = {
   help: (r, target) => (options = {}) => {
-    let help = (a, x) => options.help ? app.md(options.help) : null;
+    let help = options.help ? app.md(options.help) : '';
     return target({
       ...options,
       help: help,
@@ -8,23 +8,23 @@ app.report.shim = {
   },
 
   template: (r, target) => (options = {}) => {
-    let template = (a, x) => options.template
+    let template = options.template
       ? app.md(options.template(r))
-      : null;
+      : '';
     return template;
   },
 
   controls: {
-    many: (f, target) => (options = {}) => (a, x) => target({
+    many: (f, target) => (options = {}) => target({
       ...options,
       placeholder: a['.placeholder.form-control.bg-transparent']('None'),
     }),
-    listgroup: (f, target) => (options = {}) => (a, x) => options.value.length ?
+    listgroup: (f, target) => (options = {}) => options.value.length ?
     a['ul.list-group'](
-        options.value.map( i => a['li.list-group-item']( i || null ))
+        options.value.map( i => a['li.list-group-item']( i || '' ))
     ) :
     a['.placeholder.form-control.bg-transparent']('None'),
-    boolean: (f, target) => (options = {}) => (a, x) =>
+    boolean: (f, target) => (options = {}) => 
       target({
         ...options,
         label: {
@@ -33,7 +33,7 @@ app.report.shim = {
         },
       }),
 
-    markdown: (r, target) => (options = {}) => (a, x) =>
+    markdown: (r, target) => (options = {}) => 
       x.markedjs.report.control(r, {
         ...options,
         markdownTag: {
@@ -42,28 +42,28 @@ app.report.shim = {
         },
       }),
 
-    code: (r, target) => (options = {}) => (a, x) =>
+    code: (r, target) => (options = {}) => 
       x.codemirror.report.control(r, options),
 
-    terminal: (r, target) => (options = {}) => (a, x) =>
+    terminal: (r, target) => (options = {}) => 
       x.xtermjs.report.control(r, options),
   },
 
-  fieldset: (r, target) => (options = {}) => (a, x) =>
+  fieldset: (r, target) => (options = {}) => 
     r.dependent({
       body: a["fieldset|appkit-form-control"](
         [
-          options.legend ? a.legend(options.legend, options.legendTag) : null,
-          options.body || null,
+          options.legend ? a.legend(options.legend, options.legendTag) : '',
+          options.body || '',
         ],
-        options.fieldsetTag
+        options.fieldsetTag || {}
       ),
       ...options.dependent,
     }),
 
-  row: (r, target) => (options = {}) => (a, x) =>
+  row: (r, target) => (options = {}) => 
     a["div.row"](
       (options.columns || []).map((column) => a["div.col"](column)),
-      options.fieldsetTag
+      options.rowTag || {}
     ),
 };

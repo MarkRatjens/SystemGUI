@@ -1,4 +1,4 @@
-app.blueprints.design.blueprint.input.edit = (route, blueprint) => (a,x) =>
+app.blueprints.design.blueprint.input.edit = (route, blueprint) => 
 app.blueprints.design.blueprint.form({
   route: route,
   object: blueprint,

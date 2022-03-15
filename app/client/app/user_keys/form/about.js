@@ -1,4 +1,4 @@
-app.user_keys.form.about = (f) => (a,x) => [
+app.user_keys.form.about = (f) => [
   f.field({
     key: 'about',
     as: 'one',

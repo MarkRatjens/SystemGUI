@@ -1,8 +1,8 @@
-app.blueprints.show = (route) => (a,x) => [
+app.blueprints.show = (route) => a.div([
   app.fetch({
     url: `/api/blueprints/@${route.params.blueprintIdentifier}`,
     placeholder: app.spinner(`Loading blueprint`),
-    success: (blueprint) => [
+    success: (blueprint) => a.div([
       app.float({
         left: [
           app.blueprintLabel(blueprint),
@@ -10,7 +10,7 @@ app.blueprints.show = (route) => (a,x) => [
         right: [
           app.button({
             label: app.icon('fas fa-drafting-compass', 'Design'),
-            onclick: (el) => (e) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/design`),
+            onclick: (e, el) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/design`),
           }),
         ],
       }),
@@ -20,6 +20,8 @@ app.blueprints.show = (route) => (a,x) => [
           routes: {
             '/?': app.blueprints.readme,
             '/license': app.blueprints.license,
+            '/relations': app.blueprints.relations,
+            //
             // '/bindings/?*': app.blueprints.bindings(blueprint),
             // '/utilization/?*': app.blueprints.utilization(blueprint),
           }
@@ -33,10 +35,10 @@ app.blueprints.show = (route) => (a,x) => [
            label: app.icon('fa fa-trash'),
            title: 'Delete blueprint',
            class: 'btn btn-outline-danger',
-           onclick: (el) => (e) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/delete`),
+           onclick: (e, el) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/delete`),
          }),
        ],
      }),
-    ]
+   ])
   }),
-]
+])

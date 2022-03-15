@@ -1,4 +1,4 @@
-app.blueprints.design.files = (route) => (a, x) => [
+app.blueprints.design.files = (route) => a.div([
   route.mount({
     routes: {
       '/?': app.blueprints.design.files.index,
@@ -6,4 +6,4 @@ app.blueprints.design.files = (route) => (a, x) => [
       '/@:fileIdentifier/?*': app.blueprints.design.files.file,
     }
   }),
-]
+])

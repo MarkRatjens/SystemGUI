@@ -1,5 +1,5 @@
-app.float = (options) => (a, x) =>
+app.float = (options) => 
   a["div.clearfix"]([
-    a["div.float-left"](options.left || null),
-    a["div.float-right"](options.right || null),
+    a["div.float-left"](options.left || ''),
+    a["div.float-right"](options.right || ''),
   ]);

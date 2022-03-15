@@ -1,9 +1,9 @@
-app.blueprints.design.license.delete = (route, blueprint) => (a, x) => a.div([
+app.blueprints.design.license.delete = (route, blueprint) => a.div([
   a.h3(`Delete license?`),
-  app.form({
+  app.jsonForm({
     url: `/api/blueprints/@${route.params.blueprintIdentifier}/license`,
     method: "DELETE",
-    form: (f) => [f.buttons({route: route})],
+    route: route,
     success: () => {
       blueprint.license = ''
       route.open('../..')

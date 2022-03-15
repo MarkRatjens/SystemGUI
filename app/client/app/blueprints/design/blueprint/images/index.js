@@ -1,4 +1,4 @@
-app.blueprints.design.blueprint.images.index = (route, blueprint) => (a,x) => a.div([
+app.blueprints.design.blueprint.images.index = (route, blueprint) => a.div([
 app.report({
     object: blueprint,
     report: (r) => r.field({
@@ -7,25 +7,21 @@ app.report({
       report: (rr) => [
         a.hr,
         app.clickable(
-          rr.row({
-            columns: [
-              [
-                rr.field({
-                  key: 'runtimes',
-                  horizontal: true,
-                  collection: true,
-                }),
-                rr.field({
-                  key: 'identifier',
-                  horizontal: true,
-                }),
-                rr.field({
-                  key: 'output_identifier',
-                  horizontal: true,
-                }),
-              ],
-            ]
-          }),
+          [
+            rr.field({
+              key: 'runtimes',
+              horizontal: true,
+              collection: true,
+            }),
+            rr.field({
+              key: 'identifier',
+              horizontal: true,
+            }),
+            rr.field({
+              key: 'target_identifier',
+              horizontal: true,
+            }),
+          ],
           () => route.open(`${rr.index}`),
           {
             clickableTag: {
@@ -40,20 +36,20 @@ app.report({
   a['div.mb-1']([
     app.button({
       label: app.icon('fa fa-list', 'Manage images'),
-      onclick: (el) => (e) => route.open('manage'),
+      onclick: (e, el) => route.open('manage'),
       class: 'btn btn-secondary',
     }),
     ' ',
     app.button({
       label: app.icon('fa fa-plus', 'Add image'),
-      onclick: (el) => (e) => route.open('new'),
+      onclick: (e, el) => route.open('new'),
       class: 'btn btn-secondary',
     }),
   ]),
   a['div.mb-1']([
     app.button({
       label: app.icon('fa fa-check', 'Done'),
-      onclick: (el) => (e) => route.open('..'),
+      onclick: (e, el) => route.open('..'),
       class: 'btn btn-primary',
     }),
   ]),

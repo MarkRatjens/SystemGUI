@@ -1,4 +1,4 @@
-app.blueprints.design.license = (route, blueprint) => (a, x) => a['#app-blueprint-license'](
+app.blueprints.design.license = (route, blueprint) => a['#app-blueprint-license'](
   route.mount({
     routes: {
       '/?': route => app.blueprints.design.license.edit(route, blueprint),

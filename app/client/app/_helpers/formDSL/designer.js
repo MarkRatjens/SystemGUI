@@ -1,4 +1,4 @@
-app.formDSL.designer = blueprint => f => (a,x) => [
+app.formDSL.designer = blueprint => f => a.div([
 
   f.field( {
     key: 'components',
@@ -12,4 +12,4 @@ app.formDSL.designer = blueprint => f => (a,x) => [
     moveable: true,
   } ),
 
-]
+])

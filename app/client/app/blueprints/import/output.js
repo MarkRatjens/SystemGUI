@@ -1,6 +1,11 @@
-app.blueprints.import.output = (route) => (a,x) => app.stream({
-  label: ['Importing', 'Import', 'Git'],
+app.blueprints.import.output = (route) => app.stream({
+  label: 'Importing',
   url: `/api/streaming/publications/import`,
-  done: () => route.open('..'),
-  complete: (el) => dashboardMenu.$render(),
+  complete: (el) => {
+    el.append(app.button({
+      label: app.icon('fas fa-check', 'Done'),
+      onclick: () => route.open('..'),
+      class: 'btn btn-primary',
+    }))
+  }
 })

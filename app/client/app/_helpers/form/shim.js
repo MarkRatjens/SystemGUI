@@ -17,8 +17,8 @@ app.form.shim = {
         },
         ...options.asyncformTag,
         $on: {
-          "ax.appkit.form.async.complete: revert submit button label": (el) => (e) => {
-            for (let button of el.$$('app-form-buttons button').$$) {
+          "ax.appkit.form.async.complete: revert button labels": (e, el) => {
+            for (let button of el.$$('button').$$) {
               button.$revert && button.$revert();
             }
           },
@@ -28,7 +28,7 @@ app.form.shim = {
     }),
 
   help: (f, target) => (options = {}) => {
-    let help = (a, x) => options.help ? app.md(options.help) : null;
+    let help = options.help ? app.md(options.help) : '';
     return target({
       ...options,
       help: help,
@@ -36,24 +36,22 @@ app.form.shim = {
   },
 
   template: (f, target) => (options = {}) =>
-    (a, x) => options.template ? app.md(options.template(f)) : null,
+    options.template ? app.md(options.template(f)) : '',
 
   button: (f, target) => (options = {}) =>
     target({
       ...options,
+      onclick: (e, el) => {
+        let to = options.to;
+        el.$from = el.innerHTML;
+        if (to) el.$nodes = [to];
+        options.onclick && options.onclick(e, el)
+      },
       buttonTag: {
-        ...options.buttonTag,
-        $on: {
-          "click: change button label": (el) => (e) => {
-            let to = options.to;
-            el.$from = el.innerHTML;
-            if (to) el.$nodes = [to];
-          },
-          ...(options.buttonTag || {}).$on,
-        },
         $revert: (el) => () => {
           if (el.$from) el.$html = el.$from;
         },
+        ...options.buttonTag,
       },
     }),
 
@@ -61,7 +59,7 @@ app.form.shim = {
     f.button({
       label: app.icon("fa fa-times", "Cancel"),
       to: app.spinner("Cancelling…"),
-      onclick: (el) => () => options.route.open(".."),
+      onclick: () => options.route.open(".."),
       ...options,
     }),
 
@@ -76,10 +74,10 @@ app.form.shim = {
       buttonTag: {
         ...options.buttonTag,
         $on: {
-          "click: turn off all sorting": (el) => (e) => {
+          "click: turn off all sorting": (e, el) => {
             el.$("^form").$$("|appkit-form-nest-sort-off button").click();
           },
-          "click: revert label when invalid": (el) => (e) => {
+          "click: revert label when invalid": (e, el) => {
             let valid = el.$("^form").checkValidity();
             if (!valid) el.$revert();
           },
@@ -89,11 +87,11 @@ app.form.shim = {
     }),
 
   controls: {
-    combobox: (f, target) => (options = {}) => (a, x) =>
+    combobox: (f, target) => (options = {}) =>
       f.controls.selectinput(options),
-    json: (f, target) => (options = {}) => (a, x) =>
+    json: (f, target) => (options = {}) =>
       x.jsoneditor.form.control(f, { theme: "bootstrap3", ...options }),
-    code: (f, target) => (options = {}) => (a, x) => {
+    code: (f, target) => (options = {}) => {
       if (ax.is.object(options.mode)) {
         options.mode = {
           value: options.mode.value,
@@ -107,23 +105,23 @@ app.form.shim = {
         ...options,
       });
     },
-    markdown: (f, target) => (options = {}) => (a, x) =>
+    markdown: (f, target) => (options = {}) =>
       x.easymde.form.control(f, options),
 
   },
 
-  buttons: (f) => (options = {}) => (a, x) =>
+  buttons: (f) => (options = {}) =>
     a["app-form-buttons"](
       [
         options.cancel == false
-          ? null
+          ? ''
           : f.cancel({
             route: options.route,
             ...options.cancel,
           }),
         " ",
         options.submit == false
-          ? null
+          ? ''
           : f.submit(options.submit),
       ],
       {
@@ -135,9 +133,9 @@ app.form.shim = {
       }
     ),
 
-  row: (f, target) => (options = {}) => (a, x) =>
+  row: (f, target) => (options = {}) =>
     a["div.row"](
       (options.columns || []).map((column) => a["div.col-sm"](column)),
-      options.rowTag
+      options.rowTag || {}
     ),
 };

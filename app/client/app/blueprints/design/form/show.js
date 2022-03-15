@@ -1,9 +1,9 @@
-app.blueprints.design.form.show = (route) => (a, x) => [
+app.blueprints.design.form.show = (route) => a.div([
   app.float({
     right: [
       app.button({
         label: app.icon('fa fa-edit', 'Edit'),
-        onclick: (el) => (e) => route.open('edit'),
+        onclick: (e, el) => route.open('edit'),
       }),
     ]
   }),
@@ -11,13 +11,13 @@ app.blueprints.design.form.show = (route) => (a, x) => [
   app.fetch({
     url: `/api/blueprints/@${route.params.blueprintIdentifier}/form`,
     placeholder: app.spinner('Loading blueprint form'),
-    success: (form) => [
+    success: (form) => a.div([
       app.formDSL.builder.form({
         components: form.components,
         cancel: {
           icon: 'times',
           label: {display: 'custom', custom: 'Reset'},
-          onclick: (el) => (e) => el.$('^ax-appkit-asyncform').$render(),
+          onclick: (e, el) => el.$('^ax-appkit-asyncform').$render(),
         },
         submit: {
           icon: 'check',
@@ -37,7 +37,7 @@ app.blueprints.design.form.show = (route) => (a, x) => [
       app.button({
         label: '{} JSON',
         title: 'Raw form JSON',
-        onclick: (el) => (e) => {
+        onclick: (e, el) => {
           modal.$open({
             title: `Raw ${route.params.blueprintIdentifier} form JSON`,
             size: 'lg',
@@ -45,6 +45,6 @@ app.blueprints.design.form.show = (route) => (a, x) => [
           })
         },
       }),
-    ],
+    ]),
   }),
-]
+])

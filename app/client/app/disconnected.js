@@ -1,7 +1,7 @@
-app.disconnected = route => (a,x) => [
+app.disconnected = route => a.div([
   a.h3( "Disconnected" ),
   app.button({
     label: app.icon( "fas fa-sync-alt", "Reconnect" ),
-    onclick: (el) => () => route.load( '/reconnect' )
+    onclick: () => route.load( '/reconnect' )
   })
-]
+])

@@ -1,4 +1,4 @@
-app.formDSL.builder.form.form = ( options={} ) => (a,x) => {
+app.formDSL.builder.form.form = ( options={} ) => {
 
   let components = (f) => ( options.components || [] ).map(
     ( componentSpec ) => app.formDSL.builder.form.component( f, componentSpec, options.params )
@@ -39,7 +39,7 @@ app.formDSL.builder.form.form = ( options={} ) => (a,x) => {
       cancel.label = 'Cancel'
     }
 
-    cancel.onclick = cancelSpec.onclick || ((el) => (e) => {
+    cancel.onclick = cancelSpec.onclick || ((e, el) => {
       options.route && options.route.open('..');
     })
 

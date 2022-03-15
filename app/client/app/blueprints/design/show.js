@@ -1,4 +1,4 @@
-app.blueprints.design.show = (route) => (a, x) => [
+app.blueprints.design.show = (route) => a.div([
   a['div.mb-1'](app.blueprints.design.menu(route)),
   route.mount({
     routes: {
@@ -10,4 +10,4 @@ app.blueprints.design.show = (route) => (a, x) => [
       '*': app.blueprints.design.blueprint,
     }
   }),
-]
+])

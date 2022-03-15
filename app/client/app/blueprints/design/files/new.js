@@ -1,4 +1,4 @@
-app.blueprints.design.files.new = (route) => (a, x) => [
+app.blueprints.design.files.new = (route) => a.div([
   app.jsonForm({
     url: `/api/blueprints/@${route.params.blueprintIdentifier}/files`,
     route: route,
@@ -24,4 +24,4 @@ app.blueprints.design.files.new = (route) => (a, x) => [
     ],
     success: (path) => route.open(`../@${path.replace(/\//g, '::')}`),
   }),
-]
+])

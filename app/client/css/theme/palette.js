@@ -6,8 +6,10 @@ app.theme.palette = (name, colors, options) => app.theme({
 
   placeholderColor: colors.text2,
   borderColor: colors.outline,
-  errorColor: colors.attention,
-  successColor: colors.look,
+  errorColor: colors.error,
+  infoColor: colors.info,
+  warnColor: colors.warn,
+  successColor: colors.success,
   controlBoxShadowColor: colors.outline,
 
   buttonColor: colors.text1,

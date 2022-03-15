@@ -1,4 +1,4 @@
-app.panes = (options={}) => (a,x) => {
+app.panes = (options={}) => {
 
   let percent = window.localStorage.dashboardMenuWidthPercent
 
@@ -11,7 +11,7 @@ app.panes = (options={}) => (a,x) => {
     percent: percent,
     panesTag: {
       $on: {
-        'ax.appkit.panes.resize': (el) => (e) => {
+        'ax.appkit.panes.resize': (e, el) => {
           let percent = e.detail.percent
           window.localStorage.dashboardMenuWidthPercent = percent
         }

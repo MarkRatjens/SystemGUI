@@ -1,13 +1,19 @@
 ax.css({
   "#navbar": {
-    position: 'static',
+    $: {
+      position: 'static',
+    },
     'app-navbar-brand-icon': {
-      position: 'relative',
-      top: '-2px',
+      $: {
+        position: 'relative',
+        top: '-2px',
+      },
     },
     'li.nav-item': {
       'app-icon': {
-        padding: '2px',
+        $: {
+          padding: '2px',
+        }
       },
     },
   },

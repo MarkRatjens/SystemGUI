@@ -1,4 +1,4 @@
-app.formDSL.designer.form.field = f => (a,x) => f.field( {
+app.formDSL.designer.form.field = f => f.field( {
   key: 'field',
   as: 'one',
   label: false,

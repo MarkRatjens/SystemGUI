@@ -1,4 +1,4 @@
-app.formDSL.designer.form.field.value = (f) => [
+app.formDSL.designer.form.field.value = (f) => a['app-form-field-control']([
 
   // DEFAULT VALUE
   f.field( {
@@ -97,13 +97,11 @@ app.formDSL.designer.form.field.value = (f) => [
   } ),
 
   f.fieldset({
-    body: [
-      app.placeholder('Nothing to configure'),
-    ],
+    body: app.placeholder('Nothing to configure'),
     dependent: {
       key: 'control',
       pattern: '^(one|many|table)$',
     },
   }),
 
-]
+])

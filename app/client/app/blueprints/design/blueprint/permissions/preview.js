@@ -1,4 +1,4 @@
-app.blueprints.design.blueprint.permissions.preview = (route, blueprint) => (a,x) =>
+app.blueprints.design.blueprint.permissions.preview = (route, blueprint) => 
 blueprint.permissions ? app.navBox(
   route,
   [
@@ -6,4 +6,4 @@ blueprint.permissions ? app.navBox(
     x.out(blueprint.permissions),
   ],
   'permissions',
-) : null
+) : ''

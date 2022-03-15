@@ -1,4 +1,4 @@
-app.blueprints.design.blueprint.bindings.manage = (route, blueprint) => (a, x) =>
+app.blueprints.design.blueprint.bindings.manage = (route, blueprint) => 
 app.blueprints.design.blueprint.form({
   route: route,
   object: blueprint,

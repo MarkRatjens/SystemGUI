@@ -1,4 +1,4 @@
-app.formDSL.designer.form.components = f => (a,x) => [
+app.formDSL.designer.form.components = f => a.div([
 
   f.field( {
     key: 'components',
@@ -19,8 +19,11 @@ app.formDSL.designer.form.components = f => (a,x) => [
         }
         nest = nest.parent
       }
-      return a.h5(`Form component ${counts.join('.')}`, {class: 'mt-2'})
+      return a.h5(
+        `Form component ${counts.join('.')}`,
+        {class: 'mt-2'}
+      )
     },
   } ),
 
-]
+])

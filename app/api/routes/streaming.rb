@@ -9,8 +9,7 @@ module App
           @controller = ::Spaces::Controllers::Streaming.new
         end
 
-        get('/streaming/:space/:stream') { stream_action }
-
+        get('/streaming/:space/:stream') {stream_action}
       end
     end
   end

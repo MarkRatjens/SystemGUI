@@ -1,4 +1,4 @@
-app.formDSL.designer.form.field.control = (f) => [
+app.formDSL.designer.form.field.control = (f) => a['app-form-field-control']([
   f.field( {
     key: 'key',
     required: true,
@@ -46,4 +46,4 @@ app.formDSL.designer.form.field.control = (f) => [
       // { value: 'table', label: 'Table' },
     ],
   } ),
-]
+])

@@ -1,5 +1,5 @@
-app.locationLabel = (location) => (a,x) => location.exist ? [
+app.locationLabel = (location) => location.exist ? a.span([
   location.repository,
-  location.branch ? a.small(` ${location.branch}`) : null,
-  location.key_identifier ? [a.br, a.i(a.small(` ${location.key_identifier}`))] : null,
-] : app.placeholder('No location')
+  location.branch ? a.small(` ${location.branch}`) : '',
+  location.key_identifier ? a.div([a.i(a.small(` ${location.key_identifier}`))]) : '',
+]) : app.placeholder('No location')

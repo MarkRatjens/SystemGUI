@@ -1,10 +1,10 @@
-app.arenas.resolve = (route) => (a,x) => a.div([
+app.arenas.resolve = (route) => a.div([
   a.h3(`Resolve`),
   a.p('Are you sure that you want to assemble the resolutions for this arena?'),
-  app.form({
+  app.jsonForm({
     url: `/api/arenas/@${route.params.arenaIdentifier}/resolve`,
     method: "POST",
-    form: (f) => [f.buttons({route: route})],
+    route: route,
     success: () => route.open('..'),
   }),
 ]);

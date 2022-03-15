@@ -120,14 +120,19 @@
   FitAddon = FitAddon.FitAddon
 
   window.onload = () => {
-    if( window.localStorage.cssTheme ) {
-      document.body.classList.add(`app-theme-${window.localStorage.cssTheme}`)
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+      event.matches
+      ? document.body.classList.add('app-theme-dark')
+      : document.body.classList.remove('app-theme-dark')
+    });
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.body.classList.add('app-theme-dark')
     }
-    ax(app)
-    loadingSpinner.style.opacity = 0
-    setTimeout(() => loadingSpinner.remove(), 1000)
   }
+  ax(app())
 </script>
-
+<noscript>
+  Please enable JavaScript.
+</noscript>
 </body>
 </html>

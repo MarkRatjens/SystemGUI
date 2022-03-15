@@ -1,4 +1,4 @@
-app.formDSL.builder.form = ( formSpec, params, options={} ) => (a,x) => {
+app.formDSL.builder.form = ( formSpec, params, options={} ) => {
 
   return app.formDSL.builder.form.form( {
     components: formSpec.components || [],

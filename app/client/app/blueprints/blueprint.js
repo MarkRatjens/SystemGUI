@@ -1,4 +1,4 @@
-app.blueprints.blueprint = (route) => (a,x) => a['app-blueprints-blueprint']([
+app.blueprints.blueprint = (route) => a.div([
   app.float({
     left: [
       a['h5.mt-2']([
@@ -6,8 +6,8 @@ app.blueprints.blueprint = (route) => (a,x) => a['app-blueprints-blueprint']([
         route.mount({
           transition: ['fade', {display: 'inline-block'}],
           routes: {
-            '/design/?*': () => [a['!']('&nbsp;'), 'design'],
-            '*': null,
+            '/design/?*': () => a['!']('&nbsp;design'),
+            '*': '',
           }
         }),
       ]),
@@ -18,7 +18,7 @@ app.blueprints.blueprint = (route) => (a,x) => a['app-blueprints-blueprint']([
   }),
   route.mount({
     routes: {
-      '/design/location': null,
+      '/design/location': '',
       '*': app.blueprints.location,
     }
   }),

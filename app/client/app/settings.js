@@ -1,9 +1,11 @@
-app.settings = (route) => (a, x) => [
-  a.h1("Settings"),
+app.settings = (route) => a.div([
   route.mount({
     routes: {
-      '/?': app.settings.edit,
-      '/reload': app.settings.reload,
+      '/?': app.settings.show,
+      '/about/?*': app.settings.about,
+      '/editor': app.settings.editor,
+      '/user_keys/?*': app.user_keys,
+      '/domains/?*': app.domains,
     },
   }),
-];
+])

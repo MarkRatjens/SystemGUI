@@ -1,4 +1,4 @@
-app.blueprints.design.blueprint.configuration.preview = (route, blueprint) => (a,x) =>
+app.blueprints.design.blueprint.configuration.preview = (route, blueprint) => 
 blueprint.configuration ? app.navBox(
   route,
   [
@@ -6,4 +6,4 @@ blueprint.configuration ? app.navBox(
     x.out(blueprint.configuration),
   ],
   'configuration',
-) : null
+) : ''

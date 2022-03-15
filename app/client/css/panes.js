@@ -1,8 +1,15 @@
 ax.css( {
   'ax-appkit-panes': {
-    top: '52px',
+    $: {
+      top: '56px',
+    },
     'ax-appkit-panes-adjacent': {
-      overflowY: 'scroll',
+      $: {
+        paddingTop: '0.25rem',
+        paddingLeft: '0.25rem',
+        paddingRight: '0.25rem',
+        overflowY: 'scroll',
+      }
     }
   },
 } )

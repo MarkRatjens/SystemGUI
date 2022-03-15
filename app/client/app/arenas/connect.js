@@ -1,8 +1,8 @@
-app.arenas.connect = (route) => (a,x) => [
+app.arenas.connect = (route) => a.div([
   app.fetch({
     url: `/api/arenas/list`,
     placeholder: app.spinner(`Loading arenas`),
-    success: (arenas) => [
+    success: (arenas) => a.div([
       a.h3('Bind arena'),
       app.jsonForm({
         url: `/api/arenas/@${route.params.arenaIdentifier}/connect`,
@@ -19,10 +19,9 @@ app.arenas.connect = (route) => (a,x) => [
           }),
         ],
         success: (result) => {
-          // dashboardMenu.$render()
           route.open('..')
         },
       })
-    ]
+    ])
   }),
-]
+])

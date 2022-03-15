@@ -1,5 +1,4 @@
-app.user_keys = (route) => (a, x) => a.div([
-  a.h1('User keys'),
+app.user_keys = (route) => a.div([
   route.mount({
     routes: {
       '/?': app.user_keys.index,
