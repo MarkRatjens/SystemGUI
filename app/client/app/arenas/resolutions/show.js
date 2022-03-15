@@ -7,7 +7,7 @@ app.arenas.resolutions.show = (route) => a['app-arenas-resolutions-show']([
     ],
     success: ([resolution, summary, form]) => a.div([
       app.button({
-        label: app.icon('fas fa-dot-circle', 'Arena'),
+        label: app.icon('fas fa-vector-square', 'Arena'),
         onclick: () => route.open('..'),
       }),
       ' ',
@@ -17,8 +17,8 @@ app.arenas.resolutions.show = (route) => a['app-arenas-resolutions-show']([
       }),
       ' ',
       app.button({
-        label: app.icon('fas fa-hammer', 'Build'),
-        onclick: () => route.open('build'),
+        label: app.icon('fas fa-hammer', 'Prebuild'),
+        onclick: () => route.open('prebuild'),
       }),
       a.hr,
       a.p(!summary.pack.exist
@@ -41,17 +41,8 @@ app.arenas.resolutions.show = (route) => a['app-arenas-resolutions-show']([
           ' Buildable',
         ]
       ),
-      // summary.pack.exist ?
-      // app.arenas.resolution.pack(route) :
-      // app.placeholder('No pack'),
-      // a.hr,
-      // summary.provisions.exist ?
-      // app.arenas.resolution.provisions(route) :
-      // app.placeholder('No provisions'),
-
-      // summary.resolution.exist ?
-      // app.arenas.resolution.resolution(route) :
-      // a['div.my-2.mx-4'](app.placeholder('No resolution')),
+      a.hr,
+      x.out(resolution),
       a.hr,
       app.float({
         left: [

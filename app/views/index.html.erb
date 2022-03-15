@@ -120,12 +120,19 @@
   FitAddon = FitAddon.FitAddon
 
   window.onload = () => {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+      event.matches
+      ? document.body.classList.add('app-theme-dark')
+      : document.body.classList.remove('app-theme-dark')
+    });
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       document.body.classList.add('app-theme-dark')
     }
-    ax(app())
   }
+  ax(app())
 </script>
-
+<noscript>
+  Please enable JavaScript.
+</noscript>
 </body>
 </html>

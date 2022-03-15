@@ -43,7 +43,7 @@ app.arenas.domains = (route) => a.div([
           arena.domains = form.domains
           return {model: arena}
         },
-        success: () => a({$init: () => route.open('..')}),
+        success: () => route.open('..'),
       })
     ])
   }),

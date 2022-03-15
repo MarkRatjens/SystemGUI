@@ -5,6 +5,7 @@ app.blueprints.design.resolve = (route) => a.div([
     success: (arenas, blueprints, el) => a.div([
       app.jsonForm({
         url: `/api/blueprints/@${route.params.blueprintIdentifier}/resolve`,
+        route: route,
         form: (f) => [
           f.field({
             key: 'arena_identifier',
@@ -14,9 +15,8 @@ app.blueprints.design.resolve = (route) => a.div([
             placeholder: 'Select arena',
             selections: arenas,
           }),
-          f.buttons({route: route}),
         ],
-        success: (resolution_identifier) => a({$init: () => route.open(`..`)}),
+        success: (resolution_identifier) => route.open(`..`),
       })
     ])
   }),

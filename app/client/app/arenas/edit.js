@@ -31,7 +31,6 @@ app.arenas.edit = (route) => a.div([
           return {model: arena}
         },
         success: () => {
-          // dashboardMenu.$render()
           route.open('..')
         },
       })

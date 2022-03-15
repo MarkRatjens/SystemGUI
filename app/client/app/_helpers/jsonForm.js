@@ -1,4 +1,4 @@
-app.jsonForm = (options={}) => app.jsonForm({
+app.jsonForm = (options={}) => app.form({
   ...options,
   success: (...args) => {
     let success =

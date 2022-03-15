@@ -1,15 +1,4 @@
 app.blueprints.blueprint = (route) => a.div([
-//   app.panes({
-//     proximate: app.blueprints.blueprint.menu(route),
-//     adjacent: app.blueprints.show(route),
-//   }),
-// ])
-//
-//
-//
-//
-//
-// app.blueprints.blueprint.body = (route) => a['app-blueprints-blueprint']([
   app.float({
     left: [
       a['h5.mt-2']([

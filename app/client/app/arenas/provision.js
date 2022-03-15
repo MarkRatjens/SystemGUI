@@ -4,7 +4,7 @@ app.arenas.provision = (route) => a.div([
   app.jsonForm({
     url: `/api/arenas/@${route.params.arenaIdentifier}/provision`,
     method: "POST",
-    form: (f) => [f.buttons({route: route})],
-    success: () => a({$init: () => route.open('..')}),
+    route: route,
+    success: () => route.open('..'),
   }),
 ]);

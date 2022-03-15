@@ -7,6 +7,8 @@ module App
       end
     end
 
+    class StreamClosed < Error; end
+
     def message
       i18n.dig(language, klass) || klass
     end

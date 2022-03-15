@@ -15,7 +15,6 @@ app.arenas.copy = (route) => a.div([
     ],
     digest: (form) => form.arena,
     success: (identifier) => {
-      // dashboardMenu.$render()
       route.open(`../../@${identifier}`)
     },
   }),

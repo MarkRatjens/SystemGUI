@@ -7,14 +7,16 @@ app.blueprints.design.files.edit = (route) => a.div([
         object: {file: file},
         url: `/api/blueprints/@${route.params.blueprintIdentifier}/files/@${route.params.fileIdentifier.replace(/::/g, '/')}`,
         route: route,
-        form: f => f.field({
-          key: 'file',
-          label: false,
-          as: 'code',
-          mode: {value: app.blueprints.design.files.edit.modes(
-            (route.params.fileIdentifier.match(/\.(.+)$/) || [])[1]
-          )},
-        })
+        form: f => [
+          f.field({
+            key: 'file',
+            label: false,
+            as: 'code',
+            mode: {value: app.blueprints.design.files.edit.modes(
+              (route.params.fileIdentifier.match(/\.(.+)$/) || [])[1]
+            )},
+          })
+        ],
       }),
       a.hr,
       app.float({

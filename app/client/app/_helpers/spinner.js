@@ -13,7 +13,7 @@ app.spinner = (text) => {
       ],
     }),
     ' ',
-    text,
+    text || '',
   ]);
 
 };

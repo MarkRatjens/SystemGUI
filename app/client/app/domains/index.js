@@ -1,5 +1,6 @@
 app.domains.index = (route) => a['app-domains-index']([
-  a.h3('Domains'),
+  app.close(route),
+  a.h5('Domains'),
   a.p([
     app.button({
       label: app.icon('fa fa-plus', 'New'),

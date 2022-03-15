@@ -7,6 +7,7 @@ module App
   class Api < Sinatra::Base
 
     require_relative 'api/spaces'
+    require_relative 'api/models'
 
     def self.spaces
       @spaces ||= Spaces.new
@@ -16,7 +17,6 @@ module App
     require_relative 'api/mime'
     require_relative 'api/errors'
     require_relative 'api/helpers'
-    require_relative 'api/models'
     require_relative 'api/session'
     require_relative 'api/setup'
     require_relative 'api/routes'

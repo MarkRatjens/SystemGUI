@@ -4,7 +4,7 @@ app.arenas.orchestrate = (route) => a.div([
   app.jsonForm({
     url: `/api/arenas/@${route.params.arenaIdentifier}/apply`,
     method: "POST",
-    form: (f) => [f.buttons({route: route})],
-    success: () => a({$init: () => route.load('output')}),
+    route: route,
+    success: () => route.load('output'),
   }),
 ]);

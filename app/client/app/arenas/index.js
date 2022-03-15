@@ -1,4 +1,4 @@
-app.arenas.index = (route) => a.div([
+app.arenas.index = (route) => a['app-arenas-index']([
   app.close(route),
   a.h5('Arenas'),
   a.p([
@@ -10,7 +10,8 @@ app.arenas.index = (route) => a.div([
   app.fetch({
     url: '/api/arenas',
     placeholder: app.spinner('Loading arenas'),
-    success: (arenas, el) => a.table([
+    success: (arenas, el) => arenas.length
+    ? a.table([
       a.tbody(app.sortByIdentifier(arenas).map(arena => a.tr([
         a.td([arena.identifier]),
         a.td([
@@ -25,6 +26,7 @@ app.arenas.index = (route) => a.div([
       }))),
     ], {
       class: 'table',
-    }),
+    })
+    : app.placeholder('No arenas'),
   }),
 ])

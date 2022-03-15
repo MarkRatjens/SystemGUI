@@ -13,6 +13,6 @@ app.blueprints.reimport = (route) => a.div([
       }),
     ],
     digest: (form) => app.compact(form),
-    success: () => a({$init: () => route.load('output')}),
+    success: () => route.load('output'),
   }),
 ]);

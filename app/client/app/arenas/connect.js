@@ -19,7 +19,6 @@ app.arenas.connect = (route) => a.div([
           }),
         ],
         success: (result) => {
-          // // dashboardMenu.$render()
           route.open('..')
         },
       })

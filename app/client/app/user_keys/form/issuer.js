@@ -5,9 +5,9 @@ app.user_keys.form.issuer = (f) => [
     label: 'Issuer',
     placeholder: 'Domain',
     help: [
-      'Enter a domain and username for the issuer of the token.',
-      'Also enter a epithet when you have more than one key for a user of a domain. ' +
-      'The epithet is used to uniquely identify the user key when multiple user keys share ' +
+      'Enter a domain for the issuer of the token and a username.',
+      'Also enter an identfier when you have more than one key for a user of a domain. ' +
+      'The identifier is used to uniquely identify the user key when multiple user keys share ' +
       'the same username and domain combination.',
     ],
   }),
@@ -19,7 +19,7 @@ app.user_keys.form.issuer = (f) => [
           horizontal: false,
           label: false,
           required: true,
-          placeholder: 'Username'
+          placeholder: 'Username or Key ID'
         }),
         f.field({
           key: 'tie_breaker',

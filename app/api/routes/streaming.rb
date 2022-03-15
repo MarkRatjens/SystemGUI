@@ -10,7 +10,6 @@ module App
         end
 
         get('/streaming/:space/:stream') {stream_action}
-
       end
     end
   end

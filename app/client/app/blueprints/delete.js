@@ -4,9 +4,8 @@ app.blueprints.delete = (route) => a.div([
   app.jsonForm({
     url: `/api/blueprints/@${route.params.blueprintIdentifier}`,
     method: "DELETE",
-    form: (f) => [f.buttons({route: route})],
+    route: route,
     success: () => {
-      // dashboardMenu.$render()
       route.open('../..')
       return ''
     },

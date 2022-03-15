@@ -7,13 +7,13 @@ app.blueprints.design.license.edit = (route, blueprint) => a.div([
         url: `/api/blueprints/@${route.params.blueprintIdentifier}/license`,
         method: "PUT",
         object: {license: license},
+        route: route,
         form: (f) => [
           f.field({
             key: 'license',
             as: 'markdown',
             label: false,
           }),
-          f.buttons({route: route})
         ],
         success: (result, el) => {
           route.open('..')

@@ -49,6 +49,11 @@ app.theme = (theme) => {
           backgroundColor: theme.backgroundColor,
         },
       },
+      '.modal-body': {
+        $: {
+          overflowX: 'scroll',
+        },
+      },
       '.close': {
         $: {
           color: theme.buttonColor,
@@ -63,6 +68,26 @@ app.theme = (theme) => {
       pre: {
         $: {
           color: theme.errorColor,
+        },
+      },
+    },
+    '.warn': {
+      $: {
+        color: theme.warnColor,
+      },
+      pre: {
+        $: {
+          color: theme.warnColor,
+        },
+      },
+    },
+    '.info': {
+      $: {
+        color: theme.infoColor,
+      },
+      pre: {
+        $: {
+          color: theme.infoColor,
         },
       },
     },
@@ -247,6 +272,19 @@ app.theme = (theme) => {
         },
       },
     },
+    '.app-dashboard': {
+      '.app-dashboard-item-heading': {
+        $: {
+          display: 'block',
+        },
+        '&:hover': {
+          $: {
+            backgroundColor: theme.buttonBackgroundColor,
+          },
+        }
+      }
+    }
+
   }
 
   ax.css(style)

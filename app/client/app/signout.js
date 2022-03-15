@@ -6,9 +6,8 @@ app.signout = route => a.div([
         url: '/api/session',
         method: 'DELETE',
         when: {401: () => 'Already signed out.'},
-        form: (f) => [
-          f.buttons({route: route}),
-        ],
+        route: route,
+        form: (f) => [],
         success: () => {
           route.load('/signedout')
         },

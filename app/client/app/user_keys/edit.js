@@ -15,7 +15,7 @@ app.user_keys.edit = (route) => a.div([
           ...app.user_keys.form.about(f),
         ],
         digest: (form) => app.compact(form),
-        success: (identifier) => a({$init: () => route.open(`../../@${identifier}`)}),
+        success: (identifier) => route.open(`../../@${identifier}`),
       }),
     ])
   }),

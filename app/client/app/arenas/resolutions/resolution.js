@@ -4,8 +4,8 @@ app.arenas.resolutions.resolution = (route) => a['app-arenas-resolution']([
     routes: {
       '/?': app.arenas.resolutions.show,
       '/edit': app.arenas.resolutions.edit,
-      '/build/?': app.arenas.resolutions.build,
-      '/build/output': app.arenas.resolutions.build.output,
+      '/prebuild/?': app.arenas.resolutions.prebuild,
+      '/prebuild/output': app.arenas.resolutions.prebuild.output,
       // '/artifact': app.arenas.resolution.artifact,
     },
   }),

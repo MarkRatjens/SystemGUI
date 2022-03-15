@@ -1,9 +1,10 @@
-app.blueprints.chart = (route, identifier, bindings) => {
+app.blueprints.chart = (route, relations) => {
+  let identifier = route.params.blueprintIdentifier
 
-  bindings = (bindings || []).sort(function(a,b) {
+  let bindings = (relations.blueprints.bindings || []).sort(function(a,b) {
     let first = a.type || 'connect'
     let second = b.type || 'connect'
-    return (first < second) ? -1 : (first > second) ? 1 : 0;
+    return (first < second) ? 1 : (first > second) ? -1 : 0;
   })
 
   let nodes = [

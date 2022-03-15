@@ -7,7 +7,6 @@ module App
         before '/user_keys/?*' do
           @controller = ::Spaces::Controllers::RESTController.new(space: :user_keys)
         end
-        
       end
     end
   end

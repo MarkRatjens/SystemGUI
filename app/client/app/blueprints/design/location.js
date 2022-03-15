@@ -31,7 +31,7 @@ app.blueprints.design.location = (route, blueprint) => a.div([
           }),
         ],
         digest: (form) => app.compact(form),
-        success: () => a({$init: () => route.open('..')}),
+        success: () => route.open('..'),
       }),
     ])
   }),

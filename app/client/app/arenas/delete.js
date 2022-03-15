@@ -4,9 +4,8 @@ app.arenas.delete = (route) => a.div([
   app.jsonForm({
     url: `/api/arenas/@${route.params.arenaIdentifier}`,
     method: "DELETE",
-    form: (f) => [route, f.buttons({route: route})],
+    route: route,
     success: () => {
-      // dashboardMenu.$render()
       route.open('../..')
     },
   }),

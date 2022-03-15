@@ -4,7 +4,7 @@ app.user_keys.delete = (route) => a.div([
   app.jsonForm({
     url: `/api/user_keys/@${route.params.userKeyIdentifier}`,
     method: "DELETE",
-    form: (f) => [f.buttons({route: route})],
+    route: route,
     success: () => {
       route.open('../..')
     },

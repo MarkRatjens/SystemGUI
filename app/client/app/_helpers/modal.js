@@ -18,5 +18,13 @@ app.modal = (options = {}) =>
         $(el.$(".modal")).modal({ backdrop: "static" });
         el.$(".modal-body *").scrollLeft = 0;
       },
+      $close: (el) => () => {
+        $(el.$(".modal")).modal('hide');
+      },
+      $init: (el) => {
+        $('#modal').on('hidden.bs.modal', function (e) {
+          el.$(".modal-content").$nodes = []
+        })
+      }
     }
   );

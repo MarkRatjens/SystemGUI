@@ -13,6 +13,6 @@ app.blueprints.design.export = (route, blueprint) => a.div([
         placeholder: 'Message',
       }),
     ],
-    success: () => a({$init: () => route.load('output')}),
+    success: () => route.load('output'),
   }),
 ]);

@@ -13,18 +13,12 @@ app.blueprints.menu = (route) => a({
       onclick: (e, el) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/license`),
       class: 'btn app-btn',
     }),
-    // app.button({
-    //   label: 'Bindings',
-    //   data: {view: 'bindings'},
-    //   onclick: (e, el) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/bindings`),
-    //   class: 'btn app-btn',
-    // }),
-    // app.button({
-    //   label: 'Utilization',
-    //   data: {view: 'utilization'},
-    //   onclick: (e, el) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/utilization`),
-    //   class: 'btn app-btn',
-    // }),
+    app.button({
+      label: 'Relations',
+      data: {view: 'relations'},
+      onclick: (e, el) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/relations`),
+      class: 'btn app-btn',
+    }),
   ],
   $init: (el) => el.$activate(),
   $update: (el) => (active) => {

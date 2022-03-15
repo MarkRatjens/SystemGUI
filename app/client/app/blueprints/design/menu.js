@@ -8,6 +8,12 @@ app.blueprints.design.menu = (route) => a({
       class: 'btn app-btn',
     }),
     app.button({
+      label: 'Files',
+      data: {view: 'files'},
+      onclick: (e, el) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/design/files`),
+      class: 'btn app-btn',
+    }),
+    app.button({
       label: 'Icon',
       data: {view: 'icon'},
       onclick: (e, el) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/design/icon`),
@@ -25,18 +31,12 @@ app.blueprints.design.menu = (route) => a({
       onclick: (e, el) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/design/license`),
       class: 'btn app-btn',
     }),
-    app.button({
-      label: 'Form',
-      data: {view: 'form'},
-      onclick: (e, el) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/design/form`),
-      class: 'btn app-btn',
-    }),
-    app.button({
-      label: 'Files',
-      data: {view: 'files'},
-      onclick: (e, el) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/design/files`),
-      class: 'btn app-btn',
-    }),
+    // app.button({
+    //   label: 'Form',
+    //   data: {view: 'form'},
+    //   onclick: (e, el) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/design/form`),
+    //   class: 'btn app-btn',
+    // }),
   ],
   $init: (el) => el.$activate(),
   $update: (el) => (active) => {

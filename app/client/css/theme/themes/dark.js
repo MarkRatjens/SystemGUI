@@ -3,7 +3,9 @@ app.theme.palette('dark', {
   text2: '#ccc',
   bg1: '#333',
   bg2: '#000',
-  attention: 'pink',
-  look: 'lightblue',
-  outline: '#666',
-}, {gradient: true})
+  error: 'red',
+  warn: 'orange',
+  info: 'blue',
+  success: 'green',
+  outline: '#ddd',
+}, {gradient: false})

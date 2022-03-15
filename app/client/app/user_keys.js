@@ -1,5 +1,4 @@
 app.user_keys = (route) => a.div([
-  a.h1('User keys'),
   route.mount({
     routes: {
       '/?': app.user_keys.index,

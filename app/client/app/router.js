@@ -6,11 +6,8 @@ app.router = () => x.router({
     a["div.container-fluid.mt-1"]([
       route.mount({
         routes: {
-          '/?': app.index,
           '/charts': app.charts,
           '/settings/?*': app.settings,
-          '/user_keys/?*': app.user_keys,
-          '/domains/?*': app.domains,
           '/blueprints/?*': app.blueprints,
           '/arenas/?*': app.arenas,
           '/disconnected': app.disconnected,
@@ -19,6 +16,7 @@ app.router = () => x.router({
           '/timedout': app.timedout,
           '/signin': app.signin,
           '/signout': app.signout,
+          '*': app.home,
         },
       }),
       a.br,

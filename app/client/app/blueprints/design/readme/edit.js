@@ -7,13 +7,13 @@ app.blueprints.design.readme.edit = (route, blueprint) => a.div([
         url: `/api/blueprints/@${route.params.blueprintIdentifier}/readme`,
         method: "PUT",
         object: {readme: readme},
+        route: route,
         form: (f) => [
           f.field({
             key: 'readme',
             as: 'markdown',
             label: false,
           }),
-          f.buttons({route: route})
         ],
         success: (result, el) => {
           route.open('..')

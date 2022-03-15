@@ -17,8 +17,8 @@ app.form.shim = {
         },
         ...options.asyncformTag,
         $on: {
-          "ax.appkit.form.async.complete: revert submit button label": (e, el) => {
-            for (let button of el.$$('app-form-buttons button').$$) {
+          "ax.appkit.form.async.complete: revert button labels": (e, el) => {
+            for (let button of el.$$('button').$$) {
               button.$revert && button.$revert();
             }
           },
@@ -41,19 +41,17 @@ app.form.shim = {
   button: (f, target) => (options = {}) =>
     target({
       ...options,
+      onclick: (e, el) => {
+        let to = options.to;
+        el.$from = el.innerHTML;
+        if (to) el.$nodes = [to];
+        options.onclick && options.onclick(e, el)
+      },
       buttonTag: {
-        ...options.buttonTag,
-        $on: {
-          "click: change button label": (e, el) => {
-            let to = options.to;
-            el.$from = el.innerHTML;
-            if (to) el.$nodes = [to];
-          },
-          ...(options.buttonTag || {}).$on,
-        },
         $revert: (el) => () => {
           if (el.$from) el.$html = el.$from;
         },
+        ...options.buttonTag,
       },
     }),
 
@@ -89,9 +87,9 @@ app.form.shim = {
     }),
 
   controls: {
-    combobox: (f, target) => (options = {}) => 
+    combobox: (f, target) => (options = {}) =>
       f.controls.selectinput(options),
-    json: (f, target) => (options = {}) => 
+    json: (f, target) => (options = {}) =>
       x.jsoneditor.form.control(f, { theme: "bootstrap3", ...options }),
     code: (f, target) => (options = {}) => {
       if (ax.is.object(options.mode)) {
@@ -107,12 +105,12 @@ app.form.shim = {
         ...options,
       });
     },
-    markdown: (f, target) => (options = {}) => 
+    markdown: (f, target) => (options = {}) =>
       x.easymde.form.control(f, options),
 
   },
 
-  buttons: (f) => (options = {}) => 
+  buttons: (f) => (options = {}) =>
     a["app-form-buttons"](
       [
         options.cancel == false
@@ -135,7 +133,7 @@ app.form.shim = {
       }
     ),
 
-  row: (f, target) => (options = {}) => 
+  row: (f, target) => (options = {}) =>
     a["div.row"](
       (options.columns || []).map((column) => a["div.col-sm"](column)),
       options.rowTag || {}

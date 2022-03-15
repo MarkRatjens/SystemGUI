@@ -20,6 +20,8 @@ app.blueprints.show = (route) => a.div([
           routes: {
             '/?': app.blueprints.readme,
             '/license': app.blueprints.license,
+            '/relations': app.blueprints.relations,
+            //
             // '/bindings/?*': app.blueprints.bindings(blueprint),
             // '/utilization/?*': app.blueprints.utilization(blueprint),
           }

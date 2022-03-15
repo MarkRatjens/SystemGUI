@@ -25,6 +25,7 @@ app.blueprints.design.blueprint.menu = (route, blueprint) => {
         },
       }))),
       addableDivisions.length ? app.jsonForm({
+        buttonless: true,
         form: f => [
           f.select({
             selections: addableDivisions.map((division) => [division, app.blueprints.divisions[division]]),

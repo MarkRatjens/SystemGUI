@@ -9,17 +9,21 @@ module App
         end
 
         post '/arenas/@:identifier/bind' do
-          @controller.bind(
+          result = @controller.bind(
             identifier: params[:identifier],
             blueprint_identifier: params[:target_identifier],
-          )
+          ).tap do |result|
+            @controller.resolve(identifier: params[:identifier])
+            @controller.pack(identifier: params[:identifier])
+            @controller.provision(identifier: params[:identifier])
+          end.to_json
         end
 
         post '/arenas/@:identifier/connect' do
           @controller.connect(
             identifier: params[:identifier],
             other_identifier: params[:target_identifier],
-          )
+          ).to_json
         end
       end
     end

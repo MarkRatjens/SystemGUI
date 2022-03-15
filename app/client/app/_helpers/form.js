@@ -1,4 +1,4 @@
-app.form = (options = {}) => 
+app.form = (options = {}) =>
   x.form({
     shims: [
       x.form.field.shim,
@@ -11,7 +11,10 @@ app.form = (options = {}) =>
       app.form.shim,
     ],
     method: 'PUT',
-    catch: (error, el) => el.$send("app.disconnected"),
+    catch: (error, el) => {
+      el.$send("app.disconnected")
+      return ''
+    },
     ...options,
     form: f => [
       options.authenticity == false ? '' : f.input({name: 'authenticity_token', value: authenticityToken, type: 'hidden'}),

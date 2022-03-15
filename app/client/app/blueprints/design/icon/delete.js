@@ -3,7 +3,7 @@ app.blueprints.design.icon.delete = (route, blueprint) => a.div([
   app.jsonForm({
     url: `/api/blueprints/@${route.params.blueprintIdentifier}/icon`,
     method: "DELETE",
-    form: (f) => [f.buttons({route: route})],
-    success: () => a({$init: () => route.open('..')}),
+    route: route,
+    success: () => route.open('..'),
   }),
 ]);

@@ -1,22 +1,28 @@
-app.fetch.success = (success) => (payload, el) => {
-  let a = ax.a
+app.fetch.success = (success, warnings) => (payload, el) => {
+
+  let warningsFor = (messages) => warnings
+    ? warnings(messages)
+    : a['pre.error.m-0.p-1'](messages.join('\n'))
+
   if (ax.is.array(payload)) {
     let results = []
     for (let item of payload) {
-      if (item.errors) return a['pre.error'](item.errors)
+      if (item.errors) return warningsFor(item.errors)
       results.push(item.result)
     }
     if (success) {
-      return success(results, el)
+      let node = success(results, el)
+      return ax.is.undefined(node) ? '' : node
     } else {
-      return a['pre.success'](JSON.stringify(results, null, 2))
+      return a['pre.success.m-0.p-1'](JSON.stringify(results, null, 2))
     }
   } else {
-    if (payload.errors) return a['pre.error'](payload.errors)
+    if (payload.errors) return warningsFor(payload.errors)
     if (success) {
-      return success(payload.result, el)
+      let node = success(payload.result, el)
+      return ax.is.undefined(node) ? '' : node
     } else {
-      return a['pre.success'](JSON.stringify(payload.result, null, 2))
+      return a['pre.success.m-0.p-1'](JSON.stringify(payload.result, null, 2))
     }
   }
 }

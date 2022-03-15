@@ -18,6 +18,7 @@ a['app'](
         el.$$('.activatable').$activate();
       },
       'app.disconnected': (e, el) => {
+              debugger
         router.$load('/disconnected');
       },
       'app.signedout': (e, el) => {

@@ -6,6 +6,7 @@ app.signin = route => a.div([
         url: '/api/session',
         method: 'POST',
         when: {401: () => 'Failed to authenticate.'},
+        buttonless: true,
         form: (f) => [
           f.field({
             key: 'username',

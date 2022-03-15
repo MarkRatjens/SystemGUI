@@ -1,5 +1,5 @@
 app.navbar = (route) =>
-a["nav#navbar.navbar.navbar-expand.navbar-light.mt-n1.activatable"](
+a["nav#navbar.navbar.navbar-expand.navbar-light.activatable"](
   [
     a.a([
       a['app-navbar-brand-icon'](app.logo(24)),
@@ -20,7 +20,7 @@ a["nav#navbar.navbar.navbar-expand.navbar-light.mt-n1.activatable"](
         }),
         app.navbar.item({
           route: route,
-          icon: 'fas fa-dot-circle',
+          icon: 'fas fa-vector-square',
           path: '/arenas',
           title: 'Arenas',
         }),
@@ -29,12 +29,6 @@ a["nav#navbar.navbar.navbar-expand.navbar-light.mt-n1.activatable"](
           icon: 'fas fa-shapes',
           path: '/blueprints',
           title: 'Blueprints',
-        }),
-        app.navbar.item({
-          route: route,
-          icon: 'fas fa-globe',
-          path: '/domains',
-          title: 'Domains',
         }),
       ])
     ),
@@ -46,12 +40,6 @@ a["nav#navbar.navbar.navbar-expand.navbar-light.mt-n1.activatable"](
           icon: 'fas fa-cog',
           path: '/settings',
           title: 'Setting',
-        }),
-        app.navbar.item({
-          route: route,
-          icon: 'fas fa-key',
-          path: '/user_keys',
-          title: 'Keys',
         }),
         app.navbar.item({
           route: route,

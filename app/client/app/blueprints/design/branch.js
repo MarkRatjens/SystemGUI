@@ -6,6 +6,7 @@ app.blueprints.design.branch = (route, blueprint) => a.div([
       app.jsonForm({
         url: `/api/blueprints/@${route.params.blueprintIdentifier}/publication/branch`,
         method: "POST",
+        route: route,
         form: (f) => [
           f.field({
             key: 'existing',
@@ -39,9 +40,8 @@ app.blueprints.design.branch = (route, blueprint) => a.div([
               value: 'new',
             },
           }),
-          f.buttons({route: route}),
         ],
-        success: () => a({$init: () => route.open('..')}),
+        success: () => route.open('..'),
       }),
     ])
   }),

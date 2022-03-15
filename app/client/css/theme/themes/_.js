@@ -3,7 +3,9 @@ app.theme.palette('', {
   text2: '#48D',
   bg1: '#eee',
   bg2: '#fff',
-  attention: 'red',
-  look: 'blue',
-  outline: '#999',
+  error: 'red',
+  warn: 'orange',
+  info: 'blue',
+  success: 'green',
+  outline: '#ddd',
 }, {gradient: false})

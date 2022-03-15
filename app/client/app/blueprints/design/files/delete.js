@@ -5,7 +5,7 @@ app.blueprints.design.files.delete = (route) => a.div([
   app.jsonForm({
     url: `/api/blueprints/@${route.params.blueprintIdentifier}/files/@${route.params.fileIdentifier.replace(/::/g, '/')}`,
     method: "DELETE",
-    form: (f) => [f.buttons({route: route})],
-    success: () => a({$init: () => route.open('../..')}),
+    route: route,
+    success: () => route.open('../..'),
   }),
 ])

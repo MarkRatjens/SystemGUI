@@ -83,7 +83,8 @@ app.blueprints.design.blueprint.bindings.edit = (route, blueprint) => {
                 }),
                 ff.field({
                   key: 'value',
-                  hint: configurationValueHintFor(targetBlueprint, ff.object.key)
+                  hint: configurationValueHintFor(targetBlueprint, ff.object.key),
+                  required: true,
                 }),
               ],
               dependent: {
@@ -94,11 +95,13 @@ app.blueprints.design.blueprint.bindings.edit = (route, blueprint) => {
           ],
           digest: (form) => {
             delete form.custom_identifier
-            let configuration = {}
-            for (let parameter of form.configuration) {
-              configuration[parameter.key] = parameter.value
+            if (form.configuration) {
+              let configuration = {}
+              for (let parameter of form.configuration) {
+                configuration[parameter.key] = parameter.value
+              }
+              form.configuration = configuration
             }
-            form.configuration = configuration
             blueprint.bindings[route.params.bindingIndex] = app.compact(form);
             return {model: blueprint};
           },

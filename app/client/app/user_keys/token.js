@@ -6,6 +6,6 @@ app.user_keys.token = (route) => a.div([
     scope: 'model',
     horizontal: true,
     form: (f) => app.user_keys.form.token(f),
-    success: () => a({$init: () => route.open('..')}),
+    success: () => route.open('..'),
   }),
 ]);

@@ -14,7 +14,6 @@ app.blueprints.design.copy = (route) => a.div([
     ],
     digest: (form) => form.blueprint,
     success: (identifier) => {
-      // dashboardMenu.$render()
       route.open('..')
     },
   }),

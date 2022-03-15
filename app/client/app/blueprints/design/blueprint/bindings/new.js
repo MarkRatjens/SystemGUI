@@ -16,15 +16,10 @@ app.blueprints.design.blueprint.bindings.new = (route, blueprint) => a.div([
           }),
         ],
         digest: (form) => {
-          let binding = app.compact(form.binding)
-          if (blueprint.bindings) {
-            blueprint.bindings.push(binding)
-          } else {
-            blueprint.bindings = [binding]
-          }
+          blueprint.bindings = [...(blueprint.bindings || []), app.compact(form.binding)];
           return {model: blueprint}
         },
-        success: () => a({$init: () => route.open(`../${blueprint.bindings.length - 1}`)}),
+        success: () => route.open(`../${blueprint.bindings.length - 1}`),
       }),
     ])
   }),

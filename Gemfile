@@ -4,6 +4,7 @@ gem 'thin'
 gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'rest-client'
+gem 'webmachine'
 
 gem 'engines-logger',   '0.2.0',    :git => 'git@github.com:engines/logger'
 gem 'docker-api'
