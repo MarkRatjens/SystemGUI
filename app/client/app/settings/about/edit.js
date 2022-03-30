@@ -1,6 +1,6 @@
 app.settings.about.edit = (route) => a.div([
   app.close(route),
-  a.h5("About"),
+  a['h5.py-2']("About"),
   a.hr,
   app.fetch({
     url: '/api/settings',

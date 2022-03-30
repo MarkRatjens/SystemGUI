@@ -4,19 +4,19 @@ app.blueprints.menu = (route) => a({
     app.button({
       label: 'Readme',
       data: {view: 'readme'},
-      onclick: (e, el) => route.open(`/blueprints/@${route.params.blueprintIdentifier}`),
+      onclick: (e) => route.open(`/blueprints/@${route.params.blueprintIdentifier}`),
       class: 'btn app-btn',
     }),
     app.button({
       label: 'License',
       data: {view: 'license'},
-      onclick: (e, el) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/license`),
+      onclick: (e) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/license`),
       class: 'btn app-btn',
     }),
     app.button({
       label: 'Relations',
       data: {view: 'relations'},
-      onclick: (e, el) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/relations`),
+      onclick: (e) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/relations`),
       class: 'btn app-btn',
     }),
   ],

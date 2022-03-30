@@ -1,6 +1,6 @@
 app.arenas.connect = (route) => a.div([
   app.fetch({
-    url: `/api/arenas/list`,
+    url: `/api/arenas/@${route.params.arenaIdentifier}/connectables`,
     placeholder: app.spinner(`Loading arenas`),
     success: (arenas) => a.div([
       a.h3('Bind arena'),

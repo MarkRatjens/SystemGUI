@@ -1,12 +1,12 @@
-app.docker.image.run = (image) => a['app-docker-image-run']({
+app.docker.image.create = (image) => a['app-docker-image-create']({
   $open: (el) => () => {
     el.$nodes = a['div.p-4']([
       app.float({
         left: 'Are you sure?',
         right: [
           app.button({
-            label: app.icon('fas fa-running', 'Confirm run'),
-            title: 'Confirm run',
+            label: app.icon('fas fa-plus-circle', 'Confirm create'),
+            title: 'Confirm create',
             onclick: el.$fetch,
             class: 'btn btn-primary',
           }),
@@ -20,9 +20,9 @@ app.docker.image.run = (image) => a['app-docker-image-run']({
   $fetch: (el) => () => {
     let imageEl = el.$('^app-docker-image')
     el.$nodes = app.fetch({
-      url: `/api/docker/images/@${image.identifier}/run`,
+      url: `/api/docker/images/@${image.identifier}/create_container`,
+      method: 'POST',
       warnings: (warnings) => {
-        imageEl.classList.remove('run-fade-out')
         return a['pre.error.m-0.p-1'](warnings.join('\n'))
       },
       placeholder: a['div.p-4'](app.spinner('Creating container')),

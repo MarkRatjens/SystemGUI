@@ -7,6 +7,7 @@ module App
       require_relative 'routes/blueprints'
       require_relative 'routes/docker'
       require_relative 'routes/domains'
+      require_relative 'routes/imaging'
       require_relative 'routes/locations'
       require_relative 'routes/packs'
       require_relative 'routes/provisioning'
@@ -21,6 +22,7 @@ module App
       register Blueprints
       register Docker
       register Domains
+      register Imaging
       register Locations
       register Packs
       register Provisioning

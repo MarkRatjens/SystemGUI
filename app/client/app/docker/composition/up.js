@@ -20,8 +20,11 @@ app.docker.composition.up = (composition) => a['app-docker-composition-up']({
           url: `/api/arenas/@${composition.identifier}/apply`,
           method: 'POST',
           success: () => {
-            el.$('app-docker-composition-up-commit-confirm').$nodes = []
-            el.$('app-docker-composition-output').$open('up')
+            // Timeout so that not get prior output
+            setTimeout(() => {
+              el.$('app-docker-composition-up-commit-confirm').$nodes = []
+              el.$('app-docker-composition-output').$open('up')
+            }, 100)
             return ''
           },
         }),
@@ -41,15 +44,17 @@ app.docker.composition.up = (composition) => a['app-docker-composition-up']({
     el.$nodes = []
   },
   $on: {
-    'app.disconnected': (e, el) => {
+    'app.disconnected': (e) => {
+      let el = e.currentTarget
       e.stopPropagation()
       el.$stop()
-      el.append(a['pre.error.p-1']('Disconnected'))
+      el.append(a['div.stream-message.background-error.mt-n2.p-1']('Disconnected'))
     },
-    'app.timeout': (e, el) => {
+    'app.timeout': (e) => {
+      let el = e.currentTarget
       e.stopPropagation()
       el.$stop()
-      el.append(a['pre.error.p-1']('Timed out'))
+      el.append(a['div.stream-message.background-error.mt-n2.p-1']('Timed out'))
     },
   }
 })

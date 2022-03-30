@@ -1,21 +1,23 @@
-app.docker.prebuild = (prebuild) => a['app-docker-prebuild']([
+app.docker.prebuild = (prebuild) =>
+a['app-docker-prebuild.d-block']([
   a['div.app-dashboard-item.border-bottom']([
     a['div.app-dashboard-item-panel']([
       a['div.app-dashboard-item-heading.p-2']([
-        prebuild.split('::')[1],
+        prebuild.split('::')[0].replace('$', ''),
       ], {
         $on: {
           click: (e) => {
-            let commandsEl = e.currentTarget.$('^.app-dashboard-item .app-dashboard-item-commands')
-            if (commandsEl.classList.contains('active')) {
-              commandsEl.classList.remove('active')
+            let menuEl = e.currentTarget.$('^.app-dashboard-item .app-dashboard-item-menu')
+            if (menuEl.classList.contains('active')) {
+              menuEl.classList.remove('active')
             } else {
-              commandsEl.classList.add('active')
+              menuEl.classList.add('active')
+              menuEl.scrollIntoView({block: "center", behavior: 'smooth'});
             }
           },
         }
       }),
-      app.docker.prebuild.commands(prebuild),
+      app.docker.prebuild.menu(prebuild),
     ]),
     a['app-docker-prebuild-fetch']({
       $fetch: (el) => (path) => {

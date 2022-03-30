@@ -1,6 +1,6 @@
 app.fetch = (options = {}) => x.fetch({
-  catch: (e, el) => {
-    el.$send("app.disconnected")
+  catch: (e) => {
+    e.currentTarget.$send("app.disconnected")
     return ''
   },
   ...options,

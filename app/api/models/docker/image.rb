@@ -43,7 +43,7 @@ module App
             @image.send(instruction)
           end
 
-          def run
+          def create_container
             ::Docker::Container.create(Image: id).id[0..11]
           end
 

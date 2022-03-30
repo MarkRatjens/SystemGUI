@@ -1,15 +1,15 @@
 app.blueprints.index = (route) => a.div([
   app.close(route),
-  a.h5('Blueprints'),
+  a['h5.py-2']('Blueprints'),
   a.p([
     app.button({
       label: app.icon('fas fa-file-import', 'Import'),
-      onclick: (e, el) => route.open('import'),
+      onclick: (e) => route.open('import'),
     }),
     ' ',
     app.button({
       label: app.icon('fa fa-plus', 'New'),
-      onclick: (e, el) => route.open('new'),
+      onclick: (e) => route.open('new'),
     }),
   ]),
   app.fetch({
@@ -27,7 +27,7 @@ app.blueprints.index = (route) => a.div([
         a.td(app.locationLabel(blueprint.location)),
         a.td(blueprint.utilized ? app.icon('fas fa-vector-square') : ''),
       ], {
-        $on: {click: (e, el) => route.open(`@${blueprint.identifier}`)},
+        $on: {click: (e) => route.open(`@${blueprint.identifier}`)},
         class: 'app-clickable',
       }))),
     ], {

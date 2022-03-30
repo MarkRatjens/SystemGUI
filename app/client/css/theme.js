@@ -10,18 +10,18 @@ app.theme = (theme) => {
       background: theme.background,
       color: theme.color,
     },
-    ".app-btn": {
+    '.app-btn': {
       $: {
         color: theme.buttonColor,
         backgroundColor: theme.buttonBackgroundColor,
       },
-      "&.active": {
+      '&.active': {
         $: {
           backgroundColor: theme.buttonBackgroundColorActive,
           color: theme.buttonColorActive,
         },
       },
-      "&:hover": {
+      '&:hover': {
         $: {
           backgroundColor: theme.buttonBackgroundColorHover,
           color: theme.buttonColorHover,
@@ -65,48 +65,92 @@ app.theme = (theme) => {
       $: {
         color: theme.errorColor,
       },
-      pre: {
-        $: {
-          color: theme.errorColor,
-        },
-      },
+      // pre: {
+      //   $: {
+      //     color: theme.errorColor,
+      //   },
+      // },
     },
     '.warn': {
       $: {
         color: theme.warnColor,
       },
-      pre: {
-        $: {
-          color: theme.warnColor,
-        },
-      },
+      // pre: {
+      //   $: {
+      //     color: theme.warnColor,
+      //   },
+      // },
     },
     '.info': {
       $: {
         color: theme.infoColor,
       },
-      pre: {
-        $: {
-          color: theme.infoColor,
-        },
-      },
+      // pre: {
+      //   $: {
+      //     color: theme.infoColor,
+      //   },
+      // },
     },
     '.success': {
       $: {
         color: theme.successColor,
       },
-      pre: {
-        $: {
-          color: theme.successColor,
-        },
-      },
+      // pre: {
+      //   $: {
+      //     color: theme.successColor,
+      //   },
+      // },
     },
-    ".form-control:focus, .custom-select:focus": {
+    '.background-error': {
+      $: {
+        color: theme.backgroundColor,
+        backgroundColor: theme.errorColor,
+      },
+      // pre: {
+      //   $: {
+      //     color: theme.errorColor,
+      //   },
+      // },
+    },
+    '.background-warn': {
+      $: {
+        color: theme.backgroundColor,
+        backgroundColor: theme.warnColor,
+      },
+      // pre: {
+      //   $: {
+      //     color: theme.warnColor,
+      //   },
+      // },
+    },
+    '.background-info': {
+      $: {
+        color: theme.backgroundColor,
+        backgroundColor: theme.infoColor,
+      },
+      // pre: {
+      //   $: {
+      //     color: theme.infoColor,
+      //   },
+      // },
+    },
+    '.background-success': {
+      $: {
+        color: theme.backgroundColor,
+        backgroundColor: theme.successColor,
+      },
+      // pre: {
+      //   $: {
+      //     color: theme.successColor,
+      //   },
+      // },
+    },
+    '.form-control:focus, .custom-select:focus': {
       $: {
         boxShadow: `0 0 0 .2rem ${theme.controlBoxShadowColor}`,
       },
     },
-    ".custom-control-input:focus ~ .custom-control-label::before": {
+    '.custom-control-input:focus ~ .custom-control-label::before': {
       $: {
         boxShadow: `0 0 0 .2rem ${theme.controlBoxShadowColor}`,
       },
@@ -144,7 +188,7 @@ app.theme = (theme) => {
           },
           'app-icon': {
             $: {
-              borderBottom: `1px solid ${theme.borderColor}`,
+              borderBottom: `1px solid ${theme.navbarButtonColorActive}`,
             },
           },
         },
@@ -206,26 +250,26 @@ app.theme = (theme) => {
         boxShadow: `0px 0px 10px ${theme.borderColor}`,
       },
     },
-    "ax-appkit-out": {
+    'ax-appkit-out': {
       $: {
         color: theme.outColor,
       },
-      "ax-appkit-out-null": {
+      'ax-appkit-out-null': {
         $: {
           color: theme.outNullColor,
         },
       },
-      "ax-appkit-out-number": {
+      'ax-appkit-out-number': {
         $: {
           color: theme.outNumberColor,
         },
       },
-      "ax-appkit-out-boolean": {
+      'ax-appkit-out-boolean': {
         $: {
           color: theme.outBooleanColor,
         },
       },
-      "ax-appkit-out-text": {
+      'ax-appkit-out-text': {
         $: {
           color: theme.outTextColor,
         },
@@ -283,8 +327,29 @@ app.theme = (theme) => {
           },
         }
       }
-    }
-
+    },
+    '.stream-message' : {
+      $: {
+        border: `1px solid ${theme.borderColor}`,
+        fontFamily: 'monospace',
+      },
+    },
+    '.border, .border-top, .border-bottom, .border-left, .border-right': {
+      $: {
+        borderColor: `${theme.borderColor} !important`,
+      }
+    },
+    '.nav-link.active, .nav-tabs, .nav-link:hover': {
+      $: {
+        borderColor: `${theme.borderColor} !important`,
+      }
+    },
+    '.nav-link.active': {
+      $: {
+        color: `${theme.buttonColor} !important`,
+        backgroundColor: `${theme.buttonBackgroundColor} !important`,
+      }
+    },
   }
 
   ax.css(style)

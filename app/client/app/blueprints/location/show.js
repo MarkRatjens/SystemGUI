@@ -10,7 +10,7 @@ app.blueprints.location.show = (route, summary) => a.div([
           summary.location.exist ?
           app.button({
             label: app.icon('fas fa-file-import', 'Reimport'),
-            onclick: (e, el) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/reimport`),
+            onclick: (e) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/reimport`),
           })
           : ''
         )

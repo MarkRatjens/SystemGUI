@@ -1,5 +1,7 @@
 app.docker.composition.actions = (composition) => a['app-docker-composition-actions']([
   ...[
+    ['Applications', 'fas fa-list', 'applications'],
+    ['Relations', 'fas fa-project-diagram', 'relations'],
     ['Up', 'fas fa-arrow-up', 'up'],
     ['Down', 'fas fa-arrow-down', 'down'],
     ['Info', 'fas fa-info', 'info'],
@@ -14,14 +16,16 @@ app.docker.composition.actions = (composition) => a['app-docker-composition-acti
         el.$target().$close()
       },
       $open: (el) => () => {
-        let commandsEl = el.$('^.app-dashboard-item-commands')
-        commandsEl.classList.add('active')
-        commandsEl.$$('app-docker-composition-actions > button.active').$close()
+        let menuEl = el.$('^.app-dashboard-item-menu')
+        menuEl.classList.add('active')
+        menuEl.$$('.app-dashboard-item-menu-button.active').$close()
         el.classList.add('active')
         el.$target().$open()
+        el.scrollIntoView({block: "center", behavior: 'smooth'});
       },
     },
-    onclick: (e, el) => {
+    onclick: (e) => {
+      let el = e.currentTarget
       e.stopPropagation()
       if (el.classList.contains('active')) {
         el.$close()
@@ -29,6 +33,6 @@ app.docker.composition.actions = (composition) => a['app-docker-composition-acti
         el.$open()
       }
     },
-    class: 'btn app-btn',
+    class: 'btn app-btn app-dashboard-item-menu-button',
   })),
 ])

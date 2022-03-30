@@ -23,7 +23,7 @@ app.dashboard.menu.arenas.resolutions.resolution = (route, resolution) => {
         }
       },
       $on: {
-        click: (e, el) => {
+        click: (e) => {
           route.open(`/arenas/@${arenaIdentifier}/@${blueprintIdentifier}`)
         },
       },

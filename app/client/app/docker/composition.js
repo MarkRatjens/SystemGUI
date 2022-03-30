@@ -1,4 +1,5 @@
-app.docker.composition = (composition) => a['app-docker-composition.app-dashboard-item']({
+app.docker.composition = (composition) =>
+a['app-docker-composition']({
   id: `docker-composition-${composition.id}`,
   $nodes: (el) => a['div.app-dashboard-item.border-bottom']([
     a['div.app-dashboard-item-panel']([
@@ -7,24 +8,17 @@ app.docker.composition = (composition) => a['app-docker-composition.app-dashboar
       ], {
         $on: {
           click: (e) => {
-            let commandsEl = e.currentTarget.$('^.app-dashboard-item .app-dashboard-item-commands')
-            if (commandsEl.classList.contains('active')) {
-              commandsEl.classList.remove('active')
+            let menuEl = e.currentTarget.$('^.app-dashboard-item .app-dashboard-item-menu')
+            if (menuEl.classList.contains('active')) {
+              menuEl.classList.remove('active')
             } else {
-              commandsEl.classList.add('active')
+              menuEl.classList.add('active')
+              menuEl.scrollIntoView({block: "center", behavior: 'smooth'});
             }
           },
         }
       }),
-      app.docker.composition.commands(composition),
+      app.docker.composition.menu(composition),
     ]),
-    a['app-docker-composition-fetch']({
-      $fetch: (el) => (path) => {
-        el.$nodes = app.fetch({
-          url: `/api/docker/compositions/@${composition.id}${path}`,
-          success: () => '',
-        })
-      }
-    }),
   ]),
 })

@@ -11,7 +11,7 @@ app.domains.show = (route) => a['app-domains-show']([
     right: [
       app.button({
         label: app.icon('fa fa-edit', 'Edit'),
-        onclick: (e, el) => route.open('edit'),
+        onclick: (e) => route.open('edit'),
       }),
     ]
   }),

@@ -8,16 +8,26 @@ module App
           @controller = ::Arenas::Controllers::Controller.new
         end
 
-        post '/arenas/@:identifier/bind' do
-          result = @controller.bind(
-            identifier: params[:identifier],
-            blueprint_identifier: params[:target_identifier],
-          ).tap do |result|
-            @controller.resolve(identifier: params[:identifier])
-            @controller.pack(identifier: params[:identifier])
-            @controller.provision(identifier: params[:identifier])
+        post '/arenas' do
+          @controller.create(model: params[:model]).tap do |creation|
+            identifier = creation.result
+            @controller.resolve(identifier: identifier)
+            @controller.pack(identifier: identifier)
+            @controller.provision(identifier: identifier)
           end.to_json
         end
+
+        # post '/arenas/@:identifier/bind' do
+        #   @controller.bind(
+        #     identifier: params[:identifier],
+        #     blueprint_identifier: params[:target_identifier],
+        #   ).tap do |creation|
+        #     identifier = creation.result
+        #     @controller.resolve(identifier: identifier)
+        #     @controller.pack(identifier: identifier)
+        #     @controller.provision(identifier: identifier)
+        #   end.to_json
+        # end
 
         post '/arenas/@:identifier/connect' do
           @controller.connect(

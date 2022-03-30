@@ -1,6 +1,6 @@
 app.settings.editor = (route) => a.div([
   app.close(route),
-  a.h5('Editor'),
+  a['h5.py-2']('Editor'),
   a.hr,
   app.jsonForm({
     action: (submition) => {

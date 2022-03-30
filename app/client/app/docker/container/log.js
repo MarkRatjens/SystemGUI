@@ -1,14 +1,29 @@
 app.docker.container.log = (container) => a['app-docker-container-log']({
   $open: (el) => () => {
-    el.$nodes = a['div.p-1']([
+    el.$nodes = a['div.m-1']([
       app.stream({
         label: `${container.identifier} log`,
         url: `/api/docker/containers/@${container.identifier}/log`,
         complete: (el) => {
-          el.append(a['pre.info.p-1.m-0']('Exited'))
+          el.append(a['div.stream-message.background-info.mt-n2.p-1']('Exited'))
         }
       })
-    ])
+    ], {
+      $on: {
+        'app.disconnected': (e) => {
+          let el = e.currentTarget
+          e.stopPropagation()
+          el.$('^app-docker-container-log').$stop()
+          el.append(a['div.stream-message.background-error.mt-n2.p-1']('Disconnected'))
+        },
+        'app.timeout': (e) => {
+          let el = e.currentTarget
+          e.stopPropagation()
+          el.$('^app-docker-container-log').$stop()
+          el.append(a['div.stream-message.background-error.mt-n2.p-1']('Timed out'))
+        },
+      }
+    })
   },
   $restart: (el) => () => {
     el.$open()
@@ -20,16 +35,4 @@ app.docker.container.log = (container) => a['app-docker-container-log']({
     el.$stop()
     el.$nodes = []
   },
-  $on: {
-    'app.disconnected': (e, el) => {
-      e.stopPropagation()
-      el.$stop()
-      el.append(a['pre.error.p-1']('Disconnected'))
-    },
-    'app.timeout': (e, el) => {
-      e.stopPropagation()
-      el.$stop()
-      el.append(a['pre.error.p-1']('Timed out'))
-    },
-  }
 })

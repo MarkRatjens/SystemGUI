@@ -76,8 +76,8 @@ module App
         # TODO: this route needs attention.
         # Are additional params needed, such as :container_name, or :tag?
         # Maybe change to POST /docker/containers
-        get ('/docker/images/@:image_id/run') {
-          docker { @image.run }
+        post ('/docker/images/@:image_id/create_container') {
+          docker { @image.create_container }
         }
       end
     end

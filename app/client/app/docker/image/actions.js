@@ -1,6 +1,6 @@
 app.docker.image.actions = (image) => a['app-docker-image-actions']([
   ...[
-    ['Run','fas fa-running', 'run'],
+    ['Create','fas fa-plus-circle', 'create'],
     ['Info','fas fa-info', 'info'],
     ['Delete', 'fas fa-trash', 'delete'],
   ].map((command) => app.button({
@@ -13,14 +13,16 @@ app.docker.image.actions = (image) => a['app-docker-image-actions']([
         el.$target().$close()
       },
       $open: (el) => () => {
-        let commandsEl = el.$('^.app-dashboard-item-commands')
-        commandsEl.classList.add('active')
-        commandsEl.$$('app-docker-image-actions > button.active').$close()
+        let menuEl = el.$('^.app-dashboard-item-menu')
+        menuEl.classList.add('active')
+        menuEl.$$('.app-dashboard-item-menu-button.active').$close()
         el.classList.add('active')
         el.$target().$open()
+        el.scrollIntoView({block: "center", behavior: 'smooth'});
       },
     },
-    onclick: (e, el) => {
+    onclick: (e) => {
+      let el = e.currentTarget
       e.stopPropagation()
       if (el.classList.contains('active')) {
         el.$close()
@@ -28,6 +30,6 @@ app.docker.image.actions = (image) => a['app-docker-image-actions']([
         el.$open()
       }
     },
-    class: 'btn app-btn',
+    class: 'btn app-btn app-dashboard-item-menu-button',
   })),
 ])

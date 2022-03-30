@@ -7,7 +7,7 @@ app.exception = (message) => {
   showModal()
   return ax.a.p(app.button({
     label: app.icon('fa fa-bug', 'Server exception!'),
-    onclick: (e, el) => showModal(),
+    onclick: (e) => showModal(),
     class: 'btn btn-danger',
   }))
 }

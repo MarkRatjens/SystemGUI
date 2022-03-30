@@ -16,7 +16,7 @@ app.arenas.resolutions = (route) => a['app-arenas-resolutions']([
           : a['.success'](app.icon('fas fa-check-circle', 'Ready')),
         ]),
       ], {
-        $on: {click: (e, el) => route.open(`@${resolution.identifier.split('::')[1]}`)},
+        $on: {click: (e) => route.open(`@${resolution.identifier.split('::')[1]}`)},
         class: 'app-clickable',
       }))),
     ], {

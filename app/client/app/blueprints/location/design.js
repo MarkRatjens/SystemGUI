@@ -10,12 +10,12 @@ app.blueprints.location.design = (route, summary) => a.div([
           a.div([
             summary.location.exist ? app.button({
               label: app.icon("fas fa-file-export", "Export"),
-              onclick: (e, el) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/design/export`),
+              onclick: (e) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/design/export`),
             }) : '',
             ' ',
             app.button({
               label: app.icon("fas fa-location-arrow", "Location"),
-              onclick: (e, el) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/design/location`),
+              onclick: (e) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/design/location`),
             })
           ])
         )

@@ -11,7 +11,7 @@ app.docker.images = () => a['app-docker-images']([
   $reindex: (el) => (event) => {
     let found = []
     for (let image of event.payload) {
-      let imageEl = el.$(`#docker-image-${image.id}`)
+      let imageEl = el.$(`#docker-image-${image.identifier}`)
       if (imageEl) {
         found.push(imageEl)
       } else {

@@ -6,14 +6,16 @@ app.docker.prebuild.info = (prebuild) => a['app-docker-prebuild-info']({
         app.fetch({
           url: `/api/resolutions/@${prebuild}`,
           placeholder: app.spinner('Loading'),
-          success: (info) => x.out(info)
+          success: (info) => a.div([
+            x.out(info)
+          ], {
+            style: {
+              maxHeight: '300px',
+              fontFamily: 'monospace',
+            },
+          })
         }),
-      ], {
-        style: {
-          maxHeight: '500px',
-          fontFamily: 'monospace',
-        },
-      }),
+      ]),
     ])
   },
   $close: (el) => () => {

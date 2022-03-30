@@ -9,7 +9,7 @@ app.docker.container.instructions = () => a['app-docker-container-instructions']
     title: instruction[0],
     onclick: (e, el) => {
       e.stopPropagation()
-      el.$('^app-docker-container app-docker-container-fetch').$fetch(instruction[1])
+      e.currentTarget.$('^app-docker-container app-docker-container-fetch').$fetch(instruction[1])
     },
     class: 'btn app-btn',
   }))),

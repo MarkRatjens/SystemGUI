@@ -10,7 +10,7 @@ app.docker.container.state.label = (status) => {
 
   switch(status) {
     case 'created':
-    return label('fas fa-stop-circle', 'Created', 'blue')
+    return label('fas fa-plus-circle', 'Created', 'blue')
     case 'restarting':
     return label('far fa-play-circle', 'Restarting', 'purple')
     case 'running':

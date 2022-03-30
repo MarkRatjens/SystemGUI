@@ -10,6 +10,7 @@ app.docker.containers = () => a['app-docker-containers']([
 ], {
   $reindex: (el) => (event) => {
     let found = []
+    // console.log(el.$$('app-docker-container:not(.delete-fade-out)').toArray.length)
     for (let container of event.payload) {
       let containerEl = el.$(`#docker-container-${container.identifier}`)
       if (containerEl) {

@@ -6,7 +6,8 @@ app.tabs = (options) => a['div.app-tabs']([
         ...options.navTag,
         class: `nav-link${i == 0 ? ' active' : ''}`,
         $on: {
-          'click: open a tab': (e, el) => {
+          'click: open a tab': (e) => {
+            let el = e.currentTarget
             e.preventDefault
             el.$('^.app-tabs').$open(i)
           },

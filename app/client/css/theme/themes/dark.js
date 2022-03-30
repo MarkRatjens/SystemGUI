@@ -7,5 +7,5 @@ app.theme.palette('dark', {
   warn: 'orange',
   info: 'blue',
   success: 'green',
-  outline: '#ddd',
+  outline: '#333',
 }, {gradient: false})

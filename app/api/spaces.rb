@@ -8,7 +8,7 @@ module App
         ::Spaces::Space.universe
       end
 
-      def path
+      def directory
         ::Spaces::Space.universes.path
       end
 

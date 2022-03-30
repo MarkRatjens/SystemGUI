@@ -13,7 +13,7 @@ app.dashboard.menu.blueprints.blueprint = (route, blueprintIdentifier) => a.div(
         }
       },
       $on: {
-        click: (e, el) => {
+        click: (e) => {
           let match = el.$match()
           let path = [
             `/blueprints/@${blueprintIdentifier}`,

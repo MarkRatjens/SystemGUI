@@ -22,20 +22,20 @@ app.blueprints.design.blueprint.otherPackages.index = (route, blueprint) => a.di
   a['div.mb-1']([
     app.button({
       label: app.icon('fa fa-list-ol', 'Manage other packages'),
-      onclick: (e, el) => route.open('manage'),
+      onclick: (e) => route.open('manage'),
       class: 'btn btn-secondary',
     }),
     ' ',
     app.button({
       label: app.icon('fa fa-plus', 'Add other package'),
-      onclick: (e, el) => route.open('new'),
+      onclick: (e) => route.open('new'),
       class: 'btn btn-secondary',
     }),
   ]),
   a['div.mb-1']([
     app.button({
       label: app.icon('fa fa-check', 'Done'),
-      onclick: (e, el) => route.open('..'),
+      onclick: (e) => route.open('..'),
       class: 'btn btn-primary',
     }),
   ]),

@@ -1,6 +1,7 @@
-app.docker.image = (image) => a['app-docker-image.app-dashboard-item']({
+app.docker.image = (image) =>
+a['app-docker-image.app-dashboard-item']({
   id: `docker-image-${image.identifier}`,
-  $nodes: (el) => a['div.app-dashboard-item.border-bottom']([
+  $nodes: (el) => a['div.border-bottom']([
     a['div.app-dashboard-item-panel']([
       a['div.app-dashboard-item-heading.container-fluid']([
         a['div.row']([
@@ -18,18 +19,17 @@ app.docker.image = (image) => a['app-docker-image.app-dashboard-item']({
       ], {
         $on: {
           click: (e) => {
-            let commandsEl = e.currentTarget.$('^.app-dashboard-item .app-dashboard-item-commands')
-            if (commandsEl.classList.contains('active')) {
-              commandsEl.classList.remove('active')
+            let menuEl = e.currentTarget.$('^.app-dashboard-item .app-dashboard-item-menu')
+            if (menuEl.classList.contains('active')) {
+              menuEl.classList.remove('active')
             } else {
-              commandsEl.classList.add('active')
+              menuEl.classList.add('active')
+              menuEl.scrollIntoView({block: "center", behavior: 'smooth'});
             }
           },
         }
       }),
-      app.float({
-        right: app.docker.image.commands(image),
-      }),
+      app.docker.image.menu(image),
     ]),
     a['app-docker-image-fetch']({
       $fetch: (el) => (path) => {
@@ -39,9 +39,6 @@ app.docker.image = (image) => a['app-docker-image.app-dashboard-item']({
         })
       }
     }),
-    app.docker.image.run(image),
-    app.docker.image.info(image),
-    app.docker.image.delete(image),
   ]),
   $reindex: (el) => (event) => {
     el.$('app-docker-image-state').$reindex(image)

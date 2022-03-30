@@ -5,13 +5,27 @@ ax.css({
         cursor: 'pointer',
       },
     },
-    '.app-dashboard-item-commands': {
+    '.app-dashboard-item-menu': {
       $: {
-        display: 'none',
+        // display: 'none',
+        display: 'block',
+        opacity: 0,
+        maxHeight: '0px',
+        overflow: 'hidden',
+        transition: `
+        max-height 0.25s cubic-bezier(0, 1, 0, 1) 0s,
+        opacity 0.25s ease-out
+        `,
       },
       '&.active': {
         $: {
-          display: 'block',
+          opacity: 1,
+          maxHeight: '99999px',
+          overflow: 'auto',
+          transition: `
+          max-height 0.25s cubic-bezier(1, 0, 1, 0) 0s,
+          opacity 0.25s ease-in
+          `,
         }
       }
     },

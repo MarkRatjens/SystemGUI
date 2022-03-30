@@ -1,7 +1,7 @@
 app.blueprints.design.blueprint.bindings.new = (route, blueprint) => a.div([
   app.fetch({
-    url: '/api/blueprints/list',
-    success: (blueprints, el) => a.div([
+    url: `/api/blueprints/@${route.params.blueprintIdentifier}/bindables`,
+    success: (bindables, el) => a.div([
       app.blueprints.design.blueprint.form({
         route: route,
         scope: 'binding',
@@ -11,7 +11,7 @@ app.blueprints.design.blueprint.bindings.new = (route, blueprint) => a.div([
             label: 'Target',
             as: 'select',
             placeholder: 'Select blueprint',
-            selections: blueprints,
+            selections: bindables,
             required: true,
           }),
         ],

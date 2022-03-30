@@ -3,7 +3,7 @@ app.blueprints.design.form.show = (route) => a.div([
     right: [
       app.button({
         label: app.icon('fa fa-edit', 'Edit'),
-        onclick: (e, el) => route.open('edit'),
+        onclick: (e) => route.open('edit'),
       }),
     ]
   }),
@@ -17,7 +17,7 @@ app.blueprints.design.form.show = (route) => a.div([
         cancel: {
           icon: 'times',
           label: {display: 'custom', custom: 'Reset'},
-          onclick: (e, el) => el.$('^ax-appkit-asyncform').$render(),
+          onclick: (e) => e.currentTarget.$('^ax-appkit-asyncform').$render(),
         },
         submit: {
           icon: 'check',
@@ -37,7 +37,7 @@ app.blueprints.design.form.show = (route) => a.div([
       app.button({
         label: '{} JSON',
         title: 'Raw form JSON',
-        onclick: (e, el) => {
+        onclick: (e) => {
           modal.$open({
             title: `Raw ${route.params.blueprintIdentifier} form JSON`,
             size: 'lg',

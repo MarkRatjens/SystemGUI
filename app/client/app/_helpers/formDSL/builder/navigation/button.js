@@ -28,8 +28,8 @@ app.formDSL.builder.navigation.button = ( buttonSpec, params ) => {
     button.label = ax.x.lib.text.labelize( buttonSpec.dialogue || '' )
   }
 
-  button.onclick = (e, el) => {
-
+  button.onclick = (e) => {
+    let el = e.currentTarget
     let whitelist = buttonSpec.parameters || []
 
     let sendParams = Object.keys( params )

@@ -1,33 +1,17 @@
 app.docker.actions = () => a['app-docker-actions']([
   ...[
+    ['Blueprints', 'fas fa-shapes', 'blueprints'],
     ['Prebuild','fas fa-compact-disc', 'prebuilds'],
-    ['Orchestrate','fas fa-magic', 'orchestrate'],
+    ['Compositions','fas fa-magic', 'compositions'],
     ['Info','fas fa-info', 'info'],
   ].map((command) => app.button({
     label: app.icon(command[1]),
     title: command[0],
-    buttonTag: {
-      $target: (el) => () => el.$(`^app-docker app-docker-${command[2]}`),
-      $close: (el) => () => {
-        el.classList.remove('active')
-        el.$target().$close()
-      },
-      $open: (el) => () => {
-        let commandsEl = el.$('^.app-dashboard-item-commands')
-        commandsEl.classList.add('active')
-        commandsEl.$$('app-docker-actions > button.active').$close()
-        el.classList.add('active')
-        el.$target().$open()
-      },
-    },
-    onclick: (e, el) => {
+    onclick: (e) => {
       e.stopPropagation()
-      if (el.classList.contains('active')) {
-        el.$close()
-      } else {
-        el.$open()
-      }
+      let el = e.currentTarget
+      el.$('^app-docker-menu').$toggle(el, command[2])
     },
-    class: 'btn app-btn',
+    class: `btn app-btn app-dashboard-item-menu-button app-dashboard-item-menu-button-${command[2]}`,
   })),
 ])

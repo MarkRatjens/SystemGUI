@@ -1,6 +1,7 @@
-app.docker.container = (container) => a['app-docker-container.app-dashboard-item']({
+app.docker.container = (container) =>
+a['app-docker-container.app-dashboard-item']({
   id: `docker-container-${container.identifier}`,
-  $nodes: (el) => a['div.app-dashboard-item.border-bottom']([
+  $nodes: (el) => a['div.border-bottom']([
     a['div.app-dashboard-item-panel']([
       a['div.app-dashboard-item-heading.container-fluid']([
         a['div.row']([
@@ -16,16 +17,17 @@ app.docker.container = (container) => a['app-docker-container.app-dashboard-item
       ], {
         $on: {
           click: (e) => {
-            let commandsEl = e.currentTarget.$('^.app-dashboard-item .app-dashboard-item-commands')
-            if (commandsEl.classList.contains('active')) {
-              commandsEl.classList.remove('active')
+            let menuEl = e.currentTarget.$('^.app-dashboard-item .app-dashboard-item-menu')
+            if (menuEl.classList.contains('active')) {
+              menuEl.classList.remove('active')
             } else {
-              commandsEl.classList.add('active')
+              menuEl.classList.add('active')
+              menuEl.scrollIntoView({block: "center", behavior: 'smooth'});
             }
           },
         }
       }),
-      app.docker.container.commands(container),
+      app.docker.container.menu(container),
     ]),
     a['app-docker-container-fetch']({
       $fetch: (el) => (path) => {

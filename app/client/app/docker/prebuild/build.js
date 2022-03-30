@@ -1,4 +1,5 @@
-app.docker.prebuild.build = (prebuild) => a['app-docker-prebuild-build']({
+app.docker.prebuild.build = (prebuild) =>
+a['app-docker-prebuild-build']({
   $open: (el) => () => {
     el.$nodes = a['div.p-4']([
       app.float({
@@ -17,7 +18,7 @@ app.docker.prebuild.build = (prebuild) => a['app-docker-prebuild-build']({
     el.$nodes = a['app-docker-prebuild-build-commit']([
       a['app-docker-prebuild-build-commit-confirm']([
         app.fetch({
-          url: `/api/packs/@${prebuild}/build`,
+          url: `/api/imaging/@${prebuild}/build`,
           method: 'POST',
           success: () => {
             el.$('app-docker-prebuild-build-commit-confirm').$nodes = []
@@ -41,15 +42,17 @@ app.docker.prebuild.build = (prebuild) => a['app-docker-prebuild-build']({
     el.$nodes = []
   },
   $on: {
-    'app.disconnected': (e, el) => {
+    'app.disconnected': (e) => {
+      let el = e.currentTarget
       e.stopPropagation()
       el.$stop()
-      el.append(a['pre.error.p-1']('Disconnected'))
+      el.append(a['div.stream-message.background-error.mt-n2.p-1']('Disconnected'))
     },
-    'app.timeout': (e, el) => {
+    'app.timeout': (e) => {
+      let el = e.currentTarget
       e.stopPropagation()
       el.$stop()
-      el.append(a['pre.error.p-1']('Timed out'))
+      el.append(a['div.stream-message.background-error.mt-n2.p-1']('Timed out'))
     },
   }
 })

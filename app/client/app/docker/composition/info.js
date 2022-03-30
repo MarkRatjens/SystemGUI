@@ -10,7 +10,7 @@ app.docker.composition.info = (composition) => a['app-docker-composition-info'](
     el.$('app-docker-composition-info-fetch').$nodes = a.div([
       app.fetch({
         url: `/api/arenas/@${composition.identifier}`,
-        placeholder: a['div.p-1'](app.spinner('Loading')),
+        placeholder: a['div.p-2'](app.spinner('Loading')),
         success: (info) => {
           el.$update(info)
           return ''
@@ -20,12 +20,14 @@ app.docker.composition.info = (composition) => a['app-docker-composition-info'](
   },
   $update: (el) => (info) => {
     el.$('app-docker-composition-info-output').$nodes = [
-      a['div.p-1']([
-        x.out(info)
+      a['div.well.m-1']([
+        a['div.p-1.overflow-auto']([
+          x.out(info)
+        ])
       ], {
         style: {
           display: 'block',
-          maxHeight: '500px',
+          maxHeight: '300px',
           overflowY: 'scroll',
         }
       }),

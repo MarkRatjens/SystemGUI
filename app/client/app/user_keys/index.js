@@ -1,12 +1,13 @@
 app.user_keys.index = (route) => a.div([
   app.close(route),
-  a.h5('User keys'),
+  a['h5.py-2']('User keys'),
   a.p([
     app.button({
       label: app.icon('fa fa-plus', 'New'),
       onclick: () => route.open('new')
     }),
   ]),
+  a.hr,
   app.fetch({
     url: `/api/user_keys`,
     success: user_keys => user_keys.length

@@ -1,6 +1,6 @@
 app.settings.show = (route) => a.div([
   app.close(route),
-  a.h5("Settings"),
+  a['h5.py-2']("Settings"),
   a.hr,
   app.fetch({
     url: [
@@ -27,17 +27,16 @@ app.settings.show = (route) => a.div([
                 as: 'one',
                 horizontal: true,
                 report: rr => [
-                  app.float({
+                  a['div.p-1'](app.float({
                     left: a['div.ml-4']([
-                      a.h5(rr.object.label),
-                      a.p(rr.object.explanation),
+                      a.h5((rr.object || {}).label || ''),
+                      a.p((rr.object || {}).explanation || ''),
                     ]),
-                    right: a['div.p-2'](
-                      a['div.p-1']({style: {backgroundColor: rr.object.color.text}}),
+                    right: rr.object ? a['div.p-2'](
+                      a['div.p-2']({style: {backgroundColor: rr.object.color.text}}),
                       {style: {backgroundColor: rr.object.color.background}}
-                    ),
-                  }),
-
+                    ) : a.br,
+                  })),
                 ]
               }),
             ),
@@ -86,9 +85,10 @@ app.settings.show = (route) => a.div([
                       vim: "Vim",
                       emacs: "Emacs",
                       sublime: "Sublime",
-                    },                  }),
-                  ]
-                }),
+                    },
+                  }),
+                ]
+              }),
             ),
             () => route.open('editor')
           ),

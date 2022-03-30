@@ -3,6 +3,7 @@ app.arenas.show = (route) => a['app-arenas-arena-show']([
     url: [
       `/api/arenas/@${route.params.arenaIdentifier}`,
       `/api/arenas/@${route.params.arenaIdentifier}/state`,
+      // `/api/arenas/@${route.params.arenaIdentifier}/relations`,
       `/api/resolutions/list`,
     ],
     query: [

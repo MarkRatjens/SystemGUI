@@ -49,7 +49,8 @@ app.stream = (options) => {
     } ),
   ], {
     $on: {
-      'ax.appkit.xtermjs.ready': (e, el) => {
+      'ax.appkit.xtermjs.ready': (e) => {
+        let el = e.currentTarget
         el.$('app-stream-eventsource').$start()
       },
     },

@@ -10,7 +10,7 @@ app.docker.container.top = (container) => a['app-docker-container-top']([
     el.$('app-docker-container-top-fetch').$nodes = a.div([
       app.fetch({
         url: `/api/docker/containers/@${container.identifier}/top`,
-        placeholder: a['div.p-1'](app.spinner('Loading')),
+        placeholder: a['div.p-2'](app.spinner('Loading containers')),
         success: (top) => {
           el.$update(top)
           return ''
@@ -20,13 +20,13 @@ app.docker.container.top = (container) => a['app-docker-container-top']([
   },
   $update: (el) => (top) => {
     el.$('app-docker-container-top-output').$nodes = [
-      a['table.table.table-s.table-borderless']([
+      a['table.table.table-s.table-borderless.mt-1']([
         a.thead(top.Titles.map(title => a.th(title))),
         a.tbody(top.Processes.map(process => a.tr(process.map(col => a.td(col)))))
       ], {
         style: {
           display: 'block',
-          maxHeight: '500px',
+          maxHeight: '300px',
           overflowY: 'scroll',
           fontFamily: 'monospace',
         }

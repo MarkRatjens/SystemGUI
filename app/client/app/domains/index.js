@@ -1,6 +1,6 @@
 app.domains.index = (route) => a['app-domains-index']([
   app.close(route),
-  a.h5('Domains'),
+  a['h5.py-2']('Domains'),
   a.p([
     app.button({
       label: app.icon('fa fa-plus', 'New'),
@@ -16,7 +16,7 @@ app.domains.index = (route) => a['app-domains-index']([
         a.td([domain.identifier]),
         a.td([domain.primary ? app.icon('fas fa-star') : '']),
       ], {
-        $on: {click: (e, el) => route.open(`@${domain.identifier}`)},
+        $on: {click: (e) => route.open(`@${domain.identifier}`)},
         class: 'app-clickable',
       }))),
     ], {
