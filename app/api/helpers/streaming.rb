@@ -6,6 +6,37 @@ module App
         stream { |out| streaming(out, &block) }
       end
 
+      # def stream_output_from(filepath)
+      #   stream do |out|
+      #     begin
+      #       keep_alive(out)
+      #       output_events_from(filepath, out)
+      #     rescue => e
+      #       output_exception(e, out)
+      #     end
+      #     @stream_open = false # to close keep_alive
+      #   end
+      # end
+
+      def tail_file(filepath)
+        File.open(filepath, 'r').tap do |file|
+          tail_file_started = false
+          tail_file_stopped = false
+          while !tail_file_stopped do
+            sleep 0.01
+            file.seek(0,IO::SEEK_SET) unless tail_file_started
+            select([file])
+            file.gets.tap do |line|
+              next unless line
+              tail_file_started = true
+              tail_file_stopped = line.strip == 4.chr # ascii 04 is EOT
+              yield line if !tail_file_stopped
+            end
+          end
+        end
+      end
+
+
       def stream_action
         stream do |out|
           streaming(out) do |out|

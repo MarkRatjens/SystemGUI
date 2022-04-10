@@ -4,7 +4,7 @@ a['app-docker-prebuild-output']({
     el.$nodes = a['div.m-1']([
       app.stream({
         label: `${prebuild.split('::')[1]} build`,
-        url: `/api/streaming/packs/build`,
+        url: `/api/streaming/${prebuild.replace('::', '/')}/build`,
         complete: (el) => {
           el.append(a['div.stream-message.background-info.mt-n2.p-1']('Complete'))
         }
