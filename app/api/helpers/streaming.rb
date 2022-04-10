@@ -6,18 +6,6 @@ module App
         stream { |out| streaming(out, &block) }
       end
 
-      # def stream_output_from(filepath)
-      #   stream do |out|
-      #     begin
-      #       keep_alive(out)
-      #       output_events_from(filepath, out)
-      #     rescue => e
-      #       output_exception(e, out)
-      #     end
-      #     @stream_open = false # to close keep_alive
-      #   end
-      # end
-
       def tail_file(filepath)
         File.open(filepath, 'r').tap do |file|
           tail_file_started = false
@@ -35,7 +23,6 @@ module App
           end
         end
       end
-
 
       def stream_action
         stream do |out|

@@ -127,11 +127,6 @@ module App
             inspect['State']['OOMKilled']
           end
 
-          # def created
-          #   debugger
-          #   Time.parse(info['Created']).to_i
-          # end
-
           def state
             {
               identifier: identifier,

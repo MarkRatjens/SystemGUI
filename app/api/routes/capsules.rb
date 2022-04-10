@@ -8,11 +8,6 @@ module App
           @controller = ::Capsules::Controllers::Controller.new
         end
 
-        # post '/capsules/@:identifier/build' do
-        #   params[:threaded] = true
-        #   action(action: :build)
-        # end
-
       end
     end
   end
