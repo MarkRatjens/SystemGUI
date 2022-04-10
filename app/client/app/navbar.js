@@ -12,17 +12,17 @@ a["nav#navbar.navbar.navbar-expand.navbar-light.activatable"](
 
     a['div#navbarCollapse.collapse.navbar-collapse'](
       a['ul.navbar-nav.mr-auto.mt-0']([
-        // app.navbar.item({
-        //   route: route,
-        //   icon: 'fas fa-home',
-        //   path: '/',
-        //   title: 'Home',
-        // }),
         app.navbar.item({
           route: route,
-          icon: 'fas fa-running',
+          icon: 'fas fa-tachometer-alt',
           path: '/',
-          title: 'Hosts',
+          title: 'Dashboard',
+        }),
+        app.navbar.item({
+          route: route,
+          icon: 'fas fa-tools',
+          path: '/providers',
+          title: 'Providers',
         }),
         app.navbar.item({
           route: route,

@@ -24,7 +24,8 @@ app.docker.container.info = (container) => a['app-docker-container-info']({
           label: 'Stats',
           body: a['div.border-left.border-bottom.border-right.p-1.overflow-auto']([
             app.fetch({
-              url: `/api/docker/containers/@${container.identifier}/stats`,
+              url: `/api/docker/containers/@${container.identifier}/execute`,
+              query: {execute: 'stats'},
               placeholder: a['div.p-2'](app.spinner('Loading stats')),
               success: (stats) => a.div([
                 x.out(stats)

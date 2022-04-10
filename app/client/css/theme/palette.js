@@ -1,8 +1,8 @@
 app.theme.palette = (name, colors, options) => app.theme({
   name: name,
   color: colors.text1,
-  backgroundColor: colors.bg2,
-  background: options.gradient ? `linear-gradient(to bottom, ${colors.bg1}, ${colors.bg2})` : undefined,
+  backgroundColor: colors.bg1,
+  background: options.gradient ? `linear-gradient(to bottom, ${colors.bg2}, ${colors.bg1})` : undefined,
 
   placeholderColor: colors.text2,
   borderColor: colors.outline,
@@ -13,13 +13,13 @@ app.theme.palette = (name, colors, options) => app.theme({
   controlBoxShadowColor: colors.outline,
 
   buttonColor: colors.text1,
-  buttonBackgroundColor: colors.bg1,
-  buttonColorActive: colors.bg1,
+  buttonBackgroundColor: colors.bg2,
+  buttonColorActive: colors.bg2,
   buttonBackgroundColorActive: colors.text2,
-  buttonColorHover: colors.bg1,
-  buttonBackgroundColorHover: colors.text1,
+  buttonColorHover: colors.text1,
+  buttonBackgroundColorHover: colors.bg2,
 
-  navbarBackgroundColor: colors.bg1,
+  navbarBackgroundColor: colors.bg2,
   navbarBrandColor: colors.text1,
   navbarButtonColor: colors.text1,
   navbarButtonColorActive: colors.text2,

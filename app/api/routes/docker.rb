@@ -33,16 +33,46 @@ module App
           docker { Docker.show }
         }
 
+        post '/docker/prebuild' do
+          @controller = ::Arenas::Controllers::Controller.new
+          blueprint_identifier = params[:blueprint_identifier]
+          identifier = "$#{params[:identifier].blank? ? blueprint_identifier : params[:identifier]}"
+          @controller.create(model: {identifier: identifier}).tap do
+            @controller.provide(identifier: identifier, role_identifier: :runtime, provider_identifier: "docker_local")
+            @controller.provide(identifier: identifier, role_identifier: :packing, provider_identifier: "docker_local")
+            @controller.bind(identifier: identifier, blueprint_identifier: blueprint_identifier)
+            @controller.resolve(identifier: identifier)
+            @controller.pack(identifier: identifier)
+          end.to_json
+        end
+
+        post '/docker/composition' do
+          @controller = ::Arenas::Controllers::Controller.new
+          blueprint_identifier = params[:blueprint_identifier]
+          identifier = params[:identifier].blank? ? blueprint_identifier : params[:identifier]
+          @controller.create(model: {identifier: identifier}).tap do
+            @controller.provide(identifier: identifier, role_identifier: :runtime, provider_identifier: "docker_local")
+            @controller.provide(identifier: identifier, role_identifier: :packing, provider_identifier: "docker_local")
+            @controller.provide(identifier: identifier, role_identifier: :orchestration, provider_identifier: "docker_compose_local")
+            connectables = @controller.connectables(identifier: identifier).result
+            connectables.each do |connectable|
+              unless connectable.identifier[0] == '$'
+                @controller.connect(identifier: identifier, other_identifier: connectable.identifier)
+              end
+            end
+            @controller.stage(identifier: identifier, blueprint_identifier: blueprint_identifier)
+            # @controller.resolve(identifier: identifier)
+            # @controller.pack(identifier: identifier)
+            # @controller.orchestrate(identifier: identifier)
+          end.to_json
+        end
+
         get ('/docker/containers/@:container_id') {
           docker { @container.show }
         }
 
-        get ('/docker/containers/@:container_id/stats') {
-          docker { @container.stats }
-        }
-
-        get ('/docker/containers/@:container_id/top') {
-          docker { @container.top }
+        get ('/docker/containers/@:container_id/execute') {
+          docker { @container.send(params[:execute]) }
         }
 
         delete ('/docker/containers/@:container_id') {
@@ -50,17 +80,15 @@ module App
         }
 
         get ('/docker/containers/@:container_id/instruct/:instruction') {
-          instruction = params[:instruction]
-          return 404 unless instruction.match(/^start|stop|pause|kill$/)
-          docker_container_instruction(@container, instruction)
+          docker { @container.instruct(params[:instruction]) }
         }
 
         get ('/docker/images/@:image_id') {
           docker { @image.show }
         }
 
-        get ('/docker/images/@:image_id/history') {
-          docker { @image.history }
+        get ('/docker/images/@:image_id/execute') {
+          docker { @image.send(params[:execute]) }
         }
 
         delete ('/docker/images/@:image_id') {

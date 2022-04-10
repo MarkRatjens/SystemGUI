@@ -1,6 +1,6 @@
 app.exception = (message) => {
   let showModal = () => modal.$open({
-    size: 'lg',
+    size: 'xl',
     title: ax.a['.error'](app.icon('fa fa-bug', 'Server exception!')),
     body: ax.a.pre(message),
   })

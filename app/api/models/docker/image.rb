@@ -39,10 +39,6 @@ module App
             id[7..18]
           end
 
-          def instruct(instruction)
-            @image.send(instruction)
-          end
-
           def create_container
             ::Docker::Container.create(Image: id).id[0..11]
           end
@@ -50,7 +46,7 @@ module App
           def delete
             raise Error.new("Failed to delete image because it is being used by container#{containers.length == 1 ? '' : 's'} #{containers.join(', ')}.") if containers.any?
             raise Error.new("Failed to delete image because it has descendant#{decendants.length == 1 ? '' : 's'} #{decendants.join(', ')}.") if decendants.any?
-            @image.delete
+            @image.delete(force: true)
           end
 
           def history
@@ -76,15 +72,16 @@ module App
             info['Size']
           end
 
-          # def parent_identifier
-          #   info['Parent'][7..18]
-          # end
+          def created
+            Time.parse(info['Created']).to_i
+          end
 
           def state
             {
               identifier: identifier,
               tags: tags,
               size: size,
+              created: created,
             }
           end
 

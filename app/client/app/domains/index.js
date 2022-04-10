@@ -4,6 +4,7 @@ app.domains.index = (route) => a['app-domains-index']([
   a.p([
     app.button({
       label: app.icon('fa fa-plus', 'New'),
+      title: 'New domain',
       onclick: () => route.open('new'),
     }),
   ]),

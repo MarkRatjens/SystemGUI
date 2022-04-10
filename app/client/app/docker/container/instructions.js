@@ -1,9 +1,9 @@
 app.docker.container.instructions = () => a['app-docker-container-instructions']([
   a['app-docker-container-instruct-buttons']([
-    ['Start', '/instruct/start', 'fas fa-play'],
-    ['Pause', '/instruct/pause', 'fas fa-pause'],
-    ['Stop', '/instruct/stop', 'fas fa-stop'],
-    ['Kill', '/instruct/kill', 'fas fa-eject'],
+    ['Start', 'toggle_start', 'fas fa-play'],
+    ['Pause', 'toggle_pause', 'fas fa-pause'],
+    ['Stop', 'stop', 'fas fa-stop'],
+    ['Kill', 'kill', 'fas fa-eject'],
   ].map((instruction) => app.button({
     label: app.icon(instruction[2]),
     title: instruction[0],

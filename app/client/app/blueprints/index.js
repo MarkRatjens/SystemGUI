@@ -1,38 +1,38 @@
 app.blueprints.index = (route) => a.div([
   app.close(route),
-  a['h5.py-2']('Blueprints'),
   a.p([
     app.button({
-      label: app.icon('fas fa-file-import', 'Import'),
-      onclick: (e) => route.open('import'),
+      label: app.icon('fa fa-plus', 'New'),
+      title: 'New blueprint',
+      onclick: (e) => route.open('new'),
     }),
     ' ',
     app.button({
-      label: app.icon('fa fa-plus', 'New'),
-      onclick: (e) => route.open('new'),
+      label: app.icon('fas fa-file-import', 'Import'),
+      title: 'Import blueprint',
+      onclick: (e) => route.open('import'),
     }),
   ]),
+  a.small('Blueprints'),
   app.fetch({
     url: '/api/blueprints',
     placeholder: a['div.p-2'](app.spinner("Loading blueprints")),
-    success: blueprints => blueprints.length
-    ? a.table([
-      a.tbody(app.sortByIdentifier(blueprints).map(blueprint => a.tr([
-        a.td([blueprint.identifier]),
-        a.td([
+    success: (blueprints, el) => blueprints.length
+    ? a['div.container-fluid.border-top'](blueprints.map(blueprint => app.clickable(
+      a['div.row.app-clickable.border-bottom']([
+        a['div.col-md-3.p-2']([
+          blueprint.identifier,
+        ]),
+        a['div.col-md-3.p-2']([
           (blueprint.about || {}).title || a['!']('&nbsp;'),
-          a.br,
+        ]),
+        a['div.col-md.p-2']([
           a.small([(blueprint.about || {}).explanation || a['!']('&nbsp;')]),
         ]),
-        a.td(app.locationLabel(blueprint.location)),
-        a.td(blueprint.utilized ? app.icon('fas fa-vector-square') : ''),
-      ], {
-        $on: {click: (e) => route.open(`@${blueprint.identifier}`)},
-        class: 'app-clickable',
-      }))),
-    ], {
-      class: 'table',
-    })
-    : app.placeholder('No blueprints'),
-  }),
+      ]),
+      () => route.open(`@${blueprint.identifier}`)
+    ))
+  )
+  : a['.p-2'](app.placeholder('No blueprints')),
+}),
 ])

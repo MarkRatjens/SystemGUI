@@ -7,14 +7,14 @@ app.docker.composition.new = () => a['app-docker-composition-new.app-docker-comm
         placeholder: a['div.p-1'](app.spinner('Loading blueprints')),
         success: (blueprints) => {
           return app.jsonForm({
-            url: "/api/arenas",
+            url: "/api/docker/composition",
             buttonless: true,
             method: 'POST',
             form: (f) => [
               a['div.row.no-gutters']([
                 a['div.col-lg-6.px-1']([
                   f.field({
-                    key: "blueprint",
+                    key: "blueprint_identifier",
                     placeholder: 'Select blueprint for composition',
                     name: 'composition-blueprint',
                     as: 'select',
@@ -36,19 +36,6 @@ app.docker.composition.new = () => a['app-docker-composition-new.app-docker-comm
                 ]),
               ]),
             ],
-            digest: (form) => {
-              return {
-                identifier: form.identifier || form.blueprint,
-                model: {
-                  identifier: form.identifier || form.blueprint,
-                  bindings: [
-                    {
-                      target_identifier: form.blueprint
-                    }
-                  ]
-                }
-              }
-            },
             success: (arena) => {
               el.$nodes = a['div.m-3.p-1']([
                 `Created composition ${arena}`,

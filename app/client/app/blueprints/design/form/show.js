@@ -40,7 +40,6 @@ app.blueprints.design.form.show = (route) => a.div([
         onclick: (e) => {
           modal.$open({
             title: `Raw ${route.params.blueprintIdentifier} form JSON`,
-            size: 'lg',
             body: [form],
           })
         },

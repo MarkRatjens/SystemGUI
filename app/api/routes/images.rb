@@ -1,14 +1,14 @@
 module App
   class Api
     module Routes
-      module Packs
+      module Images
         extend Sinatra::Extension
 
-        before '/imaging/?*' do
-          @controller = ::Imaging::Controllers::Controller.new
+        before '/images/?*' do
+          @controller = ::Images::Controllers::Controller.new
         end
 
-        post '/imaging/@:identifier/build' do
+        post '/images/@:identifier/build' do
           params[:threaded] = true
           action(action: :build)
         end

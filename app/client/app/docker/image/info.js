@@ -9,7 +9,7 @@ app.docker.image.info = (image) => a['app-docker-image-info']({
             app.fetch({
               url: `/api/docker/images/@${image.identifier}`,
               placeholder: a['div.p-2'](app.spinner('Loading image')),
-              success: (info) => d.div([
+              success: (info) => a.div([
                 x.out(info)
               ], {
                 style: {
@@ -24,9 +24,10 @@ app.docker.image.info = (image) => a['app-docker-image-info']({
           label: 'History',
           body: a['div.border-left.border-bottom.border-right.p-1.overflow-auto']([
             app.fetch({
-              url: `/api/docker/images/@${image.identifier}/history`,
+              url: `/api/docker/images/@${image.identifier}/execute`,
+              query: {execute: 'history'},
               placeholder: a['div.p-2'](app.spinner('Loading history')),
-              success: (stats) => d.div([
+              success: (stats) => a.div([
                 x.out(stats)
               ], {
                 style: {

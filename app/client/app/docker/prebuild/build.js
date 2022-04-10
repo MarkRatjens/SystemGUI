@@ -18,7 +18,7 @@ a['app-docker-prebuild-build']({
     el.$nodes = a['app-docker-prebuild-build-commit']([
       a['app-docker-prebuild-build-commit-confirm']([
         app.fetch({
-          url: `/api/imaging/@${prebuild}/build`,
+          url: `/api/packs/@${prebuild}/build`,
           method: 'POST',
           success: () => {
             el.$('app-docker-prebuild-build-commit-confirm').$nodes = []

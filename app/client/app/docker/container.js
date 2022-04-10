@@ -10,7 +10,12 @@ a['app-docker-container.app-dashboard-item']({
             ' ',
             a['.text-nowrap'](container.name),
           ]),
-          a['div.col-md.p-2']([
+          a['div.col-md-2.p-2']([
+            a['.d-inline-block.text-nowrap'](
+              a.small(new Date(container.created*1000).toLocaleString()),
+            ),
+          ]),
+          a['div.col-md-2.p-2']([
             app.docker.container.state(container),
           ]),
         ]),
@@ -30,9 +35,9 @@ a['app-docker-container.app-dashboard-item']({
       app.docker.container.menu(container),
     ]),
     a['app-docker-container-fetch']({
-      $fetch: (el) => (path) => {
+      $fetch: (el) => (instruction) => {
         el.$nodes = app.fetch({
-          url: `/api/docker/containers/@${container.identifier}${path}`,
+          url: `/api/docker/containers/@${container.identifier}/instruct/${instruction}`,
           success: () => '',
         })
       }

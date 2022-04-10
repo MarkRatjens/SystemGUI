@@ -1,7 +1,7 @@
 app.docker.composition.actions = (composition) => a['app-docker-composition-actions']([
   ...[
     ['Applications', 'fas fa-list', 'applications'],
-    ['Relations', 'fas fa-project-diagram', 'relations'],
+    // ['Relations', 'fas fa-project-diagram', 'relations'],
     ['Up', 'fas fa-arrow-up', 'up'],
     ['Down', 'fas fa-arrow-down', 'down'],
     ['Info', 'fas fa-info', 'info'],

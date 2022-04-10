@@ -56,7 +56,10 @@ app.docker.blueprint.import = () => a['app-docker-blueprint-import.app-docker-co
           },
           force: form.force,
         }),
-        success: () => el.$stream(),
+        success: (blueprintIdentifier) => {
+          // debugger
+          el.$stream()
+        },
       }),
     ])
   },

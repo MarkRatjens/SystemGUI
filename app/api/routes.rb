@@ -5,11 +5,13 @@ module App
 
       require_relative 'routes/arenas'
       require_relative 'routes/blueprints'
+      require_relative 'routes/capsules'
       require_relative 'routes/docker'
       require_relative 'routes/domains'
-      require_relative 'routes/imaging'
+      require_relative 'routes/images'
       require_relative 'routes/locations'
       require_relative 'routes/packs'
+      require_relative 'routes/providing'
       require_relative 'routes/provisioning'
       require_relative 'routes/publications'
       require_relative 'routes/resolutions'
@@ -20,11 +22,13 @@ module App
 
       register Arenas
       register Blueprints
+      register Capsules
       register Docker
       register Domains
-      register Imaging
+      register Images
       register Locations
       register Packs
+      register Providing
       register Provisioning
       register Publications
       register Resolutions

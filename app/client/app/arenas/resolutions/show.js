@@ -26,9 +26,9 @@ app.arenas.resolutions.show = (route) => a['app-arenas-resolutions-show']([
           a['.error'](app.icon('fas fa-exclamation-circle', 'No pack')),
           ' Please pack arena',
         ]
-        : !summary.provisions.exist
+        : !summary.orchestration.exist
         ? [
-          a['.error'](app.icon('fas fa-exclamation-circle', 'No provisions')),
+          a['.error'](app.icon('fas fa-exclamation-circle', 'No orchestration')),
           ' Please provision arena',
         ]
         : summary.stale
@@ -52,7 +52,6 @@ app.arenas.resolutions.show = (route) => a['app-arenas-resolutions-show']([
             onclick: () => {
               modal.$open({
                 title: `Raw ${route.params.arenaIdentifier} > ${route.params.blueprintIdentifier} resolution JSON`,
-                size: 'lg',
                 body: [
                   a.h5('Model'),
                   resolution,

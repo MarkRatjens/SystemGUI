@@ -10,7 +10,12 @@ a['app-docker-image.app-dashboard-item']({
             ' ',
             a['.d-inline-block.text-nowrap'](image.tags.map(tag => a.div(tag))),
           ]),
-          a['div.col-md.p-2']([
+          a['div.col-md-2.p-2']([
+            a['.d-inline-block.text-nowrap'](
+              a.small(new Date(image.created*1000).toLocaleString()),
+            ),
+          ]),
+          a['div.col-md-2.p-2']([
             app.float({
               right: a.small(`${(image.size/1048576).toFixed(2)} MB`),
             }),

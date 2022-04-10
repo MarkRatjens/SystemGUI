@@ -37,6 +37,8 @@ app.blueprints.import = (route) => a.div([
       }),
     ],
     digest: (form) => app.compact(form),
-    success: () => route.load('output'),
+    success: (model) => {
+      route.load('identify', model)
+    },
   }),
 ]);

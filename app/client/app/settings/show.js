@@ -21,13 +21,13 @@ app.settings.show = (route) => a.div([
         },
         report: r => [
           app.clickable(
-            a['div.p-1'](
+            a['div.p-1.px-2'](
               r.field({
                 key: 'about',
                 as: 'one',
                 horizontal: true,
                 report: rr => [
-                  a['div.p-1'](app.float({
+                  a['div.p-1.px-2'](app.float({
                     left: a['div.ml-4']([
                       a.h5((rr.object || {}).label || ''),
                       a.p((rr.object || {}).explanation || ''),
@@ -43,7 +43,7 @@ app.settings.show = (route) => a.div([
             () => route.open('about')
           ),
           app.clickable(
-            a['div.p-1'](
+            a['div.p-1.px-2'](
               r.field({
                 key: 'domains',
                 as: 'output',
@@ -59,7 +59,7 @@ app.settings.show = (route) => a.div([
             () => route.open('domains')
           ),
           app.clickable(
-            a['div.p-1'](
+            a['div.p-1.px-2'](
               r.field({
                 key: 'user_keys',
                 as: 'output',
@@ -70,7 +70,7 @@ app.settings.show = (route) => a.div([
             () => route.open('user_keys')
           ),
           app.clickable(
-            a['div.p-1'](
+            a['div.p-1.px-2'](
               r.field({
                 key: 'editor',
                 label: 'Editor key map',

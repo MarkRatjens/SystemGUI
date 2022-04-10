@@ -10,6 +10,7 @@ app.router = () => x.router({
           '/settings/?*': app.settings,
           '/blueprints/?*': app.blueprints,
           '/arenas/?*': app.arenas,
+          '/providers/?*': app.providers,
           '/disconnected': app.disconnected,
           '/reconnect': app.reconnect,
           '/signedout': app.signedout,

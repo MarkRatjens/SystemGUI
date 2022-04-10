@@ -6,7 +6,7 @@ app.user_keys.form.issuer = (f) => [
     placeholder: 'Domain',
     help: [
       'Enter a domain for the issuer of the token and a username.',
-      'Also enter an identfier when you have more than one key for a user of a domain. ' +
+      'Also enter an identifier when you have more than one key for a user of a domain. ' +
       'The identifier is used to uniquely identify the user key when multiple user keys share ' +
       'the same username and domain combination.',
     ],
