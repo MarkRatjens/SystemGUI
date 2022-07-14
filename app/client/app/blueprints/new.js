@@ -1,5 +1,5 @@
 app.blueprints.new = (route) => a.div([
-  a.h1("New blueprint"),
+  a.h3("New blueprint"),
   app.jsonForm({
     url: "/api/blueprints",
     method: 'POST',

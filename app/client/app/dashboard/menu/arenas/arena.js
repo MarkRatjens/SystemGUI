@@ -13,9 +13,7 @@ app.dashboard.menu.arenas.arena = (route, identifier) => a['app-menu-arenas']([
         }
       },
       $on: {
-        click: (e, el) => {
-          route.open(`/arenas/@${identifier}`)
-        },
+        click: (e) => route.open(`/arenas/@${identifier}`),
       },
       $match: (el) => () => {
         return window.location.pathname.match(/^\/arenas\/@([\w\-]+)/) || []

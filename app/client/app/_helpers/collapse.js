@@ -11,7 +11,7 @@ app.collapse = ( options={} ) => a['app-collapse']( [
       $iconClass: (el) => () => el.$display ?
       'fa fa-caret-down' : 'fa fa-caret-right',
     }),
-    onclick: (e, el) => el.$('^').$toggle(),
+    onclick: (e) => e.currentTarget.$('^').$toggle(),
     class: 'btn app-btn',
     ...options.button,
   } ),

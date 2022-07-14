@@ -10,6 +10,7 @@ module App
                 name: indexed_container.info['Names'][0][1..-1],
                 image_identifier: indexed_container.info['ImageID'][7..18],
                 status: indexed_container.info['State'],
+                created: indexed_container.info['Created'],
               }
             end.reverse
           end
@@ -37,8 +38,40 @@ module App
             id[0..11]
           end
 
+          # Instructions START STOP PAUSE KILL
+          # Containers can take a while to change state
+          # Threaded so that UI gets immediate response,
+          # which confirms that that instruction has been accepted.
+          # Any changes in container state are then sent to the UI via events.
           def instruct(instruction)
-            @container.send(instruction)
+            Thread.new do
+              send(instruction)
+            rescue ::Docker::Error::ConflictError,
+              ::Docker::Error::NotFoundError => e
+              logger.info JSON.parse(e.message)['message']
+            rescue => e
+              logger.warn e.full_message
+            end
+            "#{instruction} #{identifier}"
+          end
+
+          def toggle_start
+            return @container.unpause if paused?
+            return @container.restart if running?
+            @container.start
+          end
+
+          def toggle_pause
+            return @container.unpause if paused?
+            @container.pause
+          end
+
+          def stop
+            @container.stop
+          end
+
+          def kill
+            @container.kill
           end
 
           def show

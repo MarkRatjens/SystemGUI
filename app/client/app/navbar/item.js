@@ -2,7 +2,8 @@ app.navbar.item = (args) => a.li(
   a.a(app.icon(args.icon), {
     class: 'nav-link',
     href: '#',
-    $on: {click: (e, el) => {
+    $on: {click: (e) => {
+      let el = e.currentTarget
       e.preventDefault();
       args.route.open(args.path)
     }},

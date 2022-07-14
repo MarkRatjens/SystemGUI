@@ -6,7 +6,7 @@ module App
 
         # TODO: move to spaces
         get '/settings' do
-          {result: YAML.load_file(settings_filepath)}.to_json
+          {result: YAML.load_file(settings_filepath) || {}}.to_json
         end
 
         # TODO: move to spaces

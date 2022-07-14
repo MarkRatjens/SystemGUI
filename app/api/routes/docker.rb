@@ -33,16 +33,48 @@ module App
           docker { Docker.show }
         }
 
+        post '/docker/prebuild' do
+          @controller = ::Arenas::Controllers::Controller.new
+          blueprint_identifier = params[:blueprint_identifier]
+          identifier = :base
+          @controller.create(model: {identifier: identifier}).tap do
+            @controller.build_from(identifier: identifier, image_identifier: :debian)
+            @controller.provide(identifier: identifier, role_identifier: :runtime, provider_identifier: "docker_local")
+            @controller.provide(identifier: identifier, role_identifier: :packing, provider_identifier: "docker_local")
+          end
+          @controller.bind(identifier: identifier, blueprint_identifier: blueprint_identifier)
+          @controller.resolve(identifier: identifier)
+          @controller.pack(identifier: identifier)
+          {result: "#{identifier}::#{params[:blueprint_identifier]}"}.to_json
+        end
+
+        post '/docker/composition' do
+          @controller = ::Arenas::Controllers::Controller.new
+          blueprint_identifier = params[:blueprint_identifier]
+          identifier = params[:identifier].blank? ? blueprint_identifier : params[:identifier]
+          # debugger
+          @controller.create(model: {identifier: identifier}).tap do
+            @controller.build_from(identifier: identifier, image_identifier: :docker_base_debian)
+            @controller.provide(identifier: identifier, role_identifier: :runtime, provider_identifier: "docker_local")
+            @controller.provide(identifier: identifier, role_identifier: :packing, provider_identifier: "docker_local")
+            @controller.provide(identifier: identifier, role_identifier: :orchestration, provider_identifier: "docker_compose_local")
+          end
+          connectables = @controller.connectables(identifier: identifier).result
+          connectables.each do |connectable|
+            unless connectable.identifier == 'base'
+              @controller.connect(identifier: identifier, other_identifier: connectable.identifier)
+            end
+          end
+          @controller.stage(identifier: identifier, blueprint_identifier: blueprint_identifier)
+          {result: identifier}.to_json
+        end
+
         get ('/docker/containers/@:container_id') {
           docker { @container.show }
         }
 
-        get ('/docker/containers/@:container_id/stats') {
-          docker { @container.stats }
-        }
-
-        get ('/docker/containers/@:container_id/top') {
-          docker { @container.top }
+        get ('/docker/containers/@:container_id/execute') {
+          docker { @container.send(params[:execute]) }
         }
 
         delete ('/docker/containers/@:container_id') {
@@ -50,17 +82,15 @@ module App
         }
 
         get ('/docker/containers/@:container_id/instruct/:instruction') {
-          instruction = params[:instruction]
-          return 404 unless instruction.match(/^start|stop|pause|kill$/)
-          docker_container_instruction(@container, instruction)
+          docker { @container.instruct(params[:instruction]) }
         }
 
         get ('/docker/images/@:image_id') {
           docker { @image.show }
         }
 
-        get ('/docker/images/@:image_id/history') {
-          docker { @image.history }
+        get ('/docker/images/@:image_id/execute') {
+          docker { @image.send(params[:execute]) }
         }
 
         delete ('/docker/images/@:image_id') {
@@ -76,8 +106,8 @@ module App
         # TODO: this route needs attention.
         # Are additional params needed, such as :container_name, or :tag?
         # Maybe change to POST /docker/containers
-        get ('/docker/images/@:image_id/run') {
-          docker { @image.run }
+        post ('/docker/images/@:image_id/create_container') {
+          docker { @image.create_container }
         }
       end
     end

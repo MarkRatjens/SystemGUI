@@ -14,21 +14,21 @@ a["nav#navbar.navbar.navbar-expand.navbar-light.activatable"](
       a['ul.navbar-nav.mr-auto.mt-0']([
         app.navbar.item({
           route: route,
-          icon: 'fas fa-home',
+          icon: 'fas fa-tachometer-alt',
           path: '/',
-          title: 'Home',
-        }),
-        app.navbar.item({
-          route: route,
-          icon: 'fas fa-vector-square',
-          path: '/arenas',
-          title: 'Arenas',
+          title: 'Dashboard',
         }),
         app.navbar.item({
           route: route,
           icon: 'fas fa-shapes',
           path: '/blueprints',
           title: 'Blueprints',
+        }),
+        app.navbar.item({
+          route: route,
+          icon: 'fas fa-vector-square',
+          path: '/arenas',
+          title: 'Arenas',
         }),
       ])
     ),

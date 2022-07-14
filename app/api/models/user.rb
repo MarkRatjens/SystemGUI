@@ -70,7 +70,7 @@ module App
         private
 
         def dirpath
-          Api.spaces.path.join('sessions')
+          Api.spaces.directory.join('sessions')
         end
 
         def filepath

@@ -11,8 +11,8 @@ app.user_keys.edit = (route) => a.div([
         scope: 'model',
         horizontal: true,
         form: (f) => [
-          ...app.user_keys.form.issuer(f),
           ...app.user_keys.form.about(f),
+          ...app.user_keys.form.issuer(f),
         ],
         digest: (form) => app.compact(form),
         success: (identifier) => route.open(`../../@${identifier}`),

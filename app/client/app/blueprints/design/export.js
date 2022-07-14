@@ -13,6 +13,6 @@ app.blueprints.design.export = (route, blueprint) => a.div([
         placeholder: 'Message',
       }),
     ],
-    success: () => route.load('output'),
+    success: (result) => route.load('output', {timestamp: result.timestamp}),
   }),
 ]);

@@ -19,7 +19,7 @@ module App
         end
 
         post '/packs/@:identifier/build' do
-          params[:threaded] = true
+          # params[:threaded] = true
           action(action: :build)
         end
 

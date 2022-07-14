@@ -6,7 +6,7 @@ app.arenas.resolutions.blueprint = (route, resolution) => a.div([
         placeholder: app.spinner(`Loading ${route.params.blueprintIdentifier}`),
         success: (blueprint) => a.div([
           a.i([
-            a.h1([
+            a.h3([
               a.img([], {
                 src: `/api/blueprints/@${route.params.blueprintIdentifier}/icon/thumbnail`,
                 height: '48',

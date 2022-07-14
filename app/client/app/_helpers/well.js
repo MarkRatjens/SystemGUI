@@ -4,8 +4,8 @@ app.well = (node, options={}) => a['app-well']([
    {
      style: {marginTop: '-0.1rem'},
      $on: {
-       'click': (e, el) => {
-         let wellEl = el.$('^.well')
+       'click': (e) => {
+         let wellEl = e.currentTarget.$('^.well')
          wellEl.$nodes = []
          wellEl.remove()
        }

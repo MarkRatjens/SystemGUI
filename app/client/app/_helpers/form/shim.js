@@ -17,8 +17,9 @@ app.form.shim = {
         },
         ...options.asyncformTag,
         $on: {
-          "ax.appkit.form.async.complete: revert button labels": (e, el) => {
-            for (let button of el.$$('button').$$) {
+          "ax.appkit.form.async.complete: revert button labels": (e) => {
+            let el = e.currentTarget
+            for (let button of el.$$('button')) {
               button.$revert && button.$revert();
             }
           },
@@ -41,11 +42,12 @@ app.form.shim = {
   button: (f, target) => (options = {}) =>
     target({
       ...options,
-      onclick: (e, el) => {
+      onclick: (e) => {
+        let el = e.currentTarget
         let to = options.to;
         el.$from = el.innerHTML;
         if (to) el.$nodes = [to];
-        options.onclick && options.onclick(e, el)
+        options.onclick && options.onclick(e)
       },
       buttonTag: {
         $revert: (el) => () => {
@@ -74,10 +76,12 @@ app.form.shim = {
       buttonTag: {
         ...options.buttonTag,
         $on: {
-          "click: turn off all sorting": (e, el) => {
+          "click: turn off all sorting": (e) => {
+            let el = e.currentTarget
             el.$("^form").$$("|appkit-form-nest-sort-off button").click();
           },
-          "click: revert label when invalid": (e, el) => {
+          "click: revert label when invalid": (e) => {
+            let el = e.currentTarget
             let valid = el.$("^form").checkValidity();
             if (!valid) el.$revert();
           },

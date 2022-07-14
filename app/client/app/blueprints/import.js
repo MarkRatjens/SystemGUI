@@ -1,10 +1,15 @@
 app.blueprints.import = (route) => a.div([
-  a.h1("Import blueprint"),
+  a.h3("Import blueprint"),
   app.jsonForm({
     url: "/api/publications/import",
     route: route,
     method: 'POST',
     form: (f) => [
+      f.field({
+        key: 'background',
+        value: 'on',
+        as: 'hidden',
+      }),
       f.field({
         key: 'model',
         label: false,
@@ -37,6 +42,8 @@ app.blueprints.import = (route) => a.div([
       }),
     ],
     digest: (form) => app.compact(form),
-    success: () => route.load('output'),
+    success: (result) => {
+      route.load('identify', result)
+    },
   }),
 ]);

@@ -21,15 +21,16 @@ app.arenas.resolutions.edit = (route) => a['app-arenas-resolutions-edit']([
             },
             fieldTag: {
               $on: {
-                keyup: (e, el) => {
+                keyup: (e) => {
+                  let el = e.currentTarget
                   let validationEl = el.$('^form app-json-validation')
                   try {
                     JSON.parse(el.$('ax-appkit-form-control').$value())
                     validationEl.$('.error').$nodes = []
                     validationEl.$('textarea').setCustomValidity('')
                   } catch {
-                    validationEl.$('.error').$nodes = app.icon('fas fa-exclamation-triangle', 'Not valid JSON')
-                    validationEl.$('textarea').setCustomValidity('Not valid JSON')
+                    validationEl.$('.error').$nodes = app.icon('fas fa-exclamation-triangle', 'Invalid JSON')
+                    validationEl.$('textarea').setCustomValidity('Invalid JSON')
                   }
                 }
               }

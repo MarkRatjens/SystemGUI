@@ -1,4 +1,4 @@
-app.blueprints.design.blueprint.otherPackages.edit = (route, blueprint) => [
+app.blueprints.design.blueprint.otherPackages.edit = (route, blueprint) => a.div([
   `Other package ${Number(route.params.other_package_id) + 1}`,
   app.blueprints.design.blueprint.form({
     route: route,
@@ -9,4 +9,4 @@ app.blueprints.design.blueprint.otherPackages.edit = (route, blueprint) => [
       return {model: blueprint};
     },
   })
-]
+])

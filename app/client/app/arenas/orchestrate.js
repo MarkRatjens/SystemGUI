@@ -5,6 +5,13 @@ app.arenas.orchestrate = (route) => a.div([
     url: `/api/arenas/@${route.params.arenaIdentifier}/apply`,
     method: "POST",
     route: route,
-    success: () => route.load('output'),
+    form: f => [
+      f.field({
+        key: 'background',
+        value: 'on',
+        as: 'hidden',
+      }),
+    ],
+    success: (result) => route.load('output', {timestamp: result.timestamp}),
   }),
 ]);

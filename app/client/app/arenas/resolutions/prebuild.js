@@ -5,6 +5,13 @@ app.arenas.resolutions.prebuild = (route) => a.div([
     url: `/api/packs/@${route.params.arenaIdentifier}::${route.params.blueprintIdentifier}/build`,
     method: "POST",
     route: route,
-    success: () => route.load('output'),
+    form: f => [
+      f.field({
+        key: 'background',
+        value: 'on',
+        as: 'hidden',
+      }),
+    ],
+    success: (result) => route.load('output', {timestamp: result.timestamp}),
   }),
 ]);

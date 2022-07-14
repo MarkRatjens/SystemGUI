@@ -8,8 +8,8 @@ module App
         ::Spaces::Space.universe
       end
 
-      def path
-        ::Spaces::Space.universes.path
+      def directory
+        ::Spaces::Space.universes.path.join('universe')
       end
 
     end

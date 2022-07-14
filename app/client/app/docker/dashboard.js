@@ -1,6 +1,6 @@
 app.docker.dashboard = (docker) => a['app-docker-dashboard.app-dashboard']([
   a['div.app-dashboard-item']([
-    a['div.app-dashboard-item-panel']([
+    a['div.app-dashboard-item-panel.mb-4']([
       a['div.app-dashboard-item-heading']([
         app.float({
           left: a['div.p-2.text-nowrap'](a.strong(docker.name)),
@@ -9,21 +9,17 @@ app.docker.dashboard = (docker) => a['app-docker-dashboard.app-dashboard']([
       ], {
         $on: {
           click: (e) => {
-            let commandsEl = e.currentTarget.$('^.app-dashboard-item .app-dashboard-item-commands')
-            if (commandsEl.classList.contains('active')) {
-              commandsEl.classList.remove('active')
+            let menuEl = e.currentTarget.$('^.app-dashboard-item .app-dashboard-item-menu')
+            if (menuEl.classList.contains('active')) {
+              menuEl.classList.remove('active')
             } else {
-              commandsEl.classList.add('active')
+              menuEl.classList.add('active')
             }
           },
         }
       }),
       app.docker.events(),
-      app.docker.commands(),
-      a['small']('Containers'),
-      a['div.border-top'](app.docker.containers()),
-      a['small']('Images'),
-      a['div.border-top'](app.docker.images()),
+      app.docker.menu(),
     ]),
   ]),
 ], {
@@ -31,7 +27,7 @@ app.docker.dashboard = (docker) => a['app-docker-dashboard.app-dashboard']([
     if (event.type == 'images') {
       el.$('app-docker-images').$reindex(event)
     } else if (event.type == 'container') {
-      let containerEl = el.$(`#docker-container-${event.payload.identifier}`)
+      let containerEl = el.$(`#app-docker-containers-container-${event.payload.identifier}`)
       if (containerEl) containerEl.$receive(event)
     } else if (event.type == 'containers') {
       el.$('app-docker-containers').$reindex(event)

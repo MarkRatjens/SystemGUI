@@ -10,24 +10,24 @@ app.blueprints.location.show = (route, summary) => a.div([
           summary.location.exist ?
           app.button({
             label: app.icon('fas fa-file-import', 'Reimport'),
-            onclick: (e, el) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/reimport`),
+            onclick: (e) => route.open(`/blueprints/@${route.params.blueprintIdentifier}/reimport`),
           })
           : ''
         )
       } else if (!active) {
         el.$active = false
+        el.$('ax-appkit-transition').$to('')
       }
     },
     $init: (el) => el.$activate(),
     $activate: (el) => () => {
       if (
         window.location.pathname
-        .replace(/^\/blueprints\/@[\w\-]+/, '')
-        .match(/^(?!\/reimport).*/)
+        .match(/^\/blueprints\/@[\w\-]+\/reimport/)
       ) {
-        el.$update(true)
-      } else {
         el.$update(false)
+      } else {
+        el.$update(true)
       }
     }
   }),

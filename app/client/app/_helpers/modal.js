@@ -6,7 +6,7 @@ app.modal = (options = {}) =>
     {
       id: options.id || "modal",
       $open: (el) => (options = {}) => {
-        el.$(".modal-dialog").classList.add(`modal-${options.size || "md"}`);
+        el.$(".modal-dialog").classList.add(`modal-${options.size || "xl"}`);
         el.$(".modal-content").$nodes = [
           a["div.modal-header"]([
             a[".modal-title"](options.title),

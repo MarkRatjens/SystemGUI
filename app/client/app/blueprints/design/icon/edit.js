@@ -11,7 +11,8 @@ app.blueprints.design.icon.edit = (route) => a.div([
             height: 258,
             width: 258,
             $on: {
-              'load: style iframe': (e, el) => {
+              'load: style iframe': (e) => {
+                let el = e.currentTarget
                 const new_style_element = document.createElement("style");
                 new_style_element.textContent = "img {height: 256px; width: 256px;}"
                 el.contentDocument.head.appendChild(new_style_element);
@@ -78,19 +79,11 @@ app.blueprints.design.icon.edit = (route) => a.div([
     ],
     right: [
       app.button({
-        label: app.icon('fa fa-trash'),
+        label: app.icon('fa fa-trash', 'Delete icon'),
         title: 'Delete icon',
-        onclick: (e, el) => route.open('delete'),
+        onclick: (e) => route.open('delete'),
         class: 'btn btn-outline-danger',
       }),
     ],
   }),
-
-  a.p(
-    app.button({
-      label: app.icon('fa fa-check', 'Done'),
-      onclick: (e, el) => route.open('..'),
-      class: 'btn btn-primary',
-    }),
-  )
 ])

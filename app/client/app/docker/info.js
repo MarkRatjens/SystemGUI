@@ -1,4 +1,4 @@
-app.docker.info = () => a['app-docker-info']({
+app.docker.info = () => a['app-docker-info.app-docker-command']({
   $open: (el) => () => {
     el.style.display = 'block'
     el.$nodes = a['div.well.m-1']([
@@ -6,14 +6,16 @@ app.docker.info = () => a['app-docker-info']({
         app.fetch({
           url: `/api/docker`,
           placeholder: app.spinner('Loading'),
-          success: (info) => x.out(info)
+          success: (info) => a.div([
+            x.out(info)
+          ], {
+            style: {
+              maxHeight: '300px',
+              fontFamily: 'monospace',
+            },
+          })
         }),
-      ], {
-        style: {
-          maxHeight: '500px',
-          fontFamily: 'monospace',
-        },
-      }),
+      ]),
     ])
   },
   $close: (el) => () => {

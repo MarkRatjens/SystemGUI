@@ -2,7 +2,7 @@ app.fetch.success = (success, warnings) => (payload, el) => {
 
   let warningsFor = (messages) => warnings
     ? warnings(messages)
-    : a['pre.error.m-0.p-1'](messages.join('\n'))
+    : a['pre.error.m-0.p-1']([messages].flat(Infinity))
 
   if (ax.is.array(payload)) {
     let results = []
@@ -19,7 +19,12 @@ app.fetch.success = (success, warnings) => (payload, el) => {
   } else {
     if (payload.errors) return warningsFor(payload.errors)
     if (success) {
-      let node = success(payload.result, el)
+      if (payload.model) {
+        debugger
+      }
+      let node = success(payload.result
+         // || payload.model
+         , el)
       return ax.is.undefined(node) ? '' : node
     } else {
       return a['pre.success.m-0.p-1'](JSON.stringify(payload.result, null, 2))

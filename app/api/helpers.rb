@@ -14,7 +14,10 @@ module App
 
       # TODO: move settings to spaces
       def settings_filepath
-        '/tmp/universe_settings.yaml'.tap { |path| FileUtils.touch(path) }
+        Api.spaces.directory.join('settings.yaml').tap do |path|
+          FileUtils.mkdir_p(path.parent)
+          FileUtils.touch(path)
+        end
       end
 
       # TODO: Once spaces is handling IndifferentHash params, remove

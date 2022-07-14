@@ -6,7 +6,10 @@ app.blueprints.design.blueprint.images.form =
     as: 'select',
     required: true,
     placeholder: 'Select a runtime',
-    selections: app.providers.runtime,
+    selections: {
+      docker: 'Docker',
+      aws_ec2: 'AWS EC2',
+    },
     collection: true,
     addable: true,
     removeable: true,
