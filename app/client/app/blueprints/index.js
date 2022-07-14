@@ -13,12 +13,12 @@ app.blueprints.index = (route) => a.div([
       onclick: (e) => route.open('import'),
     }),
   ]),
-  a.small('Blueprints'),
+  a['div.border-bottom'](a.small('Blueprints')),
   app.fetch({
     url: '/api/blueprints',
     placeholder: a['div.p-2'](app.spinner("Loading blueprints")),
     success: (blueprints, el) => blueprints.length
-    ? a['div.container-fluid.border-top'](blueprints.map(blueprint => app.clickable(
+    ? a['div.container-fluid'](blueprints.map(blueprint => app.clickable(
       a['div.row.app-clickable.border-bottom']([
         a['div.col-md-3.p-2']([
           blueprint.identifier,
@@ -33,6 +33,6 @@ app.blueprints.index = (route) => a.div([
       () => route.open(`@${blueprint.identifier}`)
     ))
   )
-  : a['.p-2'](app.placeholder('No blueprints')),
+  : a['div.p-2'](app.placeholder('No blueprints')),
 }),
 ])

@@ -1,8 +1,8 @@
 app.docker.subactions = () => a['app-docker-subactions']([
   ...[
-    ['Import', 'fas fa-file-import', 'blueprint-import'],
-    ['New prebuild', 'fas fa-plus', 'prebuild-new'],
-    ['New composition', 'fas fa-plus', 'composition-new'],
+    ['Import', 'fas fa-file-import', 'blueprints-import'],
+    ['New prebuild', 'fas fa-plus', 'prebuilds-new'],
+    ['New composition', 'fas fa-plus', 'compositions-new'],
     // ['Info', 'fas fa-info', 'info'],
   ].map((command) => app.button({
     label: app.icon(command[1]),

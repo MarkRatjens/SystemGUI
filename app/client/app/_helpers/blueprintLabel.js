@@ -1,5 +1,5 @@
 app.blueprintLabel = (blueprint) => a.i([
-  a.h1([
+  a.h3([
     a.img({
       src: `/api/blueprints/@${blueprint.identifier}/icon/thumbnail`,
       height: '48',

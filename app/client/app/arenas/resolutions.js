@@ -19,10 +19,9 @@ app.arenas.resolutions = (route) => a['app-arenas-resolutions']([
           ? a['.error'](app.icon('fas fa-exclamation-circle', 'Stale'))
           : a['.success'](app.icon('fas fa-check-circle', 'Ready')),
         ]),
-        ]),
-        () => route.open(`@${resolution.identifier.split('::')[1]}`)
-      ))
-    )
-    : a['.p-2'](app.placeholder('No resolutions'))
+      ]),
+      () => route.open(`@${resolution.identifier.split('::')[1]}`)
+    )))
+    : a['div.border-bottom.p-2'](app.placeholder('No resolutions'))
   }),
 ])

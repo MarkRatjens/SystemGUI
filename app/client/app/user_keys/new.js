@@ -7,6 +7,7 @@ app.user_keys.new = (route) => a.div([
     route: route,
     horizontal: true,
     form: (f) => [
+      ...app.user_keys.form.about(f),
       ...app.user_keys.form.issuer(f),
       ...app.user_keys.form.token(f),
     ],

@@ -56,6 +56,11 @@ app.theme = (theme) => {
             color: theme.buttonColor,
             textShadow: `0 1px 0 ${theme.controlBoxShadowColor}`,
           },
+          '&:hover': {
+            $: {
+              color: theme.buttonColorHover,
+            },
+          }
         }
       },
       '.error': {
@@ -78,28 +83,28 @@ app.theme = (theme) => {
           color: theme.successColor,
         },
       },
-      '.background-error': {
+      '.bordered-error': {
         $: {
-          color: theme.backgroundColor,
-          backgroundColor: theme.errorColor,
+          color: theme.errorColor,
+          border: `1px solid ${theme.errorColor}`,
         },
       },
-      '.background-warn': {
+      '.bordered-warn': {
         $: {
-          color: theme.backgroundColor,
-          backgroundColor: theme.warnColor,
+          color: theme.warnColor,
+          border: `1px solid ${theme.warnColor}`,
         },
       },
-      '.background-info': {
+      '.bordered-info': {
         $: {
-          color: theme.backgroundColor,
-          backgroundColor: theme.infoColor,
+          color: theme.infoColor,
+          border: `1px solid ${theme.infoColor}`,
         },
       },
-      '.background-success': {
+      '.bordered-success': {
         $: {
-          color: theme.backgroundColor,
-          backgroundColor: theme.successColor,
+          color: theme.successColor,
+          border: `1px solid ${theme.successColor}`,
         },
       },
       '.form-control:focus, .custom-select:focus': {
@@ -285,9 +290,9 @@ app.theme = (theme) => {
           }
         }
       },
-      '.stream-message' : {
+      '.app-stream-message' : {
         $: {
-          border: `1px solid ${theme.borderColor}`,
+          // border: `1px solid ${theme.borderColor}`,
           fontFamily: 'monospace',
         },
       },

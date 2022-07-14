@@ -7,12 +7,17 @@ app.blueprints.reimport = (route) => a.div([
     route: route,
     form: (f) => [
       f.field({
+        key: 'background',
+        value: 'on',
+        as: 'hidden',
+      }),
+      f.field({
         key: 'identifier',
         value: route.params.blueprintIdentifier,
         as: 'hidden'
       }),
     ],
     digest: (form) => app.compact(form),
-    success: () => route.load('output'),
+    success: (result) => route.load('output', {timestamp: result.timestamp}),
   }),
 ]);

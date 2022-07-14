@@ -1,5 +1,5 @@
 app.arenas.new = (route) => a.div([
-  a.h1('New arena'),
+  a.h3('New arena'),
   app.jsonForm({
     url: '/api/arenas',
     method: 'POST',

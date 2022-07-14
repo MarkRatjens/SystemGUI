@@ -3,12 +3,14 @@ module App
     module Routes
       extend Sinatra::Extension
 
+      require_relative 'routes/apps'
       require_relative 'routes/arenas'
       require_relative 'routes/blueprints'
       require_relative 'routes/capsules'
       require_relative 'routes/docker'
       require_relative 'routes/domains'
       require_relative 'routes/images'
+      require_relative 'routes/catalogs'
       require_relative 'routes/locations'
       require_relative 'routes/packs'
       require_relative 'routes/providing'
@@ -20,12 +22,14 @@ module App
       require_relative 'routes/streaming'
       require_relative 'routes/user_keys'
 
+      register Apps
       register Arenas
       register Blueprints
       register Capsules
       register Docker
       register Domains
       register Images
+      register Catalogs
       register Locations
       register Packs
       register Providing

@@ -9,9 +9,9 @@ a['app-docker-menu']([
     app.docker.prebuilds(),
     app.docker.compositions(),
     app.docker.info(),
-    app.docker.blueprint.import(),
-    app.docker.composition.new(),
-    app.docker.prebuild.new(),
+    app.docker.blueprints.import(),
+    app.docker.compositions.new(),
+    app.docker.prebuilds.new(),
     a['small']('Images'),
     a['div.border-top'](app.docker.images()),
     a['small']('Containers'),
@@ -23,19 +23,19 @@ a['app-docker-menu']([
     if (activeEl == buttonEl) {
       el.$$('.app-dashboard-item-menu-button').classList.remove('active')
       el.$(`^app-docker app-docker-${command}`).$close()
-      if (command == 'blueprints' || command == 'blueprint-import') {
-        el.$('.app-dashboard-item-menu-button-blueprint-import').$hide()
-        if (command == 'blueprint-import') {
+      if (command == 'blueprints' || command == 'blueprints-import') {
+        el.$('.app-dashboard-item-menu-button-blueprints-import').$hide()
+        if (command == 'blueprints-import') {
           el.$('.app-dashboard-item-menu-button-blueprints').click()
         }
-      } else if (command == 'prebuilds' || command == 'prebuild-new') {
-        el.$('.app-dashboard-item-menu-button-prebuild-new').$hide()
-        if (command == 'prebuild-new') {
+      } else if (command == 'prebuilds' || command == 'prebuilds-new') {
+        el.$('.app-dashboard-item-menu-button-prebuilds-new').$hide()
+        if (command == 'prebuilds-new') {
           el.$('.app-dashboard-item-menu-button-prebuilds').click()
         }
-      } else if (command == 'compositions' || command == 'composition-new') {
-        el.$('.app-dashboard-item-menu-button-composition-new').$hide()
-        if (command == 'composition-new') {
+      } else if (command == 'compositions' || command == 'compositions-new') {
+        el.$('.app-dashboard-item-menu-button-compositions-new').$hide()
+        if (command == 'compositions-new') {
           el.$('.app-dashboard-item-menu-button-compositions').click()
         }
       }
@@ -44,15 +44,15 @@ a['app-docker-menu']([
       buttonEl.classList.add('active')
       el.$('^app-docker').$$('.app-docker-command').$close()
       el.$(`^app-docker app-docker-${command}`).$open()
-      el.$('.app-dashboard-item-menu-button-blueprint-import').$hide()
-      el.$('.app-dashboard-item-menu-button-prebuild-new').$hide()
-      el.$('.app-dashboard-item-menu-button-composition-new').$hide()
-      if (command == 'blueprints' || command == 'blueprint-import') {
-        el.$('.app-dashboard-item-menu-button-blueprint-import').$show()
-      } else if (command == 'prebuilds' || command == 'prebuild-new') {
-        el.$('.app-dashboard-item-menu-button-prebuild-new').$show()
-      } else if (command == 'compositions' || command == 'composition-new') {
-        el.$('.app-dashboard-item-menu-button-composition-new').$show()
+      el.$('.app-dashboard-item-menu-button-blueprints-import').$hide()
+      el.$('.app-dashboard-item-menu-button-prebuilds-new').$hide()
+      el.$('.app-dashboard-item-menu-button-compositions-new').$hide()
+      if (command == 'blueprints' || command == 'blueprints-import') {
+        el.$('.app-dashboard-item-menu-button-blueprints-import').$show()
+      } else if (command == 'prebuilds' || command == 'prebuilds-new') {
+        el.$('.app-dashboard-item-menu-button-prebuilds-new').$show()
+      } else if (command == 'compositions' || command == 'compositions-new') {
+        el.$('.app-dashboard-item-menu-button-compositions-new').$show()
       }
     }
   },

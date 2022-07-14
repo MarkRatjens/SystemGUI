@@ -33,14 +33,15 @@ module App
       end
 
       def streaming(out)
-        begin
-          keep_alive(out)
-          yield(out)
-          send_eot(out)
-          out.close
-        rescue => e
-          streaming_rescue(out, e)
-        end
+        keep_alive(out)
+        yield(out)
+        send_eot(out)
+        out.close
+        # begin
+        # rescue => e
+        #   debugger
+        #   streaming_rescue(out, e)
+        # end
       end
 
       def keep_alive(out)
@@ -86,16 +87,48 @@ module App
         end
         out_puts(out, "data: \n\n")
       end
+      #
+      # def streaming_rescue(out, e)
+      #   if !out.closed?
+      #     send_exception(out, e)
+      #     send_eot(out)
+      #     out.close
+      #   else
+      #     logger.info "Stream rescued: #{e.message}"
+      #   end
+      # end
 
-      def streaming_rescue(out, e)
-        if !out.closed?
-          send_exception(out, e)
-          send_eot(out)
-          out.close
-        else
-          logger.info "Stream rescued: #{e.message}"
-        end
-      end
+      # def stream_import_for(identifier, force=false)
+      #   stream do |out|
+      #     streaming(out) do |out|
+      #       stream_import_files_for(identifier, out)
+      #     end
+      #   end
+      # end
+      #
+      # def stream_import_files_for(identifier, out, imported=[])
+      #   stream_import_file_for(identifier, out)
+      #   imported.push(identifier)
+      #   to_do = binding_targets_for(identifier) - imported
+      #   to_do.each do |identifier|
+      #     stream_import_files_for(identifier, out, imported)
+      #   end
+      # end
+      #
+      # def binding_targets_for(identifier)
+      #   Blueprinting::Controllers::Controller.new.show(identifier: identifier).result.bindings.map(&:identifier)
+      # end
+      #
+      # def stream_import_file_for(identifier, out)
+      #   @controller.control(
+      #     space: :publications,
+      #     stream: :import,
+      #     identifier: identifier,
+      #     action: :tail,
+      #     callback: callback(out)
+      #   )
+      # end
+
     end
   end
 end

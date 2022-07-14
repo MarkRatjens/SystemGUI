@@ -14,9 +14,9 @@ app.theme.palette = (name, colors, options) => app.theme({
 
   buttonColor: colors.text1,
   buttonBackgroundColor: colors.bg2,
-  buttonColorActive: colors.bg2,
-  buttonBackgroundColorActive: colors.text2,
-  buttonColorHover: colors.text1,
+  buttonColorActive: colors.text2,
+  buttonBackgroundColorActive: colors.bg2,
+  buttonColorHover: colors.text2,
   buttonBackgroundColorHover: colors.bg2,
 
   navbarBackgroundColor: colors.bg2,

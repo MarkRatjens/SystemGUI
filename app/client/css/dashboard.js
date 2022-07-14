@@ -7,7 +7,6 @@ ax.css({
     },
     '.app-dashboard-item-menu': {
       $: {
-        // display: 'none',
         display: 'block',
         opacity: 0,
         maxHeight: '0px',

@@ -1,6 +1,6 @@
 app.arenas.orchestrate.output = (route) => app.stream({
   label: 'Orchestrating',
-  url: `/api/streaming/${route.params.arenaIdentifier}/up`,
+  url: `/api/streaming/arenas/@${route.params.arenaIdentifier}/executing?timestamp=${route.params.timestamp}`,
   complete: (el) => {
     el.append(app.button({
       label: app.icon('fas fa-check', 'Done'),

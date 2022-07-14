@@ -31,8 +31,9 @@ app.stream = (options) => {
         }
       },
       $digest: (el) => (raw) => {
+        console.log(raw)
         let data = JSON.parse(raw)
-        if (data.output) el.$write(data.output)
+        if (data.output) el.previousSibling.$write(data.output)
         if (data.error) el.$write(`${data.error}`, {color: 'yellow'})
         if ( data.exception ) el.$write(`${data.exception}\n`, {color: 'red'})
       },

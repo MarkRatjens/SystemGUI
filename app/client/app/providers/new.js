@@ -1,5 +1,5 @@
 app.providers.new = (route) => a.div([
-  a.h1('New provider'),
+  a.h3('New provider'),
   app.jsonForm({
     url: '/api/providers',
     method: 'POST',

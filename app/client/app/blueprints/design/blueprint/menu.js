@@ -45,9 +45,12 @@ app.blueprints.design.blueprint.menu = (route, blueprint) => {
       ]) : '',
       a.hr,
       app.button({
-        label: app.icon('fas fa-clone', 'Copy'),
-        title: 'Copy blueprint',
-        onclick: (e) => route.open('copy') //`/blueprints/@${route.params.blueprintIdentifier}/copy`),
+        label: '{} JSON',
+        title: 'Raw blueprint JSON',
+        onclick: (e) => modal.$open({
+          title: `Raw ${route.params.blueprintIdentifier} blueprint JSON`,
+          body: [blueprint],
+        }),
       }),
     ])
   }

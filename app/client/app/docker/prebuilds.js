@@ -7,12 +7,9 @@ app.docker.prebuilds = () => a['app-docker-prebuilds.app-docker-command']({
           url: '/api/packs/list',
           placeholder: a['div.p-2'](app.spinner('Loading prebuilds')),
           success: (prebuilds) => {
-            prebuilds = prebuilds.filter(prebuild => prebuild[0] == '$')
+            prebuilds = prebuilds.filter(prebuild => prebuild.split('::')[0] == 'base')
             return prebuilds.length
-            ? prebuilds.map(prebuild => {
-              if (prebuild[0] != '$') return ''
-              return app.docker.prebuild(prebuild)
-            })
+            ? prebuilds.map(prebuild => app.docker.prebuilds.prebuild(prebuild))
             : a['div.p-2']([
               app.placeholder('No prebuilds')
             ])

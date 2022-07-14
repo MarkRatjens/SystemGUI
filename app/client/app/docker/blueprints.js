@@ -8,7 +8,7 @@ app.docker.blueprints = () => a['app-docker-blueprints.app-docker-command']({
           placeholder: a['div.p-2'](app.spinner('Loading blueprints')),
           success: (blueprints) => {
             return blueprints.length
-            ? blueprints.map(blueprint => app.docker.blueprint(blueprint))
+            ? blueprints.map(blueprint => app.docker.blueprints.blueprint(blueprint))
             : a['div.p-2']([
               app.placeholder('No blueprints')
             ])

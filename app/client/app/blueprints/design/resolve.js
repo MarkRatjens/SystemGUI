@@ -1,5 +1,5 @@
 app.blueprints.design.resolve = (route) => a.div([
-  a.h1('New resolution'),
+  a.h3('New resolution'),
   app.fetch({
     url: '/api/arenas',
     success: (arenas, blueprints, el) => a.div([

@@ -6,10 +6,10 @@ app.docker.compositions = () => a['app-docker-compositions.app-docker-command'](
         app.fetch({
           url: '/api/arenas',
           success: (compositions) => {
-            compositions = compositions.filter(composition => composition.identifier[0] != '$')
+            compositions = compositions.filter(composition => composition.identifier != 'base')
             return compositions.length
             ? compositions.map(composition => {
-              return app.docker.composition(composition)
+              return app.docker.compositions.composition(composition)
             })
             : a['div.p-2']([
               app.placeholder('No compositions')

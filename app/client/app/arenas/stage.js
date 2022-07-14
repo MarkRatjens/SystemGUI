@@ -1,28 +1,10 @@
 app.arenas.stage = (route) => a.div([
-  app.fetch({
-    url: `/api/blueprints/list`,
-    // url: `/api/arenas/@${route.params.arenaIdentifier}/stageables`,
-    placeholder: app.spinner(`Loading blueprints`),
-    success: (blueprints) => a.div([
-      a.h3('Stage blueprint'),
-      app.jsonForm({
-        url: `/api/arenas/@${route.params.arenaIdentifier}/stage`,
-        route: route,
-        method: 'POST',
-        form: f => [
-          f.field({
-            key: 'blueprint_identifier',
-            as: 'select',
-            label: false,
-            placeholder: 'Select a blueprint',
-            selections: blueprints,
-            required: true,
-          }),
-        ],
-        success: (result) => {
-          route.open('..')
-        },
-      })
-    ])
+  a.h3(`Stage`),
+  a.p('Are you sure that you want to stage this arena?'),
+  app.jsonForm({
+    url: `/api/arenas/@${route.params.arenaIdentifier}/stage`,
+    method: "POST",
+    route: route,
+    success: () => route.open('..'),
   }),
-])
+]);

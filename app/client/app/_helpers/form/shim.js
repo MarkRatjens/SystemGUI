@@ -19,7 +19,7 @@ app.form.shim = {
         $on: {
           "ax.appkit.form.async.complete: revert button labels": (e) => {
             let el = e.currentTarget
-            for (let button of el.$$('button').$$) {
+            for (let button of el.$$('button')) {
               button.$revert && button.$revert();
             }
           },

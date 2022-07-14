@@ -12,14 +12,6 @@ app.user_keys.show = (route) => a.div([
   }),
   a.hr,
   app.float({
-    left: [
-      app.button({
-        label: app.icon('fa fa-check', 'Done'),
-        title: 'Open tokens',
-        class: 'btn btn-primary',
-        onclick: () => route.open('..'),
-      }),
-    ],
     right: [
       app.button({
         label: app.icon('fa fa-trash'),

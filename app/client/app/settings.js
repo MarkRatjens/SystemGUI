@@ -6,6 +6,8 @@ app.settings = (route) => a.div([
       '/editor': app.settings.editor,
       '/user_keys/?*': app.user_keys,
       '/domains/?*': app.domains,
+      '/providers/?*': app.providers,
+      '/catalogs/?*': app.catalogs,
     },
   }),
 ])

@@ -1,6 +1,6 @@
 app.arenas.resolutions.prebuild.output = (route) => app.stream({
-  label: {stream: 'Building', action: 'Build', tool: 'Docker'},
-  url: `/api/streaming/${route.params.arenaIdentifier}/${route.params.blueprintIdentifier}/build`,
+  label: 'Building',
+  url: `/api/streaming/packs/@${route.params.arenaIdentifier}::${route.params.blueprintIdentifier}/building?timestamp=${route.params.timestamp}`,
   complete: (el) => {
     el.append(app.button({
       label: app.icon('fas fa-check', 'Done'),

@@ -1,28 +1,30 @@
 app.domains.index = (route) => a['app-domains-index']([
   app.close(route),
-  a['h5.py-2']('Domains'),
   a.p([
     app.button({
       label: app.icon('fa fa-plus', 'New'),
-      title: 'New domain',
       onclick: () => route.open('new'),
     }),
   ]),
+  a['div.border-bottom'](a.small('Domains')),
   app.fetch({
     url: '/api/domains',
-    placeholder: a['div.p-2'](app.spinner('Loading domains')),
-    success: (domains) => domains.length
-    ? a.table([
-      a.tbody(app.sortByIdentifier(domains).map(domain => a.tr([
-        a.td([domain.identifier]),
-        a.td([domain.primary ? app.icon('fas fa-star') : '']),
-      ], {
-        $on: {click: (e) => route.open(`@${domain.identifier}`)},
-        class: 'app-clickable',
-      }))),
-    ], {
-      class: 'table',
-    })
-    : app.placeholder('No domains'),
+    placeholder: app.spinner('Loading domains'),
+    success: (domains, el) => domains.length
+    ? a['div.container-fluid'](domains.map(domain => app.clickable(
+      a['div.row.app-clickable.border-bottom']([
+        a['div.col-md-3.p-2']([
+          domain.identifier,
+        ]),
+        a['div.col-md-1.p-2']([
+          domain.primary ? app.icon('fas fa-star') : '',
+        ]),
+        a['div.col-md.p-2']([
+          a.small([(domain.about || {}).explanation || a['!']('&nbsp;')]),
+        ]),
+      ]),
+      () => route.open(`@${domain.identifier}`)
+    )))
+    : a['div.p-2'](app.placeholder('No domains')),
   }),
 ])

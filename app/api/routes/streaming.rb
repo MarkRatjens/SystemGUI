@@ -9,18 +9,17 @@ module App
           @controller = ::Spaces::Controllers::Streaming.new
         end
 
-        get('/streaming/*') {
-          params[:stream] = params[:splat][0]
-          params.delete(:splat)
-          # stream_action
+        # get('/streaming/publications/@:identifier/import') {
+        #   stream_import_for(params[:identifier])
+        # }
 
-          filepath = Api.spaces.directory.join('streams', "#{params[:stream]}.out")
-          stream_from do |out|
-            tail_file(filepath) do |line|
-              send_output(out, line)
-            end
-          end
+        get('/streaming/:space/@:identifier/:stream_identifier') {
+          stream_action
         }
+
+        # get('/streaming/:space/:stream') {
+        #   stream_action
+        # }
       end
     end
   end

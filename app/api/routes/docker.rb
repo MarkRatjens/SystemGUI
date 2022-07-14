@@ -36,35 +36,37 @@ module App
         post '/docker/prebuild' do
           @controller = ::Arenas::Controllers::Controller.new
           blueprint_identifier = params[:blueprint_identifier]
-          identifier = "$#{params[:identifier].blank? ? blueprint_identifier : params[:identifier]}"
+          identifier = :base
           @controller.create(model: {identifier: identifier}).tap do
+            @controller.build_from(identifier: identifier, image_identifier: :debian)
             @controller.provide(identifier: identifier, role_identifier: :runtime, provider_identifier: "docker_local")
             @controller.provide(identifier: identifier, role_identifier: :packing, provider_identifier: "docker_local")
-            @controller.bind(identifier: identifier, blueprint_identifier: blueprint_identifier)
-            @controller.resolve(identifier: identifier)
-            @controller.pack(identifier: identifier)
-          end.to_json
+          end
+          @controller.bind(identifier: identifier, blueprint_identifier: blueprint_identifier)
+          @controller.resolve(identifier: identifier)
+          @controller.pack(identifier: identifier)
+          {result: "#{identifier}::#{params[:blueprint_identifier]}"}.to_json
         end
 
         post '/docker/composition' do
           @controller = ::Arenas::Controllers::Controller.new
           blueprint_identifier = params[:blueprint_identifier]
           identifier = params[:identifier].blank? ? blueprint_identifier : params[:identifier]
+          # debugger
           @controller.create(model: {identifier: identifier}).tap do
+            @controller.build_from(identifier: identifier, image_identifier: :docker_base_debian)
             @controller.provide(identifier: identifier, role_identifier: :runtime, provider_identifier: "docker_local")
             @controller.provide(identifier: identifier, role_identifier: :packing, provider_identifier: "docker_local")
             @controller.provide(identifier: identifier, role_identifier: :orchestration, provider_identifier: "docker_compose_local")
-            connectables = @controller.connectables(identifier: identifier).result
-            connectables.each do |connectable|
-              unless connectable.identifier[0] == '$'
-                @controller.connect(identifier: identifier, other_identifier: connectable.identifier)
-              end
+          end
+          connectables = @controller.connectables(identifier: identifier).result
+          connectables.each do |connectable|
+            unless connectable.identifier == 'base'
+              @controller.connect(identifier: identifier, other_identifier: connectable.identifier)
             end
-            @controller.stage(identifier: identifier, blueprint_identifier: blueprint_identifier)
-            # @controller.resolve(identifier: identifier)
-            # @controller.pack(identifier: identifier)
-            # @controller.orchestrate(identifier: identifier)
-          end.to_json
+          end
+          @controller.stage(identifier: identifier, blueprint_identifier: blueprint_identifier)
+          {result: identifier}.to_json
         end
 
         get ('/docker/containers/@:container_id') {

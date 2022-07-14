@@ -27,7 +27,7 @@ app.docker.dashboard = (docker) => a['app-docker-dashboard.app-dashboard']([
     if (event.type == 'images') {
       el.$('app-docker-images').$reindex(event)
     } else if (event.type == 'container') {
-      let containerEl = el.$(`#docker-container-${event.payload.identifier}`)
+      let containerEl = el.$(`#app-docker-containers-container-${event.payload.identifier}`)
       if (containerEl) containerEl.$receive(event)
     } else if (event.type == 'containers') {
       el.$('app-docker-containers').$reindex(event)

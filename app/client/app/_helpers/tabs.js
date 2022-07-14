@@ -24,7 +24,7 @@ app.tabs = (options) => a['div.app-tabs']([
   $open: (el) => (i) => {
     if (el.$$('a.nav-link').$$[i].classList.contains('active')) return
     let body = el.$('app-tabs-tab-body:not(.d-none)')
-    let valid = body.$$('input, textarea, select').checkValidity().toArray.every(
+    let valid = body.$$('input, textarea, select').checkValidity().$$.every(
       validity => validity == true
     )
     if (!valid) {

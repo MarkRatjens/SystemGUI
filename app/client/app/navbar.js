@@ -20,21 +20,15 @@ a["nav#navbar.navbar.navbar-expand.navbar-light.activatable"](
         }),
         app.navbar.item({
           route: route,
-          icon: 'fas fa-tools',
-          path: '/providers',
-          title: 'Providers',
+          icon: 'fas fa-shapes',
+          path: '/blueprints',
+          title: 'Blueprints',
         }),
         app.navbar.item({
           route: route,
           icon: 'fas fa-vector-square',
           path: '/arenas',
           title: 'Arenas',
-        }),
-        app.navbar.item({
-          route: route,
-          icon: 'fas fa-shapes',
-          path: '/blueprints',
-          title: 'Blueprints',
         }),
       ])
     ),

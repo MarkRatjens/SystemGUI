@@ -10,7 +10,7 @@ app.docker.containers = () => a['app-docker-containers']([
 ], {
   $reindex: (el) => (event) => {
     let found = []
-    // console.log(el.$$('app-docker-container:not(.delete-fade-out)').toArray.length)
+    // console.log(el.$$('app-docker-container:not(.delete-fade-out)').$$.length)
     for (let container of event.payload) {
       let containerEl = el.$(`#docker-container-${container.identifier}`)
       if (containerEl) {
@@ -18,19 +18,19 @@ app.docker.containers = () => a['app-docker-containers']([
         containerEl.$reindex(container)
       } else {
         el.$('app-docker-containers-placeholder').$hide()
-        containerEl = app.docker.container(container)
+        containerEl = app.docker.containers.container(container)
         found.push(containerEl)
         el.prepend(containerEl)
       }
     }
-    for (let containerEl of el.$$('app-docker-container:not(.delete-fade-out)')) {
+    for (let containerEl of el.$$('app-docker-containers-container:not(.delete-fade-out)')) {
       if (!found.includes(containerEl)) {
         containerEl.$nodes = []
         containerEl.remove()
       }
     }
     setTimeout(() => {
-      if (el.$$('app-docker-container:not(.delete-fade-out)').toArray.length == 0) {
+      if (el.$$('app-docker-containers-container:not(.delete-fade-out)').$$.length == 0) {
         el.$('app-docker-containers-placeholder').$show()
       }
     }, 500)

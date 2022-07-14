@@ -28,26 +28,26 @@ app.settings.about.edit = (route) => a.div([
               ff.field({
                 key: 'explanation',
               }),
-              ff.field({
-                key: 'color',
-                as: 'one',
-                form: (fff) => [
-                  fff.row({
-                    columns: [
-                      fff.field({
-                        key: 'text',
-                        type: 'color',
-                        value: '#333333',
-                      }),
-                      fff.field({
-                        key: 'background',
-                        type: 'color',
-                        value: '#CCCCCC',
-                      }),
-                    ]
-                  })
+            ]
+          }),
+          f.field({
+            key: 'colors',
+            as: 'one',
+            form: (ff) => [
+              ff.row({
+                columns: [
+                  ff.field({
+                    key: 'text',
+                    type: 'color',
+                    value: '#333333',
+                  }),
+                  ff.field({
+                    key: 'background',
+                    type: 'color',
+                    value: '#CCCCCC',
+                  }),
                 ]
-              }),
+              })
             ]
           }),
         ],

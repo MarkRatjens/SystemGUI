@@ -9,7 +9,7 @@ module App
       end
 
       def directory
-        ::Spaces::Space.universes.path
+        ::Spaces::Space.universes.path.join('universe')
       end
 
     end

@@ -2,7 +2,7 @@ app.router = () => x.router({
   id: 'router',
   routes: (route) => [
     app.navbar(route),
-    app.universeLabel(app.universe.settings.about || {}),
+    app.universeLabel(app.universe.settings || {}),
     a["div.container-fluid.mt-1"]([
       route.mount({
         routes: {
@@ -10,14 +10,13 @@ app.router = () => x.router({
           '/settings/?*': app.settings,
           '/blueprints/?*': app.blueprints,
           '/arenas/?*': app.arenas,
-          '/providers/?*': app.providers,
           '/disconnected': app.disconnected,
           '/reconnect': app.reconnect,
           '/signedout': app.signedout,
           '/timedout': app.timedout,
           '/signin': app.signin,
           '/signout': app.signout,
-          '*': app.home,
+          '/?': app.home,
         },
       }),
       a.br,
