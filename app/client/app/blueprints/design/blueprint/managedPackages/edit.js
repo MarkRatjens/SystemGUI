@@ -1,10 +1,10 @@
-app.blueprints.design.blueprint.modules.edit = (route, blueprint) =>
+app.blueprints.design.blueprint.managedPackages.edit = (route, blueprint) =>
 app.blueprints.design.blueprint.form({
   route: route,
   object: blueprint,
   form: f => [
     f.field({
-      key: 'modules',
+      key: 'managed_packages',
       as: 'many',
       singular: 'module type',
       addable: true,
@@ -12,9 +12,9 @@ app.blueprints.design.blueprint.form({
       moveable: true,
       collection: true,
       control: {
-        value: Object.keys(f.object.modules || {}).map((type) =>({
+        value: Object.keys(f.object.managed_packages || {}).map((type) =>({
           type: type,
-          names: f.object.modules[type].join("\n"),
+          names: f.object.managed_packages[type].join("\n"),
         }))
       },
       form: (ff) => [
@@ -41,20 +41,20 @@ app.blueprints.design.blueprint.form({
           label: false,
           as: 'textarea',
           resize: true,
-          placeholder: 'List modules line by line'
+          placeholder: 'List packages line by line'
         }),
       ]
     }),
   ],
   digest: (form) => {
-    if (form.modules.length) {
-      let modules = {}
-      for (let modules_group of form.modules) {
-        modules[modules_group.type] = modules_group.names.split("\n")
+    if (form.managed_packages.length) {
+      let managed_packages = {}
+      for (let packages of form.managed_packages) {
+        managed_packages[packages.type] = packages.names.split("\n")
       }
-      blueprint.modules = modules
+      blueprint.managed_packages = managed_packages
     } else {
-      delete blueprint.modules
+      delete blueprint.managed_packages
     };
     return {model: blueprint};
   },

@@ -1,15 +1,15 @@
-app.blueprints.design.blueprint.otherPackages.manage = (route, blueprint) => 
+app.blueprints.design.blueprint.bundledPackages.manage = (route, blueprint) => 
 app.blueprints.design.blueprint.form({
   route: route,
   object: blueprint,
   form: f => [
     f.field({
-      key: 'other_packages',
+      key: 'bundled_packages',
       as: 'nest',
       form: (ff) => [
         ff.items({
           collection: true,
-          singular: 'other package',
+          singular: 'bundled package',
           form: (fff) => [
             fff.field({
               key: 'target',
@@ -45,10 +45,10 @@ app.blueprints.design.blueprint.form({
     }),
   ],
   digest: (form) => {
-    if (form.other_packages.length) {
-      blueprint.other_packages = form.other_packages
+    if (form.bundled_packages.length) {
+      blueprint.bundled_packages = form.bundled_packages
     } else {
-      delete blueprint.other_packages
+      delete blueprint.bundled_packages
     };
     return {model: blueprint};
   },
