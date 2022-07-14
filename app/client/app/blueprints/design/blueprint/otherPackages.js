@@ -1,10 +1,10 @@
-app.blueprints.design.blueprint.otherPackages = (route, blueprint) =>
+app.blueprints.design.blueprint.bundledPackages = (route, blueprint) =>
 route.mount({
   routes: {
-    '/other_packages/?': (route) => app.blueprints.design.blueprint.otherPackages.index(route, blueprint),
-    '/other_packages/new': (route) => app.blueprints.design.blueprint.otherPackages.new(route, blueprint),
-    '/other_packages/manage': (route) => app.blueprints.design.blueprint.otherPackages.manage(route, blueprint),
-    '/other_packages/:other_package_id*': (route) => app.blueprints.design.blueprint.otherPackages.edit(route, blueprint),
-    '/?': (route) => app.blueprints.design.blueprint.otherPackages.preview(route, blueprint),
+    '/bundled_packages/?': (route) => app.blueprints.design.blueprint.bundledPackages.index(route, blueprint),
+    '/bundled_packages/new': (route) => app.blueprints.design.blueprint.bundledPackages.new(route, blueprint),
+    '/bundled_packages/manage': (route) => app.blueprints.design.blueprint.bundledPackages.manage(route, blueprint),
+    '/bundled_packages/:bundled_package_id*': (route) => app.blueprints.design.blueprint.bundledPackages.edit(route, blueprint),
+    '/?': (route) => app.blueprints.design.blueprint.bundledPackages.preview(route, blueprint),
   }
 })

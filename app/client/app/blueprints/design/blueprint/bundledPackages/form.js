@@ -1,4 +1,4 @@
-app.blueprints.design.blueprint.otherPackages.form =
+app.blueprints.design.blueprint.bundledPackages.form =
 (f) => [
   f.field({
     key: 'target',

@@ -1,8 +1,8 @@
-app.blueprints.design.blueprint.otherPackages.index = (route, blueprint) => a.div([
+app.blueprints.design.blueprint.bundledPackages.index = (route, blueprint) => a.div([
   app.report({
     object: blueprint,
     report: (r) => r.field({
-      key: 'other_packages',
+      key: 'bundled_packages',
       as: 'many',
       report: (rr) => [
         app.clickable(
@@ -21,13 +21,13 @@ app.blueprints.design.blueprint.otherPackages.index = (route, blueprint) => a.di
   a.br,
   a['div.mb-1']([
     app.button({
-      label: app.icon('fa fa-list-ol', 'Manage other packages'),
+      label: app.icon('fa fa-list-ol', 'Manage bundled packages'),
       onclick: (e) => route.open('manage'),
       class: 'btn btn-secondary',
     }),
     ' ',
     app.button({
-      label: app.icon('fa fa-plus', 'Add other package'),
+      label: app.icon('fa fa-plus', 'Add bundled package'),
       onclick: (e) => route.open('new'),
       class: 'btn btn-secondary',
     }),
