@@ -1,0 +1,3 @@
+# ENGINES_WORKSPACE='/var/lib/engines' \
+GIT_TERMINAL_PROMPT='0' \
+bundle exec thin start --threaded

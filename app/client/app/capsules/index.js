@@ -8,7 +8,7 @@ app.capsules.index = (route) => a['app-capsules-index']([
     ? a['div.container-fluid'](capsules.map(capsule => app.clickable(
       a['div.row.app-clickable.border-bottom']([
         a['div.col-lg-8.p-2']([
-          a.code(capsule.id.substring(0, 11)),
+          a.code(capsule.id.substring(0, 12)),
           ' ',
           a['.d-inline-block.text-nowrap'](capsule.names.map(tag => a.div(tag))),
         ]),
@@ -21,7 +21,7 @@ app.capsules.index = (route) => a['app-capsules-index']([
           app.docker.containers.state.label(capsule.state),
         ]),
       ]),
-      () => route.open(`@${capsule.id.substring(0, 11)}`)
+      () => route.open(`@${capsule.id.substring(0, 12)}`)
     ))
   )
   : a['div.p-2'](app.placeholder('No capsules')),

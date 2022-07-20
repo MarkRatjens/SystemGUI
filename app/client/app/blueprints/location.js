@@ -9,10 +9,9 @@ app.blueprints.location = (route) => a.div([
         right: [
           route.mount({
             routes: {
-              '/?': (route) => app.blueprints.location.show(route, summary),
               '/design/?*': (route) => app.blueprints.location.design(route, summary),
-              '*': '',
-            }
+              '*': (route) => app.blueprints.location.show(route, summary),
+            },
           }),
         ],
       }),
