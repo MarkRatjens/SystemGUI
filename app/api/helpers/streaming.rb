@@ -37,11 +37,8 @@ module App
         yield(out)
         send_eot(out)
         out.close
-        # begin
-        # rescue => e
-        #   debugger
-        #   streaming_rescue(out, e)
-        # end
+      rescue => e
+        streaming_rescue(out, e)
       end
 
       def keep_alive(out)
@@ -58,11 +55,8 @@ module App
       end
 
       def out_puts(out, line)
-        if !out.closed?
-          out.puts(line)
-        else
-          raise App::Error::StreamClosed
-        end
+        raise App::Error::StreamClosed if out.closed?
+        out.puts(line)
       end
 
       def send_eot(out)
@@ -87,16 +81,16 @@ module App
         end
         out_puts(out, "data: \n\n")
       end
-      #
-      # def streaming_rescue(out, e)
-      #   if !out.closed?
-      #     send_exception(out, e)
-      #     send_eot(out)
-      #     out.close
-      #   else
-      #     logger.info "Stream rescued: #{e.message}"
-      #   end
-      # end
+
+      def streaming_rescue(out, e)
+        if !out.closed?
+          send_exception(out, e)
+          send_eot(out)
+          out.close
+        else
+          logger.info "Stream rescued: #{e.message}"
+        end
+      end
 
       # def stream_import_for(identifier, force=false)
       #   stream do |out|
